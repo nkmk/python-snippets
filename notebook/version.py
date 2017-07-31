@@ -1,41 +1,42 @@
 import sys
 
-sys.version
-# '3.6.2 (default, Jul 17 2017, 16:44:45) \n[GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)]'
+print(sys.version)
+# 3.6.2 (default, Jul 17 2017, 16:44:45) 
+# [GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)]
 
-type(sys.version)
-# str
+print(type(sys.version))
+# <class 'str'>
 
-sys.version_info
+print(sys.version_info)
 # sys.version_info(major=3, minor=6, micro=2, releaselevel='final', serial=0)
 
-type(sys.version_info)
-# sys.version_info
+print(type(sys.version_info))
+# <class 'sys.version_info'>
 
-sys.version_info.major
+print(sys.version_info.major)
 # 3
 
-type(sys.version_info.major)
-# int
+print(type(sys.version_info.major))
+# <class 'int'>
 
 # ---
 
 import platform
 
-platform.python_version()
-# '3.6.2'
+print(platform.python_version())
+# 3.6.2
 
-type(platform.python_version())
-# str
+print(type(platform.python_version()))
+# <class 'str'>
 
-platform.python_version_tuple()
+print(platform.python_version_tuple())
 # ('3', '6', '2')
 
-type(platform.python_version_tuple())
-# tuple
+print(type(platform.python_version_tuple()))
+# <class 'tuple'>
 
-platform.python_version_tuple()[0]
-# '3'
+print(platform.python_version_tuple()[0])
+# 3
 
-type(platform.python_version_tuple()[0])
-# str
+print(type(platform.python_version_tuple()[0]))
+# <class 'str'>

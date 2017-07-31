@@ -6,21 +6,21 @@ img = Image.open(src_path).convert('RGB')
 
 # ![lenna](data/src/lenna.jpg)
 
-type(img)
-# PIL.Image.Image
+print(type(img))
+# <class 'PIL.Image.Image'>
 
-img.size  # (width, height)
+print(img.size)  # (width, height)
 # (400, 225)
 
 # PIL Image to ndarray
 arr = np.array(img)
-type(arr)
-# numpy.ndarray
+print(type(arr))
+# <class 'numpy.ndarray'>
 
-arr.shape  # (height, width, channel)
+print(arr.shape)  # (height, width, channel)
 # (225, 400, 3)
 
 # ndarray to PIL Image
 img2 = Image.fromarray(np.uint8(arr))
-type(img2)
-# PIL.Image.Image
+print(type(img2))
+# <class 'PIL.Image.Image'>

@@ -2,29 +2,17 @@ import numpy as np
 
 l = [[0, 0, 0], [0, 0, 0]]
 arr = np.array(l)
-arr
-# array([[0, 0, 0],
-#        [0, 0, 0]])
+print(arr)
+# [[0 0 0]
+#  [0 0 0]]
 
-arr.dtype
-# dtype('int64')
-
-arr.shape
-# (2, 3)
-
-arr.ndim
-# 2
+print(arr.dtype, arr.shape, arr.ndim)
+# int64 (2, 3) 2
 
 l2 = [[0, 0, 0], [0, 0]]
 arr2 = np.array(l2)
-arr2
-# array([[0, 0, 0], [0, 0]], dtype=object)
+print(arr2)
+# [[0, 0, 0] [0, 0]]
 
-arr2.dtype
-# dtype('O')
-
-arr2.shape
-# (2,)
-
-arr2.ndim
-# 1
+print(arr2.dtype, arr2.shape, arr2.ndim)
+# object (2,) 1
