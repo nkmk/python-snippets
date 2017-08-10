@@ -42,17 +42,31 @@ print('bin: {:b}'.format(i))
 print('oct: {:o}'.format(i))
 print('dec: {:d}'.format(i))
 print('hex: {:x}'.format(i))
+print('HEX: {:X}'.format(i))
 # bin: 11111111
 # oct: 377
 # dec: 255
 # hex: ff
+# HEX: FF
 
 i = 255
 print('bin: {:0>8b}'.format(i))
 print('oct: {:0>8o}'.format(i))
 print('dec: {:0>8d}'.format(i))
 print('hex: {:0>8x}'.format(i))
+print('HEX: {:0>8X}'.format(i))
 # bin: 11111111
 # oct: 00000377
 # dec: 00000255
 # hex: 000000ff
+# HEX: 000000FF
+
+i = 100000000
+print('{:,}'.format(i))
+# 100,000,000
+
+ratio = 0.4567
+print('{:%}'.format(ratio))
+print('{:.1%}'.format(ratio))
+# 45.670000%
+# 45.7%
