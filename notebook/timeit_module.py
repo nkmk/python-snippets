@@ -21,10 +21,15 @@ print(timeit.timeit(lambda: test(n), number=100))
 # 0.0038685189792886376
 # 0.03517670702422038
 
+repeat = 5
+print(timeit.repeat(lambda: test(n), repeat=repeat, number=100))
+# [0.044914519996382296, 0.039663890027441084, 0.02868645201670006, 0.022745631984435022, 0.023260265996214002]
+
 # magic command
 # It works only on Jupyter / IPython.
+
 get_ipython().magic('timeit test(n)')
-# 243 µs ± 6.53 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+# 259 µs ± 4.87 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 get_ipython().magic('timeit -r 3 -n 10000 test(n)')
 # 237 µs ± 6.44 µs per loop (mean ± std. dev. of 3 runs, 10000 loops each)
