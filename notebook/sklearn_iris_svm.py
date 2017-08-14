@@ -69,3 +69,9 @@ ac_score = metrics.accuracy_score(label_test, pre)
 
 print(ac_score)
 # 0.973684210526
+
+scores = model_selection.cross_val_score(clf, iris_data, iris_label, cv=3)
+print(scores)
+print(scores.mean())
+# [ 0.98039216  0.96078431  0.97916667]
+# 0.973447712418
