@@ -1,6 +1,6 @@
-# - https://docs.python.jp/3/library/string.html#format-string-syntax
-# - https://docs.python.jp/3/library/string.html#formatspec
-# - https://docs.python.jp/3/library/string.html#format-examples
+# https://docs.python.jp/3/library/string.html#format-string-syntax
+# https://docs.python.jp/3/library/string.html#formatspec
+# https://docs.python.jp/3/library/string.html#format-examples
 
 print('{0}'.format('foo'))
 # foo
@@ -66,7 +66,13 @@ print('{:,}'.format(i))
 # 100,000,000
 
 ratio = 0.4567
+print('{:.2}'.format(ratio))
+print('{:.5}'.format(ratio))
+print('{:.5f}'.format(ratio))
 print('{:%}'.format(ratio))
 print('{:.1%}'.format(ratio))
+# 0.46
+# 0.4567
+# 0.45670
 # 45.670000%
 # 45.7%
