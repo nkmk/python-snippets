@@ -2,9 +2,6 @@
 # https://docs.python.jp/3/library/string.html#formatspec
 # https://docs.python.jp/3/library/string.html#format-examples
 
-print('{0}'.format('foo'))
-# foo
-
 print('{}'.format('foo'))
 # foo
 
@@ -17,9 +14,13 @@ print('{0}, {1}, {0}'.format('foo', 'bar'))
 print('{word1}, {word2}, {word1}'.format(word1='one', word2='two'))
 # one, two, one
 
-person = {'name': 'ALice', 'age': 20}
-print('{0[name]} is {0[age]} years old.'.format(person))
-# ALice is 20 years old.
+person1 = {'name': 'Alice', 'age': 20}
+person2 = {'name': 'Bob', 'age': 30}
+print('{0[name]} is {0[age]} years old. {1[name]} is {1[age]} years old.'.format(person1, person2))
+# Alice is 20 years old. Bob is 30 years old.
+
+print('{number:0>5}'.format(number=123))
+# 00123
 
 i = 100
 print('left  : {:<10}'.format(i))
@@ -29,13 +30,17 @@ print('right : {:>10}'.format(i))
 # center:    100    
 # right :        100
 
-i = 100
 print('left  : {:*<10}'.format(i))
 print('center: {:*^10}'.format(i))
 print('right : {:*>10}'.format(i))
 # left  : 100*******
 # center: ***100****
 # right : *******100
+
+print('zero padding 1: {:0>10}'.format(i))
+print('zero padding 2: {:010}'.format(i))
+# zero padding 1: 0000000100
+# zero padding 2: 0000000100
 
 i = 255
 print('bin: {:b}'.format(i))
@@ -49,12 +54,11 @@ print('HEX: {:X}'.format(i))
 # hex: ff
 # HEX: FF
 
-i = 255
-print('bin: {:0>8b}'.format(i))
-print('oct: {:0>8o}'.format(i))
-print('dec: {:0>8d}'.format(i))
-print('hex: {:0>8x}'.format(i))
-print('HEX: {:0>8X}'.format(i))
+print('bin: {:08b}'.format(i))
+print('oct: {:08o}'.format(i))
+print('dec: {:08d}'.format(i))
+print('hex: {:08x}'.format(i))
+print('HEX: {:08X}'.format(i))
 # bin: 11111111
 # oct: 00000377
 # dec: 00000255
@@ -65,14 +69,20 @@ i = 100000000
 print('{:,}'.format(i))
 # 100,000,000
 
+print('{:e}'.format(i))
+print('{:E}'.format(i))
+# 1.000000e+08
+# 1.000000E+08
+
 ratio = 0.4567
 print('{:.2}'.format(ratio))
 print('{:.5}'.format(ratio))
 print('{:.5f}'.format(ratio))
-print('{:%}'.format(ratio))
-print('{:.1%}'.format(ratio))
 # 0.46
 # 0.4567
 # 0.45670
+
+print('{:%}'.format(ratio))
+print('{:.1%}'.format(ratio))
 # 45.670000%
 # 45.7%
