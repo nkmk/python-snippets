@@ -27,8 +27,6 @@ model.compile(
 )
 
 batch_size = 100
-batch_num = (int)(train_size // batch_size)
-
 epochs = 20
 
 model.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size)
