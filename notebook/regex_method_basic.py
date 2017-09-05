@@ -58,7 +58,7 @@ print(m)
 
 m = re.finditer('one', s)
 print(m)
-# <callable_iterator object at 0x10d4d5a90>
+# <callable_iterator object at 0x10e786470>
 
 for match in m:
     print(match)
@@ -94,3 +94,11 @@ p = re.compile('one')
 m = p.match(s)
 print(m)
 # <_sre.SRE_Match object; span=(0, 3), match='one'>
+
+m = p.findall(s)
+print(m)
+# ['one', 'one']
+
+m = p.sub('ONE', s)
+print(m)
+# ONE two ONE two
