@@ -1,6 +1,6 @@
 import cv2
 
-img = cv2.imread('data/src/lenna_square.png')
+img = cv2.imread('data/src/lena_square.png')
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 print(type(img), img.shape)
@@ -19,5 +19,5 @@ print(faces)
 for x, y, w, h in faces:
     cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
-cv2.imwrite('data/dst/lenna_square_face.jpg', img)
+cv2.imwrite('data/dst/lena_square_face.jpg', img)
 # True

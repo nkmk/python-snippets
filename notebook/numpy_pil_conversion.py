@@ -1,10 +1,10 @@
 import numpy as np
 from PIL import Image
 
-src_path = "data/src/lenna.jpg"
+src_path = "data/src/lena.jpg"
 img = Image.open(src_path).convert('RGB')
 
-# ![lenna](data/src/lenna.jpg)
+# ![lena](data/src/lena.jpg)
 
 print(type(img))
 # <class 'PIL.Image.Image'>
