@@ -50,9 +50,9 @@ f['Adj Close']['SNE'] /= f['Adj Close']['SNE'][-1]
 f['Adj Close']['AAPL'] /= f['Adj Close']['AAPL'][-1]
 f['Adj Close'].plot(title='SNE vs AAPL', grid=True)
 # plt.show()
-plt.savefig('data/dst/pandas-datareader-yahoo.png')
+plt.savefig('data/dst/pandas_datareader_yahoo.png')
 
-# ![pandas-datareader-yahoo.png](data/dst/pandas-datareader-yahoo.png)
+# ![pandas_datareader_yahoo.png](data/dst/pandas_datareader_yahoo.png)
 
 from pandas_datareader import wb
 
@@ -106,6 +106,6 @@ print(f2)
 f2.columns = ['Japan', 'United States']
 f2.plot(grid=True)
 # plt.show()
-plt.savefig('data/dst/pandas-datareader-wb.png')
+plt.savefig('data/dst/pandas_datareader_wb.png')
 
-# ![pandas-datareader-wb.png](data/dst/pandas-datareader-wb.png)
+# ![pandas_datareader_wb.png](data/dst/pandas_datareader_wb.png)
