@@ -52,7 +52,7 @@ print(type(df.loc[1:3, 'age']))
 # <class 'pandas.core.series.Series'>
 
 print(df.loc[1:3, 'age':'point'])
-print(type(df.loc[1:3, ['age', 'point']]))
+print(type(df.loc[1:3, 'age':'point']))
 #    age state  point
 # 1   60    CA     92
 # 2   18    CA     70
