@@ -1,0 +1,7 @@
+name,age,state,point, other
+Alice,24,NY,,
+,,,,
+Charlie,,CA,,
+Dave,68,TX,70,
+Ellen,,CA,88,
+Frank,30,,,
