@@ -1,0 +1,4 @@
+lines.linewidth   : 3.0
+lines.linestyle   : --    # 破線
+axes.prop_cycle   : cycler('color', ['green'])
+axes.grid         : True
