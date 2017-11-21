@@ -102,3 +102,4 @@ ENV/
 
 # downloded data
 notebook/data/src/download/
+notebook/data/temp
