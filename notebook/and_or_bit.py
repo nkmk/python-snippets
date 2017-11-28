@@ -1,14 +1,14 @@
-x = -10
+x = -9
 
 print(x)
 print(bin(x))
-# -10
-# -0b1010
+# -9
+# -0b1001
 
 print(bin(x & 0xff))
-print(format(x & 0b1111, '04b'))
-# 0b11110110
-# 0110
+print(format(x & 0xffff, 'x'))
+# 0b11110111
+# fff7
 
 x = 9   # 0b1001
 y = 10  # 0b1010
