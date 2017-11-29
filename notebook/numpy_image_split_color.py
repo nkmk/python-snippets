@@ -3,13 +3,6 @@ import numpy as np
 
 im = np.array(Image.open('data/src/lena_square.png'))
 
-print(im.ndim, im.shape)    # 次元数、サイズ
-# => 3 (512, 512, 3)
-print(im[256, 256])         # 指定した座標の色（原点は左上）
-# => [180  65  72]
-print(im[:, :, 0].min())    # Redの最小値
-# => 54
-
 im_R = im.copy()
 im_R[:, :, (1, 2)] = 0
 im_G = im.copy()
