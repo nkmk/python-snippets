@@ -42,7 +42,7 @@ back_im.save('data/dst/rocket_pillow_paste_mask_circle.jpg', quality=95)
 # ![rocket_pillow_paste_mask_circle](data/dst/rocket_pillow_paste_mask_circle.jpg)
 
 mask_im_blur = mask_im.filter(ImageFilter.GaussianBlur(10))
-mask_im_blur.save('data/dst/mask_circle_blur.jpg', quality=5)
+mask_im_blur.save('data/dst/mask_circle_blur.jpg', quality=95)
 
 back_im = im1.copy()
 back_im.paste(im2, (0, 0), mask_im_blur)
