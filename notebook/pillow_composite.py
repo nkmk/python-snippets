@@ -10,6 +10,7 @@ im2.save('data/src/rocket_resize.jpg')
 
 mask = Image.new("L", im1.size, 128)
 im = Image.composite(im1, im2, mask)
+# im = Image.blend(im1, im2, 0.5)
 
 im.save('data/dst/pillow_composite_solid.jpg', quality=95)
 
