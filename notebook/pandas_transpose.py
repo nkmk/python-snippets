@@ -15,7 +15,7 @@ print(df_t)
 # state     NY   CA       CA
 # point     64   92       70
 
-df_tr =df.transpose()
+df_tr = df.transpose()
 print(df_tr)
 #            0    1        2
 # name   Alice  Bob  Charlie
