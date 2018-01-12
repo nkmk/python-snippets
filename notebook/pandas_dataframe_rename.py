@@ -25,6 +25,14 @@ print(df_new)
 # TWO    21  22  23
 # THREE  31  32  33
 
+df_new_multi = df.rename(columns={'A': 'a', 'C': 'c'})
+
+print(df_new_multi)
+#         a   B   c
+# ONE    11  12  13
+# TWO    21  22  23
+# THREE  31  32  33
+
 df_new = df.rename(columns={'A': 'a'}, index={'ONE': 'one'}, inplace=True)
 
 print(df)
