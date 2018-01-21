@@ -22,4 +22,5 @@ for i in range(0, max_radius, step):
     images.append(im)
 
 im_0 = images.pop(0)
-im_0.save('data/dst/test.gif', save_all=True, append_images=images, optimize=False, duration=40)
+im_0.save('data/dst/pillow_imagedraw.gif',
+          save_all=True, append_images=images, optimize=False, duration=40, loop=0)
