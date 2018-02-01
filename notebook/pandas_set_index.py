@@ -32,8 +32,7 @@ print(df_mi)
 # CA    Ellen     24     88
 # NY    Frank     30     57
 
-df_s = df.sort_values('state')
-df_mi = df_s.set_index(['state', 'name'])
+df_mi.sort_index(inplace=True)
 print(df_mi)
 #                age  point
 # state name               
