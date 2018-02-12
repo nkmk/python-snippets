@@ -1,108 +1,160 @@
 import pandas as pd
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv')
+df = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
 print(df)
-#       name  age state  point
-# 0    Alice   24    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    CA     88
-# 5    Frank   30    NY     57
+#          age state  point
+# name                     
+# Alice     24    NY     64
+# Bob       42    CA     92
+# Charlie   18    CA     70
+# Dave      68    TX     70
+# Ellen     24    CA     88
+# Frank     30    NY     57
 
 print(df.index.values)
-# [0 1 2 3 4 5]
+# ['Alice' 'Bob' 'Charlie' 'Dave' 'Ellen' 'Frank']
 
 print(df.columns.values)
-# ['name' 'age' 'state' 'point']
+# ['age' 'state' 'point']
 
-print(df.at[1, 'age'])
-print(df.at[3, 'state'])
+print(df.at['Bob', 'age'])
+print(df.at['Dave', 'state'])
 # 42
 # TX
 
-df.at[1, 'age'] = 60
-print(df.at[1, 'age'])
+df.at['Bob', 'age'] = 60
+print(df.at['Bob', 'age'])
 # 60
 
-print(df.iat[1, 1])
-print(df.iat[3, 2])
+print(df.iat[1, 0])
+print(df.iat[3, 1])
 # 60
 # TX
 
-df.iat[1, 1] = 42
-print(df.iat[1, 1])
+df.iat[1, 0] = 42
+print(df.iat[1, 0])
 # 42
 
-print(df.loc[1, 'age'])
-print(df.iloc[3, 2])
+print(df.loc['Bob', 'age'])
+print(df.iloc[3, 1])
 # 42
 # TX
 
-df.loc[1, 'age'] = 60
-print(df.loc[1, 'age'])
+df.loc['Bob', 'age'] = 60
+print(df.loc['Bob', 'age'])
 # 60
 
-print(df.loc[1:3, 'age'])
-print(type(df.loc[1:3, 'age']))
-# 1    60
-# 2    18
-# 3    68
+df.iloc[1, 0] = 42
+print(df.iloc[1, 0])
+# 42
+
+print(df.loc['Bob':'Dave', 'age'])
+print(type(df.loc['Bob':'Dave', 'age']))
+# name
+# Bob        42
+# Charlie    18
+# Dave       68
 # Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
 
-print(df.loc[1:3, 'age':'point'])
-print(type(df.loc[1:3, 'age':'point']))
-#    age state  point
-# 1   60    CA     92
-# 2   18    CA     70
-# 3   68    TX     70
+print(df.loc[:'Dave', ['age', 'point']])
+print(type(df.loc[:'Dave', 'age':'point']))
+#          age  point
+# name               
+# Alice     24     64
+# Bob       42     92
+# Charlie   18     70
+# Dave      68     70
 # <class 'pandas.core.frame.DataFrame'>
 
-print(df.loc[[1, 3], ['age', 'point']])
-print(type(df.loc[1:3, ['age', 'point']]))
-#    age  point
-# 1   60     92
-# 3   68     70
+print(df.iloc[:3, [0, 2]])
+print(type(df.iloc[:3, [0, 2]]))
+#          age  point
+# name               
+# Alice     24     64
+# Bob       42     92
+# Charlie   18     70
 # <class 'pandas.core.frame.DataFrame'>
 
-print(df.iloc[2])
-print(type(df.iloc[2]))
-# name     Charlie
-# age           18
-# state         CA
-# point         70
-# Name: 2, dtype: object
+print(df.iloc[::2, 0])
+print(type(df.iloc[::2, 0]))
+# name
+# Alice      24
+# Charlie    18
+# Ellen      24
+# Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
 
-print(df.iloc[1:3])
-print(type(df.iloc[1:3]))
-#       name  age state  point
-# 1      Bob   60    CA     92
-# 2  Charlie   18    CA     70
-# <class 'pandas.core.frame.DataFrame'>
-
-print(df.loc[:, 'state'])
-print(type(df.loc[:, 'state']))
-# 0    NY
-# 1    CA
-# 2    CA
-# 3    TX
-# 4    CA
-# 5    NY
-# Name: state, dtype: object
+print(df.iloc[1::2, 0])
+print(type(df.iloc[1::2, 0]))
+# name
+# Bob      42
+# Dave     68
+# Frank    30
+# Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
 
-df.loc[1:3, 'age'] = [20, 30, 40]
-print(df.loc[1:3, 'age'])
-# 1    20
-# 2    30
-# 3    40
+df.loc['Bob':'Dave', 'age'] = [20, 30, 40]
+print(df.loc['Bob':'Dave', 'age'])
+# name
+# Bob        20
+# Charlie    30
+# Dave       40
 # Name: age, dtype: int64
 
-df_name = df.set_index('name')
-# df_name = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
-print(df_name)
+print(df['Bob':'Ellen'])
+#          age state  point
+# name                     
+# Bob       20    CA     92
+# Charlie   30    CA     70
+# Dave      40    TX     70
+# Ellen     24    CA     88
+
+print(df[:3])
+#          age state  point
+# name                     
+# Alice     24    NY     64
+# Bob       20    CA     92
+# Charlie   30    CA     70
+
+print(df['age'])
+# name
+# Alice      24
+# Bob        20
+# Charlie    30
+# Dave       40
+# Ellen      24
+# Frank      30
+# Name: age, dtype: int64
+
+print(df[['age', 'point']])
+#          age  point
+# name               
+# Alice     24     64
+# Bob       20     92
+# Charlie   30     70
+# Dave      40     70
+# Ellen     24     88
+# Frank     30     57
+
+print(df.loc['Bob'])
+print(type(df.loc['Bob']))
+# age      20
+# state    CA
+# point    92
+# Name: Bob, dtype: object
+# <class 'pandas.core.series.Series'>
+
+print(df.iloc[[1, 4]])
+print(type(df.iloc[[1, 4]]))
+#        age state  point
+# name                   
+# Bob     20    CA     92
+# Ellen   24    CA     88
+# <class 'pandas.core.frame.DataFrame'>
+
+print(df.loc[:, 'age':'point'])
+print(type(df.loc[:, 'age':'point']))
 #          age state  point
 # name                     
 # Alice     24    NY     64
@@ -111,29 +163,18 @@ print(df_name)
 # Dave      40    TX     70
 # Ellen     24    CA     88
 # Frank     30    NY     57
+# <class 'pandas.core.frame.DataFrame'>
 
-print(df_name.index.values)
-# ['Alice' 'Bob' 'Charlie' 'Dave' 'Ellen' 'Frank']
-
-print(df_name.at['Alice', 'age'])
-print(df_name.at['Dave', 'state'])
-# 24
-# TX
-
-print(df_name.loc['Alice'])
-print(type(df_name.loc['Alice']))
-# age      24
-# state    NY
-# point    64
-# Name: Alice, dtype: object
-# <class 'pandas.core.series.Series'>
-
-print(df_name.loc[['Alice', 'Frank']])
-print(type(df_name.loc[['Alice', 'Frank']]))
-#        age state  point
-# name                   
-# Alice   24    NY     64
-# Frank   30    NY     57
+print(df.iloc[:, [0, 2]])
+print(type(df.iloc[:, [0, 2]]))
+#          age  point
+# name               
+# Alice     24     64
+# Bob       20     92
+# Charlie   30     70
+# Dave      40     70
+# Ellen     24     88
+# Frank     30     57
 # <class 'pandas.core.frame.DataFrame'>
 
 df_state = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=2)
@@ -155,56 +196,64 @@ print(type(df_state.at['NY', 'age']))
 # [24 30]
 # <class 'numpy.ndarray'>
 
+print(df_state.loc['NY', 'age'])
+print(type(df_state.loc['NY', 'age']))
+# state
+# NY    24
+# NY    30
+# Name: age, dtype: int64
+# <class 'pandas.core.series.Series'>
+
+print(df_state.loc['NY', ['age', 'point']])
+print(type(df_state.loc['NY', ['age', 'point']]))
+#        age  point
+# state            
+# NY      24     64
+# NY      30     57
+# <class 'pandas.core.frame.DataFrame'>
+
 print(df_state.iat[0, 1])
 # 24
 
 print(df_state.index.is_unique)
 # False
 
-print(df['name'])
-print(type(df['name']))
-# 0      Alice
-# 1        Bob
-# 2    Charlie
-# 3       Dave
-# 4      Ellen
-# 5      Frank
-# Name: name, dtype: object
-# <class 'pandas.core.series.Series'>
+print(df_state.columns.is_unique)
+# True
 
-print(df[['name', 'point']])
-print(type(df[['name', 'point']]))
-#       name  point
-# 0    Alice     64
-# 1      Bob     92
-# 2  Charlie     70
-# 3     Dave     70
-# 4    Ellen     88
-# 5    Frank     57
-# <class 'pandas.core.frame.DataFrame'>
+print(df)
+#          age state  point
+# name                     
+# Alice     24    NY     64
+# Bob       20    CA     92
+# Charlie   30    CA     70
+# Dave      40    TX     70
+# Ellen     24    CA     88
+# Frank     30    NY     57
 
-print(df.name)
-print(type(df.name))
-# 0      Alice
-# 1        Bob
-# 2    Charlie
-# 3       Dave
-# 4      Ellen
-# 5      Frank
-# Name: name, dtype: object
-# <class 'pandas.core.series.Series'>
+print(df.index[2])
+# Charlie
 
-print(df[1:3])
-print(type(df[1:3]))
-#       name  age state  point
-# 1      Bob   20    CA     92
-# 2  Charlie   30    CA     70
-# <class 'pandas.core.frame.DataFrame'>
+print(df.columns[1])
+# state
 
-# print(df[1])
-# KeyError
-print(df[1:2])
-print(type(df[1:2]))
-#   name  age state  point
-# 1  Bob   20    CA     92
-# <class 'pandas.core.frame.DataFrame'>
+print(df.at[df.index[2], 'age'])
+# 30
+
+print(df.loc[['Alice', 'Dave'], df.columns[1]])
+# name
+# Alice    NY
+# Dave     TX
+# Name: state, dtype: object
+
+print(df['age'][2])
+# 30
+
+print(df.age[2])
+# 30
+
+print(df.loc[['Alice', 'Dave']].iloc[:, 1])
+# name
+# Alice    NY
+# Dave     TX
+# Name: state, dtype: object
