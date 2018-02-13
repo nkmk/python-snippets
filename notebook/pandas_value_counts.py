@@ -10,44 +10,82 @@ print(df)
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-s = df['state'].value_counts()
-print(s)
+u = df['state'].unique()
+print(u)
+print(type(u))
+# ['NY' 'CA' 'TX']
+# <class 'numpy.ndarray'>
+
+vc = df['state'].value_counts()
+print(vc)
+print(type(vc))
 # CA    3
 # NY    2
 # TX    1
 # Name: state, dtype: int64
-
-print(type(s))
 # <class 'pandas.core.series.Series'>
 
-print(len(s))
+vc_f = df['state'].value_counts(sort=False)
+print(vc_f)
+# TX    1
+# CA    3
+# NY    2
+# Name: state, dtype: int64
+
+print(len(u))
 # 3
 
-print(s.count())
+print(len(vc))
 # 3
 
-print(s.index.tolist())
+print(vc.count())
+# 3
+
+print(u.tolist())
+print(type(u.tolist()))
+# ['NY', 'CA', 'TX']
+# <class 'list'>
+
+print(vc.index.tolist())
+print(type(vc.index.tolist()))
 # ['CA', 'NY', 'TX']
+# <class 'list'>
 
-print(s['NY'])
+print(vc.index.values)
+print(type(vc.index.values))
+# ['CA' 'NY' 'TX']
+# <class 'numpy.ndarray'>
+
+print(vc['NY'])
 # 2
 
-print(s.NY)
+print(vc.NY)
 # 2
 
-d = s.to_dict()
+for index, value in vc.iteritems():
+    print(index, ': ', value)
+# CA :  3
+# NY :  2
+# TX :  1
+
+d = vc.to_dict()
 print(d)
+print(type(d))
 # {'CA': 3, 'NY': 2, 'TX': 1}
+# <class 'dict'>
 
 print(d['NY'])
 # 2
 
-s_norm = df['state'].value_counts(normalize=True)
-print(s_norm)
+for key, value in d.items():
+    print(key, ': ', value)
+# CA :  3
+# NY :  2
+# TX :  1
+
+vc_norm = df['state'].value_counts(normalize=True)
+print(vc_norm)
 # CA    0.500000
 # NY    0.333333
 # TX    0.166667
 # Name: state, dtype: float64
-
-print(s_norm.sum())
-# 1.0
