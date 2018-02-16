@@ -21,6 +21,5 @@ for i in range(0, max_radius, step):
     draw.ellipse((center - i, center - i, center + i, center + i), fill=color_1)
     images.append(im)
 
-im_0 = images.pop(0)
-im_0.save('data/dst/pillow_imagedraw.gif',
-          save_all=True, append_images=images, optimize=False, duration=40, loop=0)
+images[0].save('data/dst/pillow_imagedraw.gif',
+               save_all=True, append_images=images[1:], optimize=False, duration=40, loop=0)
