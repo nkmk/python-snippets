@@ -3,6 +3,9 @@ from fractions import Fraction
 print(Fraction(1, 3))
 # 1/3
 
+print(Fraction(2, 6))
+# 1/3
+
 print(Fraction(3))
 # 3
 
@@ -14,6 +17,9 @@ print(Fraction(0.33))
 
 print(Fraction('2/5'))
 # 2/5
+
+print(Fraction('16/48'))
+# 1/3
 
 a = Fraction(1, 3)
 print(a)
