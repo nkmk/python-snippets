@@ -175,9 +175,9 @@ print(np.delete(a, np.where(a < 2)[1], axis=1))
 #  [ 6  7]
 #  [10 11]]
 
-print(a == 2)
-# [[False False  True False]
-#  [False False False False]
+print(a == 6)
+# [[False False False False]
+#  [False False  True False]
 #  [False False False False]]
 
 print(np.where(a == 6))
