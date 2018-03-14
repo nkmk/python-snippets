@@ -59,11 +59,11 @@ print(type(float('１００')))
 # 100.0
 # <class 'float'>
 
-# print(float('１．２３'))
+# print(float('ー１．２３'))
 # ValueError: could not convert string to float: '１．２３'
 
-print(float('１.２３'))
-# 1.23
+print(float('-１.２３'))
+# -1.23
 
-print(float('１．２３'.replace('．', '.')))
-# 1.23
+print(float('ー１．２３'.replace('ー', '-').replace('．', '.')))
+# -1.23
