@@ -22,12 +22,12 @@ l_odd = [i for i in l if not i % 2 == 0]
 print(l_odd)
 # [-5, -3, -1, 1, 3, 5]
 
-l_even_minus = [i for i in l if (i < 0) or (i % 2 == 0)]
-print(l_even_minus)
+l_minus_or_even = [i for i in l if (i < 0) or (i % 2 == 0)]
+print(l_minus_or_even)
 # [-5, -4, -3, -2, -1, 0, 2, 4]
 
-l_even_plus = [i for i in l if (i < 0) and not (i % 2 == 0)]
-print(l_even_plus)
+l_minus_and_odd = [i for i in l if (i < 0) and not (i % 2 == 0)]
+print(l_minus_and_odd)
 # [-5, -3, -1]
 
 a = 80
