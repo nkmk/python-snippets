@@ -259,21 +259,13 @@ print(arr)
 # [[1 2]
 #  [3 4]]
 
-mat = np.matrix(arr)
-
-print(mat)
-# [[1 2]
-#  [3 4]]
-
-print(arr)
-# [[1 2]
-#  [3 4]]
-
 arr_p = arr**2
 
 print(arr_p)
 # [[ 1  4]
 #  [ 9 16]]
+
+mat = np.matrix(arr)
 
 print(mat)
 # [[1 2]
