@@ -45,3 +45,15 @@ print(cmath.rect(r, ph).real == r * math.cos(ph))
 
 print(cmath.rect(r, ph).imag == r * math.sin(ph))
 # True
+
+print((-3 + 4j) ** 0.5)
+# (1.0000000000000002+2j)
+
+print((-1) ** 0.5)
+# (6.123233995736766e-17+1j)
+
+print(cmath.sqrt(-3 + 4j))
+# (1+2j)
+
+print(cmath.sqrt(-1))
+# 1j
