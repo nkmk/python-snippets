@@ -29,3 +29,10 @@ for i, name in enumerate(l, 1):
 # 001_Alice
 # 002_Bob
 # 003_Charlie
+
+step = 3
+for i, name in enumerate(l):
+    print(i * step, name)
+# 0 Alice
+# 3 Bob
+# 6 Charlie
