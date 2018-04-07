@@ -61,6 +61,28 @@ print(s_replace)
 # 5    NewYork
 # Name: state, dtype: object
 
+s_copy = s.copy()
+s_copy.update(s_copy.map({'NY': 'NewYork'}))
+print(s_copy)
+# 0    NewYork
+# 1         CA
+# 2         CA
+# 3         TX
+# 4         CA
+# 5    NewYork
+# Name: state, dtype: object
+
+s_copy = s.copy()
+s_copy.replace({'NY': 'NewYork'}, inplace=True)
+print(s_copy)
+# 0    NewYork
+# 1         CA
+# 2         CA
+# 3         TX
+# 4         CA
+# 5    NewYork
+# Name: state, dtype: object
+
 s_map_num = s.map({'NY': 0, 'CA': 1, 'TX': 2})
 print(s_map_num)
 # 0    0
