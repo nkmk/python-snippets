@@ -27,48 +27,48 @@ print(type(vc))
 
 vc_f = df['state'].value_counts(sort=False)
 print(vc_f)
-# TX    1
 # CA    3
+# TX    1
 # NY    2
 # Name: state, dtype: int64
 
-print(len(u))
+print(len(df['state'].unique()))
 # 3
 
-print(len(vc))
+print(len(df['state'].value_counts()))
 # 3
 
-print(vc.count())
+print(df['state'].value_counts().count())
 # 3
 
-print(u.tolist())
-print(type(u.tolist()))
+print(df['state'].unique().tolist())
+print(type(df['state'].unique().tolist()))
 # ['NY', 'CA', 'TX']
 # <class 'list'>
 
-print(vc.index.tolist())
-print(type(vc.index.tolist()))
+print(df['state'].value_counts().index.tolist())
+print(type(df['state'].value_counts().index.tolist()))
 # ['CA', 'NY', 'TX']
 # <class 'list'>
 
-print(vc.index.values)
-print(type(vc.index.values))
+print(df['state'].value_counts().index.values)
+print(type(df['state'].value_counts().index.values))
 # ['CA' 'NY' 'TX']
 # <class 'numpy.ndarray'>
 
-print(vc['NY'])
+print(df['state'].value_counts()['NY'])
 # 2
 
-print(vc.NY)
+print(df['state'].value_counts().NY)
 # 2
 
-for index, value in vc.iteritems():
+for index, value in df['state'].value_counts().iteritems():
     print(index, ': ', value)
 # CA :  3
 # NY :  2
 # TX :  1
 
-d = vc.to_dict()
+d = df['state'].value_counts().to_dict()
 print(d)
 print(type(d))
 # {'CA': 3, 'NY': 2, 'TX': 1}
