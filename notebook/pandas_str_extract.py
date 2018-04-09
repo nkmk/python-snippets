@@ -1,40 +1,53 @@
 import pandas as pd
 
-s = pd.Series(['a1A', 'bb22BB', 'ccc333CCC'], index=['A', 'B', 'C'])
-print(s)
-# A          a1A
-# B       bb22BB
-# C    ccc333CCC
+s_org = pd.Series(['aaa@xxx.com', 'bbb@yyy.com', 'ccc@zzz.com', 'ddd'], index=['A', 'B', 'C', 'D'])
+print(s_org)
+# A    aaa@xxx.com
+# B    bbb@yyy.com
+# C    ccc@zzz.com
+# D            ddd
 # dtype: object
 
-df = s.str.extract('(\D*)(.*)', expand=True)
+df = s_org.str.extract('(.+)@(.+)\.(.+)', expand=True)
 print(df)
-#      0       1
-# A    a      1A
-# B   bb    22BB
-# C  ccc  333CCC
+#      0    1    2
+# A  aaa  xxx  com
+# B  bbb  yyy  com
+# C  ccc  zzz  com
+# D  NaN  NaN  NaN
 
-df_name = s.str.extract('(?P<col_1>\D*)(?P<col_2>.*)', expand=True)
+df = s_org.str.extract('(.+)@(.+)\.(.+)', expand=False)
 print(df)
-#      0       1
-# A    a      1A
-# B   bb    22BB
-# C  ccc  333CCC
+#      0    1    2
+# A  aaa  xxx  com
+# B  bbb  yyy  com
+# C  ccc  zzz  com
+# D  NaN  NaN  NaN
 
-df2 = pd.concat([df_name['col_1'],
-                 df_name['col_2'].str.extract('(\d*)(\D*)', expand=True)],
-                axis=1)
-print(df2)
-#   col_1    0    1
-# A     a    1    A
-# B    bb   22   BB
-# C   ccc  333  CCC
+df_single = s_org.str.extract('(\w+)', expand=True)
+print(df_single)
+print(type(df_single))
+#      0
+# A  aaa
+# B  bbb
+# C  ccc
+# D  ddd
+# <class 'pandas.core.frame.DataFrame'>
 
-df2_name = pd.concat([df_name['col_1'],
-                      df_name['col_2'].str.extract('(?P<col_2>\d*)(?P<col_3>\D*)', expand=True)],
-                     axis=1)
-print(df2_name)
-#   col_1 col_2 col_3
-# A     a     1     A
-# B    bb    22    BB
-# C   ccc   333   CCC
+s = s_org.str.extract('(\w+)', expand=False)
+print(s)
+print(type(s))
+# A    aaa
+# B    bbb
+# C    ccc
+# D    ddd
+# dtype: object
+# <class 'pandas.core.series.Series'>
+
+df_name = s_org.str.extract('(?P<local>.*)@(?P<second_LD>.*)\.(?P<TLD>.*)', expand=True)
+print(df_name)
+#   local second_LD  TLD
+# A   aaa       xxx  com
+# B   bbb       yyy  com
+# C   ccc       zzz  com
+# D   NaN       NaN  NaN
