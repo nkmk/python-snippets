@@ -17,6 +17,7 @@ print(arr_2d)
 #  [ 0  1  2  3]
 #  [ 4  5  6  7]]
 
+plt.figure()
 sns.heatmap(arr_2d)
 plt.savefig('data/dst/seaborn_heatmap_ndarray.png')
 
@@ -28,27 +29,35 @@ print(df)
 # c  0  1  2  3
 # d  4  5  6  7
 
+plt.figure()
 sns.heatmap(df)
 plt.savefig('data/dst/seaborn_heatmap_dataframe.png')
 
+plt.figure()
 sns.heatmap(df, annot=True)
 plt.savefig('data/dst/seaborn_heatmap_annot.png')
 
+plt.figure()
 sns.heatmap(df, cbar=False)
 plt.savefig('data/dst/seaborn_heatmap_no_cbar.png')
 
+plt.figure()
 sns.heatmap(df, square=True)
 plt.savefig('data/dst/seaborn_heatmap_square.png')
 
+plt.figure()
 sns.heatmap(df, vmax=10, vmin=-10, center=0)
 plt.savefig('data/dst/seaborn_heatmap_vmax_vmin_center.png')
 
+plt.figure()
 sns.heatmap(df, cmap='hot')
 plt.savefig('data/dst/seaborn_heatmap_hot.png')
 
+plt.figure()
 sns.heatmap(df, cmap='Blues')
 plt.savefig('data/dst/seaborn_heatmap_blues.png')
 
+plt.figure()
 sns.heatmap(df, cmap='Blues_r')
 plt.savefig('data/dst/seaborn_heatmap_blues_r.png')
 
@@ -64,6 +73,7 @@ current_dpi = mpl.rcParams['figure.dpi']
 print(current_dpi)
 # 72.0
 
+plt.figure()
 sns.heatmap(df, square=True)
 plt.savefig('data/dst/seaborn_heatmap_big_2.png', dpi=current_dpi * 2)
 
