@@ -126,6 +126,6 @@ print(df_house_corr.head())
 # OverallCond     0.054811 -0.001985  0.068777 -0.003511  0.043950  -0.077856  
 # [5 rows x 37 columns]
 
-fig, ax = plt.subplots(figsize=(12, 9)) 
+plt.figure(figsize=(12, 9)) 
 sns.heatmap(df_house_corr, square=True, vmax=1, vmin=-1, center=0)
 plt.savefig('data/dst/seaborn_heatmap_house_price.png')
