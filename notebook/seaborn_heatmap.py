@@ -7,8 +7,11 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 list_2d = [[0, 1, 2], [3, 4, 5]]
+
+plt.figure()
 sns.heatmap(list_2d)
 plt.savefig('data/dst/seaborn_heatmap_list.png')
+plt.close('all')
 
 arr_2d = np.arange(-8, 8).reshape((4, 4))
 print(arr_2d)
@@ -32,6 +35,19 @@ print(df)
 plt.figure()
 sns.heatmap(df)
 plt.savefig('data/dst/seaborn_heatmap_dataframe.png')
+
+print(type(sns.heatmap(list_2d)))
+# <class 'matplotlib.axes._subplots.AxesSubplot'>
+
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+sns.heatmap(list_2d, ax=ax)
+fig.savefig('data/dst/seaborn_heatmap_list.png')
+
+fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(8, 6))
+sns.heatmap(list_2d, ax=axes[0, 0])
+sns.heatmap(arr_2d, ax=axes[1, 2])
+fig.savefig('data/dst/seaborn_heatmap_list_sub.png')
 
 plt.figure()
 sns.heatmap(df, annot=True)
@@ -65,7 +81,7 @@ current_figsize = mpl.rcParams['figure.figsize']
 print(current_figsize)
 # [6.0, 4.0]
 
-fig, ax = plt.subplots(figsize=(8, 6)) 
+plt.figure(figsize=(9, 6)) 
 sns.heatmap(df, square=True)
 plt.savefig('data/dst/seaborn_heatmap_big.png')
 
@@ -75,7 +91,7 @@ print(current_dpi)
 
 plt.figure()
 sns.heatmap(df, square=True)
-plt.savefig('data/dst/seaborn_heatmap_big_2.png', dpi=current_dpi * 2)
+plt.savefig('data/dst/seaborn_heatmap_big_2.png', dpi=current_dpi * 1.5)
 
 df_house = pd.read_csv('data/src/house_prices_train.csv', index_col=0)
 
