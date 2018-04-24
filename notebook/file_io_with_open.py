@@ -48,18 +48,23 @@ with open(path) as f:
     l = f.readlines()
     print(l[1])
 # line 2
+#
 
 with open(path) as f:
     for s_line in f:
         print(s_line)
 # line 1
+#
 # line 2
+#
 # line 3
+#
 
 with open(path) as f:
     s_line = f.readline()
     print(s_line)
 # line 1
+#
 
 with open(path) as f:
     while True:
@@ -68,8 +73,11 @@ with open(path) as f:
         if not s_line:
             break
 # line 1
+#
 # line 2
+#
 # line 3
+#
 
 path_w = 'data/src/test_w.txt'
 
