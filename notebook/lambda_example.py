@@ -33,25 +33,25 @@ print(l_sorted)
 print(len('Alice'))
 # 5
 
-l_sorted = sorted(l, key=len)
+l_sorted_len = sorted(l, key=len)
 
-print(l_sorted)
+print(l_sorted_len)
 # ['Bob', 'Alice', 'Charle']
 
 print((lambda x: x[1])('Alice'))
 # l
 
-l_sorted_second = sorted(l, key=lambda x: x[2])
+l_sorted_second = sorted(l, key=lambda x: x[1])
 
 print(l_sorted_second)
-# ['Charle', 'Bob', 'Alice']
+# ['Charle', 'Alice', 'Bob']
 
 l = [0, 1, 2, 3]
 
 map_square = map(lambda x: x**2, l)
 
 print(map_square)
-# <map object at 0x10cb5a048>
+# <map object at 0x1072fd128>
 
 print(list(map_square))
 # [0, 1, 4, 9]
@@ -64,7 +64,7 @@ print(l_square)
 g_square = (x**2 for x in l)
 
 print(g_square)
-# <generator object <genexpr> at 0x10cb10d58>
+# <generator object <genexpr> at 0x1072b6d00>
 
 print(list(g_square))
 # [0, 1, 4, 9]
