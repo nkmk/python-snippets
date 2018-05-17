@@ -156,6 +156,83 @@ print(df_none_nrows)
 # 0  11  12  13  14
 # 1  21  22  23  24
 
+df_default = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0)
+print(df_default)
+#        a    b    c  d
+# ONE    1    1  100  x
+# TWO    2   20   20  y
+# THREE  3  300    3  z
+
+print(df_default.dtypes)
+# a     int64
+# b     int64
+# c     int64
+# d    object
+# dtype: object
+
+df_str = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                     index_col=0, dtype=str)
+print(df_str)
+#        a    b    c  d
+# ONE    1  001  100  x
+# TWO    2  020  020  y
+# THREE  3  300  003  z
+
+print(df_str.dtypes)
+# a    object
+# b    object
+# c    object
+# d    object
+# dtype: object
+
+# df_int = pd.read_csv('data/src/sample_header_index_dtype.csv',
+#                      index_col=0, dtype=int)
+# ValueError: invalid literal for int() with base 10: 'ONE'
+
+df_str_cast = df_str.astype({'a': int})
+print(df_str_cast)
+#        a    b    c  d
+# ONE    1  001  100  x
+# TWO    2  020  020  y
+# THREE  3  300  003  z
+
+print(df_str_cast.dtypes)
+# a     int64
+# b    object
+# c    object
+# d    object
+# dtype: object
+
+df_str_col = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                         index_col=0, dtype={'b': str, 'c': str})
+print(df_str_col)
+#        a    b    c  d
+# ONE    1  001  100  x
+# TWO    2  020  020  y
+# THREE  3  300  003  z
+
+print(df_str_col.dtypes)
+# a     int64
+# b    object
+# c    object
+# d    object
+# dtype: object
+
+df_str_col_num = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                             index_col=0, dtype={2: str, 3: str})
+print(df_str_col_num)
+#        a    b    c  d
+# ONE    1  001  100  x
+# TWO    2  020  020  y
+# THREE  3  300  003  z
+
+print(df_str_col_num.dtypes)
+# a     int64
+# b    object
+# c    object
+# d    object
+# dtype: object
+
 df_tsv = pd.read_table('data/src/sample_header_index.tsv', index_col=0)
 print(df_tsv)
 #         a   b   c   d
