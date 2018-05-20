@@ -37,7 +37,18 @@ print(df_bool.sum(axis=1))
 # 5    0
 # dtype: int64
 
-print(df_bool.sum().sum())
+print(df_bool.values)
+# [[False False False False]
+#  [False False  True False]
+#  [False False  True False]
+#  [False False False False]
+#  [False False  True False]
+#  [False False False False]]
+
+print(type(df_bool.values))
+# <class 'numpy.ndarray'>
+
+print(df_bool.values.sum())
 # 3
 
 s_bool = df['age'] < 25
@@ -79,7 +90,7 @@ print(df_bool_multi.sum(axis=1))
 # 5    0
 # dtype: int64
 
-print(df_bool_multi.sum().sum())
+print(df_bool_multi.values.sum())
 # 5
 
 df_bool_multi_and = ((df['state'] == 'CA') & (df['age'] < 30))
@@ -134,7 +145,7 @@ print(df_bool_not.sum(axis=1))
 # 5    4
 # dtype: int64
 
-print(df_bool_not.sum().sum())
+print(df_bool_not.values.sum())
 # 21
 
 df_num = df[['age', 'point']]
@@ -265,7 +276,7 @@ print(df.isnull().sum(axis=1).head())
 # 4    1
 # dtype: int64
 
-print(df.isnull().sum().sum())
+print(df.isnull().values.sum())
 # 866
 
 print(df.count())
