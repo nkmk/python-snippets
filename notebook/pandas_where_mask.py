@@ -275,7 +275,7 @@ print(df.mask(df < 0, -100))
 # 3   10  4  -100   10
 # 4   20  5  -100   50
 
-print(df.loc[:, df.dtypes != 'object'].mask(df < 0, -100))
+print(df.select_dtypes(include='number').mask(df < 0, -100))
 #      A  B    D
 # 0 -100  1   10
 # 1 -100  2 -100
@@ -283,8 +283,8 @@ print(df.loc[:, df.dtypes != 'object'].mask(df < 0, -100))
 # 3   10  4   10
 # 4   20  5   50
 
-df_mask = df.loc[:, df.dtypes != 'object'].mask(df < 0, -100)
-df_mask = pd.concat([df_mask, df.loc[:, df.dtypes == 'object']], axis=1)
+df_mask = df.select_dtypes(include='number').mask(df < 0, -100)
+df_mask = pd.concat([df_mask, df.select_dtypes(exclude='number')], axis=1)
 print(df_mask.sort_index(axis=1))
 #      A  B  C    D
 # 0 -100  1  a   10
