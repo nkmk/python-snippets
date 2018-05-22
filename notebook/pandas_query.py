@@ -71,23 +71,23 @@ print(df.query('state == ["NY", "TX"]'))
 # 3   Dave   68    TX     70
 # 5  Frank   30    NY     57
 
-print(df.query('name.str.endswith("e")'))
+print(df.query('name.str.endswith("e")', engine='python'))
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 2  Charlie   18    CA     70
 # 3     Dave   68    TX     70
 
-print(df.query('name.str.contains("li")'))
+print(df.query('name.str.contains("li")', engine='python'))
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 2  Charlie   18    CA     70
 
-print(df.query('name.str.match(".*i.*e")'))
+print(df.query('name.str.match(".*i.*e")', engine='python'))
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 2  Charlie   18    CA     70
 
-print(df.query('age.astype("str").str.endswith("8")'))
+print(df.query('age.astype("str").str.endswith("8")', engine='python'))
 #       name  age state  point
 # 2  Charlie   18    CA     70
 # 3     Dave   68    TX     70
@@ -102,7 +102,7 @@ print(df)
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-# print(df.query('name.str.endswith("e")'))
+# print(df.query('name.str.endswith("e")', engine='python'))
 # ValueError: cannot index with vector containing NA / NaN values
 
 print(df[df['name'].str.endswith('e', na=False)])
@@ -110,7 +110,7 @@ print(df[df['name'].str.endswith('e', na=False)])
 # 2  Charlie   18    CA     70
 # 3     Dave   68    TX     70
 
-# print(df.query('name.str.endswith("e", na=False)'))
+# print(df.query('name.str.endswith("e", na=False)', engine='python'))
 # AttributeError: 'dict' object has no attribute 'append'
 
 df['name'].fillna('Alice', inplace=True)
@@ -140,14 +140,14 @@ print(df_name)
 # Ellen     24    CA     88
 # Frank     30    NY     57
 
-print(df_name.query('name.str.endswith("e")'))
+print(df_name.query('name.str.endswith("e")', engine='python'))
 #          age state  point
 # name                     
 # Alice     24    NY     64
 # Charlie   18    CA     70
 # Dave      68    TX     70
 
-print(df_name.query('index.str.endswith("e")'))
+print(df_name.query('index.str.endswith("e")', engine='python'))
 #          age state  point
 # name                     
 # Alice     24    NY     64
@@ -221,7 +221,7 @@ print(df.query('名前 == ["Alice", "Dave"]'))
 # 0  Alice        24         NY  64
 # 3   Dave        68         TX  70
 
-print(df.query('名前.str.contains("li")'))
+print(df.query('名前.str.contains("li")', engine='python'))
 #         名前  age.year state name   3
 # 0    Alice        24         NY  64
 # 2  Charlie        18         CA  70
