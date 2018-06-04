@@ -40,3 +40,20 @@ print(d == d_other)
 
 print(d is d_other)
 # False
+
+l = ['Alice', 'Bob', 'Charlie']
+
+d = {s: len(s) for s in l}
+print(d)
+# {'Alice': 5, 'Bob': 3, 'Charlie': 7}
+
+keys = ['k1', 'k2', 'k3']
+values = [1, 2, 3]
+
+d = {k: v for k, v in zip(keys, values)}
+print(d)
+# {'k1': 1, 'k2': 2, 'k3': 3}
+
+d = {k: v for k, v in zip(keys, values) if v % 2 == 1}
+print(d)
+# {'k1': 1, 'k3': 3}
