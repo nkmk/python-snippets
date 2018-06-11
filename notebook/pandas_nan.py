@@ -57,7 +57,7 @@ print(df.dropna(how='all', axis=1))
 # 4    Ellen   NaN    CA   88.0
 # 5    Frank  30.0   NaN    NaN
 
-print(df.dropna(how='all', axis=[0, 1]))
+print(df.dropna(how='all').dropna(how='all', axis=1))
 #       name   age state  point
 # 0    Alice  24.0    NY    NaN
 # 2  Charlie   NaN    CA    NaN
@@ -65,7 +65,7 @@ print(df.dropna(how='all', axis=[0, 1]))
 # 4    Ellen   NaN    CA   88.0
 # 5    Frank  30.0   NaN    NaN
 
-df2 = df.dropna(how='all', axis=[0, 1])
+df2 = df.dropna(how='all').dropna(how='all', axis=1)
 print(df2)
 #       name   age state  point
 # 0    Alice  24.0    NY    NaN
@@ -214,6 +214,10 @@ print(df.fillna(df.median()))
 # 3     Dave  68.0    TX   70.0    NaN
 # 4    Ellen  30.0    CA   88.0    NaN
 # 5    Frank  30.0   NaN   79.0    NaN
+# /usr/local/lib/python3.6/site-packages/numpy/lib/nanfunctions.py:1018: RuntimeWarning: Mean of empty slice
+#   return np.nanmean(a, axis, out=out, keepdims=keepdims)
+# /usr/local/lib/python3.6/site-packages/numpy/lib/function_base.py:4033: RuntimeWarning: All-NaN slice encountered
+#   r = func(a, **kwargs)
 
 print(df.fillna(df.mode().iloc[0]))
 #       name   age state  point  other
@@ -287,3 +291,92 @@ print(s.fillna(method='bfill', limit=1))
 # 4    30.0
 # 5    30.0
 # Name: age, dtype: float64
+
+print(df)
+#       name   age state  point  other
+# 0    Alice  24.0    NY    NaN    NaN
+# 1      NaN   NaN   NaN    NaN    NaN
+# 2  Charlie   NaN    CA    NaN    NaN
+# 3     Dave  68.0    TX   70.0    NaN
+# 4    Ellen   NaN    CA   88.0    NaN
+# 5    Frank  30.0   NaN    NaN    NaN
+
+print(df['point'].isnull())
+# 0     True
+# 1     True
+# 2     True
+# 3    False
+# 4    False
+# 5     True
+# Name: point, dtype: bool
+
+print(df[df['point'].isnull()])
+#       name   age state  point  other
+# 0    Alice  24.0    NY    NaN    NaN
+# 1      NaN   NaN   NaN    NaN    NaN
+# 2  Charlie   NaN    CA    NaN    NaN
+# 5    Frank  30.0   NaN    NaN    NaN
+
+print(df.iloc[2].isnull())
+# name     False
+# age       True
+# state    False
+# point     True
+# other     True
+# Name: 2, dtype: bool
+
+print(df.loc[:, df.iloc[2].isnull()])
+#     age  point  other
+# 0  24.0    NaN    NaN
+# 1   NaN    NaN    NaN
+# 2   NaN    NaN    NaN
+# 3  68.0   70.0    NaN
+# 4   NaN   88.0    NaN
+# 5  30.0    NaN    NaN
+
+df2 = df.dropna(how='all').dropna(how='all', axis=1)
+print(df2)
+#       name   age state  point
+# 0    Alice  24.0    NY    NaN
+# 2  Charlie   NaN    CA    NaN
+# 3     Dave  68.0    TX   70.0
+# 4    Ellen   NaN    CA   88.0
+# 5    Frank  30.0   NaN    NaN
+
+print(df2.isnull())
+#     name    age  state  point
+# 0  False  False  False   True
+# 2  False   True  False   True
+# 3  False  False  False  False
+# 4  False   True  False  False
+# 5  False  False   True   True
+
+print(df2.isnull().any(axis=1))
+# 0     True
+# 2     True
+# 3    False
+# 4     True
+# 5     True
+# dtype: bool
+
+print(df2[df2.isnull().any(axis=1)])
+#       name   age state  point
+# 0    Alice  24.0    NY    NaN
+# 2  Charlie   NaN    CA    NaN
+# 4    Ellen   NaN    CA   88.0
+# 5    Frank  30.0   NaN    NaN
+
+print(df2.isnull().any())
+# name     False
+# age       True
+# state     True
+# point     True
+# dtype: bool
+
+print(df2.loc[:, df2.isnull().any()])
+#     age state  point
+# 0  24.0    NY    NaN
+# 2   NaN    CA    NaN
+# 3  68.0    TX   70.0
+# 4   NaN    CA   88.0
+# 5  30.0   NaN    NaN
