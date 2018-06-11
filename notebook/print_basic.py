@@ -77,8 +77,17 @@ print('{name} is {age} years old'.format(name=s, age=i))
 print('{} is {} years old / {{xxx}}'.format(s, i))
 # Alice is 25 years old / {xxx}
 
+s = 'Alice'
+i = 25
+
+print(f'{s} is {i} years old')
+# Alice is 25 years old
+
 number = 0.45
 print('{0:.4f} is {0:.2%}'.format(number))
+# 0.4500 is 45.00%
+
+print(f'{number:.4f} is {number:.2%}')
 # 0.4500 is 45.00%
 
 i = 255
