@@ -1,58 +1,99 @@
 import pandas as pd
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
+df = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0)
 print(df)
-#          age state  point
-# name                     
-# Alice     24    NY     64
-# Bob       42    CA     92
-# Charlie   18    CA     70
-# Dave      68    TX     70
-# Ellen     24    CA     88
-# Frank     30    NY     57
+#        a    b      c  d
+# ONE    1    1  100.0  x
+# TWO    2   20    NaN  y
+# THREE  3  300  300.0  z
 
 print(df.dtypes)
-# age       int64
-# state    object
-# point     int64
+# a      int64
+# b      int64
+# c    float64
+# d     object
 # dtype: object
 
-df_str = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0, dtype=str)
+print(df.applymap(type))
+#                    a              b                c              d
+# ONE    <class 'int'>  <class 'int'>  <class 'float'>  <class 'str'>
+# TWO    <class 'int'>  <class 'int'>  <class 'float'>  <class 'str'>
+# THREE  <class 'int'>  <class 'int'>  <class 'float'>  <class 'str'>
+
+df_str = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                     index_col=0, dtype=str)
+print(df_str)
+#        a    b    c  d
+# ONE    1  001  100  x
+# TWO    2  020  NaN  y
+# THREE  3  300  300  z
+
 print(df_str.dtypes)
-print(type(df_str['age'][0]))
-print(type(df_str['state'][0]))
-print(type(df_str['point'][0]))
-# age      object
-# state    object
-# point    object
+# a    object
+# b    object
+# c    object
+# d    object
 # dtype: object
-# <class 'str'>
-# <class 'str'>
-# <class 'str'>
 
-df_object = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0, dtype=object)
+print(df_str.applymap(type))
+#                    a              b                c              d
+# ONE    <class 'str'>  <class 'str'>    <class 'str'>  <class 'str'>
+# TWO    <class 'str'>  <class 'str'>  <class 'float'>  <class 'str'>
+# THREE  <class 'str'>  <class 'str'>    <class 'str'>  <class 'str'>
+
+df_object = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                        index_col=0, dtype=object)
+print(df_object)
+#        a    b    c  d
+# ONE    1  001  100  x
+# TWO    2  020  NaN  y
+# THREE  3  300  300  z
+
 print(df_object.dtypes)
-print(type(df_object['age'][0]))
-print(type(df_object['state'][0]))
-print(type(df_object['point'][0]))
-# age      object
-# state    object
-# point    object
-# dtype: object
-# <class 'str'>
-# <class 'str'>
-# <class 'str'>
-
-df_col = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0, dtype={'age': float, 'point': 'float32'})
-print(df_col.dtypes)
-# age      float64
-# state     object
-# point    float32
+# a    object
+# b    object
+# c    object
+# d    object
 # dtype: object
 
-df_col = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0, dtype={1: float, 3: 'float32'})
+print(df_object.applymap(type))
+#                    a              b                c              d
+# ONE    <class 'str'>  <class 'str'>    <class 'str'>  <class 'str'>
+# TWO    <class 'str'>  <class 'str'>  <class 'float'>  <class 'str'>
+# THREE  <class 'str'>  <class 'str'>    <class 'str'>  <class 'str'>
+
+print(df.astype(str).applymap(type))
+#                    a              b              c              d
+# ONE    <class 'str'>  <class 'str'>  <class 'str'>  <class 'str'>
+# TWO    <class 'str'>  <class 'str'>  <class 'str'>  <class 'str'>
+# THREE  <class 'str'>  <class 'str'>  <class 'str'>  <class 'str'>
+
+df_col = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                     index_col=0, dtype={'a': float, 'b': str})
+print(df_col)
+#          a    b      c  d
+# ONE    1.0  001  100.0  x
+# TWO    2.0  020    NaN  y
+# THREE  3.0  300  300.0  z
+
 print(df_col.dtypes)
-# age      float64
-# state     object
-# point    float32
+# a    float64
+# b     object
+# c    float64
+# d     object
+# dtype: object
+
+df_col = pd.read_csv('data/src/sample_header_index_dtype.csv',
+                     index_col=0, dtype={1: float, 2: str})
+print(df_col)
+#          a    b      c  d
+# ONE    1.0  001  100.0  x
+# TWO    2.0  020    NaN  y
+# THREE  3.0  300  300.0  z
+
+print(df_col.dtypes)
+# a    float64
+# b     object
+# c    float64
+# d     object
 # dtype: object

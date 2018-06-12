@@ -40,24 +40,30 @@ print(s_f.dtype)
 # float64
 
 s_s = s.astype(str)
-print(s_s.dtype)
-print(type(s_s[0]))
-print(type(s_s[1]))
-print(type(s_s[2]))
-# object
-# <class 'str'>
-# <class 'str'>
-# <class 'str'>
+print(s_s)
+# 0    13
+# 1    23
+# 2    33
+# Name: c, dtype: object
+
+print(s_s.map(type))
+# 0    <class 'str'>
+# 1    <class 'str'>
+# 2    <class 'str'>
+# Name: c, dtype: object
 
 s_o = s.astype('object')
-print(s_o.dtype)
-print(type(s_o[0]))
-print(type(s_o[1]))
-print(type(s_o[2]))
-# object
-# <class 'int'>
-# <class 'int'>
-# <class 'int'>
+print(s_o)
+# 0    13
+# 1    23
+# 2    33
+# Name: c, dtype: object
+
+print(s_o.map(type))
+# 0    <class 'int'>
+# 1    <class 'int'>
+# 2    <class 'int'>
+# Name: c, dtype: object
 
 print(df)
 #     a   b   c   d
