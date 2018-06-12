@@ -37,7 +37,7 @@ print(math.isnan(df.at[0, 'point']))
 # True
 # True
 
-print(pd.isnull(df.at[0, 'point']) == np.nan)
+print(df.at[0, 'point'] == np.nan)
 # False
 
 print(df.dropna(how='all'))
