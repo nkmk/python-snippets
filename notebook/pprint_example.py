@@ -79,6 +79,27 @@ pprint.pprint(l, indent=4, width=4)
 #         'Points': [   70,
 #                       30]}]
 
+s = pprint.pformat(l)
+print(s)
+# [{'Age': 40, 'Name': 'Alice XXX', 'Points': [80, 20]},
+#  {'Age': 20, 'Name': 'Bob YYY', 'Points': [90, 10]},
+#  {'Age': 30, 'Name': 'Charlie ZZZ', 'Points': [70, 30]}]
+
+print(type(s))
+# <class 'str'>
+
+s = pprint.pformat(l, depth=2, width=40, indent=2)
+print(s)
+# [ { 'Age': 40,
+#     'Name': 'Alice XXX',
+#     'Points': [...]},
+#   { 'Age': 20,
+#     'Name': 'Bob YYY',
+#     'Points': [...]},
+#   { 'Age': 30,
+#     'Name': 'Charlie ZZZ',
+#     'Points': [...]}]
+
 l_2d = [list(range(10)), list(range(10)), list(range(10))]
 
 print(l_2d)
@@ -101,3 +122,12 @@ pprint.pprint(l_2d, width=20)
 # [[0, 1, 2],
 #  [3, 4, 5],
 #  [6, 7, 8]]
+
+s = pprint.pformat(l_2d, width=20)
+print(s)
+# [[0, 1, 2],
+#  [3, 4, 5],
+#  [6, 7, 8]]
+
+print(type(s))
+# <class 'str'>
