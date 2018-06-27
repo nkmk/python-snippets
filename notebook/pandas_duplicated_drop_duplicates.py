@@ -124,3 +124,40 @@ print(df)
 # 4  Ellen   24    CA     88
 # 5  Frank   30    NY     57
 # 6   Dave   68    TX     70
+
+df = pd.read_csv('data/src/sample_pandas_normal.csv')
+print(df)
+#       name  age state  point
+# 0    Alice   24    NY     64
+# 1      Bob   42    CA     92
+# 2  Charlie   18    CA     70
+# 3     Dave   68    TX     70
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+
+print(df.groupby('state').mean())
+#         age      point
+# state                 
+# CA     28.0  83.333333
+# NY     27.0  60.500000
+# TX     68.0  70.000000
+
+print(df.groupby('state').agg(
+    {'name': lambda x: ','.join(x),
+     'age': 'mean',
+     'point': 'mean'}))
+#                     name  age      point
+# state                                   
+# CA     Bob,Charlie,Ellen   28  83.333333
+# NY           Alice,Frank   27  60.500000
+# TX                  Dave   68  70.000000
+
+print(df.groupby('state').agg(
+    {'name': list,
+     'age': 'mean',
+     'point': 'mean'}))
+#                         name  age      point
+# state                                       
+# CA     [Bob, Charlie, Ellen]   28  83.333333
+# NY            [Alice, Frank]   27  60.500000
+# TX                    [Dave]   68  70.000000
