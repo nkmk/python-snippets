@@ -24,9 +24,11 @@ s = '''
     Line3
     '''
 print(s)
+# 
 #     Line1
 #     Line2
 #     Line3
+#     
 
 s = 'Line1\n'\
     'Line2\n'\
@@ -153,3 +155,20 @@ print(s + 'bbb')
 s_new = s.rstrip()
 print(s_new + 'bbb')
 # aaabbb
+
+print('a')
+print('b')
+print('c')
+# a
+# b
+# c
+
+print('a', end='')
+print('b', end='')
+print('c', end='')
+# abc
+
+print('a', end='-')
+print('b', end='-')
+print('c')
+# a-b-c
