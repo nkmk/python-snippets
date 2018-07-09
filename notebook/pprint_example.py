@@ -79,17 +79,47 @@ pprint.pprint(l, indent=4, width=4)
 #         'Points': [   70,
 #                       30]}]
 
-s = pprint.pformat(l)
-print(s)
+l_long = [list(range(10)), list(range(100, 110))]
+
+print(l_long)
+# [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]]
+
+pprint.pprint(l_long, width=40)
+# [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+#  [100,
+#   101,
+#   102,
+#   103,
+#   104,
+#   105,
+#   106,
+#   107,
+#   108,
+#   109]]
+
+pprint.pprint(l_long, width=40, compact=True)
+# [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+#  [100, 101, 102, 103, 104, 105, 106,
+#   107, 108, 109]]
+
+s_normal = str(l)
+print(s_normal)
+# [{'Name': 'Alice XXX', 'Age': 40, 'Points': [80, 20]}, {'Name': 'Bob YYY', 'Age': 20, 'Points': [90, 10]}, {'Name': 'Charlie ZZZ', 'Age': 30, 'Points': [70, 30]}]
+
+print(type(s_normal))
+# <class 'str'>
+
+s_pp = pprint.pformat(l)
+print(s_pp)
 # [{'Age': 40, 'Name': 'Alice XXX', 'Points': [80, 20]},
 #  {'Age': 20, 'Name': 'Bob YYY', 'Points': [90, 10]},
 #  {'Age': 30, 'Name': 'Charlie ZZZ', 'Points': [70, 30]}]
 
-print(type(s))
+print(type(s_pp))
 # <class 'str'>
 
-s = pprint.pformat(l, depth=2, width=40, indent=2)
-print(s)
+s_pp = pprint.pformat(l, depth=2, width=40, indent=2)
+print(s_pp)
 # [ { 'Age': 40,
 #     'Name': 'Alice XXX',
 #     'Points': [...]},
