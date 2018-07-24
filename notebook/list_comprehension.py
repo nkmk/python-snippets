@@ -53,16 +53,16 @@ for row in matrix:
 print(flat)
 # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-cells = [(row, col) for row in range(0, 3) for col in range(0, 2)]
+cells = [(row, col) for row in range(3) for col in range(2)]
 print(cells)
 # [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]
 
-cells = [(row, col) for row in range(0, 3)
-         for col in range(0, 2) if col == row]
+cells = [(row, col) for row in range(3)
+         for col in range(2) if col == row]
 print(cells)
 # [(0, 0), (1, 1)]
 
-cells = [(row, col) for row in range(0, 3) if row % 2 == 0
-         for col in range(0, 2) if col % 2 == 0]
+cells = [(row, col) for row in range(3) if row % 2 == 0
+         for col in range(2) if col % 2 == 0]
 print(cells)
 # [(0, 0), (2, 0)]
