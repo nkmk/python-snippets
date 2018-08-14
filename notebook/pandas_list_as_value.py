@@ -10,7 +10,7 @@ print(df)
 # c    XY,Y
 # d  Y,Z,XY
 
-df['l'] = df['s'].map(lambda x: x.split(','))
+df['l'] = df['s'].str.split(',')
 print(df)
 #         s           l
 # a   X,Y,Z   [X, Y, Z]
@@ -29,49 +29,49 @@ print(type(df.at['a', 's']))
 print(type(df.at['a', 'l']))
 # <class 'list'>
 
-print(df['s'].map(lambda x: [s.strip() for s in x.split(',')]))
+print(df['s'].apply(lambda x: [s.strip() for s in x.split(',')]))
 # a     [X, Y, Z]
 # b           [X]
 # c       [XY, Y]
 # d    [Y, Z, XY]
 # Name: s, dtype: object
 
-print(df['l'].map(len))
+print(df['l'].apply(len))
 # a    3
 # b    1
 # c    2
 # d    3
 # Name: l, dtype: int64
 
-print(df['l'].map(sorted))
+print(df['l'].apply(sorted))
 # a     [X, Y, Z]
 # b           [X]
 # c       [XY, Y]
 # d    [XY, Y, Z]
 # Name: l, dtype: object
 
-print(df['l'].map(lambda x: ','.join(x)))
+print(df['l'].apply(lambda x: ','.join(x)))
 # a     X,Y,Z
 # b         X
 # c      XY,Y
 # d    Y,Z,XY
 # Name: l, dtype: object
 
-print(df['l'].map(','.join))
+print(df['l'].apply(','.join))
 # a     X,Y,Z
 # b         X
 # c      XY,Y
 # d    Y,Z,XY
 # Name: l, dtype: object
 
-print(df['l'].map(lambda x: ','.join(sorted(x))))
+print(df['l'].apply(lambda x: ','.join(sorted(x))))
 # a     X,Y,Z
 # b         X
 # c      XY,Y
 # d    XY,Y,Z
 # Name: l, dtype: object
 
-df['l'].map(lambda x: x.append('A'))
+df['l'].apply(lambda x: x.append('A'))
 print(df)
 #         s              l
 # a   X,Y,Z   [X, Y, Z, A]
@@ -79,7 +79,7 @@ print(df)
 # c    XY,Y     [XY, Y, A]
 # d  Y,Z,XY  [Y, Z, XY, A]
 
-df['l'].map(lambda x: x.remove('Z') if 'Z' in x else x)
+df['l'].apply(lambda x: x.remove('Z') if 'Z' in x else x)
 print(df)
 #         s           l
 # a   X,Y,Z   [X, Y, A]
@@ -87,14 +87,14 @@ print(df)
 # c    XY,Y  [XY, Y, A]
 # d  Y,Z,XY  [Y, XY, A]
 
-print(df['l'].map(lambda x: 'X' in x))
+print(df['l'].apply(lambda x: 'X' in x))
 # a     True
 # b     True
 # c    False
 # d    False
 # Name: l, dtype: bool
 
-print(df[df['l'].map(lambda x: 'X' in x)])
+print(df[df['l'].apply(lambda x: 'X' in x)])
 #        s          l
 # a  X,Y,Z  [X, Y, A]
 # b      X     [X, A]
