@@ -33,7 +33,9 @@ print(d)
 print(type(d))
 # <class 'dict'>
 
-se = ast.literal_eval('{1, 2, 3}')
+s = '{1, 2, 3}'
+
+se = ast.literal_eval(s)
 print(se)
 # {1, 2, 3}
 
