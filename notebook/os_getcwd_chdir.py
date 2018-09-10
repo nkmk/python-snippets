@@ -1,7 +1,12 @@
 import os
 
-print(os.getcwd())
+path = os.getcwd()
+
+print(path)
 # /Users/mbp/Documents/my-project/python-snippets/notebook
+
+print(type(path))
+# <class 'str'>
 
 os.chdir('../')
 
