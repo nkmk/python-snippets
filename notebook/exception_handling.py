@@ -28,10 +28,10 @@ def divide(a, b):
     try:
         print(a / b)
     except ZeroDivisionError as e:
-        print('ZeroDivisionError: ', e)
+        print('catch ZeroDivisionError:', e)
 
 divide(1, 0)
-# ZeroDivisionError:  division by zero
+# catch ZeroDivisionError: division by zero
 
 # divide('a', 'b')
 # TypeError: unsupported operand type(s) for /: 'str' and 'str'
@@ -40,15 +40,15 @@ def divide_each(a, b):
     try:
         print(a / b)
     except ZeroDivisionError as e:
-        print('ZeroDivisionError: ', e)
+        print('catch ZeroDivisionError:', e)
     except TypeError as e:
-        print('TypeError: ', e)
+        print('catch TypeError:', e)
 
 divide_each(1, 0)
-# ZeroDivisionError:  division by zero
+# catch ZeroDivisionError: division by zero
 
 divide_each('a', 'b')
-# TypeError:  unsupported operand type(s) for /: 'str' and 'str'
+# catch TypeError: unsupported operand type(s) for /: 'str' and 'str'
 
 def divide_same(a, b):
     try:
@@ -90,7 +90,7 @@ def divide_else(a, b):
     try:
         print(a / b)
     except ZeroDivisionError as e:
-        print('ZeroDivisionError: ', e)
+        print('catch ZeroDivisionError:', e)
     else:
         print('finish (no error)')
 
@@ -99,13 +99,13 @@ divide_else(1, 2)
 # finish (no error)
 
 divide_else(1, 0)
-# ZeroDivisionError:  division by zero
+# catch ZeroDivisionError: division by zero
 
 def divide_finally(a, b):
     try:
         print(a / b)
     except ZeroDivisionError as e:
-        print('ZeroDivisionError: ', e)
+        print('catch ZeroDivisionError:', e)
     finally:
         print('all finish')
 
@@ -114,14 +114,14 @@ divide_finally(1, 2)
 # all finish
 
 divide_finally(1, 0)
-# ZeroDivisionError:  division by zero
+# catch ZeroDivisionError: division by zero
 # all finish
 
 def divide_else_finally(a, b):
     try:
         print(a / b)
     except ZeroDivisionError as e:
-        print('ZeroDivisionError: ', e)
+        print('catch ZeroDivisionError:', e)
     else:
         print('finish (no error)')
     finally:
@@ -133,7 +133,7 @@ divide_else_finally(1, 2)
 # all finish
 
 divide_else_finally(1, 0)
-# ZeroDivisionError:  division by zero
+# catch ZeroDivisionError: division by zero
 # all finish
 
 def divide_pass(a, b):
