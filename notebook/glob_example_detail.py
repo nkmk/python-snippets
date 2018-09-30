@@ -73,7 +73,7 @@ print([p for p in glob.glob('temp/**', recursive=True)
 # ['temp/dir/sub_dir1/98.txt', 'temp/1.txt', 'temp/123.txt']
 
 print([p for p in glob.glob('temp/**', recursive=True)
-       if re.search('\D{3}\.(txt|text)', p)])
+       if re.search('/\D{3}\.(txt|text)', p)])
 # ['temp/[x].txt', 'temp/aaa.text', 'temp/dir/sub_dir1/ccc.text', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.text']
 
 print(type(glob.iglob('temp/*.txt')))
