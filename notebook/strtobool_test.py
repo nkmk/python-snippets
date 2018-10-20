@@ -36,5 +36,18 @@ print(strtobool('0'))
 # 0
 # 0
 
+# print(strtobool('abc'))
+# ValueError: invalid truth value 'abc'
+
+try:
+    strtobool('abc')
+except ValueError as e:
+    print('other value')
+# other value
+
 print(type(strtobool('true')))
 # <class 'int'>
+
+if strtobool('yes'):
+    print('True!')
+# True!
