@@ -9,7 +9,7 @@ print(type(l))
 g = (i**2 for i in range(5))
 
 print(g)
-# <generator object <genexpr> at 0x1052154f8>
+# <generator object <genexpr> at 0x10af944f8>
 
 print(type(g))
 # <class 'generator'>
@@ -41,3 +41,11 @@ print(sum((i**2 for i in range(5))))
 
 print(sum(i**2 for i in range(5)))
 # 30
+
+t = tuple(i**2 for i in range(5))
+
+print(t)
+# (0, 1, 4, 9, 16)
+
+print(type(t))
+# <class 'tuple'>
