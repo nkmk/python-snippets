@@ -79,6 +79,20 @@ print('sign: {:0=+10}'.format(100))
 print('sign: {:0=10}'.format(int('-100')))
 # sign: -000000100
 
+print('left  : {:*<10}'.format(1.23))
+print('center: {:a^10}'.format(1.23))
+print('right : {:鬼>10}'.format(1.23))
+# left  : 1.23******
+# center: aaa1.23aaa
+# right : 鬼鬼鬼鬼鬼鬼1.23
+
+print('sign: {:0>10}'.format(-1.23))
+print('sign: {:0=10}'.format(-1.23))
+print('sign: {:0=+10}'.format(1.23))
+# sign: 00000-1.23
+# sign: -000001.23
+# sign: +000001.23
+
 print('zero padding: {:0=10}'.format(100))
 print('zero padding: {:010}'.format(100))
 # zero padding: 0000000100
@@ -143,6 +157,9 @@ print('{:,}'.format(100000000))
 print('{:_}'.format(100000000))
 # 100_000_000
 
+print('{:,}'.format(1234.56789))
+# 1,234.56789
+
 print('bin: {:b}'.format(255))
 print('oct: {:o}'.format(255))
 print('dec: {:d}'.format(255))
@@ -196,6 +213,13 @@ print('{:.3f}'.format(0.0001234))
 # 123.45600
 # 0.000
 
+print('{:>12.5f}'.format(123.456))
+print('{:012.5f}'.format(123.456))
+print('{:06.5f}'.format(123.456))
+#    123.45600
+# 000123.45600
+# 123.45600
+
 print('{:.0f}'.format(0.4))
 print('{:.0f}'.format(0.5))
 print('{:.0f}'.format(0.6))
@@ -229,6 +253,11 @@ print('{:.5e}'.format(987.65))
 print('{:.2E}'.format(987.65))
 # 9.87650e+02
 # 9.88E+02
+
+print('{:>12.5e}'.format(987.65))
+print('{:012.2E}'.format(987.65))
+#  9.87650e+02
+# 00009.88E+02
 
 print('{:.2g}'.format(123.456))
 print('{:.3g}'.format(123.456))
@@ -282,3 +311,8 @@ print('{:%}'.format(10))
 print('{:.2%}'.format(10))
 # 1000.000000%
 # 1000.00%
+
+print('{:>7.2%}'.format(0.12345))
+print('{:07.2%}'.format(0.12345))
+#  12.35%
+# 012.35%
