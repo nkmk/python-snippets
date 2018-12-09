@@ -51,3 +51,31 @@ for i, j, k in itertools.product(l1, l2, l3):
 # 2 20 100
 # 2 20 200
 # BREAK
+
+for i, j in itertools.product(l1, l2):
+    x = i * 2 + j * 3
+    print(i, j, x)
+# 1 10 32
+# 1 20 62
+# 1 30 92
+# 2 10 34
+# 2 20 64
+# 2 30 94
+# 3 10 36
+# 3 20 66
+# 3 30 96
+
+for i in l1:
+    temp = i * 2
+    for j in l2:
+        x = temp + j * 3
+        print(i, j, x)
+# 1 10 32
+# 1 20 62
+# 1 30 92
+# 2 10 34
+# 2 20 64
+# 2 30 94
+# 3 10 36
+# 3 20 66
+# 3 30 96
