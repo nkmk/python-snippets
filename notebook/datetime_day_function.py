@@ -4,25 +4,28 @@ dt = datetime.datetime(2018, 1, 1)
 print(dt)
 # 2018-01-01 00:00:00
 
-w_s = dt.strftime('%w')
-print(w_s)
-print(type(w_s))
-# 1
-# <class 'str'>
+print(dt.weekday())
+# 0
 
-w_n = int(w_s)
-print(w_n)
-print(type(w_n))
-# 1
+print(type(dt.weekday()))
 # <class 'int'>
 
-w_list = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日']
-print(w_list[w_n])
+print(dt.isoweekday())
+# 1
+
+print(type(dt.isoweekday()))
+# <class 'int'>
+
+w_list = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日']
+print(w_list[dt.weekday()])
 # 月曜日
 
 def get_day_of_week_jp(dt):
-    w_list = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日']
-    return(w_list[int(dt.strftime('%w'))])
+    w_list = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日']
+    return(w_list[dt.weekday()])
+
+print(get_day_of_week_jp(dt))
+# 月曜日
 
 dt2 = datetime.datetime(2018, 1, 2)
 print(dt2)
