@@ -43,6 +43,59 @@ print(df_mi)
 #       Frank     30     57
 # TX    Dave      68     70
 
+df_ii = df_i.set_index('state')
+print(df_ii)
+#        age  point
+# state            
+# NY      24     64
+# CA      42     92
+# CA      18     70
+# TX      68     70
+# CA      24     88
+# NY      30     57
+
+df_mi = df_i.set_index('state', append=True)
+print(df_mi)
+#                age  point
+# name    state            
+# Alice   NY      24     64
+# Bob     CA      42     92
+# Charlie CA      18     70
+# Dave    TX      68     70
+# Ellen   CA      24     88
+# Frank   NY      30     57
+
+print(df_mi.swaplevel(0, 1))
+#                age  point
+# state name               
+# NY    Alice     24     64
+# CA    Bob       42     92
+#       Charlie   18     70
+# TX    Dave      68     70
+# CA    Ellen     24     88
+# NY    Frank     30     57
+
+df_ri = df_i.reset_index()
+print(df_ri)
+#       name  age state  point
+# 0    Alice   24    NY     64
+# 1      Bob   42    CA     92
+# 2  Charlie   18    CA     70
+# 3     Dave   68    TX     70
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+
+df_change = df_i.reset_index().set_index('state')
+print(df_change)
+#           name  age  point
+# state                     
+# NY       Alice   24     64
+# CA         Bob   42     92
+# CA     Charlie   18     70
+# TX        Dave   68     70
+# CA       Ellen   24     88
+# NY       Frank   30     57
+
 df.set_index('name', inplace=True)
 print(df)
 #          age state  point
