@@ -12,12 +12,12 @@ def warp(src, dst, src_pts, dst_pts, transform_func, warp_func, **kwargs):
     dst_pts_crop = dst_pts_arr - dst_rect[:2]
     
     mat = transform_func(src_pts_crop.astype(np.float32), dst_pts_crop.astype(np.float32))
-    affine_img = warp_func(src_crop, mat, tuple(dst_rect[2:]), **kwargs)
+    warp_img = warp_func(src_crop, mat, tuple(dst_rect[2:]), **kwargs)
     
     mask = np.zeros_like(dst_crop, dtype=np.float32)
     cv2.fillConvexPoly(mask, dst_pts_crop.astype(np.int), (1.0, 1.0, 1.0), cv2.LINE_AA)
     
-    dst_crop_merge = affine_img * mask + dst_crop * (1 - mask)
+    dst_crop_merge = warp_img * mask + dst_crop * (1 - mask)
     dst[dst_rect[1]:dst_rect[1] + dst_rect[3], dst_rect[0]:dst_rect[0] + dst_rect[2]] = dst_crop_merge
 
 def warp_triangle(src, dst, src_pts, dst_pts, **kwargs):
