@@ -29,7 +29,7 @@ print('height:', im.shape[0])
 # width:  400
 # height: 225
 
-print(im.shape[:2][::-1])
+print(im.shape[1::-1])
 # (400, 225)
 
 im_gray = cv2.imread('data/src/lena.jpg', cv2.IMREAD_GRAYSCALE)
@@ -57,6 +57,6 @@ print('height:', h)
 # height: 225
 
 print(im_gray.shape[::-1])
-print(im_gray.shape[:2][::-1])
+print(im_gray.shape[1::-1])
 # (400, 225)
 # (400, 225)
