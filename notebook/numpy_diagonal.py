@@ -31,3 +31,11 @@ print(a.diagonal())
 
 print(a.diagonal(offset=1))
 # [ 1  6 11]
+
+a = np.arange(3)
+
+print(a)
+# [0 1 2]
+
+# a.diagonal()
+# ValueError: diag requires an array of at least two dimensions
