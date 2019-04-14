@@ -66,3 +66,39 @@ cells = [(row, col) for row in range(3) if row % 2 == 0
          for col in range(2) if col % 2 == 0]
 print(cells)
 # [(0, 0), (2, 0)]
+
+l_str1 = ['a', 'b', 'c']
+l_str2 = ['x', 'y', 'z']
+
+l_zip = [(s1, s2) for s1, s2 in zip(l_str1, l_str2)]
+print(l_zip)
+# [('a', 'x'), ('b', 'y'), ('c', 'z')]
+
+l_zip = []
+for s1, s2 in zip(l_str1, l_str2):
+    l_zip.append((s1, s2))
+
+print(l_zip)
+# [('a', 'x'), ('b', 'y'), ('c', 'z')]
+
+l_enu = [(i, s) for i, s in enumerate(l_str1)]
+print(l_enu)
+# [(0, 'a'), (1, 'b'), (2, 'c')]
+
+l_enu = []
+for i, s in enumerate(l_str1):
+    l_enu.append((i, s))
+
+print(l_enu)
+# [(0, 'a'), (1, 'b'), (2, 'c')]
+
+l_zip_if = [(s1, s2) for s1, s2 in zip(l_str1, l_str2) if s1 != 'b']
+print(l_zip_if)
+# [('a', 'x'), ('c', 'z')]
+
+l_int1 = [1, 2, 3]
+l_int2 = [10, 20, 30]
+
+l_sub = [i2 - i1 for i1, i2 in zip(l_int1, l_int2)]
+print(l_sub)
+# [9, 18, 27]
