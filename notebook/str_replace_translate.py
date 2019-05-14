@@ -67,6 +67,12 @@ s = 'abcdefghij'
 print(s[:4] + 'XXX' + s[7:])
 # abcdXXXhij
 
+s_replace = 'XXX'
+i = 4
+
+print(s[:i] + s_replace + s[i + len(s_replace):])
+# abcdXXXhij
+
 print(s[:4] + '-' + s[7:])
 # abcd-hij
 
