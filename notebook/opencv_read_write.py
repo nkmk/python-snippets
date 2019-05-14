@@ -5,7 +5,7 @@ im = cv2.imread('data/src/lena.jpg')
 print(type(im))
 # <class 'numpy.ndarray'>
 
-print(im.shape)  # サイズ（高さ x 幅 x 色数）
+print(im.shape)
 # (225, 400, 3)
 
 print(im.dtype)
@@ -22,7 +22,7 @@ im_gray = cv2.imread('data/src/lena.jpg', cv2.IMREAD_GRAYSCALE)
 print(type(im_gray))
 # <class 'numpy.ndarray'>
 
-print(im_gray.shape)  # サイズ（高さ x 幅）
+print(im_gray.shape)
 # (225, 400)
 
 print(im_gray.dtype)
