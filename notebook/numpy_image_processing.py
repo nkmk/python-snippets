@@ -3,24 +3,24 @@ import numpy as np
 
 im = np.array(Image.open('data/src/lena_square.png'))
 
-print(im.dtype)  # データ型
+print(im.dtype)
 # uint8
 
-print(im.ndim)  # 次元数
+print(im.ndim)
 # 3
 
-print(im.shape)  # サイズ（高さ x 幅 x 色数）
+print(im.shape)
 # (512, 512, 3)
 
 im_f = np.array(Image.open('data/src/lena_square.png'), np.float)
 
-print(im_f.dtype)  # データ型
+print(im_f.dtype)
 # float64
 
-print(im[256, 256])  # 指定した座標の画素値（R, G, B） / 原点は左上
+print(im[256, 256])
 # [180  65  72]
 
-print(im[:, :, 0].min())  # Redの最小値
+print(im[:, :, 0].min())
 # 54
 
 pil_img = Image.fromarray(im)

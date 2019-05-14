@@ -10,7 +10,6 @@ im_G[:, :, (0, 2)] = 0
 im_B = im.copy()
 im_B[:, :, (0, 1)] = 0
 
-# 横に並べて結合（どれでもよい）
 im_RGB = np.concatenate((im_R, im_G, im_B), axis=1)
 # im_RGB = np.hstack((im_R, im_G, im_B))
 # im_RGB = np.c_['1', im_R, im_G, im_B]
