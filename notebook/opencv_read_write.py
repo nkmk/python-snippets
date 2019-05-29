@@ -16,6 +16,12 @@ im[:, :, (0, 1)] = 0
 cv2.imwrite('data/dst/lena_opencv_red.jpg', im)
 # True
 
+cv2.imwrite('data/dst/lena_opencv_red_high.jpg', im, [cv2.IMWRITE_JPEG_QUALITY, 100])
+# True
+
+cv2.imwrite('data/dst/lena_opencv_red_low.jpg', im, [cv2.IMWRITE_JPEG_QUALITY, 50])
+# True
+
 im_gray = cv2.imread('data/src/lena.jpg', cv2.IMREAD_GRAYSCALE)
 # im_gray = cv2.imread('data/src/lena.jpg', 0)
 
