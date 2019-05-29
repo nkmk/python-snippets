@@ -22,6 +22,12 @@ print(np.sum(a < 4))
 print(np.sum(a % 2 == 1))
 # 6
 
+print((a < 4).sum())
+# 4
+
+print((a % 2 == 1).sum())
+# 6
+
 print(np.sum(a < 4, axis=0))
 # [1 1 1 1]
 
@@ -70,4 +76,13 @@ print(np.sum((a < 4) | (a % 2 == 1), axis=0))
 # [1 3 1 3]
 
 print(np.sum((a < 4) | (a % 2 == 1), axis=1))
+# [4 2 2]
+
+print(((a < 4) | (a % 2 == 1)).sum())
+# 8
+
+print(((a < 4) | (a % 2 == 1)).sum(axis=0))
+# [1 3 1 3]
+
+print(((a < 4) | (a % 2 == 1)).sum(axis=1))
 # [4 2 2]
