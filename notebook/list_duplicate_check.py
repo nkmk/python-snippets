@@ -1,51 +1,46 @@
-def is_unique(seq):
-    return len(seq) == len(set(seq))
+def has_duplicates(seq):
+    return len(seq) != len(set(seq))
 
-l = [0, 'two', 1, 'two', 0]
-
-print(is_unique(l))
+l = [0, 1, 2]
+print(has_duplicates(l))
 # False
 
-l = [0, 'one', 2]
-
-print(is_unique(l))
+l = [0, 1, 1, 2]
+print(has_duplicates(l))
 # True
-
-# l_2d = [[0, 1], [1, 1], [0, 1], [1, 0]]
-# print(is_unique(l_2d))
-# TypeError: unhashable type: 'list'
-
-def is_unique2(seq):
-    seen = []
-    unique_list = [x for x in seq if x not in seen and not seen.append(x)]
-    return len(seq) == len(unique_list)
 
 l_2d = [[0, 1], [1, 1], [0, 1], [1, 0]]
+# print(has_duplicates(l_2d))
+# TypeError: unhashable type: 'list'
 
-print(is_unique2(l_2d))
+def has_duplicates2(seq):
+    seen = []
+    unique_list = [x for x in seq if x not in seen and not seen.append(x)]
+    return len(seq) != len(unique_list)
+
+l_2d = [[0, 0], [0, 1], [1, 1], [1, 0]]
+print(has_duplicates2(l_2d))
 # False
 
-l_2d = [[0, 1], [1, 1], [1, 0]]
-
-print(is_unique2(l_2d))
+l_2d = [[0, 0], [0, 1], [1, 1], [1, 1]]
+print(has_duplicates2(l_2d))
 # True
 
-l = [0, 'two', 1, 'two', 0]
-
-print(is_unique2(l))
+l = [0, 1, 2]
+print(has_duplicates2(l))
 # False
 
-l = [0, 'one', 2]
-
-print(is_unique2(l))
+l = [0, 1, 1, 2]
+print(has_duplicates2(l))
 # True
 
-l = [[0, 1, 2], 'string', 100, [0, 1, 2]]
+l_2d = [[0, 1], [2, 3]]
+print(sum(l_2d, []))
+# [0, 1, 2, 3]
 
-print(is_unique2(l))
+print(has_duplicates(sum(l_2d, [])))
 # False
 
-l = [[0, 1, 2], 'string', 100]
-
-print(is_unique2(l))
+l_2d = [[0, 1], [2, 0]]
+print(has_duplicates(sum(l_2d, [])))
 # True
