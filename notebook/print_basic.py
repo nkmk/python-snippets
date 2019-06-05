@@ -117,3 +117,16 @@ print('percent : {:.0%}'.format(f))
 # digit   : 0.123400
 # exp     : 1.2340e-01
 # percent : 12%
+
+print('abc')
+print('xyz')
+# abc
+# xyz
+
+print('abc', end='---')
+print('xyz')
+# abc---xyz
+
+print('abc', end='')
+print('xyz')
+# abcxyz
