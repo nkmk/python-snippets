@@ -34,12 +34,11 @@ print(p.fullmatch('１２３'))
 # <re.Match object; span=(0, 3), match='１２３'>
 
 p = regex.compile(r'\p{Numeric_Type=Numeric}+')
-print(p.fullmatch('123'))
-# None
-
-p = regex.compile(r'\p{Numeric_Type=Numeric}+')
 print(p.fullmatch('一二三ⅠⅡⅢ百万億⑩⑽'))
 # <regex.Match object; span=(0, 11), match='一二三ⅠⅡⅢ百万億⑩⑽'>
+
+print(p.fullmatch('123'))
+# None
 
 p = re.compile('[\u2160-\u217F]+')
 print(p.fullmatch('ⅠⅡⅢ'))
@@ -60,10 +59,6 @@ print(p.fullmatch('!_? ()[]'))
 p = re.compile(r'[,\.!?\[\]\(\)]+')
 print(p.fullmatch(',.!?[]()'))
 # <re.Match object; span=(0, 8), match=',.!?[]()'>
-
-p = re.compile('[\u0020-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+')
-print(p.fullmatch('!_? ()[]'))
-# <re.Match object; span=(0, 8), match='!_? ()[]'>
 
 p = re.compile('[\uFF01-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF40\uFF5B-\uFF65]+')
 print(p.fullmatch('！？（）［］｢｣'))
@@ -108,10 +103,6 @@ print(p.fullmatch('漢字'))
 p = regex.compile(r'\p{Script_Extensions=Han}+')
 print(p.fullmatch('漢字〆㈠㈱㊊㏩'))
 # <regex.Match object; span=(0, 7), match='漢字〆㈠㈱㊊㏩'>
-
-p = re.compile('[\u4E00-\u9FFF]+')
-print(p.fullmatch('漢字'))
-# <re.Match object; span=(0, 2), match='漢字'>
 
 p = re.compile('[\u2E80-\u2FDF\u3005-\u3007\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\U00020000-\U0002EBEF]+')
 print(p.fullmatch('漢字'))
