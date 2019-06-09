@@ -56,6 +56,14 @@ print(int(s, 16))
 print(chr(int(s, 16)))
 # A
 
+s = 'U+0041'
+
+print(s[2:])
+# 0041
+
+print(chr(int(s[2:], 16)))
+# A
+
 print('\x41')
 # A
 
