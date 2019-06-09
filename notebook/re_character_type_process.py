@@ -2,8 +2,10 @@ import re
 
 p = re.compile('[a-z]+')
 print(p.fullmatch('abc'))
+# <re.Match object; span=(0, 3), match='abc'>
 
 print(p.fullmatch('abc123'))
+# None
 
 s = 'abc'
 
@@ -11,6 +13,7 @@ if p.fullmatch(s):
     print('match')
 else:
     print('no match')
+# match
 
 s = 'abc123'
 
@@ -18,6 +21,7 @@ if p.fullmatch(s):
     print('match')
 else:
     print('no match')
+# no match
 
 p = re.compile('[a-z]+$')
 print(p.match('abc'))
