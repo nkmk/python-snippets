@@ -39,6 +39,6 @@ p = re.compile('[a-zA-Z]+')
 print(p.fullmatch('abcABC'))
 # <re.Match object; span=(0, 6), match='abcABC'>
 
-p = re.compile('[a-zA-Z_\[\]]+')
-print(p.fullmatch('abc_[ABC]'))
-# <re.Match object; span=(0, 9), match='abc_[ABC]'>
+p = re.compile('[a-zA-Z\-[\]]+')
+print(p.fullmatch('abc-[ABC]'))
+# <re.Match object; span=(0, 9), match='abc-[ABC]'>

@@ -56,7 +56,7 @@ p = re.compile('[\u0020-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+')
 print(p.fullmatch('!_? ()[]'))
 # <re.Match object; span=(0, 8), match='!_? ()[]'>
 
-p = re.compile(r'[,\.!?\[\]\(\)]+')
+p = re.compile(r'[,.!?[\]()]+')
 print(p.fullmatch(',.!?[]()'))
 # <re.Match object; span=(0, 8), match=',.!?[]()'>
 
