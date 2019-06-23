@@ -17,21 +17,20 @@ soup = BeautifulSoup(html, "html.parser")
 
 url_list = [img.get('data-src') for img in soup.find(class_='list').find_all('img')]
 
-def download_image(url, dst_path):
+def download_file(url, dst_path):
     try:
-        data = urllib.request.urlopen(url).read()
-        with open(dst_path, mode='wb') as f:
-            f.write(data)
+        with urllib.request.urlopen(url) as web_file, open(dst_path, 'wb') as local_file:
+            local_file.write(web_file.read())
     except urllib.error.URLError as e:
         print(e)
 
-def download_image_dir(url, dst_dir):
-    download_image(url, os.path.join(dst_dir, os.path.basename(url)))
+def download_file_to_dir(url, dst_dir):
+    download_file(url, os.path.join(dst_dir, os.path.basename(url)))
 
 download_dir = 'data/temp'
 sleep_time_sec = 1
 
 for url in url_list:
 #     print(url)
-#     download_image_dir(url, download_dir)
+#     download_file_to_dir(url, download_dir)
     time.sleep(sleep_time_sec)
