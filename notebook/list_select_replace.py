@@ -22,6 +22,18 @@ l_odd = [i for i in l if not i % 2 == 0]
 print(l_odd)
 # [-5, -3, -1, 1, 3, 5]
 
+l_plus = [i for i in l if not i < 0]
+print(l_plus)
+# [0, 1, 2, 3, 4, 5]
+
+l_odd = [i for i in l if i % 2 != 0]
+print(l_odd)
+# [-5, -3, -1, 1, 3, 5]
+
+l_plus = [i for i in l if i >= 0]
+print(l_plus)
+# [0, 1, 2, 3, 4, 5]
+
 l_minus_or_even = [i for i in l if (i < 0) or (i % 2 == 0)]
 print(l_minus_or_even)
 # [-5, -4, -3, -2, -1, 0, 2, 4]
