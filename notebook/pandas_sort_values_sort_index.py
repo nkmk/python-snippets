@@ -60,6 +60,37 @@ print(df_s)
 # 1      Bob   42    CA     92
 # 3     Dave   68    TX     70
 
+df_nan = df.copy()
+df_nan.iloc[:2, 1] = pd.np.nan
+print(df_nan)
+#       name   age state  point
+# 0    Alice   NaN    NY     64
+# 1      Bob   NaN    CA     92
+# 2  Charlie  18.0    CA     70
+# 3     Dave  68.0    TX     70
+# 4    Ellen  24.0    CA     88
+# 5    Frank  30.0    NY     57
+
+df_nan_s = df_nan.sort_values('age')
+print(df_nan_s)
+#       name   age state  point
+# 2  Charlie  18.0    CA     70
+# 4    Ellen  24.0    CA     88
+# 5    Frank  30.0    NY     57
+# 3     Dave  68.0    TX     70
+# 0    Alice   NaN    NY     64
+# 1      Bob   NaN    CA     92
+
+df_nan_s = df_nan.sort_values('age', na_position='first')
+print(df_nan_s)
+#       name   age state  point
+# 0    Alice   NaN    NY     64
+# 1      Bob   NaN    CA     92
+# 2  Charlie  18.0    CA     70
+# 4    Ellen  24.0    CA     88
+# 5    Frank  30.0    NY     57
+# 3     Dave  68.0    TX     70
+
 df.sort_values('state', inplace=True)
 print(df)
 #       name  age state  point
