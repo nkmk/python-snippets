@@ -82,3 +82,15 @@ print(t_dup)
 
 print(my_index_multi(t_dup, 'a'))
 # [0, 4]
+
+def my_index2(l, x, default=False):
+    return l.index(x) if x in l else default
+
+print(my_index2(l, 'd'))
+# 3
+
+print(my_index2(l, 'x'))
+# False
+
+print(my_index2(l, 'x', -1))
+# -1
