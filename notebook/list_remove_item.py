@@ -34,18 +34,49 @@ print(l.pop())
 print(l)
 # [1, 2, 3, 5, 6, 7]
 
-l = list('abcdefg')
-print(l)
-# ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+# print(l.pop(100))
+# IndexError: pop index out of range
 
-l.remove('d')
+l = ['Alice', 'Bob', 'Charlie', 'Bob', 'Dave']
 print(l)
-# ['a', 'b', 'c', 'e', 'f', 'g']
+# ['Alice', 'Bob', 'Charlie', 'Bob', 'Dave']
 
-l = [0, 1, 2, 1, 3]
-l.remove(1)
+l.remove('Alice')
 print(l)
-# [0, 2, 1, 3]
+# ['Bob', 'Charlie', 'Bob', 'Dave']
+
+l.remove('Bob')
+print(l)
+# ['Charlie', 'Bob', 'Dave']
+
+# l.remove('xxx')
+# ValueError: list.remove(x): x not in list
+
+l = list(range(10))
+print(l)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+print([i for i in l if i % 2 == 0])
+# [0, 2, 4, 6, 8]
+
+print([i for i in l if i % 2 != 0])
+# [1, 3, 5, 7, 9]
+
+print(l)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+l = ['Alice', 'Bob', 'Charlie', 'Bob', 'David']
+print(l)
+# ['Alice', 'Bob', 'Charlie', 'Bob', 'David']
+
+print([s for s in l if s != 'Bob'])
+# ['Alice', 'Charlie', 'David']
+
+print([s for s in l if s.endswith('e')])
+# ['Alice', 'Charlie']
+
+print(list(set(l)))
+# ['David', 'Alice', 'Charlie', 'Bob']
 
 l = list(range(10))
 print(l)
