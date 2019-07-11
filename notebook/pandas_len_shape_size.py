@@ -9,12 +9,14 @@ print(df.head())
 # 2            3         1       3   
 # 3            4         1       1   
 # 4            5         0       3   
+# 
 #                                                 Name     Sex   Age  SibSp  \
 # 0                            Braund, Mr. Owen Harris    male  22.0      1   
 # 1  Cumings, Mrs. John Bradley (Florence Briggs Th...  female  38.0      1   
 # 2                             Heikkinen, Miss. Laina  female  26.0      0   
 # 3       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  35.0      1   
 # 4                           Allen, Mr. William Henry    male  35.0      0   
+# 
 #    Parch            Ticket     Fare Cabin Embarked  
 # 0      0         A/5 21171   7.2500   NaN        S  
 # 1      0          PC 17599  71.2833   C85        C  
@@ -50,18 +52,26 @@ print(len(df.columns))
 print(df.shape)
 # (891, 12)
 
-row, col = df.shape
-
-print(row)
-print(col)
+print(df.shape[0])
 # 891
+
+print(df.shape[1])
+# 12
+
+row, col = df.shape
+print(row)
+# 891
+
+print(col)
 # 12
 
 print(df.size)
 # 10692
 
-s = df['PassengerId']
+print(df.shape[0] * df.shape[1])
+# 10692
 
+s = df['PassengerId']
 print(s.head())
 # 0    1
 # 1    2
