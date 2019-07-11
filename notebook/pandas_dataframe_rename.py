@@ -12,6 +12,11 @@ print(df)
 # THREE  31  32  33
 
 df_new = df.rename(columns={'A': 'a'}, index={'ONE': 'one'})
+print(df_new)
+#         a   B   C
+# one    11  12  13
+# TWO    21  22  23
+# THREE  31  32  33
 
 print(df)
 #         A   B   C
@@ -19,46 +24,31 @@ print(df)
 # TWO    21  22  23
 # THREE  31  32  33
 
-print(df_new)
-#         a   B   C
-# one    11  12  13
-# TWO    21  22  23
-# THREE  31  32  33
-
-df_new_multi = df.rename(columns={'A': 'a', 'C': 'c'})
-
-print(df_new_multi)
+print(df.rename(columns={'A': 'a', 'C': 'c'}))
 #         a   B   c
 # ONE    11  12  13
 # TWO    21  22  23
 # THREE  31  32  33
 
-df_new = df.rename(columns={'A': 'a'}, index={'ONE': 'one'}, inplace=True)
-
-print(df)
+df_org = df.copy()
+df_org.rename(columns={'A': 'a'}, index={'ONE': 'one'}, inplace=True)
+print(df_org)
 #         a   B   C
 # one    11  12  13
 # TWO    21  22  23
 # THREE  31  32  33
 
-print(df_new)
-# None
+print(df.rename(columns=str.lower, index=str.title))
+#         a   b   c
+# One    11  12  13
+# Two    21  22  23
+# Three  31  32  33
 
-df_new = df.rename(columns=lambda s: s.upper(), index=lambda s: s.lower())
-
-print(df_new)
-#         A   B   C
-# one    11  12  13
-# two    21  22  23
-# three  31  32  33
-
-df_new = df_new.rename(columns=lambda s: s*3, index=lambda s: s + '!!')
-
-print(df_new)
+print(df.rename(columns=lambda s: s*3, index=lambda s: s + '!!'))
 #          AAA  BBB  CCC
-# one!!     11   12   13
-# two!!     21   22   23
-# three!!   31   32   33
+# ONE!!     11   12   13
+# TWO!!     21   22   23
+# THREE!!   31   32   33
 
 df.index = [1, 2, 3]
 df.columns = ['a', 'b', 'c']
@@ -68,3 +58,6 @@ print(df)
 # 1  11  12  13
 # 2  21  22  23
 # 3  31  32  33
+
+# df.index = [1, 2, 3, 4]
+# ValueError: Length mismatch: Expected axis has 3 elements, new values have 4 elements
