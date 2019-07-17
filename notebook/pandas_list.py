@@ -153,6 +153,12 @@ for i in s_index.index:
 print(s_index.index[0])
 # row1
 
+print(s_index.index[:2])
+# Index(['row1', 'row2'], dtype='object')
+
+# s_index.index[0] = 'ROW1'
+# TypeError: Index does not support mutable operations
+
 print(df_index)
 #       col1  col2  col3
 # row1     0     1     2
