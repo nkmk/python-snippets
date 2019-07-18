@@ -9,15 +9,18 @@ python3 my_package/mod2.py
 
 python3 -m my_package.mod2
 # from mod2
-# sub mod1, func1
+# -- sub_mod1.func1 is called
 
 cd my_package
 
+pwd
+# /Users/mbp/Documents/my-project/python-snippets/notebook/my_package
+
 python3 -m mod2
 # Traceback (most recent call last):
-#   File "/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 193, in _run_module_as_main
+#   File "/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 193, in _run_module_as_main
 #     "__main__", mod_spec)
-#   File "/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 85, in _run_code
+#   File "/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 85, in _run_code
 #     exec(code, run_globals)
 #   File "/Users/mbp/Documents/my-project/python-snippets/notebook/my_package/mod2.py", line 1, in <module>
 #     from . import mod1

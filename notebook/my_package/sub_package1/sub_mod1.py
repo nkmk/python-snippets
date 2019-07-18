@@ -1,2 +1,2 @@
 def func():
-    print('sub mod1, func1')
+    print('-- sub_mod1.func1 is called')

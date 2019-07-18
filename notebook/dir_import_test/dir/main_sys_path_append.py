@@ -3,6 +3,8 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from my_package import mod1
+import mod1
+from dir_for_mod import mod2
 
 mod1.func()
+mod2.func()
