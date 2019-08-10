@@ -101,7 +101,8 @@ def save_frame_range_sec(video_path, start_sec, stop_sec, step_sec,
     
     fps = cap.get(cv2.CAP_PROP_FPS)
     
-    for sec in range(start_sec, stop_sec, step_sec):
+    sec = start_sec
+    while sec < stop_sec:
         n = round(fps * sec)
         cap.set(cv2.CAP_PROP_POS_FRAMES, n)
         ret, frame = cap.read()
@@ -110,6 +111,7 @@ def save_frame_range_sec(video_path, start_sec, stop_sec, step_sec,
             n += 1
         else:
             return
+        sec += step_sec
 
 save_frame_range_sec('data/temp/sample_video.mp4',
                      2, 10, 2,
