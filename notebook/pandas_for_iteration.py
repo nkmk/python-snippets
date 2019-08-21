@@ -194,17 +194,9 @@ for age in df['age']:
 # 42
 
 for age, point in zip(df['age'], df['point']):
-    print(age)
-    print(point)
-    print('======\n')
-# 24
-# 64
-# ======
-# 
-# 42
-# 92
-# ======
-# 
+    print(age, point)
+# 24 64
+# 42 92
 
 print(df.index)
 # Index(['Alice', 'Bob'], dtype='object')
@@ -217,8 +209,13 @@ for index in df.index:
 # Alice
 # Bob
 
+for index, state in zip(df.index, df['state']):
+    print(index, state)
+# Alice NY
+# Bob CA
+
 for index, row in df.iterrows():
-    row.point += 5
+    row['point'] += row['age']
 
 print(df)
 #        age state  point
@@ -226,16 +223,33 @@ print(df)
 # Bob     42    CA     92
 
 for index, row in df.iterrows():
-    df.at[index, 'point'] += 5
+    df.at[index, 'point'] += row['age']
 
 print(df)
 #        age state  point
-# Alice   24    NY     69
-# Bob     42    CA     97
+# Alice   24    NY     88
+# Bob     42    CA    134
 
-df['point'] += 5
-
+df['point'] += df['age']
 print(df)
 #        age state  point
-# Alice   24    NY     74
-# Bob     42    CA    102
+# Alice   24    NY    112
+# Bob     42    CA    176
+
+df['new'] = df['point'] + df['age'] * 2
+print(df)
+#        age state  point  new
+# Alice   24    NY    112  160
+# Bob     42    CA    176  260
+
+df['age_sqrt'] = pd.np.sqrt(df['age'])
+print(df)
+#        age state  point  new  age_sqrt
+# Alice   24    NY    112  160  4.898979
+# Bob     42    CA    176  260  6.480741
+
+df['state_0'] = df['state'].str.lower().str[0]
+print(df)
+#        age state  point  new  age_sqrt state_0
+# Alice   24    NY    112  160  4.898979       n
+# Bob     42    CA    176  260  6.480741       c
