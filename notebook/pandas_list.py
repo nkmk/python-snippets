@@ -70,6 +70,23 @@ print(df_index_set.dtypes)
 # val2    float64
 # dtype: object
 
+l_2d_index_columns = [['name', 'val1', 'val2'], ['Alice', 0, 0.0], ['Bob', 1, 0.1], ['Charlie', 2, 0.2]]
+
+df_index_columns = pd.DataFrame(l_2d_index_columns[1:], columns=l_2d_index_columns[0])
+print(df_index_columns)
+#       name  val1  val2
+# 0    Alice     0   0.0
+# 1      Bob     1   0.1
+# 2  Charlie     2   0.2
+
+df_index_columns_set = df_index_columns.set_index('name')
+print(df_index_columns_set)
+#          val1  val2
+# name               
+# Alice       0   0.0
+# Bob         1   0.1
+# Charlie     2   0.2
+
 s = pd.Series([0, 1, 2])
 print(s)
 # 0    0
