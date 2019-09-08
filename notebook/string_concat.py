@@ -82,8 +82,19 @@ print(s)
 # bbb
 # ccc
 
-l = [2017, 12, 31]
+l = [0, 1, 2]
+
+# s = '-'.join(l)
+# TypeError: sequence item 0: expected str instance, int found
 
 s = '-'.join([str(n) for n in l])
 print(s)
-# 2017-12-31
+# 0-1-2
+
+s = '-'.join((str(n) for n in l))
+print(s)
+# 0-1-2
+
+s = '-'.join(str(n) for n in l)
+print(s)
+# 0-1-2
