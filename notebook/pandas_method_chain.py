@@ -82,10 +82,10 @@ print(df_mc_break)
 # Ellen     24     88         0.88
 
 df_mc_break_backslash = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0) \
-                        .assign(point_ratio=df['point'] / 100) \
-                        .drop(columns='state') \
-                        .sort_values('age') \
-                        .head(3)
+                          .assign(point_ratio=df['point'] / 100) \
+                          .drop(columns='state') \
+                          .sort_values('age') \
+                          .head(3)
 
 print(df_mc_break_backslash)
 #          age  point  point_ratio
