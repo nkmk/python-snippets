@@ -48,6 +48,13 @@ print(type(empty_tuple))
 # empty_tuple_error = (,)
 # SyntaxError: invalid syntax
 
+empty_tuple = tuple()
+
+print(empty_tuple)
+print(type(empty_tuple))
+# ()
+# <class 'tuple'>
+
 def example(a, b):
     print(a, type(a))
     print(b, type(b))
