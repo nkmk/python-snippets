@@ -252,29 +252,29 @@ print(df[df[3] > 75])
 # 1    Bob        42         CA  92
 # 4  Ellen        24         CA  88
 
-df.rename(columns={'3': 'point'}, inplace=True)
+df.rename(columns={3: 'point'}, inplace=True)
 print(df)
-#         名前  age.year state name   3
-# 0    Alice        24         NY  64
-# 1      Bob        42         CA  92
-# 2  Charlie        18         CA  70
-# 3     Dave        68         TX  70
-# 4    Ellen        24         CA  88
-# 5    Frank        30         NY  57
+#         名前  age.year state name  point
+# 0    Alice        24         NY     64
+# 1      Bob        42         CA     92
+# 2  Charlie        18         CA     70
+# 3     Dave        68         TX     70
+# 4    Ellen        24         CA     88
+# 5    Frank        30         NY     57
 
 df.columns = [str(s).replace(' ', '_').replace('.', '_') for s in df.columns]
 print(df)
-#         名前  age_year state_name   3
-# 0    Alice        24         NY  64
-# 1      Bob        42         CA  92
-# 2  Charlie        18         CA  70
-# 3     Dave        68         TX  70
-# 4    Ellen        24         CA  88
-# 5    Frank        30         NY  57
+#         名前  age_year state_name  point
+# 0    Alice        24         NY     64
+# 1      Bob        42         CA     92
+# 2  Charlie        18         CA     70
+# 3     Dave        68         TX     70
+# 4    Ellen        24         CA     88
+# 5    Frank        30         NY     57
 
 df.query('age_year > 25', inplace=True)
 print(df)
-#       名前  age_year state_name   3
-# 1    Bob        42         CA  92
-# 3   Dave        68         TX  70
-# 5  Frank        30         NY  57
+#       名前  age_year state_name  point
+# 1    Bob        42         CA     92
+# 3   Dave        68         TX     70
+# 5  Frank        30         NY     57
