@@ -13,39 +13,45 @@ sin30 = math.sin(math.radians(30))
 print(sin30)
 # 0.49999999999999994
 
-sin30_round = round(sin30, 3)
-print(sin30_round)
+print(round(sin30, 3))
+print(type(round(sin30, 3)))
 # 0.5
+# <class 'float'>
 
 print('{:.3}'.format(sin30))
+print(type('{:.3}'.format(sin30)))
 # 0.5
+# <class 'str'>
 
 print(format(sin30, '.3'))
+print(type(format(sin30, '.3')))
 # 0.5
+# <class 'str'>
+
+print(math.isclose(sin30, 0.5))
+# True
 
 asin05 = math.degrees(math.asin(0.5))
 print(asin05)
 # 29.999999999999996
 
-asin05_round = round(asin05, 3)
-print(asin05_round)
+print(round(asin05, 3))
 # 30.0
 
-cos60 = math.cos(math.radians(60))
-print(cos60)
+print(math.cos(math.radians(60)))
 # 0.5000000000000001
 
-acos05 = math.degrees(math.acos(0.5))
-print(acos05)
+print(math.degrees(math.acos(0.5)))
 # 59.99999999999999
 
-tan45 = math.tan(math.radians(45))
-print(tan45)
+print(math.tan(math.radians(45)))
 # 0.9999999999999999
 
-atan1 = math.degrees(math.atan(1))
-print(atan1)
+print(math.degrees(math.atan(1)))
 # 45.0
+
+print(math.degrees(math.atan(0)))
+# 0.0
 
 print(math.degrees(math.atan(1)))
 # 45.0
@@ -59,17 +65,83 @@ print(math.degrees(math.atan(math.inf)))
 print(math.degrees(math.atan(-math.inf)))
 # -90.0
 
+print(math.degrees(math.atan2(0, 1)))
+# 0.0
+
 print(math.degrees(math.atan2(1, 1)))
 # 45.0
+
+print(math.degrees(math.atan2(1, 0)))
+# 90.0
 
 print(math.degrees(math.atan2(1, -1)))
 # 135.0
 
+print(math.degrees(math.atan2(0, -1)))
+# 180.0
+
 print(math.degrees(math.atan2(-1, -1)))
 # -135.0
+
+print(math.degrees(math.atan2(-1, 0)))
+# -90.0
 
 print(math.degrees(math.atan2(-1, 1)))
 # -45.0
 
-print(math.degrees(math.atan2(0, -math.inf)))
+print(math.degrees(math.atan2(-0.0, -1)))
+# -180.0
+
+print(-1 / math.inf)
+# -0.0
+
+print(-1.0 * 0.0)
+# -0.0
+
+print(-0.0)
+# -0.0
+
+print(-0)
+# 0
+
+print(math.degrees(math.atan2(0.0, 0.0)))
+# 0.0
+
+print(math.degrees(math.atan2(-0.0, 0.0)))
+# -0.0
+
+print(math.degrees(math.atan2(-0.0, -0.0)))
+# -180.0
+
+print(math.degrees(math.atan2(0.0, -0.0)))
 # 180.0
+
+print(math.sin(0.0))
+# 0.0
+
+print(math.sin(-0.0))
+# -0.0
+
+print(math.asin(0.0))
+# 0.0
+
+print(math.asin(-0.0))
+# -0.0
+
+print(math.tan(0.0))
+# 0.0
+
+print(math.tan(-0.0))
+# -0.0
+
+print(math.atan(0.0))
+# 0.0
+
+print(math.atan(-0.0))
+# -0.0
+
+print(math.atan2(0.0, 1.0))
+# 0.0
+
+print(math.atan2(-0.0, 1.0))
+# -0.0
