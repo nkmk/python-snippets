@@ -84,3 +84,38 @@ print(np.where(a < 4))
 
 print(type(np.where(a < 4)))
 # <class 'tuple'>
+
+print(list(zip(*np.where(a < 4))))
+# [(0, 0), (0, 1), (0, 2), (1, 0)]
+
+a_3d = np.arange(24).reshape(2, 3, 4)
+print(a_3d)
+# [[[ 0  1  2  3]
+#   [ 4  5  6  7]
+#   [ 8  9 10 11]]
+# 
+#  [[12 13 14 15]
+#   [16 17 18 19]
+#   [20 21 22 23]]]
+
+print(np.where(a_3d < 5))
+# (array([0, 0, 0, 0, 0]), array([0, 0, 0, 0, 1]), array([0, 1, 2, 3, 0]))
+
+print(list(zip(*np.where(a_3d < 5))))
+# [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 1, 0)]
+
+a_1d = np.arange(6)
+print(a_1d)
+# [0 1 2 3 4 5]
+
+print(np.where(a_1d < 3))
+# (array([0, 1, 2]),)
+
+print(list(zip(*np.where(a_1d < 3))))
+# [(0,), (1,), (2,)]
+
+print(np.where(a_1d < 3)[0])
+# [0 1 2]
+
+print(np.where(a_1d < 3)[0].tolist())
+# [0, 1, 2]
