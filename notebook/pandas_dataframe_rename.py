@@ -50,6 +50,18 @@ print(df.rename(columns=lambda s: s*3, index=lambda s: s + '!!'))
 # TWO!!     21   22   23
 # THREE!!   31   32   33
 
+print(df.add_prefix('X_'))
+#        X_A  X_B  X_C
+# ONE     11   12   13
+# TWO     21   22   23
+# THREE   31   32   33
+
+print(df.add_suffix('_X'))
+#        A_X  B_X  C_X
+# ONE     11   12   13
+# TWO     21   22   23
+# THREE   31   32   33
+
 df.index = [1, 2, 3]
 df.columns = ['a', 'b', 'c']
 
