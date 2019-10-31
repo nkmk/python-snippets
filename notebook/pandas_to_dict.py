@@ -119,3 +119,22 @@ print(od['col1'])
 
 print(type(od['col1']))
 # <class 'collections.OrderedDict'>
+
+print(df.index)
+# Index(['row1', 'row2', 'row3'], dtype='object')
+
+print(df['col1'])
+# row1    1
+# row2    2
+# row3    3
+# Name: col1, dtype: int64
+
+d_col = dict(zip(df.index, df['col1']))
+
+print(d_col)
+# {'row1': 1, 'row2': 2, 'row3': 3}
+
+d_row = dict(zip(df.columns, df.loc['row1']))
+
+print(d_row)
+# {'col1': 1, 'col2': 'a'}
