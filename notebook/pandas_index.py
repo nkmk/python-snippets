@@ -47,6 +47,18 @@ print(type(df[['age', 'point']]))
 # Frank     30     57
 # <class 'pandas.core.frame.DataFrame'>
 
+print(df[['age']])
+print(type(df[['age']]))
+#          age
+# name        
+# Alice     24
+# Bob       42
+# Charlie   18
+# Dave      68
+# Ellen     24
+# Frank     30
+# <class 'pandas.core.frame.DataFrame'>
+
 print(df['age':'point'])
 # Empty DataFrame
 # Columns: [age, state, point]
@@ -85,6 +97,15 @@ print(type(df[1:4]))
 # Dave      68    TX     70
 # <class 'pandas.core.frame.DataFrame'>
 
+print(df[:-3])
+print(type(df[1:-3]))
+#          age state  point
+# name                     
+# Alice     24    NY     64
+# Bob       42    CA     92
+# Charlie   18    CA     70
+# <class 'pandas.core.frame.DataFrame'>
+
 print(df[::2])
 print(type(df[::2]))
 #          age state  point
@@ -104,7 +125,7 @@ print(type(df[1::2]))
 # <class 'pandas.core.frame.DataFrame'>
 
 # print(df[1])
-# KeyError
+# KeyError: 1
 
 print(df[1:2])
 print(type(df[1:2]))
@@ -147,114 +168,22 @@ print(type(df.iloc[[1, 4]]))
 # Ellen   24    CA     88
 # <class 'pandas.core.frame.DataFrame'>
 
-s = df['age']
-print(s)
-# name
-# Alice      24
-# Bob        42
-# Charlie    18
-# Dave       68
-# Ellen      24
-# Frank      30
-# Name: age, dtype: int64
-
-print(s[3])
-# 68
-
-print(s[[1, 3]])
-print(type(s[[1, 3]]))
-# name
-# Bob     42
-# Dave    68
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s[1:3])
-print(type(s[1:3]))
-# name
-# Bob        42
-# Charlie    18
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s[[1]])
-print(type(s[[1]]))
-# name
-# Bob    42
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s[1:2])
-print(type(s[1:2]))
-# name
-# Bob    42
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s['Dave'])
-# 68
-
-print(s[['Bob', 'Dave']])
-print(type(s[['Bob', 'Dave']]))
-# name
-# Bob     42
-# Dave    68
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s['Bob':'Dave'])
-print(type(s['Bob':'Dave']))
-# name
-# Bob        42
-# Charlie    18
-# Dave       68
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s[['Bob']])
-print(type(s[['Bob']]))
-# name
-# Bob    42
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-print(s['Bob':'Bob'])
-print(type(s['Bob':'Bob']))
-# name
-# Bob    42
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
-
-s_i = s.reset_index(drop=True)
-print(s_i)
-# 0    24
-# 1    42
-# 2    18
-# 3    68
-# 4    24
-# 5    30
-# Name: age, dtype: int64
-
-# print(s_i[-1])
-# KeyError
-
-print(s_i.iat[-1])
-# 30
-
-print(s[-1])
-# 30
-
 print(df['age']['Alice'])
 # 24
 
-print(df.age[0])
-# 24
-
 print(df['Bob':'Dave'][['age', 'point']])
-print(type(df['Bob':'Dave'][['age', 'point']]))
 #          age  point
 # name               
 # Bob       42     92
 # Charlie   18     70
 # Dave      68     70
-# <class 'pandas.core.frame.DataFrame'>
+
+print(df.at['Alice', 'age'])
+# 24
+
+print(df.loc['Bob':'Dave', ['age', 'point']])
+#          age  point
+# name               
+# Bob       42     92
+# Charlie   18     70
+# Dave      68     70
