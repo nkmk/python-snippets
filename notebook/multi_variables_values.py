@@ -89,3 +89,41 @@ print(b)
 
 print(c)
 # string
+
+a = b = [0, 1, 2]
+
+print(a is b)
+# True
+
+a[0] = 100
+print(a)
+# [100, 1, 2]
+
+print(b)
+# [100, 1, 2]
+
+b = [0, 1, 2]
+a = b
+
+print(a is b)
+# True
+
+a[0] = 100
+print(a)
+# [100, 1, 2]
+
+print(b)
+# [100, 1, 2]
+
+a = [0, 1, 2]
+b = [0, 1, 2]
+
+print(a is b)
+# False
+
+a[0] = 100
+print(a)
+# [100, 1, 2]
+
+print(b)
+# [0, 1, 2]
