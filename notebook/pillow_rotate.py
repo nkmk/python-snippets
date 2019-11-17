@@ -14,6 +14,11 @@ im_rotate.save('data/dst/lena_rotate_45.jpg', quality=95)
 
 # ![lena_rotate_45](data/dst/lena_rotate_45.jpg)
 
+im_rotate = im.rotate(45, resample=Image.BICUBIC)
+im_rotate.save('data/dst/lena_rotate_45_bicubic.jpg', quality=95)
+
+# ![lena_rotate_45_bicubic](data/dst/lena_rotate_45_bicubic.jpg)
+
 im_rotate = im.rotate(90, expand=True)
 im_rotate.save('data/dst/lena_rotate_90_expand.jpg', quality=95)
 
@@ -23,11 +28,6 @@ im_rotate = im.rotate(45, expand=True)
 im_rotate.save('data/dst/lena_rotate_45_expand.jpg', quality=95)
 
 # ![lena_rotate_45_expand](data/dst/lena_rotate_45_expand.jpg)
-
-im_rotate = im.rotate(45, expand=True, resample=Image.BICUBIC)
-im_rotate.save('data/dst/lena_rotate_45_expand_bicubic.jpg', quality=95)
-
-# ![lena_rotate_45_expand_bicubic](data/dst/lena_rotate_45_expand_bicubic.jpg)
 
 im_rotate = im.rotate(45, center=(0, 60))
 im_rotate.save('data/dst/lena_rotate_45_change_center.jpg', quality=95)
@@ -53,3 +53,8 @@ im_rotate = im.rotate(45, translate=(100, 50), expand=True)
 im_rotate.save('data/dst/lena_rotate_45_translate_expand.jpg', quality=95)
 
 # ![lena_rotate_45_translate_expand](data/dst/lena_rotate_45_translate_expand.jpg)
+
+im_rotate = im.rotate(45, fillcolor=(255, 128, 0), expand=True)
+im_rotate.save('data/dst/lena_rotate_45_fillcolor_expand.jpg', quality=95)
+
+# ![lena_rotate_45_fillcolor_expand](data/dst/lena_rotate_45_fillcolor_expand.jpg)
