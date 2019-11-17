@@ -145,12 +145,12 @@ pprint.pprint([[a['id'], a['published']] for a in l])
 #  ['http://arxiv.org/abs/cs/9402102v1', '1994-02-01T00:00:00Z'],
 #  ['http://arxiv.org/abs/cs/9402103v1', '1994-02-01T00:00:00Z']]
 
-l = arxiv.query(query='cat:cs.AI AND submittedDate:[201901010000 TO 201901311259]',
+l = arxiv.query(query='cat:cs.AI AND submittedDate:[20190101 TO 20190131235959]',
                 sort_by='submittedDate', sort_order='ascending')
 
 df = pd.io.json.json_normalize(l)
 print(df.shape)
-# (274, 29)
+# (298, 29)
 
 print(df.head()[['id', 'published']])
 #                                   id             published
@@ -162,13 +162,13 @@ print(df.head()[['id', 'published']])
 
 print(df.tail()[['id', 'published']])
 #                                     id             published
-# 269  http://arxiv.org/abs/1902.03096v1  2019-01-31T01:00:11Z
-# 270  http://arxiv.org/abs/1901.11168v1  2019-01-31T01:46:52Z
-# 271  http://arxiv.org/abs/1901.11184v1  2019-01-31T02:47:16Z
-# 272  http://arxiv.org/abs/1902.00358v2  2019-01-31T09:14:16Z
-# 273  http://arxiv.org/abs/1901.11333v1  2019-01-31T12:41:57Z
+# 293  http://arxiv.org/abs/1902.00045v1  2019-01-31T19:33:13Z
+# 294  http://arxiv.org/abs/1902.00098v1  2019-01-31T22:14:34Z
+# 295  http://arxiv.org/abs/1902.03092v1  2019-01-31T22:26:56Z
+# 296  http://arxiv.org/abs/1902.00120v1  2019-01-31T23:10:31Z
+# 297  http://arxiv.org/abs/1902.00137v2  2019-01-31T23:59:34Z
 
-l = arxiv.query(query='cat:cs.AI AND ti:"deep learning" AND submittedDate:[201901010000 TO 201901311259]',
+l = arxiv.query(query='cat:cs.AI AND ti:"deep learning" AND submittedDate:[20190101 TO 20190131235959]',
                 sort_by='submittedDate', sort_order='ascending')
 
 df = pd.io.json.json_normalize(l)
