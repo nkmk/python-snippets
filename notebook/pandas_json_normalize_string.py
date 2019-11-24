@@ -3,32 +3,44 @@ import json
 
 s = '{"OTHER": "x", "DATA": [{"name":"Alice","age":25},{"name":"Bob","age":42}]}'
 
-d = json.loads(s)
+print(pd.read_json(s))
+#   OTHER                          DATA
+# 0     x  {'name': 'Alice', 'age': 25}
+# 1     x    {'name': 'Bob', 'age': 42}
 
+d = json.loads(s)
 print(d)
 # {'OTHER': 'x', 'DATA': [{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 42}]}
 
 print(type(d))
 # <class 'dict'>
 
-l_target = d['DATA']
+print(pd.io.json.json_normalize(d))
+#   OTHER                                               DATA
+# 0     x  [{'name': 'Alice', 'age': 25}, {'name': 'Bob',...
 
-print(l_target)
+print(pd.io.json.json_normalize(d, record_path='DATA'))
+#     name  age
+# 0  Alice   25
+# 1    Bob   42
+
+print(pd.io.json.json_normalize(d, record_path='DATA', meta='OTHER'))
+#     name  age OTHER
+# 0  Alice   25     x
+# 1    Bob   42     x
+
+print(d['DATA'])
 # [{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 42}]
 
-print(type(l_target))
+print(type(d['DATA']))
 # <class 'list'>
 
-df = pd.io.json.json_normalize(l_target)
+print(pd.DataFrame(d['DATA']))
+#     name  age
+# 0  Alice   25
+# 1    Bob   42
 
-print(df)
-#    age   name
-# 0   25  Alice
-# 1   42    Bob
-
-df2 = pd.io.json.json_normalize(json.loads(s)['DATA'])
-
-print(df2)
-#    age   name
-# 0   25  Alice
-# 1   42    Bob
+print(pd.io.json.json_normalize(d['DATA']))
+#     name  age
+# 0  Alice   25
+# 1    Bob   42
