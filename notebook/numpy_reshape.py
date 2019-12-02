@@ -153,60 +153,164 @@ print(a.reshape([2, -1, 4]))
 # print(a.reshape([2, -1, 5]))
 # ValueError: cannot reshape array of size 24 into shape (2,newaxis,5)
 
-a_4_6 = a.reshape([4, 6])
-print(a_4_6)
-# [[ 0  1  2  3  4  5]
-#  [ 6  7  8  9 10 11]
-#  [12 13 14 15 16 17]
-#  [18 19 20 21 22 23]]
+a = np.arange(8)
+print(a)
+# [0 1 2 3 4 5 6 7]
+
+a_2_4 = a.reshape([2, 4])
+print(a_2_4)
+# [[0 1 2 3]
+#  [4 5 6 7]]
+
+print(np.shares_memory(a, a_2_4))
+# True
 
 a[0] = 100
 print(a)
-# [100   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-#   18  19  20  21  22  23]
+# [100   1   2   3   4   5   6   7]
 
-print(a_4_6)
-# [[100   1   2   3   4   5]
-#  [  6   7   8   9  10  11]
-#  [ 12  13  14  15  16  17]
-#  [ 18  19  20  21  22  23]]
+print(a_2_4)
+# [[100   1   2   3]
+#  [  4   5   6   7]]
 
-a_4_6[0, 0] = 0
-print(a_4_6)
-# [[ 0  1  2  3  4  5]
-#  [ 6  7  8  9 10 11]
-#  [12 13 14 15 16 17]
-#  [18 19 20 21 22 23]]
+a_2_4[0, 0] = 0
+print(a_2_4)
+# [[0 1 2 3]
+#  [4 5 6 7]]
 
 print(a)
-# [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23]
+# [0 1 2 3 4 5 6 7]
 
-a_4_6_copy = a.reshape([4, 6]).copy()
+a_2_4_copy = a.reshape([2, 4]).copy()
+print(a_2_4_copy)
+# [[0 1 2 3]
+#  [4 5 6 7]]
 
-print(a_4_6_copy)
-# [[ 0  1  2  3  4  5]
-#  [ 6  7  8  9 10 11]
-#  [12 13 14 15 16 17]
-#  [18 19 20 21 22 23]]
+print(np.shares_memory(a, a_2_4_copy))
+# False
 
 a[0] = 100
 print(a)
-# [100   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-#   18  19  20  21  22  23]
+# [100   1   2   3   4   5   6   7]
 
-print(a_4_6_copy)
-# [[ 0  1  2  3  4  5]
-#  [ 6  7  8  9 10 11]
-#  [12 13 14 15 16 17]
-#  [18 19 20 21 22 23]]
+print(a_2_4_copy)
+# [[0 1 2 3]
+#  [4 5 6 7]]
 
-a_4_6_copy[0, 0] = 200
-print(a_4_6_copy)
-# [[200   1   2   3   4   5]
-#  [  6   7   8   9  10  11]
-#  [ 12  13  14  15  16  17]
-#  [ 18  19  20  21  22  23]]
+a_2_4_copy[0, 0] = 200
+print(a_2_4_copy)
+# [[200   1   2   3]
+#  [  4   5   6   7]]
 
 print(a)
-# [100   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-#   18  19  20  21  22  23]
+# [100   1   2   3   4   5   6   7]
+
+a = np.arange(6).reshape(2, 3)
+print(a)
+# [[0 1 2]
+#  [3 4 5]]
+
+a_step = a[:, ::2]
+print(a_step)
+# [[0 2]
+#  [3 5]]
+
+print(a_step.reshape(-1))
+# [0 2 3 5]
+
+print(np.shares_memory(a_step, a_step.reshape(-1)))
+# False
+
+np.info(a)
+# class:  ndarray
+# shape:  (2, 3)
+# strides:  (24, 8)
+# itemsize:  8
+# aligned:  True
+# contiguous:  True
+# fortran:  False
+# data pointer: 0x7fb49bf71950
+# byteorder:  little
+# byteswap:  False
+# type: int64
+
+np.info(a_step)
+# class:  ndarray
+# shape:  (2, 2)
+# strides:  (24, 16)
+# itemsize:  8
+# aligned:  True
+# contiguous:  False
+# fortran:  False
+# data pointer: 0x7fb49bf71950
+# byteorder:  little
+# byteswap:  False
+# type: int64
+
+np.info(a_step.reshape(-1))
+# class:  ndarray
+# shape:  (4,)
+# strides:  (8,)
+# itemsize:  8
+# aligned:  True
+# contiguous:  True
+# fortran:  True
+# data pointer: 0x7fb49e162210
+# byteorder:  little
+# byteswap:  False
+# type: int64
+
+a = np.arange(8).reshape(2, 4)
+print(a)
+# [[0 1 2 3]
+#  [4 5 6 7]]
+
+a_step = a[:, ::2]
+print(a_step)
+# [[0 2]
+#  [4 6]]
+
+print(a_step.reshape(-1))
+# [0 2 4 6]
+
+print(np.shares_memory(a_step, a_step.reshape(-1)))
+# True
+
+np.info(a)
+# class:  ndarray
+# shape:  (2, 4)
+# strides:  (32, 8)
+# itemsize:  8
+# aligned:  True
+# contiguous:  True
+# fortran:  False
+# data pointer: 0x7fb49e0e1c40
+# byteorder:  little
+# byteswap:  False
+# type: int64
+
+np.info(a_step)
+# class:  ndarray
+# shape:  (2, 2)
+# strides:  (32, 16)
+# itemsize:  8
+# aligned:  True
+# contiguous:  False
+# fortran:  False
+# data pointer: 0x7fb49e0e1c40
+# byteorder:  little
+# byteswap:  False
+# type: int64
+
+np.info(a_step.reshape(-1))
+# class:  ndarray
+# shape:  (4,)
+# strides:  (16,)
+# itemsize:  8
+# aligned:  True
+# contiguous:  False
+# fortran:  False
+# data pointer: 0x7fb49e0e1c40
+# byteorder:  little
+# byteswap:  False
+# type: int64
