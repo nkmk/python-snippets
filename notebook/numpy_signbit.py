@@ -46,33 +46,27 @@ print(np.count_nonzero(a == 0))
 print(np.count_nonzero(a < 0))
 # 2
 
-print(np.count_nonzero(a >= 0))
-# 3
+print(np.count_nonzero(a > 0))
+# 2
 
-a_special = np.array([-np.inf, np.inf, np.nan])
+a_special = np.array([0.0, -0.0, np.inf, -np.inf, np.nan])
 print(a_special)
-# [-inf  inf  nan]
+# [  0.  -0.  inf -inf  nan]
 
 print(np.signbit(a_special))
-# [ True False False]
+# [False  True False  True False]
 
-print(np.nan == 0)
-# False
-
-print(np.nan < 0)
-# False
-
-print(np.nan > 0)
-# False
+print(a_special == 0)
+# [ True  True False False False]
 
 print(a_special < 0)
-# [ True False False]
+# [False False False  True False]
 # 
 # /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in less
 #   """Entry point for launching an IPython kernel.
 
 print(a_special > 0)
-# [False  True False]
+# [False False  True False False]
 # 
 # /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in greater
 #   """Entry point for launching an IPython kernel.

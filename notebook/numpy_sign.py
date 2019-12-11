@@ -35,12 +35,12 @@ print(np.sign(-1.23))
 print(type(np.sign(-1.23)))
 # <class 'numpy.float64'>
 
-a_special = np.array([-np.inf, np.inf, np.nan])
+a_special = np.array([0.0, -0.0, np.inf, -np.inf, np.nan])
 print(a_special)
-# [-inf  inf  nan]
+# [  0.  -0.  inf -inf  nan]
 
 print(np.sign(a_special))
-# [-1.  1. nan]
+# [ 0.  0.  1. -1. nan]
 
 print(np.sign(a_special).dtype)
 # float64

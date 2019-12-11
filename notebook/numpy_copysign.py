@@ -68,47 +68,30 @@ print(np.abs(b) * -1.0)
 #  [-1. -0. -1. -2.]
 #  [-3. -4. -5. -6.]]
 
-zero_pos = np.copysign(0, 1)
-print(zero_pos)
-# 0.0
-
-zero_nega = np.copysign(0, -1)
-print(zero_nega)
-# -0.0
-
-print(zero_pos == zero_nega == 0)
-# True
-
-print(np.sign([zero_pos, zero_nega]))
-# [0. 0.]
-
-print(1 / zero_pos)
-# inf
-# 
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
-#   """Entry point for launching an IPython kernel.
-
-print(1 / zero_nega)
-# -inf
-# 
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
-#   """Entry point for launching an IPython kernel.
-
-a_special = np.array([-np.inf, np.inf, np.nan])
+a_special = np.array([0.0, -0.0, np.inf, -np.inf, np.nan])
 print(a_special)
-# [-inf  inf  nan]
+# [  0.  -0.  inf -inf  nan]
 
 print(np.copysign(a_special, 1))
-# [inf inf nan]
+# [ 0.  0. inf inf nan]
 
 print(np.copysign(a_special, -1))
-# [-inf -inf  nan]
+# [ -0.  -0. -inf -inf  nan]
 
-print(np.copysign([10, 10, 10], a_special))
-# [-10.  10.  10.]
+print(np.copysign([10, 10, 10, 10, 10], a_special))
+# [ 10. -10.  10. -10.  10.]
 
-print(np.copysign([-10, -10, -10], a_special))
-# [-10.  10.  10.]
+print(np.copysign([-10, -10, -10, -10, -10], a_special))
+# [ 10. -10.  10. -10.  10.]
+
+print(np.copysign(10, 0))
+# 10.0
+
+print(np.copysign(0, 10))
+# 0.0
+
+print(np.copysign(0, -10))
+# -0.0
 
 a_complex = np.array([10 + 10j, -10 + 10j])
 print(a_complex)
