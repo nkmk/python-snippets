@@ -38,6 +38,33 @@ print(a[np.newaxis, :, :])
 print(a[np.newaxis, :, :].shape)
 # (1, 2, 3)
 
+print(a[:, np.newaxis])
+# [[[0 1 2]]
+# 
+#  [[3 4 5]]]
+
+print(a[:, np.newaxis].shape)
+# (2, 1, 3)
+
+print(a[np.newaxis])
+# [[[0 1 2]
+#   [3 4 5]]]
+
+print(a[np.newaxis].shape)
+# (1, 2, 3)
+
+print(a[..., np.newaxis])
+# [[[0]
+#   [1]
+#   [2]]
+# 
+#  [[3]
+#   [4]
+#   [5]]]
+
+print(a[..., np.newaxis].shape)
+# (2, 3, 1)
+
 print(a[np.newaxis, :, np.newaxis, :, np.newaxis])
 # [[[[[0]
 #     [1]
@@ -50,6 +77,11 @@ print(a[np.newaxis, :, np.newaxis, :, np.newaxis])
 
 print(a[np.newaxis, :, np.newaxis, :, np.newaxis].shape)
 # (1, 2, 1, 3, 1)
+
+a_newaxis = a[:, :, np.newaxis]
+
+print(np.shares_memory(a, a_newaxis))
+# True
 
 a = np.zeros(27, dtype=np.int).reshape(3, 3, 3)
 print(a)
@@ -146,38 +178,30 @@ print(a)
 print(a.shape)
 # (2, 3)
 
-print(a[:, :, np.newaxis])
-# [[[0]
-#   [1]
-#   [2]]
-# 
-#  [[3]
-#   [4]
-#   [5]]]
+print(a[np.newaxis])
+# [[[0 1 2]
+#   [3 4 5]]]
 
-print(a[:, :, np.newaxis].shape)
-# (2, 3, 1)
+print(a[np.newaxis].shape)
+# (1, 2, 3)
 
-print(a.reshape(2, 3, 1))
-# [[[0]
-#   [1]
-#   [2]]
-# 
-#  [[3]
-#   [4]
-#   [5]]]
+print(np.expand_dims(a, 0))
+# [[[0 1 2]
+#   [3 4 5]]]
 
-print(a.reshape(2, 3, 1).shape)
-# (2, 3, 1)
+print(np.expand_dims(a, 0).shape)
+# (1, 2, 3)
 
-print(a.reshape(*a.shape, 1))
-# [[[0]
-#   [1]
-#   [2]]
-# 
-#  [[3]
-#   [4]
-#   [5]]]
+print(a.reshape(1, 2, 3))
+# [[[0 1 2]
+#   [3 4 5]]]
 
-print(a.reshape(*a.shape, 1).shape)
-# (2, 3, 1)
+print(a.reshape(1, 2, 3).shape)
+# (1, 2, 3)
+
+print(a.reshape(1, *a.shape))
+# [[[0 1 2]
+#   [3 4 5]]]
+
+print(a.reshape(1, *a.shape).shape)
+# (1, 2, 3)
