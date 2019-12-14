@@ -75,7 +75,7 @@ print(l[1][1].shape)
 print(l[1][2].shape)
 # (256, 170, 3)
 
-l_copy = split_image_unequal(img, 2, 3)
+l = split_image_unequal(img, 2, 3)
 
 print(np.shares_memory(img, l[0][0]))
 # True
