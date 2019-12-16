@@ -1,32 +1,43 @@
 from PIL import Image
 import numpy as np
 
-im = np.array(Image.open('data/src/lena_square.png'))
-
-print(im.dtype)
-# uint8
-
-print(im.ndim)
-# 3
+im = np.array(Image.open('data/src/lena.jpg'))
 
 print(im.shape)
-# (512, 512, 3)
+# (225, 400, 3)
 
-im_f = np.array(Image.open('data/src/lena_square.png'), np.float)
+print(im[100, 150])
+# [111  81 109]
 
-print(im_f.dtype)
-# float64
+print(type(im[100, 150]))
+# <class 'numpy.ndarray'>
 
-print(im[256, 256])
-# [180  65  72]
+R, G, B = im[100, 150]
 
-print(im[:, :, 0].min())
-# 54
+print(R)
+# 111
 
-pil_img = Image.fromarray(im)
-pil_img.save('data/temp/lena_square_save.png')
+print(G)
+# 81
 
-Image.fromarray(im).save('data/temp/lena_square_save.png')
+print(B)
+# 109
 
-pil_img_f = Image.fromarray(im_f.astype(np.uint8))
-pil_img_f.save('data/temp/lena_square_save.png')
+print(im[100, 150, 0])
+# 111
+
+print(im[100, 150, 1])
+# 81
+
+print(im[100, 150, 2])
+# 109
+
+im[100, 150] = (0, 50, 100)
+
+print(im[100, 150])
+# [  0  50 100]
+
+im[100, 150, 0] = 150
+
+print(im[100, 150])
+# [150  50 100]
