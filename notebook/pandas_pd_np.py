@@ -23,3 +23,9 @@ print(a)
 
 print(type(a))
 # <class 'numpy.ndarray'>
+
+print(pd.np.pi)
+# 3.141592653589793
+
+print(pd.np.e)
+# 2.718281828459045
