@@ -1,7 +1,7 @@
 from PIL import Image
 import numpy as np
 
-im = np.array(Image.open('data/src/lena_square.png'), 'f')
+im = np.array(Image.open('data/src/lena_square.png'))
 
 im_1_22 = 255.0 * (im / 255.0)**(1 / 2.2)
 im_22 = 255.0 * (im / 255.0)**2.2
