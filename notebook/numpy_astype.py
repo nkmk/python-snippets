@@ -35,9 +35,9 @@ print(a_int.dtype)
 # [1 2 3]
 # int32
 
-_a = np.arange(50).reshape((5, 10)) / 10 - 2
-print(_a)
-print(_a.dtype)
+a = np.arange(50).reshape((5, 10)) / 10 - 2
+print(a)
+print(a.dtype)
 # [[-2.  -1.9 -1.8 -1.7 -1.6 -1.5 -1.4 -1.3 -1.2 -1.1]
 #  [-1.  -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1]
 #  [ 0.   0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9]
@@ -45,9 +45,9 @@ print(_a.dtype)
 #  [ 2.   2.1  2.2  2.3  2.4  2.5  2.6  2.7  2.8  2.9]]
 # float64
 
-_a_int = _a.astype('int64')
-print(_a_int)
-print(_a_int.dtype)
+a_int = a.astype('int64')
+print(a_int)
+print(a_int.dtype)
 # [[-2 -1 -1 -1 -1 -1 -1 -1 -1 -1]
 #  [-1  0  0  0  0  0  0  0  0  0]
 #  [ 0  0  0  0  0  0  0  0  0  0]
@@ -55,7 +55,7 @@ print(_a_int.dtype)
 #  [ 2  2  2  2  2  2  2  2  2  2]]
 # int64
 
-print(np.round(_a).astype(int))
+print(np.round(a).astype(int))
 # [[-2 -2 -2 -2 -2 -2 -1 -1 -1 -1]
 #  [-1 -1 -1 -1 -1  0  0  0  0  0]
 #  [ 0  0  0  0  0  0  1  1  1  1]
@@ -64,7 +64,7 @@ print(np.round(_a).astype(int))
 
 my_round_int = lambda x: np.round((x * 2 + 1) // 2)
 
-print(my_round_int(_a).astype(int))
+print(my_round_int(a).astype(int))
 # [[-2 -2 -2 -2 -2 -1 -1 -1 -1 -1]
 #  [-1 -1 -1 -1 -1  0  0  0  0  0]
 #  [ 0  0  0  0  0  1  1  1  1  1]
@@ -76,7 +76,7 @@ def my_round(x, digit=0):
     s = np.copysign(1, x)
     return (s * x * p * 2 + 1) // 2 / p * s
 
-print(my_round(_a).astype(int))
+print(my_round(a).astype(int))
 # [[-2 -2 -2 -2 -2 -2 -1 -1 -1 -1]
 #  [-1 -1 -1 -1 -1 -1  0  0  0  0]
 #  [ 0  0  0  0  0  1  1  1  1  1]
