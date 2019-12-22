@@ -1,108 +1,216 @@
 import pandas as pd
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv').head(3)
+df = pd.DataFrame({'X': [0, 1, 2], 'Y': [3, 4, 5]}, index=['A', 'B', 'C'])
 print(df)
-#       name  age state  point
-# 0    Alice   24    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
+#    X  Y
+# A  0  3
+# B  1  4
+# C  2  5
 
-df_t = df.T
-print(df_t)
-#            0    1        2
-# name   Alice  Bob  Charlie
-# age       24   42       18
-# state     NY   CA       CA
-# point     64   92       70
+print(df.T)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
 
-df_tr = df.transpose()
-print(df_tr)
-#            0    1        2
-# name   Alice  Bob  Charlie
-# age       24   42       18
-# state     NY   CA       CA
-# point     64   92       70
+print(df.transpose())
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
 
 df = df.T
 print(df)
-#            0    1        2
-# name   Alice  Bob  Charlie
-# age       24   42       18
-# state     NY   CA       CA
-# point     64   92       70
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv').head(3)
-df_t = df.T
-
-df.at[0, 'age'] = 100
-
+df = pd.DataFrame({'X': [0, 1, 2], 'Y': [3, 4, 5]}, index=['A', 'B', 'C'])
 print(df)
-#       name  age state  point
-# 0    Alice  100    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
+#    X  Y
+# A  0  3
+# B  1  4
+# C  2  5
 
-print(df_t)
-#            0    1        2
-# name   Alice  Bob  Charlie
-# age       24   42       18
-# state     NY   CA       CA
-# point     64   92       70
+print(df.dtypes)
+# X    int64
+# Y    int64
+# dtype: object
 
-df_ = pd.DataFrame(pd.np.arange(6).reshape(2, 3))
-print(df_)
-#    0  1  2
-# 0  0  1  2
-# 1  3  4  5
+print(df.T)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
 
-df_t_ = df_.T
-print(df_t_)
-#    0  1
-# 0  0  3
-# 1  1  4
-# 2  2  5
+print(df.T.dtypes)
+# A    int64
+# B    int64
+# C    int64
+# dtype: object
 
-df_.iat[0, 0] = 100
+df_mix = pd.DataFrame({'col_int': [0, 1, 2], 'col_float': [0.1, 0.2, 0.3]}, index=['A', 'B', 'C'])
+print(df_mix)
+#    col_int  col_float
+# A        0        0.1
+# B        1        0.2
+# C        2        0.3
 
-print(df_)
-#      0  1  2
-# 0  100  1  2
-# 1    3  4  5
+print(df_mix.dtypes)
+# col_int        int64
+# col_float    float64
+# dtype: object
 
-print(df_t_)
-#      0  1
-# 0  100  3
-# 1    1  4
-# 2    2  5
+print(df_mix.T)
+#              A    B    C
+# col_int    0.0  1.0  2.0
+# col_float  0.1  0.2  0.3
 
-df_ = pd.DataFrame(pd.np.arange(6).reshape(2, 3))
-df_t_copy = df_.T.copy()
+print(df_mix.T.dtypes)
+# A    float64
+# B    float64
+# C    float64
+# dtype: object
 
-df_.iat[0, 0] = 100
+print(df_mix.T.T)
+#    col_int  col_float
+# A      0.0        0.1
+# B      1.0        0.2
+# C      2.0        0.3
 
-print(df_)
-#      0  1  2
-# 0  100  1  2
-# 1    3  4  5
+print(df_mix.T.T.dtypes)
+# col_int      float64
+# col_float    float64
+# dtype: object
 
-print(df_t_copy)
-#    0  1
-# 0  0  3
-# 1  1  4
-# 2  2  5
+df_mix2 = pd.DataFrame({'col_int': [0, 1, 2], 'col_float': [0.1, 0.2, 0.3], 'col_str': ['a', 'b', 'c']},
+                       index=['A', 'B', 'C'])
+print(df_mix2)
+#    col_int  col_float col_str
+# A        0        0.1       a
+# B        1        0.2       b
+# C        2        0.3       c
 
-df_ = pd.DataFrame(pd.np.arange(6).reshape(2, 3))
-df_t_copy = df_.transpose(copy=True)
+print(df_mix2.dtypes)
+# col_int        int64
+# col_float    float64
+# col_str       object
+# dtype: object
 
-df_.iat[0, 0] = 100
+print(df_mix2.T)
+#              A    B    C
+# col_int      0    1    2
+# col_float  0.1  0.2  0.3
+# col_str      a    b    c
 
-print(df_)
-#      0  1  2
-# 0  100  1  2
-# 1    3  4  5
+print(df_mix2.T.dtypes)
+# A    object
+# B    object
+# C    object
+# dtype: object
 
-print(df_t_copy)
-#    0  1
-# 0  0  3
-# 1  1  4
-# 2  2  5
+print(df_mix2.T.T)
+#   col_int col_float col_str
+# A       0       0.1       a
+# B       1       0.2       b
+# C       2       0.3       c
+
+print(df_mix2.T.T.dtypes)
+# col_int      object
+# col_float    object
+# col_str      object
+# dtype: object
+
+df = pd.DataFrame({'X': [0, 1, 2], 'Y': [3, 4, 5]}, index=['A', 'B', 'C'])
+print(df)
+#    X  Y
+# A  0  3
+# B  1  4
+# C  2  5
+
+df_T = df.T
+print(df_T)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
+
+df_transpose = df.transpose()
+print(df_transpose)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
+
+df.at['A', 'X'] = 100
+print(df)
+#      X  Y
+# A  100  3
+# B    1  4
+# C    2  5
+
+print(df_T)
+#      A  B  C
+# X  100  1  2
+# Y    3  4  5
+
+print(df_transpose)
+#      A  B  C
+# X  100  1  2
+# Y    3  4  5
+
+df_mix = pd.DataFrame({'col_int': [0, 1, 2], 'col_float': [0.1, 0.2, 0.3]}, index=['A', 'B', 'C'])
+print(df_mix)
+#    col_int  col_float
+# A        0        0.1
+# B        1        0.2
+# C        2        0.3
+
+df_mix_T = df_mix.T
+print(df_mix_T)
+#              A    B    C
+# col_int    0.0  1.0  2.0
+# col_float  0.1  0.2  0.3
+
+df_mix.at['A', 'col_int'] = 100
+print(df_mix)
+#    col_int  col_float
+# A      100        0.1
+# B        1        0.2
+# C        2        0.3
+
+print(df_mix_T)
+#              A    B    C
+# col_int    0.0  1.0  2.0
+# col_float  0.1  0.2  0.3
+
+df = pd.DataFrame({'X': [0, 1, 2], 'Y': [3, 4, 5]}, index=['A', 'B', 'C'])
+print(df)
+#    X  Y
+# A  0  3
+# B  1  4
+# C  2  5
+
+df_T_copy = df.T.copy()
+print(df_T_copy)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
+
+df_transpose_copy = df.transpose(copy=True)
+print(df_transpose_copy)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
+
+df.at['A', 'X'] = 100
+print(df)
+#      X  Y
+# A  100  3
+# B    1  4
+# C    2  5
+
+print(df_T_copy)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
+
+print(df_transpose_copy)
+#    A  B  C
+# X  0  1  2
+# Y  3  4  5
