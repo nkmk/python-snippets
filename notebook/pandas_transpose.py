@@ -167,6 +167,12 @@ print(df_mix_T)
 # col_int    0.0  1.0  2.0
 # col_float  0.1  0.2  0.3
 
+df_mix_transpose = df_mix.transpose()
+print(df_mix_transpose)
+#              A    B    C
+# col_int    0.0  1.0  2.0
+# col_float  0.1  0.2  0.3
+
 df_mix.at['A', 'col_int'] = 100
 print(df_mix)
 #    col_int  col_float
@@ -175,6 +181,11 @@ print(df_mix)
 # C        2        0.3
 
 print(df_mix_T)
+#              A    B    C
+# col_int    0.0  1.0  2.0
+# col_float  0.1  0.2  0.3
+
+print(df_mix_transpose)
 #              A    B    C
 # col_int    0.0  1.0  2.0
 # col_float  0.1  0.2  0.3
