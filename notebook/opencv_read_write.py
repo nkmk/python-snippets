@@ -36,3 +36,45 @@ print(im_gray.dtype)
 
 cv2.imwrite('data/dst/lena_opencv_gray.jpg', im_gray)
 # True
+
+im_gray_read = cv2.imread('data/dst/lena_opencv_gray.jpg')
+
+print(im_gray_read.shape)
+# (225, 400, 3)
+
+import numpy as np
+
+print(np.array_equal(im_gray_read[:, :, 0], im_gray_read[:, :, 1]))
+# True
+
+print(np.array_equal(im_gray_read[:, :, 1], im_gray_read[:, :, 2]))
+# True
+
+im = cv2.imread('xxxxxxx')
+
+print(im)
+# None
+
+# print(im.shape)
+# AttributeError: 'NoneType' object has no attribute 'shape'
+
+im = cv2.imread('data/src/sample.csv')
+
+print(im)
+# None
+
+im = cv2.imread('xxxxxxx')
+
+if im:
+    print('Image is read.')
+else:
+    print('Image is not read.')
+# Image is not read.
+
+im = cv2.imread('xxxxxxx')
+
+if not im:
+    print('Image is not read.')
+else:
+    print('Image is read.')
+# Image is not read.
