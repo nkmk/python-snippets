@@ -300,8 +300,8 @@ print(df_c)
 # b  1  0.1
 # c  2  0.2
 
-df_c_view = pd.concat([s1, s2], axis=1, copy=False)
-print(df_c_view)
+df_c_false = pd.concat([s1, s2], axis=1, copy=False)
+print(df_c_false)
 #      0    1
 # a  100  0.0
 # b    1  0.1
@@ -314,7 +314,7 @@ print(s1)
 # c      2
 # dtype: int64
 
-print(df_c_view)
+print(df_c_false)
 #      0    1
 # a  100  0.0
 # b    1  0.1
