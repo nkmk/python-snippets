@@ -191,6 +191,11 @@ print(u[inverse])
 print(counts)
 # [1 2]
 
+print(a_2d)
+# [[20 20 10 10]
+#  [ 0  0 10 30]
+#  [20 20 10 10]]
+
 u, indices = np.unique(a_2d, return_index=True)
 print(u)
 # [ 0 10 20 30]
@@ -219,3 +224,13 @@ print(d[20])
 
 print(d[30])
 # [(1, 3)]
+
+d = {u: list(zip(*np.where(a_2d == u)))
+     for u, c in zip(*np.unique(a_2d, return_counts=True)) if c == 1}
+print(d)
+# {30: [(1, 3)]}
+
+d = {u: list(zip(*np.where(a_2d == u)))
+     for u, c in zip(*np.unique(a_2d, return_counts=True)) if c <= 2}
+print(d)
+# {0: [(1, 0), (1, 1)], 30: [(1, 3)]}
