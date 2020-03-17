@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math
 
 img = cv2.imread('data/src/lena.jpg')
 
@@ -68,3 +69,27 @@ cv2.imwrite('data/dst/opencv_affine_translation.jpg', affine_img_translation)
 # True
 
 # ![](data/dst/opencv_affine_translation.jpg)
+
+a = math.tan(math.radians(15))
+
+mat = np.array([[1, a, 0], [0, 1, 0]], dtype=np.float32)
+print(mat)
+# [[1.        0.2679492 0.       ]
+#  [0.        1.        0.       ]]
+
+affine_img_skew_x = cv2.warpAffine(img, mat, (int(w + h * a), h))
+cv2.imwrite('data/dst/opencv_affine_skew_x.jpg', affine_img_skew_x)
+# True
+
+# ![](data/dst/opencv_affine_skew_x.jpg)
+
+mat = np.array([[1, 0, 0], [a, 1, 0]], dtype=np.float32)
+print(mat)
+# [[1.        0.        0.       ]
+#  [0.2679492 1.        0.       ]]
+
+affine_img_skew_y = cv2.warpAffine(img, mat, (w, int(h + w * a)))
+cv2.imwrite('data/dst/opencv_affine_skew_y.jpg', affine_img_skew_y)
+# True
+
+# ![](data/dst/opencv_affine_skew_y.jpg)
