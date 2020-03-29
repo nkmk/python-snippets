@@ -23,6 +23,22 @@ print(type(len(s)))
 print(len(str(i)))
 # 4
 
+i_minus = -9876
+
+s_minus = str(i_minus)
+
+print(s_minus)
+# -9876
+
+print(len(s_minus))
+# 5
+
+print(abs(i_minus))
+# 9876
+
+print(len(str(abs(i_minus))))
+# 4
+
 print(s[-1])
 # 6
 

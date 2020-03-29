@@ -43,6 +43,18 @@ print(len(str(f).split('.')[0]))
 print(len(str(f).split('.')[1]))
 # 4
 
+print(str(0.123).split('.'))
+# ['0', '123']
+
+print(len(str(0.123).split('.')[0]))
+# 1
+
+print(str(0.123).strip('0').split('.'))
+# ['', '123']
+
+print(len(str(0.123).strip('0').split('.')[0]))
+# 0
+
 print(s_i[-1])
 # 7
 
@@ -75,3 +87,65 @@ print(str(f).split('.')[1][3])
 
 print(int(str(f).split('.')[1][3]))
 # 3
+
+print(str(0.0001))
+# 0.0001
+
+print(str(0.00001))
+# 1e-05
+
+s_format = format(0.00001, '.8f')
+
+print(s_format)
+# 0.00001000
+
+print(type(s_format))
+# <class 'str'>
+
+print('{:.8f}'.format(0.00001))
+# 0.00001000
+
+print(f'{0.00001:.8f}')
+# 0.00001000
+
+s_rstrip = s_format.rstrip('0')
+
+print(s_rstrip)
+# 0.00001
+
+print(format(0.1, '.8f').rstrip('0'))
+# 0.1
+
+print(format(0.0001, '.8f').rstrip('0'))
+# 0.0001
+
+print(format(0.00000001, '.8f').rstrip('0'))
+# 0.00000001
+
+print(format(0.000000001, '.8f').rstrip('0'))
+# 0.
+
+print(format(0.00001, '.8f').strip('0'))
+# .00001
+
+s_i, s_d = format(0.00001, '.8f').strip('0').split('.')
+
+print(s_i)
+# 
+
+print(type(s_i))
+# <class 'str'>
+
+print(len(s_i))
+# 0
+
+print(s_d)
+# 00001
+
+s_i, s_d = format(1.00001, '.8f').strip('0').split('.')
+
+print(s_i)
+# 1
+
+print(s_d)
+# 00001
