@@ -12,7 +12,7 @@ try:
     import networkx
 
     print('scikit-learn: ', sklearn.__version__)
-    print('numba:        ', numba.__version__)
-    print('networkx:     ', networkx.__version__)
+    print('Numba:        ', numba.__version__)
+    print('NetworkX:     ', networkx.__version__)
 except:
     pass
