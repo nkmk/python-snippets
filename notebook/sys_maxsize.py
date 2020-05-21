@@ -9,6 +9,9 @@ print(type(sys.maxsize))
 print(sys.maxsize == 2**63 - 1)
 # True
 
+print(bin(sys.maxsize))
+# 0b111111111111111111111111111111111111111111111111111111111111111
+
 print(hex(sys.maxsize))
 # 0x7fffffffffffffff
 
