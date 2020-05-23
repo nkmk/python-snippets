@@ -63,3 +63,11 @@ else:
 # !!SKIP!!
 # Charlie
 # !!FINISH!!
+
+l = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+
+for c in l[2:5]:
+    print(c)
+# C
+# D
+# E
