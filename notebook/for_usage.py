@@ -71,3 +71,16 @@ for c in l[2:5]:
 # C
 # D
 # E
+
+for c in l[::2]:
+    print(c)
+# A
+# C
+# E
+# G
+
+for c in l[1::2]:
+    print(c)
+# B
+# D
+# F
