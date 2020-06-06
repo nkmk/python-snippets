@@ -26,7 +26,7 @@ print(df.index.weekday)
 print(df.index.dayofweek)
 # Int64Index([2, 1, 5, 0, 1, 1, 4, 4, 2, 0, 4, 1], dtype='int64', name='date')
 
-print(df.index.weekday_name)
+print(df.index.day_name())
 # Index(['Wednesday', 'Tuesday', 'Saturday', 'Monday', 'Tuesday', 'Tuesday',
 #        'Friday', 'Friday', 'Wednesday', 'Monday', 'Friday', 'Tuesday'],
 #       dtype='object', name='date')
@@ -46,6 +46,11 @@ print(df[df.index.weekday == 0].mean())
 # val_1    34.0
 # val_2    51.0
 # dtype: float64
+
+print(df[df.index.weekday == 0].agg(['sum', 'mean']))
+#       val_1  val_2
+# sum    68.0  102.0
+# mean   34.0   51.0
 
 df_w = df.set_index([df.index.weekday, df.index])
 print(df_w)
@@ -121,6 +126,16 @@ print(df_w.mean(level='weekday'))
 # 4        23.333333  36.666667
 # 5        47.000000  47.000000
 
+print(df_w.groupby(level='weekday').agg(['sum', 'mean']))
+#         val_1            val_2           
+#           sum       mean   sum       mean
+# weekday                                  
+# 0          68  34.000000   102  51.000000
+# 1         181  45.250000   250  62.500000
+# 2         163  81.500000   152  76.000000
+# 4          70  23.333333   110  36.666667
+# 5          47  47.000000    47  47.000000
+
 print(df.index.year)
 # Int64Index([2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2018, 2018, 2018,
 #             2018],
@@ -150,6 +165,30 @@ print(df_y.sum(level='year'))
 # 2017    279    403
 # 2018    250    258
 
+df_q = df.set_index([df.index.quarter, df.index])
+df_q.index.names = ['quarter', 'date']
+print(df_q)
+#                     val_1  val_2
+# quarter date                    
+# 4       2017-11-01     65     76
+#         2017-11-07     26     66
+#         2017-11-18     47     47
+#         2017-11-27     20     38
+#         2017-12-05     65     85
+#         2017-12-12      4     29
+#         2017-12-22     31     54
+#         2017-12-29     21      8
+# 1       2018-01-03     98     76
+#         2018-01-08     48     64
+#         2018-01-19     18     48
+#         2018-01-23     86     70
+
+print(df_q.sum(level='quarter'))
+#          val_1  val_2
+# quarter              
+# 4          279    403
+# 1          250    258
+
 df_m = df.set_index([df.index.month, df.index])
 df_m.index.names = ['month', 'date']
 print(df_m)
@@ -175,29 +214,52 @@ print(df_m.sum(level='month'))
 # 12       121    176
 # 1        250    258
 
-df_q = df.set_index([df.index.quarter, df.index])
-df_q.index.names = ['quarter', 'date']
-print(df_q)
-#                     val_1  val_2
-# quarter date                    
-# 4       2017-11-01     65     76
-#         2017-11-07     26     66
-#         2017-11-18     47     47
-#         2017-11-27     20     38
-#         2017-12-05     65     85
-#         2017-12-12      4     29
-#         2017-12-22     31     54
-#         2017-12-29     21      8
-# 1       2018-01-03     98     76
-#         2018-01-08     48     64
-#         2018-01-19     18     48
-#         2018-01-23     86     70
+print(df.index.month_name())
+# Index(['November', 'November', 'November', 'November', 'December', 'December',
+#        'December', 'December', 'January', 'January', 'January', 'January'],
+#       dtype='object', name='date')
 
-print(df_q.sum(level='quarter'))
-#          val_1  val_2
-# quarter              
-# 4          279    403
-# 1          250    258
+df_w2 = df.set_index([df.index.week, df.index])
+df_w2.index.names = ['week', 'date']
+print(df_w2)
+#                  val_1  val_2
+# week date                    
+# 44   2017-11-01     65     76
+# 45   2017-11-07     26     66
+# 46   2017-11-18     47     47
+# 48   2017-11-27     20     38
+# 49   2017-12-05     65     85
+# 50   2017-12-12      4     29
+# 51   2017-12-22     31     54
+# 52   2017-12-29     21      8
+# 1    2018-01-03     98     76
+# 2    2018-01-08     48     64
+# 3    2018-01-19     18     48
+# 4    2018-01-23     86     70
+
+print(df_w2.sum(level='week'))
+#       val_1  val_2
+# week              
+# 44       65     76
+# 45       26     66
+# 46       47     47
+# 48       20     38
+# 49       65     85
+# 50        4     29
+# 51       31     54
+# 52       21      8
+# 1        98     76
+# 2        48     64
+# 3        18     48
+# 4        86     70
+
+print(pd.date_range('2017-01-01', '2017-01-07').week)
+# Int64Index([52, 1, 1, 1, 1, 1, 1], dtype='int64')
+
+print(pd.date_range('2017-01-01', '2017-01-07').day_name())
+# Index(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+#        'Saturday'],
+#       dtype='object')
 
 df_yw = df.set_index([df.index.year, df.index.weekday, df.index])
 df_yw.index.names = ['year', 'weekday', 'date']
