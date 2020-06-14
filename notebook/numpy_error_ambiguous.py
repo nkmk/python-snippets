@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.17.3
+
 a_bool = np.array([True, True, True])
 b_bool = np.array([True, False, False])
 
@@ -20,6 +23,9 @@ print(bool([0, 1, 2]))
 # True
 
 print(bool([]))
+# False
+
+print(not [0, 1, 2])
 # False
 
 print(not [])
@@ -87,31 +93,8 @@ print(a_int | b_int)
 print(a_int ^ b_int)
 # [1 1 1]
 
-print(~ a_int)
+print(~a_int)
 # [-1 -2 -4]
-
-print(a_int | 2)
-# [2 3 3]
-
-print(a_int << b_int)
-# [ 0  1 12]
-
-print(a_int << 2)
-# [ 0  4 12]
-
-print(~True)
-# -2
-
-print(~a_bool)
-# [False False False]
-
-print(~b_bool)
-# [False  True  True]
-
-a_float = np.array([0.1, 0.2, 0.3])
-
-# print(a_float & a_float)
-# TypeError: ufunc 'bitwise_and' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
 
 a = np.arange(12).reshape(3, 4)
 print(a)
@@ -140,35 +123,67 @@ print((a > 3) & (a % 2 == 0))
 #  [ True False  True False]
 #  [ True False  True False]]
 
-a_one = np.array([0])
-b_one = np.array([1])
-c_one = np.array([2])
+x = 10
 
-print(bool(a_one))
+print(x > 3)
+# True
+
+print(x % 2 == 1)
 # False
 
-print(bool(b_one))
+print(x > 3 or x % 2 == 1)
 # True
 
-print(bool(c_one))
+print((x > 3) or (x % 2 == 1))
 # True
 
-print(b_one and c_one)
+a_single = np.array([0])
+b_single = np.array([1])
+c_single = np.array([2])
+
+print(bool(a_single))
+# False
+
+print(bool(b_single))
+# True
+
+print(bool(c_single))
+# True
+
+print(b_single and c_single)
 # [2]
 
-print(c_one and b_one)
+print(c_single and b_single)
 # [1]
 
-print(b_one & c_one)
+print(b_single or c_single)
+# [1]
+
+print(c_single or b_single)
+# [2]
+
+print(b_single & c_single)
 # [0]
 
-print(b_one | c_one)
+print(b_single | c_single)
 # [3]
 
-print(not c_one)
+print(not a_single)
+# True
+
+print(not b_single)
 # False
 
-print(~c_one)
+print(not c_single)
+# False
+
+print(~a_single)
+# [-1]
+
+print(~b_single)
+# [-2]
+
+print(~c_single)
 # [-3]
 
 a_empty = np.array([])
