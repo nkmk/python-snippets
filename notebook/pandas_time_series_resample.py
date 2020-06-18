@@ -93,7 +93,7 @@ print(df.resample('W').apply(list))
 # 2018-08-26      [21, 23, 25]
 # 2018-09-02      [27, 29, 31]
 
-print(df.resample('W').agg([min, max, sum]))
+print(df.resample('W').agg(['min', 'max', 'sum']))
 #            value        
 #              min max sum
 # 2018-08-05     1   5   9

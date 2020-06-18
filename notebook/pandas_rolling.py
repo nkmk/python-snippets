@@ -19,7 +19,7 @@ print(s.rolling(3))
 # Rolling [window=3,center=False,axis=0]
 
 print(type(s.rolling(3)))
-# <class 'pandas.core.window.Rolling'>
+# <class 'pandas.core.window.rolling.Rolling'>
 
 print(s.rolling(3).sum())
 # 0     NaN
@@ -154,15 +154,17 @@ print(s.rolling(3).mean())
 # 9    8.0
 # dtype: float64
 
-print(s.rolling(3).agg([sum, min, max, 'mean']))
-#     sum  min  max  mean
-# 0   NaN  NaN  NaN   NaN
-# 1   NaN  NaN  NaN   NaN
-# 2   3.0  0.0  2.0   1.0
-# 3   6.0  1.0  3.0   2.0
-# 4   9.0  2.0  4.0   3.0
-# 5  12.0  3.0  5.0   4.0
-# 6  15.0  4.0  6.0   5.0
-# 7  18.0  5.0  7.0   6.0
-# 8  21.0  6.0  8.0   7.0
-# 9  24.0  7.0  9.0   8.0
+print(s.rolling(3).agg(['sum', 'mean', 'skew', 'cov',
+                        max, min,
+                        lambda x: max(x) - min(x)]))
+#     sum  mean          skew  cov  max  min  <lambda>
+# 0   NaN   NaN           NaN  NaN  NaN  NaN       NaN
+# 1   NaN   NaN           NaN  NaN  NaN  NaN       NaN
+# 2   3.0   1.0  0.000000e+00  1.0  2.0  0.0       2.0
+# 3   6.0   2.0 -7.993606e-15  1.0  3.0  1.0       2.0
+# 4   9.0   3.0  2.398082e-14  1.0  4.0  2.0       2.0
+# 5  12.0   4.0 -6.394885e-14  1.0  5.0  3.0       2.0
+# 6  15.0   5.0 -7.993606e-14  1.0  6.0  4.0       2.0
+# 7  18.0   6.0  1.918465e-13  1.0  7.0  5.0       2.0
+# 8  21.0   7.0  2.238210e-13  1.0  8.0  6.0       2.0
+# 9  24.0   8.0 -5.115908e-13  1.0  9.0  7.0       2.0
