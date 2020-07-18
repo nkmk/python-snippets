@@ -61,7 +61,7 @@ print(list(flatten(l_t_r_mix)))
 def flatten_list(l):
     for el in l:
         if isinstance(el, list):
-            yield from flatten(el)
+            yield from flatten_list(el)
         else:
             yield el
 
@@ -80,7 +80,7 @@ print(list(flatten_list(l_t_r_mix)))
 def flatten_list_tuple_range(l):
     for el in l:
         if isinstance(el, (list, tuple, range)):
-            yield from flatten(el)
+            yield from flatten_list_tuple_range(el)
         else:
             yield el
 
