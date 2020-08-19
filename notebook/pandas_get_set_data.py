@@ -177,6 +177,64 @@ print(type(df.iloc[:, [0, 2]]))
 # Frank     30     57
 # <class 'pandas.core.frame.DataFrame'>
 
+print(df.loc['Bob'])
+print(type(df.loc['Bob']))
+# age      20
+# state    CA
+# point    92
+# Name: Bob, dtype: object
+# <class 'pandas.core.series.Series'>
+
+print(df.loc['Bob':'Bob'])
+print(type(df.loc['Bob':'Bob']))
+#       age state  point
+# name                  
+# Bob    20    CA     92
+# <class 'pandas.core.frame.DataFrame'>
+
+print(df.loc[['Bob']])
+print(type(df.loc[['Bob']]))
+#       age state  point
+# name                  
+# Bob    20    CA     92
+# <class 'pandas.core.frame.DataFrame'>
+
+print(df.iloc[:, 1])
+print(type(df.iloc[:, 1]))
+# name
+# Alice      NY
+# Bob        CA
+# Charlie    CA
+# Dave       TX
+# Ellen      CA
+# Frank      NY
+# Name: state, dtype: object
+# <class 'pandas.core.series.Series'>
+
+print(df.iloc[:, 1:2])
+print(type(df.iloc[:, 1:2]))
+#         state
+# name         
+# Alice      NY
+# Bob        CA
+# Charlie    CA
+# Dave       TX
+# Ellen      CA
+# Frank      NY
+# <class 'pandas.core.frame.DataFrame'>
+
+print(df.iloc[:, [1]])
+print(type(df.iloc[:, [1]]))
+#         state
+# name         
+# Alice      NY
+# Bob        CA
+# Charlie    CA
+# Dave       TX
+# Ellen      CA
+# Frank      NY
+# <class 'pandas.core.frame.DataFrame'>
+
 df_state = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=2)
 print(df_state)
 #           name  age  point
