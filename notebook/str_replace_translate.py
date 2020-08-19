@@ -36,11 +36,20 @@ print(s_lines_multi)
 # two
 # three
 
+print(repr(s_lines_multi))
+# 'one\ntwo\r\nthree'
+
 print(s_lines_multi.replace('\r\n', '-').replace('\n', '-'))
 # one-two-three
 
+print(repr(s_lines_multi.replace('\r\n', '-').replace('\n', '-')))
+# 'one-two-three'
+
 print(s_lines_multi.replace('\n', '-').replace('\r\n', '-'))
 # -three
+
+print(repr(s_lines_multi.replace('\n', '-').replace('\r\n', '-')))
+# 'one-two\r-three'
 
 print(s_lines_multi.splitlines())
 # ['one', 'two', 'three']
