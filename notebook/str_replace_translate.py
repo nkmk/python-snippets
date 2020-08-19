@@ -46,7 +46,7 @@ print(repr(s_lines_multi.replace('\r\n', '-').replace('\n', '-')))
 # 'one-two-three'
 
 print(s_lines_multi.replace('\n', '-').replace('\r\n', '-'))
-# -three
+# -threeo
 
 print(repr(s_lines_multi.replace('\n', '-').replace('\r\n', '-')))
 # 'one-two\r-three'
