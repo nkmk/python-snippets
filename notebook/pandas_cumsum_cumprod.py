@@ -119,3 +119,34 @@ print(df2.cummin(axis=1))
 # X  1  1
 # Y  4  3
 # Z  2  2
+
+df2_nan = pd.DataFrame({'A': [1, 4, 2], 'B': [6, float('nan'), 5]}, index=['X', 'Y', 'Z'])
+print(df2_nan)
+#    A    B
+# X  1  6.0
+# Y  4  NaN
+# Z  2  5.0
+
+print(df2_nan.cummax())
+#    A    B
+# X  1  6.0
+# Y  4  NaN
+# Z  4  6.0
+
+print(df2_nan.cummax(skipna=False))
+#    A    B
+# X  1  6.0
+# Y  4  NaN
+# Z  4  NaN
+
+print(df2_nan.cummin())
+#    A    B
+# X  1  6.0
+# Y  1  NaN
+# Z  1  5.0
+
+print(df2_nan.cummin(skipna=False))
+#    A    B
+# X  1  6.0
+# Y  1  NaN
+# Z  1  NaN
