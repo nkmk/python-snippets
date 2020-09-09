@@ -67,6 +67,14 @@ print(np.cumsum(l_2d, axis=1))
 # [[ 1  3  6]
 #  [ 4  9 15]]
 
+l_2d_error = [[1, 2, 3], [4, 5]]
+
+print(np.cumsum(l_2d_error))
+# [list([1, 2, 3]) list([1, 2, 3, 4, 5])]
+# 
+# /usr/local/lib/python3.8/site-packages/numpy/core/_asarray.py:83: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
+#   return array(a, dtype, copy=False, order=order)
+
 print(np.cumprod(a_1d))
 # [  1   2   6  24 120 720]
 
