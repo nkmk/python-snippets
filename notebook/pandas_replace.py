@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 1.0.5
+
 df = pd.read_csv('data/src/sample_pandas_normal.csv')
 df.iloc[1, 3] = 24
 print(df)
@@ -62,10 +65,10 @@ print(df.replace(['CA', 24], 'XXX'))
 print(df.replace({'CA': 'NY', 'NY': 'XXX'}))
 #       name  age state  point
 # 0    Alice   24   XXX     64
-# 1      Bob   42   XXX     24
-# 2  Charlie   18   XXX     70
+# 1      Bob   42    NY     24
+# 2  Charlie   18    NY     70
 # 3     Dave   68    TX     70
-# 4    Ellen   24   XXX     88
+# 4    Ellen   24    NY     88
 # 5    Frank   30   XXX     57
 
 print(df.replace({'NY': 'XXX', 'CA': 'NY'}))
@@ -77,7 +80,7 @@ print(df.replace({'NY': 'XXX', 'CA': 'NY'}))
 # 4    Ellen   24    NY     88
 # 5    Frank   30   XXX     57
 
-print(df.replace({'NY': 'XXX'}).replace({'CA': 'NY'}))
+print(df.replace(['CA', 'NY'], ['NY', 'XXX']))
 #       name  age state  point
 # 0    Alice   24   XXX     64
 # 1      Bob   42    NY     24
@@ -86,7 +89,16 @@ print(df.replace({'NY': 'XXX'}).replace({'CA': 'NY'}))
 # 4    Ellen   24    NY     88
 # 5    Frank   30   XXX     57
 
-print(df.replace(['CA', 'NY'], ['NY', 'XXX']))
+print(df.replace(['NY', 'CA'], ['XXX', 'NY']))
+#       name  age state  point
+# 0    Alice   24   XXX     64
+# 1      Bob   42    NY     24
+# 2  Charlie   18    NY     70
+# 3     Dave   68    TX     70
+# 4    Ellen   24    NY     88
+# 5    Frank   30   XXX     57
+
+print(df.replace('CA', 'NY').replace('NY', 'XXX'))
 #       name  age state  point
 # 0    Alice   24   XXX     64
 # 1      Bob   42   XXX     24
@@ -95,7 +107,7 @@ print(df.replace(['CA', 'NY'], ['NY', 'XXX']))
 # 4    Ellen   24   XXX     88
 # 5    Frank   30   XXX     57
 
-print(df.replace(['NY', 'CA'], ['XXX', 'NY']))
+print(df.replace('NY', 'XXX').replace('CA', 'NY'))
 #       name  age state  point
 # 0    Alice   24   XXX     64
 # 1      Bob   42    NY     24
