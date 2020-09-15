@@ -62,32 +62,32 @@ pprint.pprint(sorted(l, key=operator.itemgetter('Name')))
 # sorted(l, key=operator.itemgetter('Point'))
 # KeyError: 'Point'
 
-l_dup = [{'Name': 'Alice', 'Age': 40, 'Point': 80, 'State': 'LA'},
+l_dup = [{'Name': 'Alice', 'Age': 40, 'Point': 80, 'State': 'CA'},
          {'Name': 'Bob', 'Age': 20, 'State': 'NY'},
-         {'Name': 'Charlie', 'Age': 30, 'Point': 70, 'State': 'LA'}]
+         {'Name': 'Charlie', 'Age': 30, 'Point': 70, 'State': 'CA'}]
 pprint.pprint(l_dup)
-# [{'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'LA'},
+# [{'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'CA'},
 #  {'Age': 20, 'Name': 'Bob', 'State': 'NY'},
-#  {'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'LA'}]
+#  {'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'CA'}]
 
 pprint.pprint(sorted(l_dup, key=operator.itemgetter('State')))
-# [{'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'LA'},
-#  {'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'LA'},
+# [{'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'CA'},
+#  {'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'CA'},
 #  {'Age': 20, 'Name': 'Bob', 'State': 'NY'}]
 
 pprint.pprint(sorted(l_dup, key=operator.itemgetter('State', 'Age')))
-# [{'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'LA'},
-#  {'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'LA'},
+# [{'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'CA'},
+#  {'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'CA'},
 #  {'Age': 20, 'Name': 'Bob', 'State': 'NY'}]
 
 pprint.pprint(sorted(l_dup, key=operator.itemgetter('Age', 'State')))
 # [{'Age': 20, 'Name': 'Bob', 'State': 'NY'},
-#  {'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'LA'},
-#  {'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'LA'}]
+#  {'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'CA'},
+#  {'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'CA'}]
 
 pprint.pprint(sorted(l_dup, key=lambda x: (x['State'], x['Age'])))
-# [{'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'LA'},
-#  {'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'LA'},
+# [{'Age': 30, 'Name': 'Charlie', 'Point': 70, 'State': 'CA'},
+#  {'Age': 40, 'Name': 'Alice', 'Point': 80, 'State': 'CA'},
 #  {'Age': 20, 'Name': 'Bob', 'State': 'NY'}]
 
 # max(l)
