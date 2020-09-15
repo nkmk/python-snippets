@@ -37,8 +37,11 @@ print(i_e309 > sys.float_info.max)
 print(float('inf'))
 # inf
 
-print(i_e309 > float('inf'))
-# False
+print(float('inf') > sys.float_info.max)
+# True
+
+print(float('inf') > i_e309)
+# True
 
 # int(float('inf'))
 # OverflowError: cannot convert float infinity to integer
