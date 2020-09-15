@@ -29,9 +29,13 @@ print(t)
 # print(t + [3, 4, 5])
 # TypeError: can only concatenate tuple (not "list") to tuple
 
-t_add_one = t + (3,)
+print(t + tuple([3, 4, 5]))
+# (0, 1, 2, 3, 4, 5)
 
-print(t_add_one)
+# print(t + tuple(3))
+# TypeError: 'int' object is not iterable
+
+print(t + (3,))
 # (0, 1, 2, 3)
 
 l = list(t)
