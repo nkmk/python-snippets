@@ -25,18 +25,37 @@ print(type(float('100')))
 # 100.0
 # <class 'float'>
 
-print(int('101', 2))
-print(int('70', 8))
+print(int('100', 2))
+print(int('100', 8))
+print(int('100', 16))
+# 4
+# 64
+# 256
+
+print(int('100', 10))
+print(int('100'))
+# 100
+# 100
+
+print(int('0b100', 0))
+print(int('0o100', 0))
+print(int('0x100', 0))
+# 4
+# 64
+# 256
+
 print(int('FF', 16))
-# 5
-# 56
+print(int('ff', 16))
+# 255
 # 255
 
-print(int('0b101', 0))
-print(int('0o70', 0))
 print(int('0xFF', 0))
-# 5
-# 56
+print(int('0XFF', 0))
+print(int('0xff', 0))
+print(int('0Xff', 0))
+# 255
+# 255
+# 255
 # 255
 
 print(float('1.23e-4'))
@@ -48,6 +67,9 @@ print(float('1.23e4'))
 print(type(float('1.23e4')))
 # 12300.0
 # <class 'float'>
+
+print(float('1.23E-4'))
+# 0.000123
 
 print(int('１００'))
 print(type(int('１００')))
