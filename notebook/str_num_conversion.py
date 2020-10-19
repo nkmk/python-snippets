@@ -21,9 +21,9 @@ print(float('.23'))
 # 0.23
 
 print(float('100'))
-print(type(int('100')))
+print(type(float('100')))
 # 100.0
-# <class 'int'>
+# <class 'float'>
 
 print(int('101', 2))
 print(int('70', 8))

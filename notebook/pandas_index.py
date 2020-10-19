@@ -98,7 +98,7 @@ print(type(df[1:4]))
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df[:-3])
-print(type(df[1:-3]))
+print(type(df[:-3]))
 #          age state  point
 # name                     
 # Alice     24    NY     64
