@@ -71,7 +71,7 @@ print(uf.group_count())
 # 2
 
 print(uf.all_group_members())
-# {0: [0, 2], 1: [1, 3, 4, 5]}
+# defaultdict(<class 'list'>, {0: [0, 2], 1: [1, 3, 4, 5]})
 
 print(list(uf.all_group_members().values()))
 # [[0, 2], [1, 3, 4, 5]]
@@ -155,7 +155,7 @@ print(ufl.group_count())
 # 2
 
 print(ufl.all_group_members())
-# {'A': ['A', 'C', 'D'], 'E': ['B', 'E']}
+# defaultdict(<class 'list'>, {'A': ['A', 'C', 'D'], 'E': ['B', 'E']})
 
 ufl_n = UnionFindLabel([1, 2, 3, 4, 5])
 print(ufl_n)
@@ -189,7 +189,7 @@ print(ufl_n2)
 # 1: [1, 3, 4]
 # 5: [2, 5]
 
-ufl_t = UnionFindLabel([(0, 0), (0, 1), (1, 0), (1,1)])
+ufl_t = UnionFindLabel([(0, 0), (0, 1), (1, 0), (1, 1)])
 print(ufl_t)
 # (0, 0): [(0, 0)]
 # (0, 1): [(0, 1)]

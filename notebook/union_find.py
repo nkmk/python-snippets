@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 class UnionFind():
     def __init__(self, n):
         self.n = n
@@ -40,13 +43,13 @@ class UnionFind():
         return len(self.roots())
     
     def all_group_members(self):
-        group_members = {r: [] for r in self.roots()}
+        group_members = defaultdict(list)
         for member in range(self.n):
             group_members[self.find(member)].append(member)
         return group_members
     
     def __str__(self):
-        return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
+        return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
 
 
 class UnionFindLabel(UnionFind):
@@ -76,3 +79,9 @@ class UnionFindLabel(UnionFind):
     
     def roots(self):
         return [self.d_inv[i] for i, x in enumerate(self.parents) if x < 0]
+    
+    def all_group_members(self):
+        group_members = defaultdict(list)
+        for member in range(self.n):
+            group_members[self.d_inv[self.find(member)]].append(self.d_inv[member])
+        return group_members
