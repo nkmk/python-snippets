@@ -33,16 +33,21 @@ print(get_unique_list(l_2d))
 print(get_unique_list(l))
 # [3, 2, 1, 5, 4]
 
-print([x for x in set(l) if l.count(x) > 1])
-# [1, 2, 3]
+import collections
 
-print([x for x in dict.fromkeys(l) if l.count(x) > 1])
+l = [3, 3, 2, 1, 5, 1, 4, 2, 3]
+
+print(collections.Counter(l))
+# Counter({3: 3, 2: 2, 1: 2, 5: 1, 4: 1})
+
+print([k for k, v in collections.Counter(l).items() if v > 1])
 # [3, 2, 1]
 
-print(sorted([x for x in set(l) if l.count(x) > 1], key=l.index))
+print(sorted([k for k, v in collections.Counter(l).items() if v > 1], key=l.index))
 # [3, 2, 1]
 
-print([x for x in l if l.count(x) > 1])
+cc = collections.Counter(l)
+print([x for x in l if cc[x] > 1])
 # [3, 3, 2, 1, 1, 2, 3]
 
 def get_duplicate_list(seq):
@@ -67,3 +72,6 @@ print(get_duplicate_list_order(l))
 
 print([x for x in l_2d if l_2d.count(x) > 1])
 # [[1, 1], [0, 1], [0, 1], [1, 1], [1, 1]]
+
+# print(collections.Counter(l_2d))
+# TypeError: unhashable type: 'list'
