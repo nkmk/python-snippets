@@ -10,6 +10,19 @@ print(False and True)
 print(False and False)
 # False
 
+a = 10
+print(0 < a)
+# True
+
+print(a < 100)
+# True
+
+print(0 < a and a < 100)
+# True
+
+print(0 < a < 100)
+# True
+
 print(True or True)
 # True
 
@@ -27,6 +40,15 @@ print(not True)
 
 print(not False)
 # True
+
+print(True or True and False)
+# True
+
+print(True or (True and False))
+# True
+
+print((True or True) and False)
+# False
 
 print(bool(10))
 # True
