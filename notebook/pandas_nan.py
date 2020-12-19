@@ -1,6 +1,4 @@
 import pandas as pd
-import numpy as np
-import math
 
 df = pd.read_csv('data/src/sample_pandas_normal_nan.csv')
 print(df)
@@ -11,34 +9,6 @@ print(df)
 # 3     Dave  68.0    TX   70.0    NaN
 # 4    Ellen   NaN    CA   88.0    NaN
 # 5    Frank  30.0   NaN    NaN    NaN
-
-print(df.dtypes)
-# name      object
-# age      float64
-# state     object
-# point    float64
-# other    float64
-# dtype: object
-
-print(df.at[1, 'name'])
-print(type(df.at[1, 'name']))
-# nan
-# <class 'float'>
-
-print(df.at[0, 'point'])
-print(type(df.at[0, 'point']))
-# nan
-# <class 'numpy.float64'>
-
-print(pd.isnull(df.at[0, 'point']))
-print(np.isnan(df.at[0, 'point']))
-print(math.isnan(df.at[0, 'point']))
-# True
-# True
-# True
-
-print(df.at[0, 'point'] == np.nan)
-# False
 
 print(df.dropna(how='all'))
 #       name   age state  point  other
@@ -83,6 +53,14 @@ print(df2.dropna())
 # 3  Dave  68.0    TX   70.0
 
 print(df2.dropna(how='any', axis=1))
+#       name
+# 0    Alice
+# 2  Charlie
+# 3     Dave
+# 4    Ellen
+# 5    Frank
+
+print(df2.dropna(axis=1))
 #       name
 # 0    Alice
 # 2  Charlie
@@ -142,6 +120,12 @@ print(df.dropna(subset=[0, 4], axis=1, how='all'))
 # 4    Ellen   NaN    CA   88.0
 # 5    Frank  30.0   NaN    NaN
 
+# print(df.dropna(subset=['age', 'state', 'xxx']))
+# KeyError: ['xxx']
+
+# print(df.dropna(subset=[0, 4, 10], axis=1))
+# KeyError: [10]
+
 s = df['age']
 print(s)
 # 0    24.0
@@ -167,29 +151,30 @@ print(df.fillna(0))
 # 4    Ellen   0.0    CA   88.0    0.0
 # 5    Frank  30.0     0    0.0    0.0
 
-print(df.fillna({'name': 'XXX', 'age': 20, 'point': 0}))
+print(df.fillna({'name': 'XXX', 'age': 20, 'ZZZ': 100}))
 #       name   age state  point  other
-# 0    Alice  24.0    NY    0.0    NaN
-# 1      XXX  20.0   NaN    0.0    NaN
-# 2  Charlie  20.0    CA    0.0    NaN
+# 0    Alice  24.0    NY    NaN    NaN
+# 1      XXX  20.0   NaN    NaN    NaN
+# 2  Charlie  20.0    CA    NaN    NaN
 # 3     Dave  68.0    TX   70.0    NaN
 # 4    Ellen  20.0    CA   88.0    NaN
-# 5    Frank  30.0   NaN    0.0    NaN
+# 5    Frank  30.0   NaN    NaN    NaN
 
-s_for_fill = pd.Series(['ZZZ', 100], index=['name', 'age'])
+s_for_fill = pd.Series(['XXX', 20, 100], index=['name', 'age', 'ZZZ'])
 print(s_for_fill)
-# name    ZZZ
-# age     100
+# name    XXX
+# age      20
+# ZZZ     100
 # dtype: object
 
 print(df.fillna(s_for_fill))
-#       name    age state  point  other
-# 0    Alice   24.0    NY    NaN    NaN
-# 1      ZZZ  100.0   NaN    NaN    NaN
-# 2  Charlie  100.0    CA    NaN    NaN
-# 3     Dave   68.0    TX   70.0    NaN
-# 4    Ellen  100.0    CA   88.0    NaN
-# 5    Frank   30.0   NaN    NaN    NaN
+#       name   age state  point  other
+# 0    Alice  24.0    NY    NaN    NaN
+# 1      XXX  20.0   NaN    NaN    NaN
+# 2  Charlie  20.0    CA    NaN    NaN
+# 3     Dave  68.0    TX   70.0    NaN
+# 4    Ellen  20.0    CA   88.0    NaN
+# 5    Frank  30.0   NaN    NaN    NaN
 
 print(df.mean())
 # age      40.666667
@@ -214,10 +199,9 @@ print(df.fillna(df.median()))
 # 3     Dave  68.0    TX   70.0    NaN
 # 4    Ellen  30.0    CA   88.0    NaN
 # 5    Frank  30.0   NaN   79.0    NaN
-# /usr/local/lib/python3.6/site-packages/numpy/lib/nanfunctions.py:1018: RuntimeWarning: Mean of empty slice
+# 
+# /usr/local/lib/python3.8/site-packages/numpy/lib/nanfunctions.py:1111: RuntimeWarning: Mean of empty slice
 #   return np.nanmean(a, axis, out=out, keepdims=keepdims)
-# /usr/local/lib/python3.6/site-packages/numpy/lib/function_base.py:4033: RuntimeWarning: All-NaN slice encountered
-#   r = func(a, **kwargs)
 
 print(df.fillna(df.mode().iloc[0]))
 #       name   age state  point  other
