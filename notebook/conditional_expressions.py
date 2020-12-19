@@ -45,13 +45,21 @@ result = 'negative' if a < 0 else 'positive' if a > 0 else 'zero'
 print(result)
 # positive
 
+a = 0
+result = 'negative' if a < 0 else 'positive' if a > 0 else 'zero'
+print(result)
+# zero
+
 a = -2
 result = 'negative' if a < 0 else 'positive' if a > 0 else 'zero'
 print(result)
 # negative
 
-a = 0
-result = 'negative' if a < 0 else 'positive' if a > 0 else 'zero'
+result = 'negative' if a < 0 else ('positive' if a > 0 else 'zero')
+print(result)
+# negative
+
+result = ('negative' if a < 0 else 'positive') if a > 0 else 'zero'
 print(result)
 # zero
 
