@@ -1,13 +1,13 @@
 import math
 
-a = 6
-b = 4
-
-print(math.gcd(a, b))
+print(math.gcd(6, 4))
 # 2
 
-def lcm(x, y):
+print(math.lcm(6, 4))
+# 12
+
+def my_lcm(x, y):
     return (x * y) // math.gcd(x, y)
 
-print(lcm(a, b))
+print(my_lcm(6, 4))
 # 12
