@@ -18,26 +18,40 @@ print(l.count('d'))
 # 0
 
 l = list(range(-5, 6))
-
 print(l)
 # [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
 
-print([i for i in l if i < 0])
-# [-5, -4, -3, -2, -1]
+print([i < 0 for i in l])
+# [True, True, True, True, True, False, False, False, False, False, False]
 
-print(len([i for i in l if i < 0]))
+print(sum([i < 0 for i in l]))
 # 5
 
-print([i for i in l if i % 2 == 1])
-# [-5, -3, -1, 1, 3, 5]
+print(sum((i < 0 for i in l)))
+# 5
 
-print(len([i for i in l if i % 2 == 1]))
+print(sum(i < 0 for i in l))
+# 5
+
+print([not (i < 0) for i in l])
+# [False, False, False, False, False, True, True, True, True, True, True]
+
+print(sum(not (i < 0) for i in l))
+# 6
+
+print(sum(i >= 0 for i in l))
+# 6
+
+print([i % 2 == 1 for i in l])
+# [True, False, True, False, True, False, True, False, True, False, True]
+
+print(sum(i % 2 == 1 for i in l))
 # 6
 
 l = ['apple', 'orange', 'banana']
 
-print([s for s in l if s.endswith('e')])
-# ['apple', 'orange']
+print([s.endswith('e') for s in l])
+# [True, True, False]
 
-print(len([s for s in l if s.endswith('e')]))
+print(sum(s.endswith('e') for s in l))
 # 2

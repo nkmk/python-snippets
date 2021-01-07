@@ -1,8 +1,8 @@
 import collections
 
 l = ['a', 'a', 'a', 'a', 'b', 'c', 'c']
-c = collections.Counter(l)
 
+c = collections.Counter(l)
 print(c)
 # Counter({'a': 4, 'c': 2, 'b': 1})
 
@@ -69,25 +69,33 @@ print(len(c))
 # 3
 
 print(set(l))
-# {'b', 'a', 'c'}
+# {'a', 'c', 'b'}
 
 print(len(set(l)))
 # 3
 
 l = ['a', 'a', 'a', 'a', 'b', 'c', 'c']
+c = collections.Counter(l)
 
-print([i for i in l if l.count(i) >= 2])
+print(c.items())
+# dict_items([('a', 4), ('b', 1), ('c', 2)])
+
+print([i for i in l if c[i] >= 2])
 # ['a', 'a', 'a', 'a', 'c', 'c']
 
-print(len([i for i in l if l.count(i) >= 2]))
-# 6
+print([i[1] for i in c.items() if i[1] >= 2])
+# [4, 2]
 
-c = collections.Counter(l)
+print(sum(i[1] for i in c.items() if i[1] >= 2))
+# 6
 
 print([i[0] for i in c.items() if i[1] >= 2])
 # ['a', 'c']
 
-print(len([i[0] for i in c.items() if i[1] >= 2]))
+print([i[1] >= 2 for i in c.items()])
+# [True, False, True]
+
+print(sum(i[1] >= 2 for i in c.items()))
 # 2
 
 s = 'government of the people, by the people, for the people.'
