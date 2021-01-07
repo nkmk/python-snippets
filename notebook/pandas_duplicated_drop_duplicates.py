@@ -75,16 +75,31 @@ print(df.duplicated(subset=['state', 'point']))
 # 6     True
 # dtype: bool
 
+print(df.duplicated().sum())
+# 1
+
+print(~df.duplicated())
+# 0     True
+# 1     True
+# 2     True
+# 3     True
+# 4     True
+# 5     True
+# 6    False
+# dtype: bool
+
+print((~df.duplicated()).sum())
+# 6
+
 print(df.duplicated().value_counts())
 # False    6
 # True     1
 # dtype: int64
 
-print(df.duplicated().value_counts()[True])
-# 1
-
-print(df.duplicated(keep=False).value_counts()[True])
-# 2
+print(df.duplicated(keep=False).value_counts())
+# False    5
+# True     2
+# dtype: int64
 
 print(df[~df.duplicated()])
 #       name  age state  point
