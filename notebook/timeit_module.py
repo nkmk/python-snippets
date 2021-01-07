@@ -28,11 +28,14 @@ print(timeit.repeat(lambda: test(n), repeat=repeat, number=100))
 # magic command
 # It works only on Jupyter / IPython.
 
-get_ipython().magic('timeit test(n)')
+%timeit test(n)
 # 259 µs ± 4.87 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
-get_ipython().magic('timeit -r 3 -n 10000 test(n)')
+%timeit -r 3 -n 10000 test(n)
 # 237 µs ± 6.44 µs per loop (mean ± std. dev. of 3 runs, 10000 loops each)
 
-get_ipython().run_cell_magic('timeit', '-r 3 -n 10000', 'import numpy as np\na = np.arange(n)\nnp.sum(a)')
+%%timeit -r 3 -n 10000
+import numpy as np
+a = np.arange(n)
+np.sum(a)
 # 19.7 µs ± 9.57 µs per loop (mean ± std. dev. of 3 runs, 10000 loops each)
