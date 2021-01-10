@@ -15,6 +15,17 @@ except ZeroDivisionError as e:
 # division by zero
 # <class 'ZeroDivisionError'>
 
+print(issubclass(ZeroDivisionError, ArithmeticError))
+# True
+
+try:
+    print(1 / 0)
+except ArithmeticError as e:
+    print(e)
+    print(type(e))
+# division by zero
+# <class 'ZeroDivisionError'>
+
 try:
     for i in [-2, -1, 0, 1, 2]:
         print(1 / i)
