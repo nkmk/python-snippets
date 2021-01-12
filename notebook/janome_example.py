@@ -5,9 +5,9 @@ t = Tokenizer()
 s = 'すもももももももものうち'
 
 print(type(t.tokenize(s)))
-# <class 'list'>
+# <class 'generator'>
 
-print(type(t.tokenize(s)[0]))
+print(type(t.tokenize(s).__next__()))
 # <class 'janome.tokenizer.Token'>
 
 for token in t.tokenize(s):
@@ -20,20 +20,13 @@ for token in t.tokenize(s):
 # の	助詞,連体化,*,*,*,*,の,ノ,ノ
 # うち	名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
 
-print(type(t.tokenize(s, stream=True)))
-# <class 'generator'>
+print(type(list(t.tokenize(s))))
+# <class 'list'>
 
-for token in t.tokenize(s, stream=True):
-    print(token)
-# すもも	名詞,一般,*,*,*,*,すもも,スモモ,スモモ
-# も	助詞,係助詞,*,*,*,*,も,モ,モ
-# もも	名詞,一般,*,*,*,*,もも,モモ,モモ
-# も	助詞,係助詞,*,*,*,*,も,モ,モ
-# もも	名詞,一般,*,*,*,*,もも,モモ,モモ
-# の	助詞,連体化,*,*,*,*,の,ノ,ノ
-# うち	名詞,非自立,副詞可能,*,*,*,うち,ウチ,ウチ
+print(type(list(t.tokenize(s))[0]))
+# <class 'janome.tokenizer.Token'>
 
-token = t.tokenize('走れ')[0]
+token = t.tokenize('走れ').__next__()
 
 print(type(token))
 # <class 'janome.tokenizer.Token'>
@@ -83,12 +76,18 @@ for token in t.tokenize(s):
 # 言っ	動詞,自立,*,*,五段・ワ行促音便,連用タ接続,言う,イッ,イッ
 # た	助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
 
-print(t.tokenize(s, wakati=True))
+print(type(t.tokenize(s, wakati=True)))
+# <class 'generator'>
+
+print(type(t.tokenize(s, wakati=True).__next__()))
+# <class 'str'>
+
+print(list(t.tokenize(s, wakati=True)))
 # ['走れ', 'と', '言わ', 'れ', 'た', 'ので', '走る', 'と', '言っ', 'た']
 
 t_wakati = Tokenizer(wakati=True)
 
-print(t_wakati.tokenize(s))
+print(list(t_wakati.tokenize(s)))
 # ['走れ', 'と', '言わ', 'れ', 'た', 'ので', '走る', 'と', '言っ', 'た']
 
 print([token.surface for token in t.tokenize(s)])
