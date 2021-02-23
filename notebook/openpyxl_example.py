@@ -138,7 +138,7 @@ pprint.pprint(list(sheet_copy.values))
 #  ('four', 41, 42, 43, None),
 #  ('five', 51, 52, 53, None)]
 
-wb.remove_sheet(wb['sheet1 Copy'])
+wb.remove(wb['sheet1 Copy'])
 
 print(wb.worksheets)
 # [<Worksheet "sheet1">, <Worksheet "sheet2">, <Worksheet "sheet_new">]
