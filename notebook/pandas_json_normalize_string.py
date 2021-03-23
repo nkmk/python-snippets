@@ -15,16 +15,16 @@ print(d)
 print(type(d))
 # <class 'dict'>
 
-print(pd.io.json.json_normalize(d))
+print(pd.json_normalize(d))
 #   OTHER                                               DATA
 # 0     x  [{'name': 'Alice', 'age': 25}, {'name': 'Bob',...
 
-print(pd.io.json.json_normalize(d, record_path='DATA'))
+print(pd.json_normalize(d, record_path='DATA'))
 #     name  age
 # 0  Alice   25
 # 1    Bob   42
 
-print(pd.io.json.json_normalize(d, record_path='DATA', meta='OTHER'))
+print(pd.json_normalize(d, record_path='DATA', meta='OTHER'))
 #     name  age OTHER
 # 0  Alice   25     x
 # 1    Bob   42     x
@@ -40,7 +40,7 @@ print(pd.DataFrame(d['DATA']))
 # 0  Alice   25
 # 1    Bob   42
 
-print(pd.io.json.json_normalize(d['DATA']))
+print(pd.json_normalize(d['DATA']))
 #     name  age
 # 0  Alice   25
 # 1    Bob   42
