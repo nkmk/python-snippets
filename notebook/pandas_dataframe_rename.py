@@ -11,12 +11,12 @@ print(df)
 # TWO    21  22  23
 # THREE  31  32  33
 
-df_new = df.rename(columns={'A': 'a'}, index={'ONE': 'one'})
+df_new = df.rename(columns={'A': 'Col_1'}, index={'ONE': 'Row_1'})
 print(df_new)
-#         a   B   C
-# one    11  12  13
-# TWO    21  22  23
-# THREE  31  32  33
+#        Col_1   B   C
+# Row_1     11  12  13
+# TWO       21  22  23
+# THREE     31  32  33
 
 print(df)
 #         A   B   C
@@ -24,19 +24,19 @@ print(df)
 # TWO    21  22  23
 # THREE  31  32  33
 
-print(df.rename(columns={'A': 'a', 'C': 'c'}))
-#         a   B   c
-# ONE    11  12  13
-# TWO    21  22  23
-# THREE  31  32  33
+print(df.rename(columns={'A': 'Col_1', 'C': 'Col_3'}))
+#        Col_1   B  Col_3
+# ONE       11  12     13
+# TWO       21  22     23
+# THREE     31  32     33
 
-df_org = df.copy()
-df_org.rename(columns={'A': 'a'}, index={'ONE': 'one'}, inplace=True)
-print(df_org)
-#         a   B   C
-# one    11  12  13
-# TWO    21  22  23
-# THREE  31  32  33
+df_copy = df.copy()
+df_copy.rename(columns={'A': 'Col_1'}, index={'ONE': 'Row_1'}, inplace=True)
+print(df_copy)
+#        Col_1   B   C
+# Row_1     11  12  13
+# TWO       21  22  23
+# THREE     31  32  33
 
 print(df.rename(columns=str.lower, index=str.title))
 #         a   b   c
@@ -62,14 +62,54 @@ print(df.add_suffix('_X'))
 # TWO     21   22   23
 # THREE   31   32   33
 
-df.index = [1, 2, 3]
-df.columns = ['a', 'b', 'c']
+print(df.set_axis(['Row_1', 'Row_2', 'Row_3'], axis=0))
+#         A   B   C
+# Row_1  11  12  13
+# Row_2  21  22  23
+# Row_3  31  32  33
 
+print(df.set_axis(['Row_1', 'Row_2', 'Row_3'], axis='index'))
+#         A   B   C
+# Row_1  11  12  13
+# Row_2  21  22  23
+# Row_3  31  32  33
+
+print(df.set_axis(['Col_1', 'Col_2', 'Col_3'], axis=1))
+#        Col_1  Col_2  Col_3
+# ONE       11     12     13
+# TWO       21     22     23
+# THREE     31     32     33
+
+print(df.set_axis(['Col_1', 'Col_2', 'Col_3'], axis='columns'))
+#        Col_1  Col_2  Col_3
+# ONE       11     12     13
+# TWO       21     22     23
+# THREE     31     32     33
+
+print(df.set_axis(['Row_1', 'Row_2', 'Row_3']))
+#         A   B   C
+# Row_1  11  12  13
+# Row_2  21  22  23
+# Row_3  31  32  33
+
+# print(df.set_axis(['Row_1', 'Row_2', 'Row_3', 'Row_4']))
+# ValueError: Length mismatch: Expected axis has 3 elements, new values have 4 elements
+
+df_copy = df.copy()
+df_copy.set_axis(['Row_1', 'Row_2', 'Row_3'], inplace=True)
+print(df_copy)
+#         A   B   C
+# Row_1  11  12  13
+# Row_2  21  22  23
+# Row_3  31  32  33
+
+df.index = ['Row_1', 'Row_2', 'Row_3']
+df.columns = ['Col_1', 'Col_2', 'Col_3']
 print(df)
-#     a   b   c
-# 1  11  12  13
-# 2  21  22  23
-# 3  31  32  33
+#        Col_1  Col_2  Col_3
+# Row_1     11     12     13
+# Row_2     21     22     23
+# Row_3     31     32     33
 
-# df.index = [1, 2, 3, 4]
+# df.index = ['Row_1', 'Row_2', 'Row_3', 'Row_4']
 # ValueError: Length mismatch: Expected axis has 3 elements, new values have 4 elements

@@ -31,6 +31,12 @@ print(s.add_suffix('_X'))
 # THREE_X    3
 # dtype: int64
 
+print(s.set_axis(['a', 'b', 'c']))
+# a    1
+# b    2
+# c    3
+# dtype: int64
+
 s.index = ['a', 'b', 'c']
 print(s)
 # a    1
