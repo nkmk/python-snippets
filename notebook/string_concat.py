@@ -62,6 +62,18 @@ s = '{}_{:05}_{}_{:.5f}'.format(s1, i, s2, f)
 print(s)
 # aaa_00100_bbb_0.25000
 
+s = '{}_{}_{}_{}'.format(s1, i, s2, f)
+print(s)
+# aaa_100_bbb_0.25
+
+s = f'{s1}_{i:05}_{s2}_{f:.5f}'
+print(s)
+# aaa_00100_bbb_0.25000
+
+s = f'{s1}_{i}_{s2}_{f}'
+print(s)
+# aaa_100_bbb_0.25
+
 l = ['aaa', 'bbb', 'ccc']
 
 s = ''.join(l)
