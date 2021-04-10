@@ -94,3 +94,25 @@ print(my_index2(l, 'x'))
 
 print(my_index2(l, 'x', -1))
 # -1
+
+l = [30, 40, 20, 0, 10]
+
+print(l.index(max(l)))
+# 1
+
+print(l.index(min(l)))
+# 3
+
+l_dup = [0, 40, 20, 0, 40]
+
+print(l_dup.index(max(l_dup)))
+# 1
+
+print(l_dup.index(min(l_dup)))
+# 0
+
+print(my_index_multi(l_dup, max(l_dup)))
+# [1, 4]
+
+print(my_index_multi(l_dup, min(l_dup)))
+# [0, 3]
