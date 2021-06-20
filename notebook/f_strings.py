@@ -61,8 +61,8 @@ print(f'digit(all)    : {f:.3g}')
 # digit(decimal): 12.346
 # digit(all)    : 12.3
 
-print(f'exponen: {f:.3e}')
-# exponen: 1.235e+01
+print(f'exponent: {f:.3e}')
+# exponent: 1.235e+01
 
 f = 0.123
 
@@ -148,3 +148,30 @@ print(f"{d['key1']}, {d['key2']}")
 
 # print(f'{d[\'key1\']}, {d[\'key2\']}')
 # SyntaxError: f-string expression part cannot include a backslash
+
+i = 123
+
+print(f'{i=}')
+# i=123
+
+print(f'{i = }')
+# i = 123
+
+print(f'{ i  =   }')
+#  i  =   123
+
+print(f'{i = :#b}')
+# i = 0b1111011
+
+print(f'{i * 2 = }')
+# i * 2 = 246
+
+l = [0, 1, 2]
+
+print(f'{l = }, {l[0] = }')
+# l = [0, 1, 2], l[0] = 0
+
+d = {'key1': 3, 'key2': 4}
+
+print(f'{d = }, {d["key1"] = }')
+# d = {'key1': 3, 'key2': 4}, d["key1"] = 3
