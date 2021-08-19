@@ -2,6 +2,8 @@ a = 1  # comment
 
 a = 1  # comment # b = 2
 
+s = 'abc # xyz'
+
 # a = 1
 
 a = 1
