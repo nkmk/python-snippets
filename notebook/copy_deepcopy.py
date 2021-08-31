@@ -73,7 +73,20 @@ print(l[2] is l_copy[2])
 # True
 
 l = [0, 1, [2, 3]]
-l_slice = l[:]
+l_whole_slice = l[:]
+
+l[1] = 100
+l[2][0] = 200
+print(l)
+# [0, 100, [200, 3]]
+
+print(l_whole_slice)
+# [0, 1, [200, 3]]
+
+l = [0, 1, [2, 3]]
+l_slice = l[1:]
+print(l_slice)
+# [1, [2, 3]]
 
 l[1] = 100
 l[2][0] = 200
@@ -81,7 +94,7 @@ print(l)
 # [0, 100, [200, 3]]
 
 print(l_slice)
-# [0, 1, [200, 3]]
+# [1, [200, 3]]
 
 l = [0, 1, [2, 3]]
 l_list = list(l)
@@ -121,3 +134,16 @@ print(l)
 
 print(l_deepcopy)
 # [0, 1, [2, 3]]
+
+l = [0, 1, [2, 3]]
+l_slice_deepcopy = copy.deepcopy(l[1:])
+print(l_slice_deepcopy)
+# [1, [2, 3]]
+
+l[1] = 100
+l[2][0] = 200
+print(l)
+# [0, 100, [200, 3]]
+
+print(l_slice_deepcopy)
+# [1, [2, 3]]

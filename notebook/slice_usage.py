@@ -1,6 +1,4 @@
 l = [0, 10, 20, 30, 40, 50, 60]
-print(l)
-# [0, 10, 20, 30, 40, 50, 60]
 
 print(l[2:5])
 # [20, 30, 40]
@@ -144,8 +142,6 @@ print(l)
 # ValueError: attempt to assign sequence of size 2 to extended slice of size 3
 
 l_2d = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
-print(l_2d)
-# [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
 
 print(l_2d[1:3])
 # [[3, 4, 5], [6, 7, 8]]
@@ -161,8 +157,6 @@ print(l_2d_t[1])
 # [1, 4, 7, 10]
 
 l = [0, 10, 20, 30, 40, 50, 60]
-print(l)
-# [0, 10, 20, 30, 40, 50, 60]
 
 l_slice = l[2:5]
 print(l_slice)
@@ -176,8 +170,6 @@ print(l)
 # [0, 10, 20, 30, 40, 50, 60]
 
 l_2d = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
-print(l_2d)
-# [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
 
 l_2d_slice = l_2d[1:3]
 print(l_2d_slice)
@@ -193,8 +185,6 @@ print(l_2d)
 import copy
 
 l_2d = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
-print(l_2d)
-# [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
 
 l_2d_slice_deepcopy = copy.deepcopy(l_2d[1:3])
 print(l_2d_slice_deepcopy)
@@ -208,8 +198,6 @@ print(l_2d)
 # [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
 
 s = 'abcdefg'
-print(s)
-# abcdefg
 
 print(s[2:5])
 # cde
@@ -221,8 +209,6 @@ print(s[::-1])
 # TypeError: 'str' object does not support item assignment
 
 t = (0, 10, 20, 30, 40, 50, 60)
-print(t)
-# (0, 10, 20, 30, 40, 50, 60)
 
 print(t[2:5])
 # (20, 30, 40)
