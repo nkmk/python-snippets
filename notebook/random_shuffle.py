@@ -6,7 +6,7 @@ print(l)
 
 random.shuffle(l)
 print(l)
-# [4, 3, 2, 1, 0]
+# [1, 0, 4, 3, 2]
 
 l = list(range(5))
 print(l)
@@ -14,7 +14,7 @@ print(l)
 
 lr = random.sample(l, len(l))
 print(lr)
-# [3, 2, 4, 1, 0]
+# [0, 3, 1, 4, 2]
 
 print(l)
 # [0, 1, 2, 3, 4]
@@ -33,14 +33,20 @@ print(t)
 
 sr = ''.join(random.sample(s, len(s)))
 print(sr)
-# caebd
+# bedca
 
 tr = tuple(random.sample(t, len(l)))
 print(tr)
-# (2, 1, 4, 3, 0)
+# (0, 1, 2, 4, 3)
 
-random.seed(0)
 l = list(range(5))
+random.seed(0)
+random.shuffle(l)
+print(l)
+# [2, 1, 0, 4, 3]
+
+l = list(range(5))
+random.seed(0)
 random.shuffle(l)
 print(l)
 # [2, 1, 0, 4, 3]
