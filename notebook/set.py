@@ -5,10 +5,10 @@ print(type(s))
 # {1, 2, 3, 4}
 # <class 'set'>
 
-s = {1.23, '百', (0, 1, 2), '百'}
+s = {1.23, 'abc', (0, 1, 2), 'abc'}
 
 print(s)
-# {(0, 1, 2), 1.23, '百'}
+# {(0, 1, 2), 1.23, 'abc'}
 
 # s = {[0, 1, 2]}
 # TypeError: unhashable type: 'list'
