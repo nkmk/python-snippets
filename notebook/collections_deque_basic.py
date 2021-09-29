@@ -44,8 +44,6 @@ print(d)
 # deque(['XYZ', 'j', 'k', 'l', 'XXX', 'm', 'n', 'o', 'p', 'YYY', 'q', 'ZZZ'])
 
 d = deque(['a', 'b', 'c', 'b', 'd'])
-print(d)
-# deque(['a', 'b', 'c', 'b', 'd'])
 
 print(d.pop())
 # d
@@ -81,9 +79,6 @@ print(d)
 # deque([])
 
 d = deque(['a', 'b', 'c', 'd', 'e'])
-print(d)
-# deque(['a', 'b', 'c', 'd', 'e'])
-
 d.rotate()
 print(d)
 # deque(['e', 'a', 'b', 'c', 'd'])
@@ -103,28 +98,33 @@ d.rotate(6)
 print(d)
 # deque(['e', 'a', 'b', 'c', 'd'])
 
-d = deque(['a', 'b', 'c', 'c', 'd'])
+d = deque(['a', 'b', 'c', 'd', 'e'])
 print(d[0])
 # a
 
 print(d[-1])
-# d
+# e
 
 d[2] = 'X'
 print(d)
-# deque(['a', 'b', 'X', 'c', 'd'])
+# deque(['a', 'b', 'X', 'd', 'e'])
 
 # print(d[2:4])
 # TypeError: sequence index must be integer, not 'slice'
 
+import itertools
+
+print(deque(itertools.islice(d, 2, 4)))
+# deque(['X', 'd'])
+
+d = deque(['a', 'b', 'c', 'c', 'd'])
 print(d.index('c'))
-# 3
+# 2
 
 # print(d.index('x'))
 # ValueError: 'x' is not in deque
 
 d = deque(['a', 'a', 'b', 'c'])
-
 print(len(d))
 # 4
 
