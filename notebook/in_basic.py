@@ -13,39 +13,51 @@ print(1 in {0, 1, 2})
 print(1 in range(3))
 # True
 
+print(1.0 == 1)
+# True
+
+print(1.0 in [0, 1, 2])
+# True
+
+print(True == 1)
+# True
+
+print(True in [0, 1, 2])
+# True
+
 l = [0, 1, 2]
 i = 0
 
 if i in l:
-    print('{} is a member of {}.'.format(i, l))
+    print(f'{i} is a member of {l}.')
 else:
-    print('{} is not a member of {}.'.format(i, l))
+    print(f'{i} is not a member of {l}.')
 # 0 is a member of [0, 1, 2].
 
 l = [0, 1, 2]
 i = 100
 
 if i in l:
-    print('{} is a member of {}.'.format(i, l))
+    print(f'{i} is a member of {l}.')
 else:
-    print('{} is not a member of {}.'.format(i, l))
+    print(f'{i} is not a member of {l}.')
 # 100 is not a member of [0, 1, 2].
 
 l = [0, 1, 2]
 
 if l:
-    print('not empty')
+    print(f'{l} is not empty.')
 else:
-    print('empty')
-# not empty
+    print(f'{l} is empty.')
+# [0, 1, 2] is not empty.
 
 l = []
 
 if l:
-    print('not empty')
+    print(f'{l} is not empty.')
 else:
-    print('empty')
-# empty
+    print(f'{l} is empty.')
+# [] is empty.
 
 d = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
 
