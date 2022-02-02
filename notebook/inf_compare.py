@@ -34,30 +34,34 @@ print(math.isinf(1e100))
 print(math.isinf(-1e1000))
 # True
 
+a = np.array([1, np.inf, -np.inf])
+print(a)
+# [  1.  inf -inf]
+
+print(np.isinf(a))
+# [False  True  True]
+
+print(np.isposinf(a))
+# [False  True False]
+
+print(np.isneginf(a))
+# [False False  True]
+
+print(np.isfinite(a))
+# [ True False False]
+
 print(np.isinf(1e1000))
 # True
 
-print(np.isinf(1e100))
-# False
+print(np.nan_to_num(a))
+# [ 1.00000000e+000  1.79769313e+308 -1.79769313e+308]
 
-print(np.isinf(-1e1000))
-# True
+print(np.nan_to_num(a, posinf=1e100, neginf=-1e100))
+# [ 1.e+000  1.e+100 -1.e+100]
 
-a_inf = np.array([1, np.inf, 3, -np.inf])
-
-print(a_inf)
-# [  1.  inf   3. -inf]
-
-print(type(a_inf))
-# <class 'numpy.ndarray'>
-
-print(np.isinf(a_inf))
-# [False  True False  True]
-
-a_inf[np.isinf(a_inf)] = 0
-
-print(a_inf)
-# [1. 0. 3. 0.]
+np.nan_to_num(a, copy=False)
+print(a)
+# [ 1.00000000e+000  1.79769313e+308 -1.79769313e+308]
 
 import sys
 
