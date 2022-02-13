@@ -1,9 +1,9 @@
 import pandas as pd
+import numpy as np
 
-df = pd.DataFrame({'col1': [0, pd.np.nan, pd.np.nan, 3, 4],
-                   'col2': [pd.np.nan, 1, 2, pd.np.nan, pd.np.nan],
-                   'col3': [4, pd.np.nan, pd.np.nan, 7, 10]})
-
+df = pd.DataFrame({'col1': [0, np.nan, np.nan, 3, 4],
+                   'col2': [np.nan, 1, 2, np.nan, np.nan],
+                   'col3': [4, np.nan, np.nan, 7, 10]})
 print(df)
 #    col1  col2  col3
 # 0   0.0   NaN   4.0
@@ -92,9 +92,8 @@ print(df.interpolate(limit_area='outside', limit_direction='both'))
 # 3   3.0   2.0   7.0
 # 4   4.0   2.0  10.0
 
-df_copy = df.copy()
-df_copy.interpolate(inplace=True)
-print(df_copy)
+df.interpolate(inplace=True)
+print(df)
 #    col1  col2  col3
 # 0   0.0   NaN   4.0
 # 1   1.0   1.0   5.0
@@ -102,57 +101,35 @@ print(df_copy)
 # 3   3.0   2.0   7.0
 # 4   4.0   2.0  10.0
 
-s = pd.Series([0, pd.np.nan, pd.np.nan, pd.np.nan, 4, pd.np.nan, pd.np.nan],
-              index=[0, 2, 5, 6, 8, 10, 14])
+s = pd.Series([0, np.nan, np.nan, 3],
+              index=[0, 4, 6, 8])
 print(s)
-# 0     0.0
-# 2     NaN
-# 5     NaN
-# 6     NaN
-# 8     4.0
-# 10    NaN
-# 14    NaN
+# 0    0.0
+# 4    NaN
+# 6    NaN
+# 8    3.0
 # dtype: float64
 
 print(s.interpolate())
-# 0     0.0
-# 2     1.0
-# 5     2.0
-# 6     3.0
-# 8     4.0
-# 10    4.0
-# 14    4.0
+# 0    0.0
+# 4    1.0
+# 6    2.0
+# 8    3.0
 # dtype: float64
 
 print(s.interpolate('index'))
-# 0     0.0
-# 2     1.0
-# 5     2.5
-# 6     3.0
-# 8     4.0
-# 10    4.0
-# 14    4.0
+# 0    0.00
+# 4    1.50
+# 6    2.25
+# 8    3.00
 # dtype: float64
 
-print(s.interpolate('values'))
-# 0     0.0
-# 2     1.0
-# 5     2.5
-# 6     3.0
-# 8     4.0
-# 10    4.0
-# 14    4.0
-# dtype: float64
-
-s.index = list('abcdefg')
+s.index = list('abcd')
 print(s)
 # a    0.0
 # b    NaN
 # c    NaN
-# d    NaN
-# e    4.0
-# f    NaN
-# g    NaN
+# d    3.0
 # dtype: float64
 
 print(s.interpolate())
@@ -160,16 +137,68 @@ print(s.interpolate())
 # b    1.0
 # c    2.0
 # d    3.0
-# e    4.0
-# f    4.0
-# g    4.0
 # dtype: float64
 
-# print(s.interpolate('values'))
+# print(s.interpolate('index'))
 # TypeError: Cannot cast array data from dtype('O') to dtype('float64') according to the rule 'safe'
 
-s = pd.Series([0, 10, pd.np.nan, pd.np.nan, 4, pd.np.nan, pd.np.nan],
-              index=[0, 2, 5, 6, 8, 10, 14])
+s = pd.Series([np.nan, 1, np.nan, 2, np.nan])
+print(s)
+# 0    NaN
+# 1    1.0
+# 2    NaN
+# 3    2.0
+# 4    NaN
+# dtype: float64
+
+print(s.interpolate('ffill'))
+# 0    NaN
+# 1    1.0
+# 2    1.0
+# 3    2.0
+# 4    2.0
+# dtype: float64
+
+print(s.interpolate('bfill'))
+# 0    1.0
+# 1    1.0
+# 2    2.0
+# 3    2.0
+# 4    NaN
+# dtype: float64
+
+# s.interpolate('ffill', limit_direction='both')
+# ValueError: `limit_direction` must be 'forward' for method `ffill`
+
+# s.interpolate('bfill', limit_direction='both')
+# ValueError: `limit_direction` must be 'backward' for method `bfill`
+
+print(s.fillna(method='ffill'))
+# 0    NaN
+# 1    1.0
+# 2    1.0
+# 3    2.0
+# 4    2.0
+# dtype: float64
+
+print(s.fillna(method='bfill'))
+# 0    1.0
+# 1    1.0
+# 2    2.0
+# 3    2.0
+# 4    NaN
+# dtype: float64
+
+s = pd.Series([0, 10, np.nan, np.nan, 4, np.nan],
+              index=[0, 2, 5, 6, 8, 12])
+print(s)
+# 0      0.0
+# 2     10.0
+# 5      NaN
+# 6      NaN
+# 8      4.0
+# 12     NaN
+# dtype: float64
 
 print(s.interpolate('spline', order=2))
 # 0      0.00
@@ -177,11 +206,18 @@ print(s.interpolate('spline', order=2))
 # 5     13.75
 # 6     12.00
 # 8      4.00
-# 10   -10.00
-# 14   -56.00
+# 12   -30.00
 # dtype: float64
 
-s.index = range(7)
+s.index = range(6)
+print(s)
+# 0     0.0
+# 1    10.0
+# 2     NaN
+# 3     NaN
+# 4     4.0
+# 5     NaN
+# dtype: float64
 
 print(s.interpolate('spline', order=2))
 # 0     0.0
@@ -190,10 +226,65 @@ print(s.interpolate('spline', order=2))
 # 3    12.0
 # 4     4.0
 # 5   -10.0
-# 6   -30.0
 # dtype: float64
 
-s.index = list('abcdefg')
+s.index = list('abcdef')
+print(s)
+# a     0.0
+# b    10.0
+# c     NaN
+# d     NaN
+# e     4.0
+# f     NaN
+# dtype: float64
 
 # print(s.interpolate('spline', order=2))
-# TypeError: unsupported operand type(s) for -: 'str' and 'str'
+# ValueError: Index column must be numeric or datetime type when using spline method other than linear.
+# Try setting a numeric or datetime index column before interpolating.
+
+s_object = pd.Series(['A', np.nan, 'C'])
+print(s_object)
+# 0      A
+# 1    NaN
+# 2      C
+# dtype: object
+
+print(s_object.interpolate())
+# 0      A
+# 1    NaN
+# 2      C
+# dtype: object
+
+print(s_object.interpolate('ffill'))
+# 0    A
+# 1    A
+# 2    C
+# dtype: object
+
+s_object_num = pd.Series([0, np.nan, 2], dtype=object)
+print(s_object_num)
+# 0      0
+# 1    NaN
+# 2      2
+# dtype: object
+
+print(s_object_num.interpolate())
+# 0      0
+# 1    NaN
+# 2      2
+# dtype: object
+
+print(s_object_num.interpolate('ffill'))
+# 0    0
+# 1    0
+# 2    2
+# dtype: int64
+
+print(s_object_num.astype(float).interpolate())
+# 0    0.0
+# 1    1.0
+# 2    2.0
+# dtype: float64
+
+# print(s_object_num.astype(int))
+# ValueError: cannot convert float NaN to integer
