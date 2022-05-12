@@ -6,14 +6,14 @@ print([(k, list(g)) for k, g in itertools.groupby(l)])
 
 l = [0, 0, 0, 1, 1, 2, 0, 0]
 print(itertools.groupby(l))
-# <itertools.groupby object at 0x111813270>
+# <itertools.groupby object at 0x110ab58b0>
 
 for k, g in itertools.groupby(l):
     print(k, g)
-# 0 <itertools._grouper object at 0x1117bccd0>
-# 1 <itertools._grouper object at 0x111775e80>
-# 2 <itertools._grouper object at 0x1117cdac0>
-# 0 <itertools._grouper object at 0x1117cd430>
+# 0 <itertools._grouper object at 0x110a26940>
+# 1 <itertools._grouper object at 0x110a2c400>
+# 2 <itertools._grouper object at 0x110aa8f10>
+# 0 <itertools._grouper object at 0x110aa8ee0>
 
 for k, g in itertools.groupby(l):
     print(k, list(g))
@@ -32,13 +32,11 @@ print([(k, list(g)) for k, g in itertools.groupby(l)])
 # [(0, [0, 0, 0]), (1, [1, 1]), (2, [2]), (0, [0, 0])]
 
 l = ['aaa', 'bbb', 'ccc', 'a', 'b', 'aa', 'bb']
-print([(k, list(g)) for k, g
-       in itertools.groupby(l, len)])
+print([(k, list(g)) for k, g in itertools.groupby(l, len)])
 # [(3, ['aaa', 'bbb', 'ccc']), (1, ['a', 'b']), (2, ['aa', 'bb'])]
 
 l = [0, 2, 0, 3, 1, 4, 4, 0]
-print([(k, list(g)) for k, g
-       in itertools.groupby(l, lambda x: x % 2)])
+print([(k, list(g)) for k, g in itertools.groupby(l, lambda x: x % 2)])
 # [(0, [0, 2, 0]), (1, [3, 1]), (0, [4, 4, 0])]
 
 l = [[0, 'Alice', 0],
