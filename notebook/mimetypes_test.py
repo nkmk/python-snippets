@@ -18,7 +18,7 @@ print(mimetypes.guess_type('test.tar.gz'))
 print(mimetypes.guess_type('dir/test.txt'))
 # ('text/plain', None)
 
-print(mimetypes.guess_type('https://xxx.com/test.html'))
+print(mimetypes.guess_type('https://example.com/test.html'))
 # ('text/html', None)
 
 print(mimetypes.guess_type('test.JPG'))
