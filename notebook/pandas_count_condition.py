@@ -1,7 +1,9 @@
 import pandas as pd
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv')
+print(pd.__version__)
+# 1.4.1
 
+df = pd.read_csv('data/src/sample_pandas_normal.csv')
 print(df)
 #       name  age state  point
 # 0    Alice   24    NY     64
@@ -37,6 +39,9 @@ print(df_bool.sum(axis=1))
 # 5    0
 # dtype: int64
 
+print(df_bool.sum().sum())
+# 3
+
 print(df_bool.values)
 # [[False False False False]
 #  [False False  True False]
@@ -51,7 +56,39 @@ print(type(df_bool.values))
 print(df_bool.values.sum())
 # 3
 
-s_bool = df['age'] < 25
+print((df == 'CA').sum())
+# name     0
+# age      0
+# state    3
+# point    0
+# dtype: int64
+
+print((df == 'CA').sum(axis=1))
+# 0    0
+# 1    1
+# 2    1
+# 3    0
+# 4    1
+# 5    0
+# dtype: int64
+
+print((df == 'CA').sum().sum())
+# 3
+
+print((df == 'CA').values.sum())
+# 3
+
+s = df['age']
+print(s)
+# 0    24
+# 1    42
+# 2    18
+# 3    68
+# 4    24
+# 5    30
+# Name: age, dtype: int64
+
+s_bool = (s < 25)
 print(s_bool)
 # 0     True
 # 1    False
@@ -64,8 +101,11 @@ print(s_bool)
 print(s_bool.sum())
 # 3
 
-df_bool_multi = ((df == 'CA') | (df == 70))
-print(df_bool_multi)
+print((s < 25).sum())
+# 3
+
+df_bool_or = ((df == 'CA') | (df == 70))
+print(df_bool_or)
 #     name    age  state  point
 # 0  False  False  False  False
 # 1  False  False   True  False
@@ -74,14 +114,14 @@ print(df_bool_multi)
 # 4  False  False   True  False
 # 5  False  False  False  False
 
-print(df_bool_multi.sum())
+print(df_bool_or.sum())
 # name     0
 # age      0
 # state    3
 # point    2
 # dtype: int64
 
-print(df_bool_multi.sum(axis=1))
+print(df_bool_or.sum(axis=1))
 # 0    0
 # 1    1
 # 2    2
@@ -90,34 +130,8 @@ print(df_bool_multi.sum(axis=1))
 # 5    0
 # dtype: int64
 
-print(df_bool_multi.values.sum())
+print(df_bool_or.values.sum())
 # 5
-
-df_bool_multi_and = ((df['state'] == 'CA') & (df['age'] < 30))
-print(df_bool_multi_and)
-# 0    False
-# 1    False
-# 2     True
-# 3    False
-# 4     True
-# 5    False
-# dtype: bool
-
-print(df_bool_multi_and.sum())
-# 2
-
-df_bool_multi_or = ((df['state'] == 'CA') | (df['age'] < 30))
-print(df_bool_multi_or)
-# 0     True
-# 1     True
-# 2     True
-# 3    False
-# 4     True
-# 5    False
-# dtype: bool
-
-print(df_bool_multi_or.sum())
-# 4
 
 df_bool_not = ~(df == 'CA')
 print(df_bool_not)
@@ -147,6 +161,19 @@ print(df_bool_not.sum(axis=1))
 
 print(df_bool_not.values.sum())
 # 21
+
+s_bool_and = ((df['state'] == 'CA') & (df['age'] < 30))
+print(s_bool_and)
+# 0    False
+# 1    False
+# 2     True
+# 3    False
+# 4     True
+# 5    False
+# dtype: bool
+
+print(s_bool_and.sum())
+# 2
 
 df_num = df[['age', 'point']]
 print(df_num)
@@ -199,7 +226,6 @@ print(df_str['name'].str.endswith('e').sum())
 # 3
 
 df = pd.read_csv('data/src/titanic_train.csv')
-
 print(df.head())
 #    PassengerId  Survived  Pclass  \
 # 0            1         0       3   
@@ -207,37 +233,20 @@ print(df.head())
 # 2            3         1       3   
 # 3            4         1       1   
 # 4            5         0       3   
+# 
 #                                                 Name     Sex   Age  SibSp  \
 # 0                            Braund, Mr. Owen Harris    male  22.0      1   
 # 1  Cumings, Mrs. John Bradley (Florence Briggs Th...  female  38.0      1   
 # 2                             Heikkinen, Miss. Laina  female  26.0      0   
 # 3       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  35.0      1   
 # 4                           Allen, Mr. William Henry    male  35.0      0   
+# 
 #    Parch            Ticket     Fare Cabin Embarked  
 # 0      0         A/5 21171   7.2500   NaN        S  
 # 1      0          PC 17599  71.2833   C85        C  
 # 2      0  STON/O2. 3101282   7.9250   NaN        S  
 # 3      0            113803  53.1000  C123        S  
 # 4      0            373450   8.0500   NaN        S  
-
-df.info()
-# <class 'pandas.core.frame.DataFrame'>
-# RangeIndex: 891 entries, 0 to 890
-# Data columns (total 12 columns):
-# PassengerId    891 non-null int64
-# Survived       891 non-null int64
-# Pclass         891 non-null int64
-# Name           891 non-null object
-# Sex            891 non-null object
-# Age            714 non-null float64
-# SibSp          891 non-null int64
-# Parch          891 non-null int64
-# Ticket         891 non-null object
-# Fare           891 non-null float64
-# Cabin          204 non-null object
-# Embarked       889 non-null object
-# dtypes: float64(2), int64(5), object(5)
-# memory usage: 83.6+ KB
 
 print(df.isnull().head())
 #    PassengerId  Survived  Pclass   Name    Sex    Age  SibSp  Parch  Ticket  \
@@ -246,6 +255,7 @@ print(df.isnull().head())
 # 2        False     False   False  False  False  False  False  False   False   
 # 3        False     False   False  False  False  False  False  False   False   
 # 4        False     False   False  False  False  False  False  False   False   
+# 
 #     Fare  Cabin  Embarked  
 # 0  False   True     False  
 # 1  False  False     False  
@@ -304,3 +314,24 @@ print(df.count(axis=1).head())
 
 print(df.count().sum())
 # 9826
+
+df.info()
+# <class 'pandas.core.frame.DataFrame'>
+# RangeIndex: 891 entries, 0 to 890
+# Data columns (total 12 columns):
+#  #   Column       Non-Null Count  Dtype  
+# ---  ------       --------------  -----  
+#  0   PassengerId  891 non-null    int64  
+#  1   Survived     891 non-null    int64  
+#  2   Pclass       891 non-null    int64  
+#  3   Name         891 non-null    object 
+#  4   Sex          891 non-null    object 
+#  5   Age          714 non-null    float64
+#  6   SibSp        891 non-null    int64  
+#  7   Parch        891 non-null    int64  
+#  8   Ticket       891 non-null    object 
+#  9   Fare         891 non-null    float64
+#  10  Cabin        204 non-null    object 
+#  11  Embarked     889 non-null    object 
+# dtypes: float64(2), int64(5), object(5)
+# memory usage: 83.7+ KB
