@@ -51,23 +51,23 @@ print(type(df.loc['Bob':'Dave', 'age']))
 # Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
 
-print(df.loc[:'Dave', ['age', 'point']])
-print(type(df.loc[:'Dave', 'age':'point']))
-#          age  point
+print(df.loc[:'Dave', ['point', 'age']])
+print(type(df.loc[:'Dave', ['point', 'age']]))
+#          point  age
 # name               
-# Alice     24     64
-# Bob       42     92
-# Charlie   18     70
-# Dave      68     70
+# Alice       64   24
+# Bob         92   42
+# Charlie     70   18
+# Dave        70   68
 # <class 'pandas.core.frame.DataFrame'>
 
-print(df.iloc[:3, [0, 2]])
-print(type(df.iloc[:3, [0, 2]]))
-#          age  point
+print(df.iloc[:3, [2, 0]])
+print(type(df.iloc[:3, [2, 0]]))
+#          point  age
 # name               
-# Alice     24     64
-# Bob       42     92
-# Charlie   18     70
+# Alice       64   24
+# Bob         92   42
+# Charlie     70   18
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df.iloc[::2, 0])
@@ -87,6 +87,14 @@ print(type(df.iloc[1::2, 0]))
 # Frank    30
 # Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
+
+df.loc['Bob':'Dave', 'age'] = 0
+print(df.loc['Bob':'Dave', 'age'])
+# name
+# Bob        0
+# Charlie    0
+# Dave       0
+# Name: age, dtype: int64
 
 df.loc['Bob':'Dave', 'age'] = [20, 30, 40]
 print(df.loc['Bob':'Dave', 'age'])
@@ -139,12 +147,12 @@ print(type(df.loc['Bob']))
 # Name: Bob, dtype: object
 # <class 'pandas.core.series.Series'>
 
-print(df.iloc[[1, 4]])
-print(type(df.iloc[[1, 4]]))
+print(df.iloc[[4, 1]])
+print(type(df.iloc[[4, 1]]))
 #        age state  point
 # name                   
-# Bob     20    CA     92
 # Ellen   24    CA     88
+# Bob     20    CA     92
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df.loc[:, 'age':'point'])
@@ -281,7 +289,7 @@ print(s_bool_wrong)
 
 # print(df.loc[s_bool_wrong, ['age', 'point']])
 # IndexingError: Unalignable boolean Series provided as indexer
-# (index of the boolean Seriesand of the indexed object do not match).
+# (index of the boolean Series and of the indexed object do not match).
 
 s_bool_wrong2 = pd.Series([True, False, False, True, False, True],
                           index=['A', 'B', 'C', 'D', 'E', 'F'])
