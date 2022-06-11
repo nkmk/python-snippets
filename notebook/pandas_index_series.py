@@ -27,14 +27,14 @@ print(type(s[3]))
 # 68
 # <class 'numpy.int64'>
 
-print(s['Dave'])
-print(type(s['Dave']))
-# 68
-# <class 'numpy.int64'>
-
 print(s[-1])
 print(type(s[-1]))
 # 30
+# <class 'numpy.int64'>
+
+print(s['Dave'])
+print(type(s['Dave']))
+# 68
 # <class 'numpy.int64'>
 
 print(s.Dave)
@@ -50,11 +50,11 @@ print(type(s[[1, 3]]))
 # Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
 
-print(s[['Bob', 'Dave']])
-print(type(s[['Bob', 'Dave']]))
+print(s[['Dave', 'Bob']])
+print(type(s[['Dave', 'Bob']]))
 # name
-# Bob     42
 # Dave    68
+# Bob     42
 # Name: age, dtype: int64
 # <class 'pandas.core.series.Series'>
 
