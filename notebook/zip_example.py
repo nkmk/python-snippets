@@ -24,13 +24,17 @@ for name, age in zip(names, ages):
 # Bob 50
 # Charlie 18
 
+# for name, age in zip(names, ages, strict=True):
+#     print(name, age)
+# ValueError: zip() argument 2 is shorter than argument 1
+
 names = ['Alice', 'Bob', 'Charlie']
 ages = (24, 50, 18)
 
 z = zip(names, ages)
 print(z)
 print(type(z))
-# <zip object at 0x10b57b888>
+# <zip object at 0x1038b0980>
 # <class 'zip'>
 
 l = list(zip(names, ages))
