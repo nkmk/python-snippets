@@ -46,7 +46,7 @@ print(repr(s_lines_multi.replace('\r\n', '-').replace('\n', '-')))
 # 'one-two-three'
 
 print(s_lines_multi.replace('\n', '-').replace('\r\n', '-'))
-# -threeo
+# -three
 
 print(repr(s_lines_multi.replace('\n', '-').replace('\r\n', '-')))
 # 'one-two\r-three'
@@ -65,10 +65,10 @@ print(s.translate(str.maketrans({'o': 'O', 't': 'T'})))
 print(s.translate(str.maketrans({'o': 'XXX', 't': None})))
 # XXXne wXXX XXXne wXXX XXXne
 
-print(s.translate(str.maketrans('ow', 'XY', 'n')))
-# Xe tYX Xe tYX Xe
+print(s.translate(str.maketrans('ot', 'OT', 'n')))
+# Oe TwO Oe TwO Oe
 
-# print(s.translate(str.maketrans('ow', 'XXY', 'n')))
+# print(s.translate(str.maketrans('ow', 'OTX', 'n')))
 # ValueError: the first two maketrans arguments must have equal length
 
 s = 'abcdefghij'
