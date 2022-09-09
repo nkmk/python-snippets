@@ -1,31 +1,28 @@
 import re
 
-s = 'aaa@xxx.com, bbb@yyy.com, ccc@zzz.net'
+s = 'aaa@xxx.com bbb@yyy.net ccc@zzz.org'
 
 result = re.findall(r'[a-z]+@[a-z]+\.[a-z]+', s)
 print(result)
-# ['aaa@xxx.com', 'bbb@yyy.com', 'ccc@zzz.net']
+# ['aaa@xxx.com', 'bbb@yyy.net', 'ccc@zzz.org']
 
 print(len(result))
 # 3
 
-result = re.findall(r'([a-z]+)@([a-z]+)\.([a-z]+)', s)
-print(result)
-# [('aaa', 'xxx', 'com'), ('bbb', 'yyy', 'com'), ('ccc', 'zzz', 'net')]
+print(re.findall(r'([a-z]+)@([a-z]+)\.([a-z]+)', s))
+# [('aaa', 'xxx', 'com'), ('bbb', 'yyy', 'net'), ('ccc', 'zzz', 'org')]
 
-result = re.findall(r'(([a-z]+)@([a-z]+)\.([a-z]+))', s)
-print(result)
-# [('aaa@xxx.com', 'aaa', 'xxx', 'com'), ('bbb@yyy.com', 'bbb', 'yyy', 'com'), ('ccc@zzz.net', 'ccc', 'zzz', 'net')]
+print(re.findall(r'(([a-z]+)@([a-z]+)\.([a-z]+))', s))
+# [('aaa@xxx.com', 'aaa', 'xxx', 'com'), ('bbb@yyy.net', 'bbb', 'yyy', 'net'), ('ccc@zzz.org', 'ccc', 'zzz', 'org')]
 
-result = re.findall('[0-9]+', s)
-print(result)
+print(re.findall('[0-9]+', s))
 # []
 
-s = 'aaa@xxx.com, bbb@yyy.com, ccc@zzz.net'
+s = 'aaa@xxx.com bbb@yyy.net ccc@zzz.org'
 
 result = re.finditer(r'[a-z]+@[a-z]+\.[a-z]+', s)
 print(result)
-# <callable_iterator object at 0x10b0efa90>
+# <callable_iterator object at 0x107863070>
 
 print(type(result))
 # <class 'callable_iterator'>
@@ -33,12 +30,12 @@ print(type(result))
 for m in result:
     print(m)
 # <re.Match object; span=(0, 11), match='aaa@xxx.com'>
-# <re.Match object; span=(13, 24), match='bbb@yyy.com'>
-# <re.Match object; span=(26, 37), match='ccc@zzz.net'>
+# <re.Match object; span=(12, 23), match='bbb@yyy.net'>
+# <re.Match object; span=(24, 35), match='ccc@zzz.org'>
 
 l = list(re.finditer(r'[a-z]+@[a-z]+\.[a-z]+', s))
 print(l)
-# [<re.Match object; span=(0, 11), match='aaa@xxx.com'>, <re.Match object; span=(13, 24), match='bbb@yyy.com'>, <re.Match object; span=(26, 37), match='ccc@zzz.net'>]
+# [<re.Match object; span=(0, 11), match='aaa@xxx.com'>, <re.Match object; span=(12, 23), match='bbb@yyy.net'>, <re.Match object; span=(24, 35), match='ccc@zzz.org'>]
 
 print(l[0])
 # <re.Match object; span=(0, 11), match='aaa@xxx.com'>
@@ -50,15 +47,15 @@ print(l[0].span())
 # (0, 11)
 
 print([m.span() for m in re.finditer(r'[a-z]+@[a-z]+\.[a-z]+', s)])
-# [(0, 11), (13, 24), (26, 37)]
+# [(0, 11), (12, 23), (24, 35)]
 
 result = re.finditer(r'[a-z]+@[a-z]+\.[a-z]+', s)
 
 for m in result:
     print(m)
 # <re.Match object; span=(0, 11), match='aaa@xxx.com'>
-# <re.Match object; span=(13, 24), match='bbb@yyy.com'>
-# <re.Match object; span=(26, 37), match='ccc@zzz.net'>
+# <re.Match object; span=(12, 23), match='bbb@yyy.net'>
+# <re.Match object; span=(24, 35), match='ccc@zzz.org'>
 
 print(list(result))
 # []

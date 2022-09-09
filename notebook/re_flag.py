@@ -1,19 +1,15 @@
 import re
 
-m = re.match(r'\w+', 'あいう漢字ＡＢＣ１２３')
-print(m)
+print(re.match(r'\w+', 'あいう漢字ＡＢＣ１２３'))
 # <re.Match object; span=(0, 11), match='あいう漢字ＡＢＣ１２３'>
 
-m = re.match('[a-zA-Z0-9_]+', 'あいう漢字ＡＢＣ１２３')
-print(m)
+print(re.match('[a-zA-Z0-9_]+', 'あいう漢字ＡＢＣ１２３'))
 # None
 
-m = re.match(r'\w+', 'あいう漢字ＡＢＣ１２３', flags=re.ASCII)
-print(m)
+print(re.match(r'\w+', 'あいう漢字ＡＢＣ１２３', flags=re.ASCII))
 # None
 
-m = re.match(r'(?a)\w+', 'あいう漢字ＡＢＣ１２３')
-print(m)
+print(re.match(r'(?a)\w+', 'あいう漢字ＡＢＣ１２３'))
 # None
 
 p = re.compile(r'\w+', flags=re.ASCII)
@@ -33,48 +29,37 @@ print(p.match('あいう漢字ＡＢＣ１２３'))
 print(re.ASCII is re.A)
 # True
 
-m = re.match(r'\W+', 'あいう漢字ＡＢＣ１２３')
-print(m)
+print(re.match(r'\W+', 'あいう漢字ＡＢＣ１２３'))
 # None
 
-m = re.match(r'\W+', 'あいう漢字ＡＢＣ１２３', flags=re.ASCII)
-print(m)
+print(re.match(r'\W+', 'あいう漢字ＡＢＣ１２３', flags=re.ASCII))
 # <re.Match object; span=(0, 11), match='あいう漢字ＡＢＣ１２３'>
 
-m = re.match(r'\d+', '123')
-print(m)
+print(re.match(r'\d+', '123'))
 # <re.Match object; span=(0, 3), match='123'>
 
-m = re.match(r'\d+', '１２３')
-print(m)
+print(re.match(r'\d+', '１２３'))
 # <re.Match object; span=(0, 3), match='１２３'>
 
-m = re.match(r'\d+', '123', flags=re.ASCII)
-print(m)
+print(re.match(r'\d+', '123', flags=re.ASCII))
 # <re.Match object; span=(0, 3), match='123'>
 
-m = re.match(r'\d+', '１２３', flags=re.ASCII)
-print(m)
+print(re.match(r'\d+', '１２３', flags=re.ASCII))
 # None
 
-m = re.match(r'\s+', '　')  # 全角スペース
-print(m)
+print(re.match(r'\s+', '　'))  # 全角スペース
 # <re.Match object; span=(0, 1), match='\u3000'>
 
-m = re.match(r'\s+', '　', flags=re.ASCII)
-print(m)
+print(re.match(r'\s+', '　', flags=re.ASCII))
 # None
 
-m = re.match('[a-zA-Z]+', 'abcABC')
-print(m)
+print(re.match('[a-zA-Z]+', 'abcABC'))
 # <re.Match object; span=(0, 6), match='abcABC'>
 
-m = re.match('[a-z]+', 'abcABC', flags=re.IGNORECASE)
-print(m)
+print(re.match('[a-z]+', 'abcABC', flags=re.IGNORECASE))
 # <re.Match object; span=(0, 6), match='abcABC'>
 
-m = re.match('[A-Z]+', 'abcABC', flags=re.IGNORECASE)
-print(m)
+print(re.match('[A-Z]+', 'abcABC', flags=re.IGNORECASE))
 # <re.Match object; span=(0, 6), match='abcABC'>
 
 s = '''aaa-xxx
@@ -86,24 +71,16 @@ print(s)
 # bbb-yyy
 # ccc-zzz
 
-result = re.findall('[a-z]+', s)
-print(result)
-# ['aaa', 'xxx', 'bbb', 'yyy', 'ccc', 'zzz']
-
-result = re.findall('^[a-z]+', s)
-print(result)
+print(re.findall('^[a-z]+', s))
 # ['aaa']
 
-result = re.findall('^[a-z]+', s, flags=re.MULTILINE)
-print(result)
+print(re.findall('^[a-z]+', s, flags=re.MULTILINE))
 # ['aaa', 'bbb', 'ccc']
 
-result = re.findall('[a-z]+$', s)
-print(result)
+print(re.findall('[a-z]+$', s))
 # ['zzz']
 
-result = re.findall('[a-z]+$', s, flags=re.MULTILINE)
-print(result)
+print(re.findall('[a-z]+$', s, flags=re.MULTILINE))
 # ['xxx', 'yyy', 'zzz']
 
 s = '''aaa-xxx
@@ -115,14 +92,11 @@ print(s)
 # あああ-んんん
 # bbb-zzz
 
-result = re.findall(r'^\w+', s, flags=re.M)
-print(result)
+print(re.findall(r'^\w+', s, flags=re.M))
 # ['aaa', 'あああ', 'bbb']
 
-result = re.findall(r'^\w+', s, flags=re.M | re.A)
-print(result)
+print(re.findall(r'^\w+', s, flags=re.M | re.A))
 # ['aaa', 'bbb']
 
-result = re.findall(r'(?am)^\w+', s)
-print(result)
+print(re.findall(r'(?am)^\w+', s))
 # ['aaa', 'bbb']

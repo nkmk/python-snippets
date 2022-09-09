@@ -1,39 +1,29 @@
 import re
 
-s = 'aaa@xxx.com, bbb@yyy.com, ccc@zzz.net'
+s = 'aaa@xxx.com bbb@yyy.net ccc@zzz.org'
 
-m = re.match(r'[a-z]+@[a-z]+\.com', s)
-print(m)
+print(re.match(r'[a-z]+@[a-z]+\.com', s))
 # <re.Match object; span=(0, 11), match='aaa@xxx.com'>
 
-m = re.match(r'[a-z]+@[a-z]+\.net', s)
-print(m)
+print(re.match(r'[a-z]+@[a-z]+\.net', s))
 # None
 
-s = 'aaa@xxx.com, bbb@yyy.com, ccc@zzz.net'
+s = 'aaa@xxx.com bbb@yyy.net ccc@zzz.org'
 
-m = re.search(r'[a-z]+@[a-z]+\.net', s)
-print(m)
-# <re.Match object; span=(26, 37), match='ccc@zzz.net'>
+print(re.search(r'[a-z]+@[a-z]+\.net', s))
+# <re.Match object; span=(12, 23), match='bbb@yyy.net'>
 
-m = re.search(r'[a-z]+@[a-z]+\.com', s)
-print(m)
+print(re.search(r'[a-z]+@[a-z]+\.[a-z]+', s))
 # <re.Match object; span=(0, 11), match='aaa@xxx.com'>
 
 s = 'aaa@xxx.com'
-
-m = re.fullmatch(r'[a-z]+@[a-z]+\.com', s)
-print(m)
+print(re.fullmatch(r'[a-z]+@[a-z]+\.com', s))
 # <re.Match object; span=(0, 11), match='aaa@xxx.com'>
 
 s = '!!!aaa@xxx.com!!!'
-
-m = re.fullmatch(r'[a-z]+@[a-z]+\.com', s)
-print(m)
+print(re.fullmatch(r'[a-z]+@[a-z]+\.com', s))
 # None
 
 s = '!!!aaa@xxx.com!!!'
-
-m = re.match(r'[a-z]+@[a-z]+\.com$', s)
-print(m)
+print(re.match(r'[a-z]+@[a-z]+\.com$', s))
 # None
