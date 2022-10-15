@@ -50,31 +50,42 @@ print(np.array_equal(im_gray_read[:, :, 0], im_gray_read[:, :, 1]))
 print(np.array_equal(im_gray_read[:, :, 1], im_gray_read[:, :, 2]))
 # True
 
-im = cv2.imread('xxxxxxx')
+im_not_exist = cv2.imread('xxxxxxx')
+# [ WARN:0@0.069] global /tmp/opencv-20221012-82716-1q8maeo/opencv-4.6.0/modules/imgcodecs/src/loadsave.cpp (239) findDecoder imread_('xxxxxxx'): can't open/read file: check file path/integrity
 
-print(im)
+print(im_not_exist)
 # None
 
-# print(im.shape)
+# print(im_not_exist.shape)
 # AttributeError: 'NoneType' object has no attribute 'shape'
 
-im = cv2.imread('data/src/sample.csv')
+im_not_supported = cv2.imread('data/src/sample.csv')
 
-print(im)
+print(im_not_supported)
 # None
 
-im = cv2.imread('xxxxxxx')
-
-if im:
+if im_not_exist is not None:
     print('Image is read.')
 else:
     print('Image is not read.')
 # Image is not read.
 
-im = cv2.imread('xxxxxxx')
-
-if not im:
+if im_not_exist is None:
     print('Image is not read.')
 else:
     print('Image is read.')
 # Image is not read.
+
+im = cv2.imread('data/src/lena.jpg')
+
+if im is not None:
+    print('Image is read.')
+else:
+    print('Image is not read.')
+# Image is read.
+
+if im is None:
+    print('Image is not read.')
+else:
+    print('Image is read.')
+# Image is read.
