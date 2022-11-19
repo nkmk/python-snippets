@@ -52,31 +52,6 @@ print(s.rindex('am'))
 
 s = 'I am Sam'
 
-print(s.count('am'))
-# 2
-
-print(s.count('XXX'))
-# 0
-
-print(s.count('am', 2, 4))
-# 1
-
-s = 'aaaa'
-
-print(s.count('aa'))
-# 2
-
-s = 'I am Sam'
-
-l = s.split()
-print(l)
-# ['I', 'am', 'Sam']
-
-print(l.count('am'))
-# 1
-
-s = 'I am Sam'
-
 print(s.upper())
 # I AM SAM
 
@@ -94,12 +69,6 @@ print(s.find('sam'))
 
 print(s.lower().find('sam'))
 # 5
-
-print(s.count('sam'))
-# 0
-
-print(s.lower().count('sam'))
-# 1
 
 s = '私はSam'
 
