@@ -1,16 +1,19 @@
-single_tuple_error = (0)
-
+single_tuple_error = (10)
 print(single_tuple_error)
+# 10
+
 print(type(single_tuple_error))
-# 0
 # <class 'int'>
 
-single_tuple = (0, )
-
+single_tuple = (10, )
 print(single_tuple)
+# (10,)
+
 print(type(single_tuple))
-# (0,)
 # <class 'tuple'>
+
+print(single_tuple[0])
+# 10
 
 # print((0, 1, 2) + (3))
 # TypeError: can only concatenate tuple (not "int") to tuple
@@ -19,24 +22,24 @@ print((0, 1, 2) + (3, ))
 # (0, 1, 2, 3)
 
 t = 0, 1, 2
-
 print(t)
-print(type(t))
 # (0, 1, 2)
+
+print(type(t))
 # <class 'tuple'>
 
-t_ = 0,
-
-print(t_)
-print(type(t_))
+t = 0,
+print(t)
 # (0,)
+
+print(type(t))
 # <class 'tuple'>
 
 empty_tuple = ()
-
 print(empty_tuple)
-print(type(empty_tuple))
 # ()
+
+print(type(empty_tuple))
 # <class 'tuple'>
 
 # empty_tuple_error = 
@@ -49,10 +52,10 @@ print(type(empty_tuple))
 # SyntaxError: invalid syntax
 
 empty_tuple = tuple()
-
 print(empty_tuple)
-print(type(empty_tuple))
 # ()
+
+print(type(empty_tuple))
 # <class 'tuple'>
 
 def example(a, b):
