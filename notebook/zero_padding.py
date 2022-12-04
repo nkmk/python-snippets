@@ -1,10 +1,9 @@
 s = '1234'
 
-s_zero = s.zfill(8)
-print(s_zero)
+print(s.zfill(8))
 # 00001234
 
-print(type(s_zero))
+print(type(s.zfill(8)))
 # <class 'str'>
 
 print(s.zfill(3))
@@ -22,94 +21,78 @@ s = 'abcd'
 print(s.zfill(8))
 # 0000abcd
 
-n = 1234
+i = 1234
 
-print(type(n))
+print(type(i))
 # <class 'int'>
 
-# print(n.zfill(8))
+# print(i.zfill(8))
 # AttributeError: 'int' object has no attribute 'zfill'
 
-print(str(n).zfill(8))
+print(str(i).zfill(8))
 # 00001234
 
 s = '1234'
 
 print(s.rjust(8, '0'))
 # 00001234
-
-print(s.ljust(8, '0'))
-# 12340000
 
 print(s.center(8, '0'))
 # 00123400
 
+print(s.ljust(8, '0'))
+# 12340000
+
 s = '-1234'
 
 print(s.rjust(8, '0'))
 # 000-1234
 
-print(s.ljust(8, '0'))
-# -1234000
-
 print(s.center(8, '0'))
 # 0-123400
 
-s = '1234'
+print(s.ljust(8, '0'))
+# -1234000
 
-print(format(s, '0>8'))
-# 00001234
+s = '1234'
 
 print('Zero Padding: {:0>8}'.format(s))
 # Zero Padding: 00001234
 
 s = '-1234'
 
-print(format(s, '0>8'))
-# 000-1234
-
 print('Zero Padding: {:0>8}'.format(s))
 # Zero Padding: 000-1234
 
-print(format(int(s), '08'))
-# -0001234
+s = '-1234'
 
-print('Zero Padding: {:0>8}'.format(int(s)))
-# Zero Padding: 000-1234
-
-n = 1234
-
-print(format(n, '08'))
-# 00001234
-
-print('Zero Padding: {:08}'.format(n))
-# Zero Padding: 00001234
-
-print(format(n, '08x'))
-# 000004d2
-
-print('Zero Padding: {:08x}'.format(n))
-# Zero Padding: 000004d2
-
-n = -1234
-
-print(format(n, '08'))
-# -0001234
-
-print('Zero Padding: {:08}'.format(n))
+print('Zero Padding: {:08}'.format(int(s)))
 # Zero Padding: -0001234
 
-print(f'Zero Padding: {n:08}')
+i = 255
+
+print('Zero Padding: {:08}'.format(i))
+# Zero Padding: 00000255
+
+print('Zero Padding: {:08x}'.format(i))
+# Zero Padding: 000000ff
+
+i = -1234
+
+print('Zero Padding: {:08}'.format(i))
 # Zero Padding: -0001234
 
-n = 1234
+print(f'Zero Padding: {i:08}')
+# Zero Padding: -0001234
 
-print('Zero Padding: %08d' % n)
+i = 1234
+
+print('Zero Padding: %08d' % i)
 # Zero Padding: 00001234
 
-n = -1234
+i = -1234
 
-print('Zero Padding: %08d' % n)
+print('Zero Padding: %08d' % i)
 # Zero Padding: -0001234
 
 s = '1234'
