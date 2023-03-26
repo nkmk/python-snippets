@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 1.5.3
+
 df = pd.DataFrame({'a': [0, 1, 2], 'b': [3, 4, 5]}, index=['x', 'y', 'z'])
 print(df)
 #    a  b
@@ -13,37 +16,37 @@ print(df.loc['x':'y']['a'])
 # Name: a, dtype: int64
 
 df.loc['x':'y']['a'] = 100
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_21852/3771299631.py:1: SettingWithCopyWarning: 
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
 # 
-# See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-#   """Entry point for launching an IPython kernel.
+# See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+#   df.loc['x':'y']['a'] = 100
 
 print(df)
-#      a  b
-# x  100  3
-# y  100  4
-# z    2  5
+#    a  b
+# x  0  3
+# y  1  4
+# z  2  5
 
 print(df.loc[['x', 'y']]['a'])
-# x    100
-# y    100
+# x    0
+# y    1
 # Name: a, dtype: int64
 
-df.loc[['x', 'y']]['a'] = 0
+df.loc[['x', 'y']]['a'] = 100
+print(df)
+#    a  b
+# x  0  3
+# y  1  4
+# z  2  5
+
+df.loc['x':'y', 'a'] = 100
 print(df)
 #      a  b
 # x  100  3
 # y  100  4
 # z    2  5
-
-df.loc['x':'y', 'a'] = 10
-print(df)
-#     a  b
-# x  10  3
-# y  10  4
-# z   2  5
 
 df.loc[['x', 'y'], 'a'] = 0
 print(df)
@@ -52,9 +55,16 @@ print(df)
 # y  0  4
 # z  2  5
 
+df = pd.DataFrame({'a': [0, 1, 2], 'b': [3, 4, 5]}, index=['x', 'y', 'z'])
+print(df)
+#    a  b
+# x  0  3
+# y  1  4
+# z  2  5
+
 print(df.iloc[[0, 1]]['a'])
 # x    0
-# y    0
+# y    1
 # Name: a, dtype: int64
 
 # df.loc[[0, 1], 'a']
@@ -77,23 +87,23 @@ print(df.columns[1])
 
 print(df.loc[[df.index[0], df.index[1]], 'a'])
 # x    0
-# y    0
+# y    1
 # Name: a, dtype: int64
 
 print(df.iloc[:2]['a'])
 # x    0
-# y    0
+# y    1
 # Name: a, dtype: int64
 
-print(df.loc[:df.index[2], 'a'])
+print(df.loc[: df.index[2], 'a'])
 # x    0
-# y    0
+# y    1
 # z    2
 # Name: a, dtype: int64
 
-print(df.loc[:df.index[2 - 1], 'a'])
+print(df.loc[: df.index[2 - 1], 'a'])
 # x    0
-# y    0
+# y    1
 # Name: a, dtype: int64
 
 df = pd.DataFrame({'a': [0, 1, 2], 'b': [3, 4, 5]}, index=['x', 'y', 'z'])
@@ -115,12 +125,12 @@ print(df_slice['a'])
 # Name: a, dtype: int64
 
 df_slice['a'] = 100
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_21852/3718525832.py:1: SettingWithCopyWarning: 
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
 # 
-# See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-#   """Entry point for launching an IPython kernel.
+# See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+#   df_slice['a'] = 100
 
 print(df_slice)
 #      a  b
@@ -128,73 +138,32 @@ print(df_slice)
 # y  100  4
 
 print(df)
-#      a  b
-# x  100  3
-# y  100  4
-# z    2  5
-
-df_list = df.loc[['x', 'y']]
-print(df_list)
-#      a  b
-# x  100  3
-# y  100  4
-
-print(df_list['a'])
-# x    100
-# y    100
-# Name: a, dtype: int64
-
-df_list['a'] = 0
-print(df_list)
 #    a  b
 # x  0  3
-# y  0  4
+# y  1  4
+# z  2  5
 
+df = pd.DataFrame({'a': [0, 1, 2], 'b': [3, 4, 5]}, index=['x', 'y', 'z'])
 print(df)
-#      a  b
-# x  100  3
-# y  100  4
-# z    2  5
-
-df_slice['c'] = 0
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
-# A value is trying to be set on a copy of a slice from a DataFrame.
-# Try using .loc[row_indexer,col_indexer] = value instead
-# 
-# See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-#   """Entry point for launching an IPython kernel.
-
-print(df_slice)
-#      a  b  c
-# x  100  3  0
-# y  100  4  0
-
-df.at['x', 'a'] = 0
-print(df)
-#      a  b
-# x    0  3
-# y  100  4
-# z    2  5
-
-print(df_slice)
-#      a  b  c
-# x    0  3  0
-# y  100  4  0
+#    a  b
+# x  0  3
+# y  1  4
+# z  2  5
 
 df_slice_copy = df.loc['x':'y'].copy()
 print(df_slice_copy)
-#      a  b
-# x    0  3
-# y  100  4
+#    a  b
+# x  0  3
+# y  1  4
 
-df.at['x', 'a'] = 100
-print(df)
+df_slice_copy['a'] = 100
+print(df_slice_copy)
 #      a  b
 # x  100  3
 # y  100  4
-# z    2  5
 
-print(df_slice_copy)
-#      a  b
-# x    0  3
-# y  100  4
+print(df)
+#    a  b
+# x  0  3
+# y  1  4
+# z  2  5
