@@ -1,53 +1,47 @@
 import pandas as pd
 
-s_org = pd.Series(['aaa@xxx.com', 'bbb@yyy.com', 'ccc@zzz.com', 'ddd'], index=['A', 'B', 'C', 'D'])
+print(pd.__version__)
+# 1.5.3
+
+s_org = pd.Series(['aaa@xxx.com', 'bbb@yyy.com', 'ccc'], index=['A', 'B', 'C'])
 print(s_org)
 # A    aaa@xxx.com
 # B    bbb@yyy.com
-# C    ccc@zzz.com
-# D            ddd
+# C            ccc
 # dtype: object
 
-df = s_org.str.extract('(.+)@(.+)\.(.+)', expand=True)
+df = s_org.str.extract(r'(.+)@(.+)\.(.+)')
 print(df)
 #      0    1    2
 # A  aaa  xxx  com
 # B  bbb  yyy  com
-# C  ccc  zzz  com
-# D  NaN  NaN  NaN
+# C  NaN  NaN  NaN
 
-df = s_org.str.extract('(.+)@(.+)\.(.+)', expand=False)
+df = s_org.str.extract(r'(\w+)', expand=True)
 print(df)
-#      0    1    2
-# A  aaa  xxx  com
-# B  bbb  yyy  com
-# C  ccc  zzz  com
-# D  NaN  NaN  NaN
-
-df_single = s_org.str.extract('(\w+)', expand=True)
-print(df_single)
-print(type(df_single))
 #      0
 # A  aaa
 # B  bbb
 # C  ccc
-# D  ddd
+
+print(type(df))
 # <class 'pandas.core.frame.DataFrame'>
 
-s = s_org.str.extract('(\w+)', expand=False)
+s = s_org.str.extract(r'(\w+)', expand=False)
 print(s)
-print(type(s))
 # A    aaa
 # B    bbb
 # C    ccc
-# D    ddd
 # dtype: object
+
+print(type(s))
 # <class 'pandas.core.series.Series'>
 
-df_name = s_org.str.extract('(?P<local>.*)@(?P<second_LD>.*)\.(?P<TLD>.*)', expand=True)
+df_name = s_org.str.extract(
+    r'(?P<local>.*)@(?P<second_LD>.*)\.(?P<TLD>.*)', expand=True
+)
 print(df_name)
 #   local second_LD  TLD
 # A   aaa       xxx  com
 # B   bbb       yyy  com
-# C   ccc       zzz  com
-# D   NaN       NaN  NaN
+# C   NaN       NaN  NaN
