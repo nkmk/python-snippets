@@ -1,52 +1,97 @@
-def if_test(num):
-    if num > 100:
-        print('100 < num')
-    elif num > 50:
-        print('50 < num <= 100')
-    elif num > 0:
-        print('0 < num <= 50')
-    elif num == 0:
-        print('num == 0')
+def if_only(n):
+    if n > 0:
+        print(f'{n} is positive')
+
+if_only(100)
+# 100 is positive
+
+if_only(-100)
+
+def if_else(n):
+    if n > 0:
+        print(f'{n} is positive')
     else:
-        print('num < 0')
+        print(f'{n} is negative or zero')
 
-if_test(1000)
-# 100 < num
+if_else(100)
+# 100 is positive
 
-if_test(70)
-# 50 < num <= 100
+if_else(-100)
+# -100 is negative or zero
 
-if_test(0)
-# num == 0
+def if_elif(n):
+    if n > 0:
+        print(f'{n} is positive')
+    elif n == 0:
+        print(f'{n} is zero')
+    elif n == -1:
+        print(f'{n} is minus one')
 
-if_test(-100)
-# num < 0
+if_elif(100)
+# 100 is positive
 
-def if_test2(num):
-    if 50 < num < 100:
-        print('50 < num < 100')
+if_elif(0)
+# 0 is zero
+
+if_elif(-1)
+# -1 is minus one
+
+if_elif(-100)
+
+def if_elif_else(n):
+    if n > 0:
+        print(f'{n} is positive')
+    elif n == 0:
+        print(f'{n} is zero')
     else:
-        print('num <= 50 or num >= 100')
+        print(f'{n} is negative')
 
-if_test2(70)
-# 50 < num < 100
+if_elif_else(100)
+# 100 is positive
 
-if_test2(0)
-# num <= 50 or num >= 100
+if_elif_else(0)
+# 0 is zero
 
-def if_test_in(s):
+if_elif_else(-100)
+# -100 is negative
+
+def if_chain(n):
+    if 0 < n < 100:
+        print(f'0 < {n} < 100')
+    else:
+        print(f'{n} <= 0 or 100 <= {n}')
+
+if_chain(50)
+# 0 < 50 < 100
+
+if_chain(1000)
+# 1000 <= 0 or 100 <= 1000
+
+def if_in(s):
     if 'a' in s:
-        print('a is in string')
+        print(f'"a" is in "{s}"')
     else:
-        print('a is NOT in string')
+        print(f'"a" is NOT in "{s}"')
 
-if_test_in('apple')
-# a is in string
+if_in('apple')
+# "a" is in "apple"
 
-if_test_in('melon')
-# a is NOT in string
+if_in('cherry')
+# "a" is NOT in "cherry"
 
-if 10:
+def if_startswith(s):
+    if s.startswith('a'):
+        print(f'"{s}" starts with "a"')
+    else:
+        print(f'"{s}" does NOT starts with "a"')
+
+if_startswith("apple")
+# "apple" starts with "a"
+
+if_startswith("banana")
+# "banana" does NOT starts with "a"
+
+if 100:
     print('True')
 # True
 
@@ -54,76 +99,98 @@ if [0, 1, 2]:
     print('True')
 # True
 
-print(bool(10))
-# True
-
-print(bool(0.0))
-# False
-
-print(bool([]))
-# False
-
-print(bool('False'))
-# True
-
-def if_test_list(l):
+def if_is_empty(l):
     if l:
-        print('list is NOT empty')
+        print(f'{l} is NOT empty')
     else:
-        print('list is empty')
+        print(f'{l} is empty')
 
-if_test_list([0, 1, 2])
-# list is NOT empty
+if_is_empty([0, 1, 2])
+# [0, 1, 2] is NOT empty
 
-if_test_list([])
-# list is empty
+if_is_empty([])
+# [] is empty
 
-def if_test_and_not(num):
-    if num >= 0 and not num % 2 == 0:
-        print('num is positive odd')
+def if_and(n):
+    if n > 0 and n % 2 == 0:
+        print(f'{n} is positive-even')
     else:
-        print('num is NOT positive odd')
+        print(f'{n} is NOT positive-even')
 
-if_test_and_not(5)
-# num is positive odd
+if_and(10)
+# 10 is positive-even
 
-if_test_and_not(10)
-# num is NOT positive odd
+if_and(5)
+# 5 is NOT positive-even
 
-if_test_and_not(-10)
-# num is NOT positive odd
+if_and(-10)
+# -10 is NOT positive-even
 
-def if_test_and_not_or(num):
-    if num >= 0 and not num % 2 == 0 or num == -10:
-        print('num is positive odd or -10')
+def if_and_or(n):
+    if n > 0 and n % 2 == 0 or n == 0:
+        print(f'{n} is positive-even or zero')
     else:
-        print('num is NOT positive odd or -10')
+        print(f'{n} is NOT positive-even or zero')
 
-if_test_and_not_or(5)
-# num is positive odd or -10
+if_and_or(10)
+# 10 is positive-even or zero
 
-if_test_and_not_or(10)
-# num is NOT positive odd or -10
+if_and_or(5)
+# 5 is NOT positive-even or zero
 
-if_test_and_not_or(-10)
-# num is positive odd or -10
+if_and_or(0)
+# 0 is positive-even or zero
 
-def if_test_and_backslash(num):
-    if num >= 0 \
-       and not num % 2 == 0:
-        print('num is positive odd')
+def if_not(s):
+    if not s.startswith('a'):
+        print(f'"{s}" does NOT starts with "a"')
     else:
-        print('num is NOT positive odd')
+        print(f'"{s}" starts with "a"')
 
-if_test_and_backslash(5)
-# num is positive odd
+if_not("apple")
+# "apple" starts with "a"
 
-def if_test_and_brackets(num):
-    if (num >= 0
-        and not num % 2 == 0):
-        print('num is positive odd')
+if_not("banana")
+# "banana" does NOT starts with "a"
+
+def too_long_name_function_1():
+    return True
+
+def too_long_name_function_2():
+    return True
+
+def too_long_name_function_3():
+    return True
+
+def if_no_newline():
+    if too_long_name_function_1() and too_long_name_function_2() and too_long_name_function_3():
+        print('True')
     else:
-        print('num is NOT positive odd')
+        print('False')
 
-if_test_and_brackets(5)
-# num is positive odd
+def if_backslash():
+    if too_long_name_function_1() \
+       and too_long_name_function_2() \
+       and too_long_name_function_3():
+        print('True')
+    else:
+        print('False')
+
+def if_parentheses():
+    if (
+        too_long_name_function_1()
+        and too_long_name_function_2()
+        and too_long_name_function_3()
+    ):
+        print('True')
+    else:
+        print('False')
+
+if_no_newline()
+# True
+
+if_backslash()
+# True
+
+if_parentheses()
+# True
