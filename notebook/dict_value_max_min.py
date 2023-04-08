@@ -1,35 +1,34 @@
 d = {'a': 100, 'b': 20, 'c': 50, 'd': 100, 'e': 80}
 
-max_d = max(d)
-print(max_d)
+print(max(d))
 # e
 
-min_d = min(d)
-print(min_d)
+print(min(d))
 # a
 
-max_v = max(d.values())
-print(max_v)
+d = {'a': 100, 'b': 20, 'c': 50, 'd': 100, 'e': 80}
+
+print(max(d.values()))
 # 100
 
-min_v = min(d.values())
-print(min_v)
+print(min(d.values()))
 # 20
 
-max_k = max(d, key=d.get)
-print(max_k)
+d = {'a': 100, 'b': 20, 'c': 50, 'd': 100, 'e': 80}
+
+print(max(d, key=d.get))
 # a
 
-min_k = min(d, key=d.get)
-print(min_k)
+print(min(d, key=d.get))
 # b
 
-max_kv = max(d.items(), key=lambda x: x[1])
-print(max_kv)
+d = {'a': 100, 'b': 20, 'c': 50, 'd': 100, 'e': 80}
+
+print(max(d.items(), key=lambda x: x[1]))
 # ('a', 100)
 
-print(type(max_kv))
-# <class 'tuple'>
+print(min(d.items(), key=lambda x: x[1]))
+# ('b', 20)
 
 max_k, max_v = max(d.items(), key=lambda x: x[1])
 print(max_k)
@@ -38,18 +37,13 @@ print(max_k)
 print(max_v)
 # 100
 
-min_kv = min(d.items(), key=lambda x: x[1])
-print(min_kv)
-# ('b', 20)
+d = {'a': 100, 'b': 20, 'c': 50, 'd': 100, 'e': 80}
 
-max_kv_list = [kv for kv in d.items() if kv[1] == max(d.values())]
-print(max_kv_list)
+print([kv for kv in d.items() if kv[1] == max(d.values())])
 # [('a', 100), ('d', 100)]
 
-max_k_list = [kv[0] for kv in d.items() if kv[1] == max(d.values())]
-print(max_k_list)
+print([kv[0] for kv in d.items() if kv[1] == max(d.values())])
 # ['a', 'd']
 
-min_kv_list = [kv for kv in d.items() if kv[1] == min(d.values())]
-print(min_kv_list)
+print([kv for kv in d.items() if kv[1] == min(d.values())])
 # [('b', 20)]
