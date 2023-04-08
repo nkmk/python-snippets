@@ -1,28 +1,19 @@
 import datetime
 
-s = '2018-12-31'
-
-d = datetime.date.fromisoformat(s)
-
+d = datetime.date.fromisoformat('2023-04-01')
 print(d)
-# 2018-12-31
+# 2023-04-01
 
 print(type(d))
 # <class 'datetime.date'>
 
-# print(datetime.date.fromisoformat('2018-12'))
-# ValueError: Invalid isoformat string: '2018-12'
+# print(datetime.date.fromisoformat('2023-04'))
+# ValueError: Invalid isoformat string: '2023-04'
 
-print(datetime.date.fromisoformat('2018-01-01'))
-# 2018-01-01
+# print(datetime.date.fromisoformat('2023-4-1'))
+# ValueError: Invalid isoformat string: '2023-4-1'
 
-# print(datetime.date.fromisoformat('2018-1-1'))
-# ValueError: Invalid isoformat string: '2018-1-1'
-
-s = '05:00:30.001000'
-
-t = datetime.time.fromisoformat(s)
-
+t = datetime.time.fromisoformat('05:00:30.001000')
 print(t)
 # 05:00:30.001000
 
@@ -35,70 +26,66 @@ print(datetime.time.fromisoformat('05'))
 # print(datetime.time.fromisoformat('5:00:30'))
 # ValueError: Invalid isoformat string: '5:00:30'
 
-s = '2018-12-31T05:00:30.001000'
-
-dt = datetime.datetime.fromisoformat(s)
-
+dt = datetime.datetime.fromisoformat('2023-04-01T05:00:30.001000')
 print(dt)
-# 2018-12-31 05:00:30.001000
+# 2023-04-01 05:00:30.001000
 
 print(type(dt))
 # <class 'datetime.datetime'>
 
-print(datetime.datetime.fromisoformat('2018-12-31x05:00:30.001000'))
-# 2018-12-31 05:00:30.001000
+print(datetime.datetime.fromisoformat('2023-04-01x05:00:30.001000'))
+# 2023-04-01 05:00:30.001000
 
-# print(datetime.datetime.fromisoformat('2018-12-31xx05:00:30.001000'))
-# ValueError: Invalid isoformat string: '2018-12-31xx05:00:30.001000'
+# print(datetime.datetime.fromisoformat('2023-04-01xx05:00:30.001000'))
+# ValueError: Invalid isoformat string: '2023-04-01xx05:00:30.001000'
 
-print(datetime.datetime.fromisoformat('2018-12-31T05'))
-# 2018-12-31 05:00:00
+print(datetime.datetime.fromisoformat('2023-04-01T05'))
+# 2023-04-01 05:00:00
 
-print(datetime.datetime.fromisoformat('2018-12-31'))
-# 2018-12-31 00:00:00
+print(datetime.datetime.fromisoformat('2023-04-01'))
+# 2023-04-01 00:00:00
 
-# print(datetime.datetime.fromisoformat('2018-12-31T5:00'))
-# ValueError: Invalid isoformat string: '2018-12-31T5:00'
+# print(datetime.datetime.fromisoformat('2023-4-1T5:00'))
+# ValueError: Invalid isoformat string: '2023-4-1T5:00'
 
-s = '2018-12-31T05:00:30.001000'
+s = '2023-04-01T05:00:30.001000'
 
 # print(datetime.date.fromisoformat(s))
-# ValueError: Invalid isoformat string: '2018-12-31T05:00:30.001000'
-
-# print(datetime.time.fromisoformat(s))
-# ValueError: Invalid isoformat string: '2018-12-31T05:00:30.001000'
+# ValueError: Invalid isoformat string: '2023-04-01T05:00:30.001000'
 
 d = datetime.datetime.fromisoformat(s).date()
-
 print(d)
-# 2018-12-31
+# 2023-04-01
 
 print(type(d))
 # <class 'datetime.date'>
 
 t = datetime.datetime.fromisoformat(s).time()
-
 print(t)
 # 05:00:30.001000
 
 print(type(t))
 # <class 'datetime.time'>
 
-s = '2018-12-31T05:00:30'
+print(datetime.date.fromisoformat('20230401'))
+# 2023-04-01
 
-s_basic = s.replace('-', '').replace(':', '')
+print(datetime.time.fromisoformat('050030.001000'))
+# 05:00:30.001000
 
-print(s_basic)
-# 20181231T050030
+print(datetime.datetime.fromisoformat('20230401T050030.001000'))
+# 2023-04-01 05:00:30.001000
 
-s = '2018-12-31T05:00:30.001000'
+print(datetime.datetime.strptime('20230401T050030.001000', '%Y%m%dT%H%M%S.%f'))
+# 2023-04-01 05:00:30.001000
 
-s_basic = s.split('.')[0].replace('-', '').replace(':', '')
+s = '2023-04-01T05:00:30.001000'
+print(s.replace('-', '').replace(':', ''))
+# 20230401T050030.001000
 
-print(s_basic)
-# 20181231T050030
+print(s.split('.')[0].replace('-', '').replace(':', ''))
+# 20230401T050030
 
-s_ex = datetime.datetime.strptime(s_basic, '%Y%m%dT%H%M%S').isoformat()
-
-print(s_ex)
-# 2018-12-31T05:00:30
+s_basic = '20230401T050030.001000'
+print(datetime.datetime.fromisoformat(s_basic).isoformat())
+# 2023-04-01T05:00:30.001000
