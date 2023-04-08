@@ -19,22 +19,30 @@ print(type(l1_l2_and_list))
 print(len(l1_l2_and))
 # 2
 
-l1_l2_l3_and = set(l1) & set(l2) & set(l3)
-print(l1_l2_l3_and)
+print(set(l1) & set(l2) & set(l3))
 # {'c'}
 
-l1_l2_sym_diff = set(l1) ^ set(l2)
-print(l1_l2_sym_diff)
-# {'a', 'd'}
+l1 = ['a', 'b', 'c']
+l2 = ['b', 'c', 'd']
+l3 = ['c', 'd', 'e']
 
-print(list(l1_l2_sym_diff))
-# ['a', 'd']
+print(set(l1) - set(l2))
+# {'a'}
 
-print(len(l1_l2_sym_diff))
-# 2
+print(set(l2) - set(l1))
+# {'d'}
 
-l1_l2_l3_sym_diff = set(l1) ^ set(l2) ^ set(l3)
-print(l1_l2_l3_sym_diff)
+print(set(l2) - set(l1) - set(l3))
+# set()
+
+l1 = ['a', 'b', 'c']
+l2 = ['b', 'c', 'd']
+l3 = ['c', 'd', 'e']
+
+print(set(l1) ^ set(l2))
+# {'d', 'a'}
+
+print(set(l1) ^ set(l2) ^ set(l3))
 # {'c', 'a', 'e'}
 
 l_all = l1 + l2 + l3
@@ -42,37 +50,29 @@ print(l_all)
 # ['a', 'b', 'c', 'b', 'c', 'd', 'c', 'd', 'e']
 
 print(set(l_all))
-# {'d', 'b', 'a', 'c', 'e'}
+# {'c', 'd', 'a', 'b', 'e'}
 
-l_all_only = [x for x in set(l_all) if l_all.count(x) == 1]
-print(l_all_only)
+print([x for x in set(l_all) if l_all.count(x) == 1])
 # ['a', 'e']
 
-l1_duplicate = ['a', 'a', 'b', 'c'] 
-
-l_duplicate_all = l1_duplicate + l2 + l3
-l_duplicate_all_only = [x for x in set(l_duplicate_all) if l_duplicate_all.count(x) == 1]
-print(l_duplicate_all_only)
+l1_dup = ['a', 'a', 'b', 'c']
+l_dup_all = l1_dup + l2 + l3
+print([x for x in set(l_dup_all) if l_dup_all.count(x) == 1])
 # ['e']
 
-l_unique_all = list(set(l1_duplicate)) + list(set(l2)) + list(set(l3))
+l_unique_all = list(set(l1_dup)) + list(set(l2)) + list(set(l3))
 print(l_unique_all)
-# ['c', 'b', 'a', 'c', 'b', 'd', 'c', 'd', 'e']
+# ['c', 'b', 'a', 'c', 'd', 'b', 'c', 'd', 'e']
 
-l_uniaues_all_only = [x for x in set(l_unique_all) if l_unique_all.count(x) == 1]
-print(l_uniaues_all_only)
+print([x for x in set(l_unique_all) if l_unique_all.count(x) == 1])
 # ['a', 'e']
 
-l1_l2_or = set(l1 + l2)
-print(l1_l2_or)
-# {'c', 'b', 'a', 'd'}
+l1 = ['a', 'b', 'c']
+l2 = ['b', 'c', 'd']
+l3 = ['c', 'd', 'e']
 
-print(list(l1_l2_or))
-# ['c', 'b', 'a', 'd']
+print(set(l1 + l2))
+# {'c', 'd', 'b', 'a'}
 
-print(len(l1_l2_or))
-# 4
-
-l1_l2_l3_or = set(l1 + l2 + l3)
-print(l1_l2_l3_or)
-# {'d', 'b', 'a', 'c', 'e'}
+print(set(l1 + l2 + l3))
+# {'c', 'd', 'a', 'b', 'e'}
