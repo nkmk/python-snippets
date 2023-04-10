@@ -40,46 +40,40 @@ with open(path) as f:
 # ['line 1\n', 'line 2\n', 'line 3']
 
 with open(path) as f:
-    l_strip = [s.strip() for s in f.readlines()]
+    l_strip = [s.rstrip() for s in f.readlines()]
     print(l_strip)
 # ['line 1', 'line 2', 'line 3']
 
 with open(path) as f:
-    l = f.readlines()
-    print(l[1])
-# line 2
-#
-
-with open(path) as f:
     for s_line in f:
-        print(s_line)
-# line 1
-#
-# line 2
-#
-# line 3
-#
+        print(repr(s_line))
+# 'line 1\n'
+# 'line 2\n'
+# 'line 3'
 
 with open(path) as f:
-    s_line = f.readline()
-    print(s_line)
-# line 1
-#
+    print(repr(next(f)))
+    print(repr(next(f)))
+    print(repr(next(f)))
+#     print(repr(next(f)))
+#     StopIteration:
+# 'line 1\n'
+# 'line 2\n'
+# 'line 3'
 
 with open(path) as f:
-    while True:
-        s_line = f.readline()
-        print(s_line)
-        if not s_line:
-            break
-# line 1
-#
-# line 2
-#
-# line 3
-#
+    print(repr(f.readline()))
+    print(repr(f.readline()))
+    print(repr(f.readline()))
+    print(repr(f.readline()))
+    print(repr(f.readline()))
+# 'line 1\n'
+# 'line 2\n'
+# 'line 3'
+# ''
+# ''
 
-path_w = 'data/src/test_w.txt'
+path_w = 'data/temp/test_w.txt'
 
 s = 'New file'
 
@@ -159,21 +153,21 @@ with open(path_w) as f:
 # Four
 
 with open(path_w, mode='r+') as f:
-    f.write('123456')
+    f.write('12345')
 
 with open(path_w) as f:
     print(f.read())
-# 123456o
+# 12345wo
 # ThreeFour
 # Four
 
 with open(path_w, mode='r+') as f:
     f.seek(3)
-    f.write('-')
+    f.write('---')
 
 with open(path_w) as f:
     print(f.read())
-# 123-56o
+# 123---o
 # ThreeFour
 # Four
 
@@ -188,6 +182,6 @@ with open(path_w, mode='w') as f:
 with open(path_w) as f:
     print(f.read())
 # FIRST
-# 123-56o
+# 123---o
 # ThreeFour
 # Four
