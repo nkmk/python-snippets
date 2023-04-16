@@ -1,15 +1,14 @@
-import PyPDF2
+import pypdf
 
-merger = PyPDF2.PdfFileMerger()
+print(pypdf.__version__)
+# 3.7.1
 
-merger.append('data/src/pdf/sample1.pdf', pages=PyPDF2.pagerange.PageRange(':2'))
-
+merger = pypdf.PdfMerger()
+merger.append('data/src/pdf/sample1.pdf', pages=pypdf.PageRange(':2'))
 merger.write('data/temp/sample_split1.pdf')
 merger.close()
 
-merger = PyPDF2.PdfFileMerger()
-
-merger.append('data/src/pdf/sample1.pdf', pages=PyPDF2.pagerange.PageRange('2:'))
-
+merger = pypdf.PdfMerger()
+merger.append('data/src/pdf/sample1.pdf', pages=pypdf.PageRange('2:'))
 merger.write('data/temp/sample_split2.pdf')
 merger.close()

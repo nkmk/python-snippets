@@ -1,18 +1,20 @@
-import PyPDF2
+import pypdf
 
-pdf = PyPDF2.PdfFileReader('data/temp/Simple PDF 2.0 file.pdf')
+print(pypdf.__version__)
+# 3.7.1
 
-print(pdf.documentInfo)
+pdf = pypdf.PdfReader('data/temp/Simple PDF 2.0 file.pdf')
+print(pdf.metadata)
 # None
 
-print(type(pdf.xmpMetadata))
-# <class 'PyPDF2.xmp.XmpInformation'>
+print(type(pdf.xmp_metadata))
+# <class 'pypdf.xmp.XmpInformation'>
 
-print(pdf.xmpMetadata.dc_title)
+print(pdf.xmp_metadata.dc_title)
 # {'x-default': 'A simple PDF 2.0 example file'}
 
-print(pdf.xmpMetadata.pdf_keywords)
+print(pdf.xmp_metadata.pdf_keywords)
 # PDF 2.0 sample example
 
-print(pdf.xmpMetadata.xmp_metadataDate)
+print(pdf.xmp_metadata.xmp_metadata_date)
 # 2017-07-11 07:55:11
