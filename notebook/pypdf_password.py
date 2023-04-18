@@ -12,7 +12,7 @@ dst_pdf = pypdf.PdfWriter()
 dst_pdf.clone_reader_document_root(src_pdf)
 
 print(src_pdf.metadata)
-# {'/Title': IndirectObject(33, 0, 4365159120), '/Producer': IndirectObject(34, 0, 4365159120), '/Creator': IndirectObject(35, 0, 4365159120), '/CreationDate': IndirectObject(36, 0, 4365159120), '/ModDate': IndirectObject(36, 0, 4365159120)}
+# {'/Title': IndirectObject(33, 0, 4435217808), '/Producer': IndirectObject(34, 0, 4435217808), '/Creator': IndirectObject(35, 0, 4435217808), '/CreationDate': IndirectObject(36, 0, 4435217808), '/ModDate': IndirectObject(36, 0, 4435217808)}
 
 # dst_pdf.add_metadata(src_pdf.metadata)
 # TypeError: create_string_object should have str or unicode arg
@@ -75,7 +75,7 @@ def change_password(
     d = {key: src_pdf.metadata[key] for key in src_pdf.metadata.keys()}
     dst_pdf.add_metadata(d)
 
-    if dst_user_password:
+    if dst_user_password is not None:
         dst_pdf.encrypt(dst_user_password, dst_owner_password)
 
     dst_pdf.write(dst_path)
@@ -84,4 +84,4 @@ change_password('data/temp/sample1_pass.pdf', 'data/temp/sample1_no_pass.pdf',
                 'pass_u')
 
 change_password('data/temp/sample1_pass.pdf', 'data/temp/sample1_new_pass.pdf',
-                'pass_u', 'new_pass_u')
+                'pass_u', 'new_pass_u', 'new_pass_o')
