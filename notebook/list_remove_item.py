@@ -6,31 +6,35 @@ print(l)
 
 l = [0, 10, 20, 30, 40, 50]
 
-print(l.pop(0))
+popped_item = l.pop(0)
+print(popped_item)
 # 0
 
 print(l)
 # [10, 20, 30, 40, 50]
 
-print(l.pop(3))
+popped_item = l.pop(3)
+print(popped_item)
 # 40
 
 print(l)
 # [10, 20, 30, 50]
 
-print(l.pop(-2))
+popped_item = l.pop(-2)
+print(popped_item)
 # 30
 
 print(l)
 # [10, 20, 50]
 
-print(l.pop())
+popped_item = l.pop()
+print(popped_item)
 # 50
 
 print(l)
 # [10, 20]
 
-# print(l.pop(100))
+# popped_item = l.pop(100)
 # IndexError: pop index out of range
 
 l = ['Alice', 'Bob', 'Charlie', 'Bob', 'Dave']
@@ -91,10 +95,12 @@ print(l)
 
 l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-print([i for i in l if i % 2 == 0])
+evens = [i for i in l if i % 2 == 0]
+print(evens)
 # [0, 2, 4, 6, 8]
 
-print([i for i in l if i % 2 != 0])
+odds = [i for i in l if i % 2 != 0]
+print(odds)
 # [1, 3, 5, 7, 9]
 
 print(l)
@@ -111,4 +117,4 @@ print([s for s in l if s.endswith('e')])
 # ['Alice', 'Charlie']
 
 print(list(set(l)))
-# ['Charlie', 'Bob', 'David', 'Alice']
+# ['Alice', 'Charlie', 'David', 'Bob']
