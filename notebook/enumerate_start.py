@@ -25,7 +25,7 @@ for i, name in enumerate(l, 42):
 # 44 Charlie
 
 for i, name in enumerate(l, 1):
-    print('{:03}_{}'.format(i, name))
+    print(f'{i:03}_{name}')
 # 001_Alice
 # 002_Bob
 # 003_Charlie
