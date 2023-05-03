@@ -1,22 +1,21 @@
-org_list = [1, 2, 3, 4, 5]
+l = [1, 2, 3, 4, 5]
 
-org_list.reverse()
-print(org_list)
+l.reverse()
+print(l)
 # [5, 4, 3, 2, 1]
 
-print(org_list.reverse())
+print(l.reverse())
 # None
 
-org_list = [1, 2, 3, 4, 5]
+l = [1, 2, 3, 4, 5]
 
-reverse_iterator = reversed(org_list)
-print(org_list)
-# [1, 2, 3, 4, 5]
-
-print(type(reverse_iterator))
+print(type(reversed(l)))
 # <class 'list_reverseiterator'>
 
-for i in reversed(org_list):
+print(l)
+# [1, 2, 3, 4, 5]
+
+for i in reversed(l):
     print(i)
 # 5
 # 4
@@ -24,40 +23,42 @@ for i in reversed(org_list):
 # 2
 # 1
 
-new_list = list(reversed(org_list))
-print(org_list)
-print(new_list)
-# [1, 2, 3, 4, 5]
+l_reversed = list(reversed(l))
+print(l_reversed)
 # [5, 4, 3, 2, 1]
 
-org_list = [1, 2, 3, 4, 5]
-
-new_list = org_list[::-1]
-print(org_list)
-print(new_list)
+print(l)
 # [1, 2, 3, 4, 5]
+
+l = [1, 2, 3, 4, 5]
+
+l_reversed = l[::-1]
+print(l_reversed)
 # [5, 4, 3, 2, 1]
 
-org_str = 'abcde'
+print(l)
+# [1, 2, 3, 4, 5]
 
-new_str_list = list(reversed(org_str))
-print(new_str_list)
+s = 'abcde'
+
+s_reversed_list = list(reversed(s))
+print(s_reversed_list)
 # ['e', 'd', 'c', 'b', 'a']
 
-new_str = ''.join(list(reversed(org_str)))
-print(new_str)
+s_reversed = ''.join(list(reversed(s)))
+print(s_reversed)
 # edcba
 
-new_str = org_str[::-1]
-print(new_str)
+s_reversed = s[::-1]
+print(s_reversed)
 # edcba
 
-org_tuple = (1, 2, 3, 4, 5)
+t = (1, 2, 3, 4, 5)
 
-new_tuple = tuple(reversed(org_tuple))
-print(new_tuple)
+t_reversed = tuple(reversed(t))
+print(t_reversed)
 # (5, 4, 3, 2, 1)
 
-new_tuple = org_tuple[::-1]
-print(new_tuple)
+t_reversed = t[::-1]
+print(t_reversed)
 # (5, 4, 3, 2, 1)
