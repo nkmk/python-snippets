@@ -3,30 +3,30 @@ b = 2
 
 a, b = b, a
 
-print('a = ', a)
-print('b = ', b)
-# a =  2
-# b =  1
+print(f'{a = }')
+print(f'{b = }')
+# a = 2
+# b = 1
 
 a, b = 100, 200
 
-print('a = ', a)
-print('b = ', b)
-# a =  100
-# b =  200
+print(f'{a = }')
+print(f'{b = }')
+# a = 100
+# b = 200
 
 a, b, c, d = 0, 1, 2, 3
 
-a, b, c, d = c, d, a, b
+a, b, c, d = d, c, b, a
 
-print('a = ', a)
-print('b = ', b)
-print('c = ', c)
-print('d = ', d)
-# a =  2
-# b =  3
-# c =  0
-# d =  1
+print(f'{a = }')
+print(f'{b = }')
+print(f'{c = }')
+print(f'{d = }')
+# a = 3
+# b = 2
+# c = 1
+# d = 0
 
 l = [0, 1, 2, 3, 4]
 

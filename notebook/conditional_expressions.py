@@ -9,14 +9,14 @@ print(result)
 # even
 
 a = 1
-result = a * 2 if a % 2 == 0 else a * 3
+result = a * 10 if a % 2 == 0 else a * 100
 print(result)
-# 3
+# 100
 
 a = 2
-result = a * 2 if a % 2 == 0 else a * 3
+result = a * 10 if a % 2 == 0 else a * 100
 print(result)
-# 4
+# 20
 
 a = 1
 print('even') if a % 2 == 0 else print('odd')

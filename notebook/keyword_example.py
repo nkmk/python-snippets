@@ -20,7 +20,7 @@ print(type(keyword.kwlist[0]))
 # <class 'str'>
 
 # True = 100
-# SyntaxError: can't assign to keyword
+# SyntaxError: cannot assign to True
 
 print(keyword.iskeyword('None'))
 # True

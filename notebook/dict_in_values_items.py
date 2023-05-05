@@ -18,11 +18,18 @@ print(d['key1'])
 print(d.get('key4'))
 # None
 
+d = {'key1': 'val1', 'key2': 'val2', 'key3': 'val3'}
+
 print('val1' in d.values())
 # True
 
+print('val4' in d.values())
+# False
+
 print('val4' not in d.values())
 # True
+
+d = {'key1': 'val1', 'key2': 'val2', 'key3': 'val3'}
 
 print(('key1', 'val1') in d.items())
 # True
