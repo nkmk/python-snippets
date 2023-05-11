@@ -1,20 +1,16 @@
 import random
 
-l = list(range(5))
-print(l)
-# [0, 1, 2, 3, 4]
+l = [0, 1, 2, 3, 4]
 
 random.shuffle(l)
 print(l)
-# [1, 0, 4, 3, 2]
+# [0, 3, 2, 4, 1]
 
-l = list(range(5))
-print(l)
-# [0, 1, 2, 3, 4]
+l = [0, 1, 2, 3, 4]
 
-lr = random.sample(l, len(l))
-print(lr)
-# [0, 3, 1, 4, 2]
+l_shuffled = random.sample(l, len(l))
+print(l_shuffled)
+# [4, 3, 0, 1, 2]
 
 print(l)
 # [0, 1, 2, 3, 4]
@@ -24,28 +20,36 @@ s = 'abcde'
 # random.shuffle(s)
 # TypeError: 'str' object does not support item assignment
 
-t = tuple(range(5))
-print(t)
-# (0, 1, 2, 3, 4)
+t = (0, 1, 2, 3, 4)
 
 # random.shuffle(t)
 # TypeError: 'tuple' object does not support item assignment
 
-sr = ''.join(random.sample(s, len(s)))
-print(sr)
-# bedca
+s_shuffled = ''.join(random.sample(s, len(s)))
+print(s_shuffled)
+# aedcb
 
-tr = tuple(random.sample(t, len(l)))
-print(tr)
-# (0, 1, 2, 4, 3)
+t_shuffled = tuple(random.sample(t, len(l)))
+print(t_shuffled)
+# (4, 1, 2, 0, 3)
 
-l = list(range(5))
+l = ['apple', 'banana', 'cherry', 'date']
+
+l_shuffled = random.sample(l, len(l))
+print(l_shuffled)
+# ['cherry', 'banana', 'apple', 'date']
+
+random.shuffle(l)
+print(l)
+# ['date', 'apple', 'cherry', 'banana']
+
+l = [0, 1, 2, 3, 4]
 random.seed(0)
 random.shuffle(l)
 print(l)
 # [2, 1, 0, 4, 3]
 
-l = list(range(5))
+l = [0, 1, 2, 3, 4]
 random.seed(0)
 random.shuffle(l)
 print(l)
