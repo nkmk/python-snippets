@@ -7,7 +7,6 @@ with open('data/src/sample.csv') as f:
 # 31,32,33,34
 
 a = np.loadtxt('data/src/sample.csv', delimiter=',')
-
 print(type(a))
 # <class 'numpy.ndarray'>
 

@@ -41,11 +41,10 @@ print(l[0][0])
 print(type(l[0][0]))
 # <class 'str'>
 
-r = l[0]
-print(r)
+print(l[0])
 # ['11', '12', '13', '14']
 
-print([int(v) for v in r])
+print([int(v) for v in l[0]])
 # [11, 12, 13, 14]
 
 print([[int(v) for v in row] for row in l])

@@ -11,7 +11,6 @@ with open('data/src/sample_pandas_normal.csv') as f:
 # Frank,30,NY,57
 
 df = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
-
 print(type(df))
 # <class 'pandas.core.frame.DataFrame'>
 

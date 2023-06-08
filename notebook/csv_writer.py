@@ -12,8 +12,6 @@ with open('data/temp/sample_writer_row.csv') as f:
 # 
 
 l = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34]]
-print(l)
-# [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34]]
 
 with open('data/temp/sample_writer.csv', 'w') as f:
     writer = csv.writer(f)
@@ -42,6 +40,8 @@ with open('data/temp/sample_writer_row.csv') as f:
 # a,b,c
 # X,Y,Z
 # 
+
+l = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34]]
 
 with open('data/temp/sample_writer.tsv', 'w') as f:
     writer = csv.writer(f, delimiter='\t')
@@ -120,8 +120,6 @@ with open('data/temp/sample_writer_linebreak.csv') as f:
 # 
 
 l = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34]]
-print(l)
-# [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34]]
 
 header = ['', 'a', 'b', 'c', 'd']
 index = ['ONE', 'TWO', 'THREE']
