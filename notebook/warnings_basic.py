@@ -3,60 +3,58 @@ import pandas as pd
 
 df = pd.DataFrame([[0, 1, 2], [3, 4, 5]])
 
-df.ix[0, 0] = 0
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: FutureWarning: 
-# .ix is deprecated. Please use
-# .loc for label based indexing or
-# .iloc for positional indexing
+print(100 is 100)
+# True
 # 
-# See the documentation here:
-# http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#ix-indexer-is-deprecated
-#   """Entry point for launching an IPython kernel.
+# <>:1: SyntaxWarning: "is" with a literal. Did you mean "=="?
+# <>:1: SyntaxWarning: "is" with a literal. Did you mean "=="?
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_60077/3973932639.py:1: SyntaxWarning: "is" with a literal. Did you mean "=="?
+#   print(100 is 100)
 
 df.iloc[:1][0] = 0
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_60077/1345802814.py:1: SettingWithCopyWarning: 
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
 # 
-# See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-#   """Entry point for launching an IPython kernel.
+# See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+#   df.iloc[:1][0] = 0
 
 warnings.simplefilter('ignore')
 
-df.ix[0, 0] = 0
+print(100 is 100)
+# True
 
 df.iloc[:1][0] = 0
 
 warnings.resetwarnings()
 
-warnings.simplefilter('ignore', FutureWarning)
+warnings.simplefilter('ignore', SyntaxWarning)
 
-df.ix[0, 0] = 0
+print(100 is 100)
+# True
 
 df.iloc[:1][0] = 0
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_60077/1345802814.py:1: SettingWithCopyWarning: 
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
 # 
-# See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-#   """Entry point for launching an IPython kernel.
+# See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+#   df.iloc[:1][0] = 0
 
 warnings.resetwarnings()
 
 # warnings.simplefilter('ignore', SettingWithCopyWarning)
 # NameError: name 'SettingWithCopyWarning' is not defined
 
-warnings.simplefilter('ignore', pd.core.common.SettingWithCopyWarning)
+warnings.simplefilter('ignore', pd.errors.SettingWithCopyWarning)
 
-df.ix[0, 0] = 0
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: FutureWarning: 
-# .ix is deprecated. Please use
-# .loc for label based indexing or
-# .iloc for positional indexing
+print(100 is 100)
+# True
 # 
-# See the documentation here:
-# http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#ix-indexer-is-deprecated
-#   """Entry point for launching an IPython kernel.
+# <>:1: SyntaxWarning: "is" with a literal. Did you mean "=="?
+# <>:1: SyntaxWarning: "is" with a literal. Did you mean "=="?
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_60077/3973932639.py:1: SyntaxWarning: "is" with a literal. Did you mean "=="?
+#   print(100 is 100)
 
 df.iloc[:1][0] = 0
 
@@ -64,15 +62,16 @@ warnings.resetwarnings()
 
 warnings.simplefilter('error')
 
-# df.ix[0, 0] = 0
-# FutureWarning: ...
+# print(100 is 100)
+# SyntaxError: "is" with a literal. Did you mean "=="?
 
 warnings.resetwarnings()
 
-warnings.simplefilter('ignore', FutureWarning)
-warnings.simplefilter('error', pd.core.common.SettingWithCopyWarning)
+warnings.simplefilter('ignore', SyntaxWarning)
+warnings.simplefilter('error', pd.errors.SettingWithCopyWarning)
 
-df.ix[0, 0] = 0
+print(100 is 100)
+# True
 
 # df.iloc[:1][0] = 0
 # SettingWithCopyWarning: ...
@@ -81,14 +80,15 @@ warnings.resetwarnings()
 
 with warnings.catch_warnings():
     warnings.simplefilter('ignore')
-    df.ix[0, 0] = 0
+    df.iloc[:1][0] = 0
 
-df.ix[0, 0] = 0
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: FutureWarning: 
-# .ix is deprecated. Please use
-# .loc for label based indexing or
-# .iloc for positional indexing
+df.iloc[:1][0] = 0
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_60077/1345802814.py:1: SettingWithCopyWarning: 
+# A value is trying to be set on a copy of a slice from a DataFrame.
+# Try using .loc[row_indexer,col_indexer] = value instead
 # 
-# See the documentation here:
-# http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#ix-indexer-is-deprecated
-#   """Entry point for launching an IPython kernel.
+# See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+#   df.iloc[:1][0] = 0
+
+with warnings.catch_warnings(action='ignore', category=pd.errors.SettingWithCopyWarning):
+    df.iloc[:1][0] = 0
