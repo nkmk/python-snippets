@@ -1,84 +1,83 @@
-a_l = [0, 1, 2]
-b_l = [10, 20, 30]
+l1 = [1, 2, 3]
+l2 = [10, 20, 30]
 
-a_t = (0, 1, 2)
-b_t = (10, 20, 30)
+t1 = (1, 2, 3)
+t2 = (10, 20, 30)
 
-a_s = 'abc'
-b_s = 'xyz'
+s1 = 'abc'
+s2 = 'xyz'
 
-print(a_l + b_l)
-# [0, 1, 2, 10, 20, 30]
+print(l1 + l2)
+# [1, 2, 3, 10, 20, 30]
 
-print(a_t + b_t)
-# (0, 1, 2, 10, 20, 30)
+print(t1 + t2)
+# (1, 2, 3, 10, 20, 30)
 
-print(a_s + b_s)
+print(s1 + s2)
 # abcxyz
 
-# print(a_l + 3)
+# print(l1 + 4)
 # TypeError: can only concatenate list (not "int") to list
 
-print(a_l + [3])
-# [0, 1, 2, 3]
+print(l1 + [4])
+# [1, 2, 3, 4]
 
-# print(a_t + (3))
+# print(t1 + 4)
 # TypeError: can only concatenate tuple (not "int") to tuple
 
-print(a_t + (3, ))
-# (0, 1, 2, 3)
+print(t1 + (4,))
+# (1, 2, 3, 4)
 
-a_l += b_l
-print(a_l)
-# [0, 1, 2, 10, 20, 30]
+l1 += l2
+print(l1)
+# [1, 2, 3, 10, 20, 30]
 
-a_t += b_t
-print(a_t)
-# (0, 1, 2, 10, 20, 30)
+t1 += t2
+print(t1)
+# (1, 2, 3, 10, 20, 30)
 
-a_s += b_s
-print(a_s)
+s1 += s2
+print(s1)
 # abcxyz
 
-print(b_l * 3)
-# [10, 20, 30, 10, 20, 30, 10, 20, 30]
+l = [1, 10, 100]
+t = (1, 10, 100)
+s = 'Abc'
 
-print(3 * b_l)
-# [10, 20, 30, 10, 20, 30, 10, 20, 30]
+print(l * 3)
+# [1, 10, 100, 1, 10, 100, 1, 10, 100]
 
-print(b_t * 3)
-# (10, 20, 30, 10, 20, 30, 10, 20, 30)
+print(t * 3)
+# (1, 10, 100, 1, 10, 100, 1, 10, 100)
 
-print(3 * b_t)
-# (10, 20, 30, 10, 20, 30, 10, 20, 30)
+print(s * 3)
+# AbcAbcAbc
 
-print(b_s * 3)
-# xyzxyzxyz
+print(3 * l)
+# [1, 10, 100, 1, 10, 100, 1, 10, 100]
 
-print(3 * b_s)
-# xyzxyzxyz
-
-# print(b_l * 0.5)
+# print(l * 0.5)
 # TypeError: can't multiply sequence by non-int of type 'float'
 
-print(b_l * -1)
+print(l * -1)
 # []
 
-b_l *= 3
-print(b_l)
-# [10, 20, 30, 10, 20, 30, 10, 20, 30]
+l *= 3
+print(l)
+# [1, 10, 100, 1, 10, 100, 1, 10, 100]
 
-b_t *= 3
-print(b_t)
-# (10, 20, 30, 10, 20, 30, 10, 20, 30)
+t *= 3
+print(t)
+# (1, 10, 100, 1, 10, 100, 1, 10, 100)
 
-b_s *= 3
-print(b_s)
-# xyzxyzxyz
+s *= 3
+print(s)
+# AbcAbcAbc
 
-a_l = [0, 1, 2]
-b_l = [10, 20, 30]
+l1 = [1, 2, 3]
+l2 = [10, 20, 30]
+print(l1 + l2 * 2)
+# [1, 2, 3, 10, 20, 30, 10, 20, 30]
 
-c_l = a_l + b_l * 3
-print(c_l)
-# [0, 1, 2, 10, 20, 30, 10, 20, 30, 10, 20, 30]
+print((l1 + l2) * 2)
+# [1, 2, 3, 10, 20, 30, 1, 2, 3, 10, 20, 30]
