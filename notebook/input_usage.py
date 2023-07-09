@@ -16,8 +16,8 @@ print(val)
 print(type(val))
 # <class 'str'>
 
-val = input('Enter number: ')
-# Enter number: 100
+val = input('Enter an integer: ')
+# Enter an integer: 100
 
 print(val)
 # 100
@@ -25,7 +25,8 @@ print(val)
 print(type(val))
 # <class 'str'>
 
-i = int(val)
+i = int(input('Enter an integer: '))
+# Enter an integer: 100
 
 print(i)
 # 100
@@ -33,61 +34,58 @@ print(i)
 print(type(i))
 # <class 'int'>
 
-f = float(val)
-
-print(f)
-# 100.0
-
-print(type(f))
-# <class 'float'>
-
-val = input('Enter number: ')
-# Enter number: abc
-
-print(val)
-# abc
-
-# i = int(val)
+# i = int(input('Enter an integer: '))
+# Enter an integer: abc
 # ValueError: invalid literal for int() with base 10: 'abc'
 
 try:
-    i = int(val)
+    i = int(input('Enter an integer: '))
 except ValueError:
     i = 0
+# Enter an integer: abc
 
 print(i)
 # 0
 
-val_1 = input('Enter 1st value: ')
-val_2 = input('Enter 2nd value: ')
-val_3 = input('Enter 3rd value: ')
-# Enter 1st value: x
-# Enter 2nd value: y
-# Enter 3rd value: z
+while True:
+    try:
+        i = int(input('Enter an integer: '))
+        break
+    except ValueError:
+        print('Invalid input!')
+# Enter an integer: abc
+# Invalid input!
+# Enter an integer: 100
 
-print(val_1)
-# x
+print(i)
+# 100
 
-print(val_2)
-# y
+l = []
 
-print(val_3)
-# z
+l.append(input('Enter the first value: '))
+l.append(input('Enter the second value: '))
+l.append(input('Enter the third value: '))
+# Enter the first value: x
+# Enter the second value: y
+# Enter the third value: z
+
+print(l)
+# ['x', 'y', 'z']
 
 l = []
 
 print('Enter "over" then finish')
 while True:
-    val = input('Enter value: ')
+    val = input('Enter a value: ')
     if val == 'over':
         print('FINISH')
         break
     l.append(val)
 # Enter "over" then finish
-# Enter value: x
-# Enter value: y
-# Enter value: z
-# Enter value: over
+# Enter a value: x
+# Enter a value: y
+# Enter a value: z
+# Enter a value: over
 # FINISH
 
 print(l)
@@ -102,39 +100,38 @@ l = list(iter(input, 'over'))
 print(l)
 # ['x', 'y', 'z']
 
-l = list(iter(lambda: input('Enter value: '), 'over'))
-# Enter value: x
-# Enter value: y
-# Enter value: z
-# Enter value: over
+l = list(iter(lambda: input('Enter a value: '), 'over'))
+# Enter a value: x
+# Enter a value: y
+# Enter a value: z
+# Enter a value: over
 
 print(l)
 # ['x', 'y', 'z']
 
-s = '\n'.join(iter(input, ''))
-# line1
-# line2
-# line3
-# 
-
-print(s)
-# line1
-# line2
-# line3
-
-print(type(s))
-# <class 'str'>
-
-val = input('Enter values separated by comma: ')
-# Enter values separated by comma: x,y,z
+val = input('Enter values separated by commas: ')
+# Enter values separated by commas: x,y,z
 
 print(val)
 # x,y,z
 
 l = val.split(',')
-
 print(l)
 # ['x', 'y', 'z']
 
 print(type(l))
 # <class 'list'>
+
+s = '\n'.join(iter(input, ''))
+# Line1
+# Line2
+# Line3
+# 
+
+print(s)
+# Line1
+# Line2
+# Line3
+
+print(type(s))
+# <class 'str'>
