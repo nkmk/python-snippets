@@ -48,6 +48,9 @@ os.environ['NEW_KEY'] = '100'
 print(os.environ.pop('NEW_KEY'))
 # 100
 
+print(os.getenv('NEW_KEY'))
+# None
+
 # print(os.environ.pop('NEW_KEY'))
 # KeyError: 'NEW_KEY'
 
@@ -55,9 +58,6 @@ print(os.environ.pop('NEW_KEY', None))
 # None
 
 os.environ['NEW_KEY'] = '100'
-
-print(os.getenv('NEW_KEY'))
-# 100
 
 del os.environ['NEW_KEY']
 
@@ -71,23 +71,14 @@ print(os.getenv('LANG'))
 # ja_JP.UTF-8
 
 print(subprocess.check_output('date', encoding='utf-8'))
-# 2018年 7月12日 木曜日 20時54分13秒 JST
+# 2023年 7月 9日 日曜日 22時47分58秒 JST
 # 
 
 os.environ['LANG'] = 'en_US'
 
 print(subprocess.check_output('date', encoding='utf-8'))
-# Thu Jul 12 20:54:13 JST 2018
+# Sun Jul  9 22:47:58 JST 2023
 # 
-
-print(os.getenv('LANG'))
-# en_US
-
-if os.getenv('LANG').startswith('ja'):
-    print('こんにちは')
-else:
-    print('Hello')
-# Hello
 
 os.environ['LANG'] = 'ja_JP'
 
@@ -96,3 +87,11 @@ if os.getenv('LANG').startswith('ja'):
 else:
     print('Hello')
 # こんにちは
+
+os.environ['LANG'] = 'en_US'
+
+if os.getenv('LANG').startswith('ja'):
+    print('こんにちは')
+else:
+    print('Hello')
+# Hello
