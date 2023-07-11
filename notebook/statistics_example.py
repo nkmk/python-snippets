@@ -1,85 +1,80 @@
 import statistics
 import math
 
+l = [1, 3, 8, 15]
+
+print(statistics.mean(l))
+# 6.75
+
+print(sum(l) / len(l))
+# 6.75
+
+l = [3, 1, 8]
+
+print(statistics.median(l))
+# 3
+
+print(statistics.median_low(l))
+# 3
+
+print(statistics.median_high(l))
+# 3
+
+l = [3, 1, 8, 15]
+
+print(statistics.median(l))
+# 5.5
+
+print(statistics.median_low(l))
+# 3
+
+print(statistics.median_high(l))
+# 8
+
+l = [3, 2, 3, 2, 1, 2]
+
+print(statistics.mode(l))
+# 2
+
+print(statistics.multimode(l))
+# [2]
+
+l = [3, 2, 3, 2, 1, 2, 3]
+
+print(statistics.mode(l))
+# 3
+
+print(statistics.multimode(l))
+# [3, 2]
+
 l = [10, 1, 3, 7, 1]
 
-mean = statistics.mean(l)
-print(mean)
-# 4.4
-
-my_mean = sum(l) / len(l)
-print(my_mean)
-# 4.4
-
-harmonic_mean = statistics.harmonic_mean(l)
-print(harmonic_mean)
-# 1.9408502772643252
-
-my_harmonic_mean = len(l) / sum(1 / x for x in l)
-print(my_harmonic_mean)
-# 1.9408502772643255
-
-median = statistics.median(l)
-print(median)
-# 3
-
-l_even = [10, 1, 3, 7, 1, 6]
-
-median = statistics.median(l_even)
-print(median)
-# 4.5
-
-median_low = statistics.median_low(l_even)
-print(median_low)
-# 3
-
-median_high = statistics.median_high(l_even)
-print(median_high)
-# 6
-
-print(statistics.median_high(l) == statistics.median_low(l) == statistics.median(l))
-# True
-
-mode = statistics.mode(l)
-print(mode)
-# 1
-
-l_mode_error = [1, 2, 3, 4, 5]
-
-# mode = statistics.mode(l_mode_error)
-# StatisticsError: no unique mode; found 5 equally common values
-
-l_mode_error = [1, 1, 1, 2, 2, 2, 3]
-
-# mode = statistics.mode(l_mode_error)
-# StatisticsError: no unique mode; found 2 equally common values
-
-pvariance = statistics.pvariance(l)
-print(pvariance)
+print(statistics.pvariance(l))
 # 12.64
 
-my_pvariance = sum((x - sum(l) / len(l))**2 for x in l) / len(l)
-print(my_pvariance)
+print(sum((x - sum(l) / len(l)) ** 2 for x in l) / len(l))
 # 12.64
 
-pstdev = statistics.pstdev(l)
-print(pstdev)
-# 3.5552777669262356
+l = [10, 1, 3, 7, 1]
 
-print(math.sqrt(pvariance))
-# 3.5552777669262356
-
-variance = statistics.variance(l)
-print(variance)
+print(statistics.variance(l))
 # 15.8
 
-my_variance = sum((x - sum(l) / len(l))**2 for x in l) / (len(l) - 1)
-print(my_variance)
+print(sum((x - sum(l) / len(l)) ** 2 for x in l) / (len(l) - 1))
 # 15.8
 
-stdev = statistics.stdev(l)
-print(stdev)
+l = [10, 1, 3, 7, 1]
+
+print(statistics.pstdev(l))
+# 3.5552777669262356
+
+print(math.sqrt(statistics.pvariance(l)))
+# 3.5552777669262356
+
+l = [10, 1, 3, 7, 1]
+
+print(statistics.stdev(l))
 # 3.9749213828703582
 
-print(math.sqrt(variance))
+print(math.sqrt(statistics.variance(l)))
 # 3.9749213828703582
