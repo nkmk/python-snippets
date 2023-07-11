@@ -13,20 +13,8 @@ sin30 = math.sin(math.radians(30))
 print(sin30)
 # 0.49999999999999994
 
-print(round(sin30, 3))
-print(type(round(sin30, 3)))
+print(round(sin30, 1))
 # 0.5
-# <class 'float'>
-
-print('{:.3}'.format(sin30))
-print(type('{:.3}'.format(sin30)))
-# 0.5
-# <class 'str'>
-
-print(format(sin30, '.3'))
-print(type(format(sin30, '.3')))
-# 0.5
-# <class 'str'>
 
 print(math.isclose(sin30, 0.5))
 # True
@@ -35,7 +23,7 @@ asin05 = math.degrees(math.asin(0.5))
 print(asin05)
 # 29.999999999999996
 
-print(round(asin05, 3))
+print(round(asin05, 1))
 # 30.0
 
 print(math.cos(math.radians(60)))
