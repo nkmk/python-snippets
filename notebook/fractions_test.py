@@ -12,8 +12,11 @@ print(Fraction(3))
 print(Fraction(0.25))
 # 1/4
 
-print(Fraction(0.33))
-# 5944751508129055/18014398509481984
+print(Fraction(0.3333333333333333))
+# 6004799503160661/18014398509481984
+
+print(Fraction(0.3333333333333333).limit_denominator())
+# 1/3
 
 print(Fraction('2/5'))
 # 2/5
@@ -36,33 +39,30 @@ print(type(a.denominator))
 # <class 'int'>
 
 # a.numerator = 7
-# AttributeError: can't set attribute
+# AttributeError: property 'numerator' of 'Fraction' object has no setter
 
-result = Fraction(1, 6) ** 2 + Fraction(1, 3) / Fraction(1, 2)
-print(result)
-print(type(result))
-# 25/36
-# <class 'fractions.Fraction'>
+print(Fraction(1, 2) + Fraction(1, 3))
+# 5/6
+
+print(Fraction(1, 2) / Fraction(1, 3))
+# 3/2
+
+print(Fraction(1, 6) ** 2 + Fraction(1, 2) * Fraction(1, 3))
+# 7/36
 
 print(Fraction(7, 13) > Fraction(8, 15))
 # True
 
-a_f = float(a)
-print(a_f)
-print(type(a_f))
-# 0.3333333333333333
-# <class 'float'>
+print(float(Fraction(1, 5)))
+# 0.2
 
-b = a + 0.1
-print(b)
-print(type(b))
-# 0.43333333333333335
-# <class 'float'>
+print(Fraction(1, 5) * 0.5)
+# 0.1
 
-a_s = str(a)
-print(a_s)
-print(type(a_s))
+print(str(Fraction(1, 3)))
 # 1/3
+
+print(type(str(Fraction(1, 3))))
 # <class 'str'>
 
 pi = Fraction(3.14159265359)
@@ -87,18 +87,16 @@ print(e.limit_denominator(1000))
 # 193/71
 # 1457/536
 
-a = Fraction(0.565656565656)
+a = Fraction(0.3333333333333333)
 print(a)
-# 636872674577009/1125899906842624
+# 6004799503160661/18014398509481984
 
 print(a.limit_denominator())
-# 56/99
-
-a = Fraction(0.3333)
-print(a)
-# 6004199023210345/18014398509481984
-
-print(a.limit_denominator())
-print(a.limit_denominator(100))
-# 3333/10000
 # 1/3
+
+a = Fraction(0.14285714285714285)
+print(a)
+# 2573485501354569/18014398509481984
+
+print(a.limit_denominator())
+# 1/7
