@@ -16,7 +16,7 @@ print(pow(1 + 1j, 2))
 # 2j
 
 # print(math.pow(1 + 1j, 2))
-# TypeError: can't convert complex to float
+# TypeError: must be real number, not complex
 
 print(pow(2, 4, 5))
 # 1
@@ -30,13 +30,13 @@ print(math.sqrt(2))
 print(2**0.5 == math.sqrt(2))
 # True
 
-print((-3 + 4j)**0.5)
+print((-3 + 4j) ** 0.5)
 # (1.0000000000000002+2j)
 
 # print(math.sqrt(-3 + 4j))
-# TypeError: can't convert complex to float
+# TypeError: must be real number, not complex
 
-print((-1)**0.5)
+print((-1) ** 0.5)
 # (6.123233995736766e-17+1j)
 
 # print(math.sqrt(-1))
