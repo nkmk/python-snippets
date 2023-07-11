@@ -1,75 +1,54 @@
-s = {1, 2, 2, 3, 1, 4}
-
+s = {3, 1, 2, 2, 3, 1, 4}
 print(s)
-print(type(s))
 # {1, 2, 3, 4}
+
+print(type(s))
 # <class 'set'>
 
-s = {1.23, 'abc', (0, 1, 2), 'abc'}
-
+s = {1.23, 'abc', (0, 1, 2)}
 print(s)
 # {(0, 1, 2), 1.23, 'abc'}
 
 # s = {[0, 1, 2]}
 # TypeError: unhashable type: 'list'
 
-s = {100, 100.0}
-
+s = {1, 1.0, True}
 print(s)
-# {100}
+# {1}
 
 s = {}
-
 print(s)
-print(type(s))
 # {}
+
+print(type(s))
 # <class 'dict'>
 
-l = [1, 2, 2, 3, 1, 4]
-
-print(l)
-print(type(l))
-# [1, 2, 2, 3, 1, 4]
-# <class 'list'>
-
-s_l = set(l)
-
-print(s_l)
-print(type(s_l))
-# {1, 2, 3, 4}
-# <class 'set'>
-
-fs_l = frozenset(l)
-
-print(fs_l)
-print(type(fs_l))
-# frozenset({1, 2, 3, 4})
-# <class 'frozenset'>
-
 s = set()
-
 print(s)
-print(type(s))
 # set()
+
+print(type(s))
 # <class 'set'>
-
-l = [2, 2, 3, 1, 3, 4]
-
-l_unique = list(set(l))
-print(l_unique)
-# [1, 2, 3, 4]
 
 s = {i**2 for i in range(5)}
-
 print(s)
 # {0, 1, 4, 9, 16}
 
-s = {1, 2, 2, 3, 1, 4}
-
-print(s)
-print(len(s))
+l = [2, 2, 3, 1, 3, 4]
+print(set(l))
 # {1, 2, 3, 4}
-# 4
+
+t = (2, 2, 3, 1, 3, 4)
+print(set(t))
+# {1, 2, 3, 4}
+
+s = {1, 2, 3}
+
+print(list(s))
+# [1, 2, 3]
+
+print(tuple(s))
+# (1, 2, 3)
 
 s = {0, 1, 2}
 
@@ -83,11 +62,9 @@ s.discard(1)
 print(s)
 # {0, 2}
 
-s = {0, 1, 2}
-
 s.discard(10)
 print(s)
-# {0, 1, 2}
+# {0, 2}
 
 s = {0, 1, 2}
 
@@ -95,32 +72,21 @@ s.remove(1)
 print(s)
 # {0, 2}
 
-# s = {0, 1, 2}
-
 # s.remove(10)
 # KeyError: 10
 
-s = {2, 1, 0}
+s = {0, 1, 2}
 
 v = s.pop()
+print(v)
+# 0
 
 print(s)
-print(v)
 # {1, 2}
-# 0
 
-s = {2, 1, 0}
+s = set()
 
-print(s.pop())
-# 0
-
-print(s.pop())
-# 1
-
-print(s.pop())
-# 2
-
-# print(s.pop())
+# v = s.pop()
 # KeyError: 'pop from an empty set'
 
 s = {0, 1, 2}
@@ -133,53 +99,85 @@ s1 = {0, 1, 2}
 s2 = {1, 2, 3}
 s3 = {2, 3, 4}
 
-s_union = s1 | s2
-print(s_union)
+print(s1 | s2)
 # {0, 1, 2, 3}
 
-s_union = s1.union(s2)
-print(s_union)
+print(s1.union(s2))
 # {0, 1, 2, 3}
 
-s_union = s1.union(s2, s3)
-print(s_union)
+print(s1.union(s2, s3))
 # {0, 1, 2, 3, 4}
 
-s_union = s1.union(s2, [5, 6, 5, 7, 5])
-print(s_union)
+print(s1.union(s2, [5, 6, 5, 7, 5]))
 # {0, 1, 2, 3, 5, 6, 7}
 
-s_intersection = s1 & s2
-print(s_intersection)
+s1 |= s2
+print(s1)
+# {0, 1, 2, 3}
+
+s2.update(s3)
+print(s2)
+# {1, 2, 3, 4}
+
+s1 = {0, 1, 2}
+s2 = {1, 2, 3}
+s3 = {2, 3, 4}
+
+print(s1 & s2)
 # {1, 2}
 
-s_intersection = s1.intersection(s2)
-print(s_intersection)
+print(s1.intersection(s2))
 # {1, 2}
 
-s_intersection = s1.intersection(s2, s3)
-print(s_intersection)
+print(s1.intersection(s2, s3))
 # {2}
 
-s_difference = s1 - s2
-print(s_difference)
+s1 &= s2
+print(s1)
+# {1, 2}
+
+s2.intersection_update(s3)
+print(s2)
+# {2, 3}
+
+s1 = {0, 1, 2}
+s2 = {1, 2, 3}
+s3 = {2, 3, 4}
+
+print(s1 - s2)
 # {0}
 
-s_difference = s1.difference(s2)
-print(s_difference)
+print(s1.difference(s2))
 # {0}
 
-s_difference = s1.difference(s2, s3)
-print(s_difference)
+print(s1.difference(s2, s3))
 # {0}
 
-s_symmetric_difference = s1 ^ s2
-print(s_symmetric_difference)
+s1 -= s2
+print(s1)
+# {0}
+
+s2.difference_update(s3)
+print(s2)
+# {1}
+
+s1 = {0, 1, 2}
+s2 = {1, 2, 3}
+s3 = {2, 3, 4}
+
+print(s1 ^ s2)
 # {0, 3}
 
-s_symmetric_difference = s1.symmetric_difference(s2)
-print(s_symmetric_difference)
+print(s1.symmetric_difference(s2))
 # {0, 3}
+
+s1 ^= s2
+print(s1)
+# {0, 3}
+
+s2.symmetric_difference_update(s3)
+print(s2)
+# {1, 4}
 
 s1 = {0, 1}
 s2 = {0, 1, 2, 3}
