@@ -1,118 +1,128 @@
-l = list('abcde')
-print(l)
-# ['a', 'b', 'c', 'd', 'e']
+l = [30, 50, 10, 40, 20]
 
-print(l.index('a'))
+print(l.index(30))
 # 0
 
-print(l.index('c'))
-# 2
+print(l.index(20))
+# 4
 
-# print(l.index('x'))
-# ValueError: 'x' is not in list
+# print(l.index(100))
+# ValueError: 100 is not in list
 
-def my_index(l, x, default=False):
+def my_find(l, x):
     if x in l:
         return l.index(x)
     else:
-        return default
+        return -1
 
-print(my_index(l, 'd'))
-# 3
+l = [30, 50, 10, 40, 20]
 
-print(my_index(l, 'x'))
-# False
-
-print(my_index(l, 'x', -1))
-# -1
-
-l_dup = list('abcba')
-print(l_dup)
-# ['a', 'b', 'c', 'b', 'a']
-
-print(l_dup.index('a'))
+print(my_find(l, 30))
 # 0
 
-print(l_dup.index('b'))
-# 1
+print(my_find(l, 100))
+# -1
 
-print([i for i, x in enumerate(l_dup) if x == 'a'])
-# [0, 4]
+def my_find2(l, x):
+    return l.index(x) if x in l else -1
 
-print([i for i, x in enumerate(l_dup) if x == 'b'])
-# [1, 3]
+print(my_find2(l, 30))
+# 0
 
-print([i for i, x in enumerate(l_dup) if x == 'c'])
-# [2]
+print(my_find2(l, 100))
+# -1
 
-print([i for i, x in enumerate(l_dup) if x == 'x'])
+l = [10, 30, 10, 10, 20, 20]
+
+print(l.index(10))
+# 0
+
+print(l.index(20))
+# 4
+
+print([i for i, x in enumerate(l) if x == 10])
+# [0, 2, 3]
+
+print([i for i, x in enumerate(l) if x == 20])
+# [4, 5]
+
+print([i for i, x in enumerate(l) if x == 30])
+# [1]
+
+print([i for i, x in enumerate(l) if x == 100])
 # []
 
 def my_index_multi(l, x):
     return [i for i, _x in enumerate(l) if _x == x]
 
-print(my_index_multi(l_dup, 'a'))
-# [0, 4]
+print(my_index_multi(l, 10))
+# [0, 2, 3]
 
-print(my_index_multi(l_dup, 'c'))
-# [2]
+print(my_index_multi(l, 20))
+# [4, 5]
 
-print(my_index_multi(l_dup, 'x'))
+print(my_index_multi(l, 30))
+# [1]
+
+print(my_index_multi(l, 100))
 # []
 
-t = tuple('abcde')
-print(t)
-# ('a', 'b', 'c', 'd', 'e')
+l = [10, 30, 10, 10, 20, 20]
+
+print(l.index(10))
+# 0
+
+print(l.index(10, 2))
+# 2
+
+# print(l.index(20, 2, 4))
+# ValueError: 20 is not in list
+
+print(l.index(20, 2, 5))
+# 4
+
+print(l[2:])
+# [10, 10, 20, 20]
+
+print(l[2:].index(10))
+# 0
+
+print(l[2:5])
+# [10, 10, 20]
+
+print(l[2:5].index(20))
+# 2
+
+t = ('c', 'a', 'a', 'b', 'c')
 
 print(t.index('a'))
-# 0
+# 1
 
 # print(t.index('x'))
 # ValueError: tuple.index(x): x not in tuple
 
-print(my_index(t, 'c'))
-# 2
+print(my_find(t, 'a'))
+# 1
 
-print(my_index(t, 'x'))
-# False
-
-t_dup = tuple('abcba')
-print(t_dup)
-# ('a', 'b', 'c', 'b', 'a')
-
-print(my_index_multi(t_dup, 'a'))
-# [0, 4]
-
-def my_index2(l, x, default=False):
-    return l.index(x) if x in l else default
-
-print(my_index2(l, 'd'))
-# 3
-
-print(my_index2(l, 'x'))
-# False
-
-print(my_index2(l, 'x', -1))
+print(my_find(t, 'x'))
 # -1
 
-l = [30, 40, 20, 0, 10]
+print(my_index_multi(t, 'a'))
+# [1, 2]
+
+print(my_index_multi(t, 'x'))
+# []
+
+l = [10, 30, 10, 10, 20, 20]
 
 print(l.index(max(l)))
 # 1
 
 print(l.index(min(l)))
-# 3
-
-l_dup = [0, 40, 20, 0, 40]
-
-print(l_dup.index(max(l_dup)))
-# 1
-
-print(l_dup.index(min(l_dup)))
 # 0
 
-print(my_index_multi(l_dup, max(l_dup)))
-# [1, 4]
+print(my_index_multi(l, max(l)))
+# [1]
 
-print(my_index_multi(l_dup, min(l_dup)))
-# [0, 3]
+print(my_index_multi(l, min(l)))
+# [0, 2, 3]
