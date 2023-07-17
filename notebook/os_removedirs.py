@@ -1,16 +1,30 @@
 import os
+from pathlib import Path
 
-os.makedirs('temp/dir1/dir2/dir3/', exist_ok=True)
+os.chdir('data/temp')
 
-with open('temp/file.txt', 'w') as f:
-    f.write('')
+p = Path('temp')
+p.joinpath('dir1/dir2/dir3').mkdir(parents=True, exist_ok=True)
+p.joinpath('dir1/file.txt').touch()
 
-print(os.listdir('temp/'))
-# ['file.txt', 'dir1']
+!tree temp -nF
+# temp/
+# └── dir1/
+#     ├── dir2/
+#     │   └── dir3/
+#     └── file.txt
+# 
+# 4 directories, 1 file
 
-os.removedirs('temp/dir1/dir2/dir3/')
+os.removedirs('temp/dir1/dir2/dir3')
 
-print(os.listdir('temp/'))
-# ['file.txt']
+!tree temp -nF
+# temp/
+# └── dir1/
+#     └── file.txt
+# 
+# 2 directories, 1 file
 
-os.remove('temp/file.txt')
+import shutil
+
+shutil.rmtree('temp')
