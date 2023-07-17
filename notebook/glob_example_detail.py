@@ -1,13 +1,44 @@
-import util_make_files
+import os
+from pathlib import Path
 
-util_make_files.glob_example_detail()
+os.chdir('data/temp')
+
+p = Path('temp')
+p.joinpath('dir/sub_dir1').mkdir(parents=True, exist_ok=True)
+p.joinpath('dir/sub_dir2').mkdir(parents=True, exist_ok=True)
+p.joinpath('aaa.jpg').touch()
+p.joinpath('1.txt').touch()
+p.joinpath('12.jpg').touch()
+p.joinpath('123.txt').touch()
+p.joinpath('[x].txt').touch()
+p.joinpath('dir/bbb.txt').touch()
+p.joinpath('dir/987.jpg').touch()
+p.joinpath('dir/sub_dir1/98.txt').touch()
+p.joinpath('dir/sub_dir1/ccc.jpg').touch()
+p.joinpath('dir/sub_dir2/ddd.jpg').touch()
+
+!tree temp -nF  # Only works in Jupyter Notebook
+# temp/
+# ├── 1.txt
+# ├── 12.jpg
+# ├── 123.txt
+# ├── [x].txt
+# ├── aaa.jpg
+# └── dir/
+#     ├── 987.jpg
+#     ├── bbb.txt
+#     ├── sub_dir1/
+#     │   ├── 98.txt
+#     │   └── ccc.jpg
+#     └── sub_dir2/
+#         └── ddd.jpg
+# 
+# 4 directories, 10 files
 
 import glob
-import re
 import os
 
 l = glob.glob('temp/*.txt')
-
 print(l)
 # ['temp/[x].txt', 'temp/1.txt', 'temp/123.txt']
 
@@ -15,66 +46,68 @@ print(type(l))
 # <class 'list'>
 
 print(glob.glob('temp/*'))
-# ['temp/[x].txt', 'temp/aaa.text', 'temp/dir', 'temp/1.txt', 'temp/12.text', 'temp/123.txt']
+# ['temp/[x].txt', 'temp/12.jpg', 'temp/aaa.jpg', 'temp/dir', 'temp/1.txt', 'temp/123.txt']
 
-print(glob.glob('temp/*.txt'))
-# ['temp/[x].txt', 'temp/1.txt', 'temp/123.txt']
+print(glob.glob('temp/*.jpg'))
+# ['temp/12.jpg', 'temp/aaa.jpg']
 
-print(glob.glob('temp/dir/*/*.text'))
-# ['temp/dir/sub_dir1/ccc.text', 'temp/dir/sub_dir2/ddd.text']
+print(glob.glob('temp/dir/*/*.jpg'))
+# ['temp/dir/sub_dir1/ccc.jpg', 'temp/dir/sub_dir2/ddd.jpg']
 
 print(glob.glob('temp/???.*'))
-# ['temp/[x].txt', 'temp/aaa.text', 'temp/123.txt']
+# ['temp/[x].txt', 'temp/aaa.jpg', 'temp/123.txt']
 
 print(glob.glob('temp/[0-9].*'))
 # ['temp/1.txt']
 
 print(glob.glob('temp/[0-9][0-9].*'))
-# ['temp/12.text']
+# ['temp/12.jpg']
 
 print(glob.glob('temp/[a-z][a-z][a-z].*'))
-# ['temp/aaa.text']
+# ['temp/aaa.jpg']
+
+print(glob.glob('temp/[!a-z].*'))
+# ['temp/1.txt']
 
 print(glob.glob('temp/[[]*'))
 # ['temp/[x].txt']
 
-print(glob.glob('temp/dir/*/*.text'))
-# ['temp/dir/sub_dir1/ccc.text', 'temp/dir/sub_dir2/ddd.text']
+print(glob.glob('temp/*/*.jpg'))
+# ['temp/dir/987.jpg']
 
-print(glob.glob('temp/**/*.text', recursive=True))
-# ['temp/aaa.text', 'temp/12.text', 'temp/dir/987.text', 'temp/dir/sub_dir1/ccc.text', 'temp/dir/sub_dir2/ddd.text']
+print(glob.glob('temp/**/*.jpg', recursive=True))
+# ['temp/12.jpg', 'temp/aaa.jpg', 'temp/dir/987.jpg', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/sub_dir2/ddd.jpg']
 
 print(glob.glob('temp/**', recursive=True))
-# ['temp/', 'temp/[x].txt', 'temp/aaa.text', 'temp/dir', 'temp/dir/sub_dir1', 'temp/dir/sub_dir1/98.txt', 'temp/dir/sub_dir1/ccc.text', 'temp/dir/987.text', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2', 'temp/dir/sub_dir2/ddd.text', 'temp/1.txt', 'temp/12.text', 'temp/123.txt']
+# ['temp/', 'temp/[x].txt', 'temp/12.jpg', 'temp/aaa.jpg', 'temp/dir', 'temp/dir/987.jpg', 'temp/dir/sub_dir1', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/sub_dir1/98.txt', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2', 'temp/dir/sub_dir2/ddd.jpg', 'temp/1.txt', 'temp/123.txt']
 
-print([p for p in glob.glob('temp/**', recursive=True)
-       if os.path.isfile(p)])
-# ['temp/[x].txt', 'temp/aaa.text', 'temp/dir/sub_dir1/98.txt', 'temp/dir/sub_dir1/ccc.text', 'temp/dir/987.text', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.text', 'temp/1.txt', 'temp/12.text', 'temp/123.txt']
+print([p for p in glob.glob('temp/**', recursive=True) if os.path.isfile(p)])
+# ['temp/[x].txt', 'temp/12.jpg', 'temp/aaa.jpg', 'temp/dir/987.jpg', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/sub_dir1/98.txt', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.jpg', 'temp/1.txt', 'temp/123.txt']
 
 print([os.path.basename(p) for p in glob.glob('temp/**', recursive=True)
        if os.path.isfile(p)])
-# ['[x].txt', 'aaa.text', '98.txt', 'ccc.text', '987.text', 'bbb.txt', 'ddd.text', '1.txt', '12.text', '123.txt']
+# ['[x].txt', '12.jpg', 'aaa.jpg', '987.jpg', 'ccc.jpg', '98.txt', 'bbb.txt', 'ddd.jpg', '1.txt', '123.txt']
 
 print(glob.glob('temp/**/', recursive=True))
 # ['temp/', 'temp/dir/', 'temp/dir/sub_dir1/', 'temp/dir/sub_dir2/']
 
-print(os.path.join('temp', '**' + os.sep))
-# temp/**/
-
-print(glob.glob(os.path.join('temp', '**' + os.sep), recursive=True))
-# ['temp/', 'temp/dir/', 'temp/dir/sub_dir1/', 'temp/dir/sub_dir2/']
-
 print([os.path.basename(p.rstrip(os.sep)) for p
-       in glob.glob(os.path.join('temp', '**' + os.sep), recursive=True)])
+       in glob.glob(os.path.join('temp/**/'), recursive=True)])
 # ['temp', 'dir', 'sub_dir1', 'sub_dir2']
+
+print([os.path.basename(p.rstrip(os.sep)) + os.sep for p
+       in glob.glob(os.path.join('temp/**/'), recursive=True)])
+# ['temp/', 'dir/', 'sub_dir1/', 'sub_dir2/']
+
+import re
 
 print([p for p in glob.glob('temp/**', recursive=True)
        if re.search('\d+\.txt', p)])
 # ['temp/dir/sub_dir1/98.txt', 'temp/1.txt', 'temp/123.txt']
 
 print([p for p in glob.glob('temp/**', recursive=True)
-       if re.search('/\D{3}\.(txt|text)', p)])
-# ['temp/[x].txt', 'temp/aaa.text', 'temp/dir/sub_dir1/ccc.text', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.text']
+       if re.search('\D{3}\.(txt|jpg)', p)])
+# ['temp/[x].txt', 'temp/aaa.jpg', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.jpg']
 
 print(type(glob.iglob('temp/*.txt')))
 # <class 'generator'>
@@ -88,4 +121,3 @@ for p in glob.iglob('temp/*.txt'):
 import shutil
 
 shutil.rmtree('temp')
-os.mkdir('temp')
