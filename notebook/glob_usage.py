@@ -81,6 +81,12 @@ print(glob.glob('temp/**/*.jpg', recursive=True))
 print(glob.glob('temp/**', recursive=True))
 # ['temp/', 'temp/[x].txt', 'temp/12.jpg', 'temp/aaa.jpg', 'temp/dir', 'temp/dir/987.jpg', 'temp/dir/sub_dir1', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/sub_dir1/98.txt', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2', 'temp/dir/sub_dir2/ddd.jpg', 'temp/1.txt', 'temp/123.txt']
 
+print(glob.glob('temp/*.txt'))
+# ['temp/[x].txt', 'temp/1.txt', 'temp/123.txt']
+
+print(glob.glob('*.txt', root_dir='temp'))
+# ['[x].txt', '1.txt', '123.txt']
+
 print([p for p in glob.glob('temp/**', recursive=True) if os.path.isfile(p)])
 # ['temp/[x].txt', 'temp/12.jpg', 'temp/aaa.jpg', 'temp/dir/987.jpg', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/sub_dir1/98.txt', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.jpg', 'temp/1.txt', 'temp/123.txt']
 
@@ -88,8 +94,21 @@ print([os.path.basename(p) for p in glob.glob('temp/**', recursive=True)
        if os.path.isfile(p)])
 # ['[x].txt', '12.jpg', 'aaa.jpg', '987.jpg', 'ccc.jpg', '98.txt', 'bbb.txt', 'ddd.jpg', '1.txt', '123.txt']
 
+print([p for p in glob.glob('**', recursive=True, root_dir='temp')
+       if os.path.isfile(os.path.join('temp', p))])
+# ['[x].txt', '12.jpg', 'aaa.jpg', 'dir/987.jpg', 'dir/sub_dir1/ccc.jpg', 'dir/sub_dir1/98.txt', 'dir/bbb.txt', 'dir/sub_dir2/ddd.jpg', '1.txt', '123.txt']
+
 print(glob.glob('temp/**/', recursive=True))
 # ['temp/', 'temp/dir/', 'temp/dir/sub_dir1/', 'temp/dir/sub_dir2/']
+
+print(glob.glob('temp/*/**/', recursive=True))
+# ['temp/dir/', 'temp/dir/sub_dir1/', 'temp/dir/sub_dir2/']
+
+print(glob.glob('**/', recursive=True, root_dir='temp'))
+# ['dir/', 'dir/sub_dir1/', 'dir/sub_dir2/']
+
+print([p.rstrip(os.sep) for p in glob.glob('temp/**/', recursive=True)])
+# ['temp', 'temp/dir', 'temp/dir/sub_dir1', 'temp/dir/sub_dir2']
 
 print([os.path.basename(p.rstrip(os.sep)) for p
        in glob.glob(os.path.join('temp/**/'), recursive=True)])
