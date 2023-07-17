@@ -1,29 +1,38 @@
+import os
+from pathlib import Path
+
+os.chdir('data/temp')
+
+p = Path('temp')
+p.joinpath('dir1/dir').mkdir(parents=True, exist_ok=True)
+p.joinpath('dir2').mkdir(parents=True, exist_ok=True)
+p.joinpath('dir1/file.txt').touch()
+
+!tree temp -nF  # Only works in Jupyter Notebook
+# temp/
+# ├── dir1/
+# │   ├── dir/
+# │   └── file.txt
+# └── dir2/
+# 
+# 4 directories, 1 file
+
 import shutil
 import os
 
-os.makedirs('temp/dir1/dir', exist_ok=True)
-os.makedirs('temp/dir2', exist_ok=True)
-
-with open('temp/dir1/file.txt', 'w') as f:
-    f.write('original')
-
-print(os.listdir('temp/dir1/'))
-# ['file.txt', 'dir']
-
-print(os.listdir('temp/dir2/'))
-# []
-
-src_dir = 'temp/dir1/'
-dst_dir = 'temp/dir2/'
+src_dir = 'temp/dir1'
+dst_dir = 'temp/dir2'
 
 for p in os.listdir(src_dir):
     shutil.move(os.path.join(src_dir, p), dst_dir)
 
-print(os.listdir(src_dir))
-# []
+!tree temp -nF
+# temp/
+# ├── dir1/
+# └── dir2/
+#     ├── dir/
+#     └── file.txt
+# 
+# 4 directories, 1 file
 
-print(os.listdir(dst_dir))
-# ['file.txt', 'dir']
-
-shutil.rmtree('temp/dir1/')
-shutil.rmtree('temp/dir2/')
+shutil.rmtree('temp')
