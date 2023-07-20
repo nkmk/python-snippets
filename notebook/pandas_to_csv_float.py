@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.DataFrame({'col1': [0.123456789, 1000000000.0],
                    'col2': [123456789.0, 0.0],
                    'col3': [123456789, 0]})
@@ -30,13 +33,13 @@ print('%.3f' % 123456789)
 
 df.to_csv('data/dst/to_csv_out_float_format_3f.csv', float_format='%.3f')
 
-print('%.3e' % 0.123456789)
+print('{:.3e}'.format(0.123456789))
 # 1.235e-01
 
-print('%.3e' % 123456789)
+print('{:.3e}'.format(123456789))
 # 1.235e+08
 
-df.to_csv('data/dst/to_csv_out_float_format_3e.csv', float_format='%.3e')
+df.to_csv('data/dst/to_csv_out_float_format_3e.csv', float_format='{:.3e}'.format)
 
 df['col1'] = df['col1'].map('{:.3f}'.format)
 df['col2'] = df['col2'].map('{:.3e}'.format)
@@ -46,12 +49,6 @@ print(df)
 #              col1       col2        col3
 # 0           0.123  1.235e+08  0x075bcd15
 # 1  1000000000.000  0.000e+00  0x00000000
-
-print(df.dtypes)
-# col1    object
-# col2    object
-# col3    object
-# dtype: object
 
 df.to_csv('data/dst/to_csv_out_float_format_str.csv')
 
