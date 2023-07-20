@@ -1,7 +1,5 @@
 s = 'あいうえお'
-
 b = s.encode('unicode-escape')
-
 print(b)
 # b'\\u3042\\u3044\\u3046\\u3048\\u304a'
 
@@ -9,7 +7,6 @@ print(type(b))
 # <class 'bytes'>
 
 s_from_b = b.decode('unicode-escape')
-
 print(s_from_b)
 # あいうえお
 
@@ -17,7 +14,6 @@ print(type(s_from_b))
 # <class 'str'>
 
 s_from_b_error = b.decode('utf-8')
-
 print(s_from_b_error)
 # \u3042\u3044\u3046\u3048\u304a
 
@@ -25,7 +21,6 @@ print(type(s_from_b_error))
 # <class 'str'>
 
 s_from_s = s_from_b_error.encode().decode('unicode-escape')
-
 print(s_from_s)
 # あいうえお
 
@@ -35,7 +30,6 @@ print(type(s_from_s))
 import codecs
 
 s_from_s_codecs = codecs.decode(s_from_b_error, 'unicode-escape')
-
 print(s_from_s_codecs)
 # あいうえお
 
@@ -43,7 +37,6 @@ print(type(s_from_s_codecs))
 # <class 'str'>
 
 s_ascii = ascii('あ')
-
 print(s_ascii)
 # '\u3042'
 
@@ -63,7 +56,6 @@ print(ascii('あ') == "'\\u3042'")
 # True
 
 s_unicode_escape = ascii('あ')[1:-1]
-
 print(s_unicode_escape)
 # \u3042
 
@@ -110,7 +102,6 @@ with open('data/src/unicode_escape.txt', encoding='unicode-escape') as f:
 # 5
 
 b_json = b'{"a": "\u3042"}'
-
 print(b_json)
 # b'{"a": "\\u3042"}'
 
@@ -122,11 +113,22 @@ print(b_json.decode('unicode-escape'))
 
 import json
 
-print(json.loads(b_json.decode()))
+s_json = '{"a": "\\u3042"}'
+print(s_json)
+# {"a": "\u3042"}
+
+print(json.loads(s_json))
 # {'a': 'あ'}
 
-print(type(json.loads(b_json.decode())))
+print(type(json.loads(s_json)))
 # <class 'dict'>
+
+b_json = b'{"a": "\u3042"}'
+print(b_json)
+# b'{"a": "\\u3042"}'
 
 print(json.loads(b_json))
 # {'a': 'あ'}
+
+print(type(json.loads(b_json)))
+# <class 'dict'>
