@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
 print(df)
 #          age state  point
@@ -52,9 +55,9 @@ print(df.drop(index=['Bob', 'Dave', 'Frank']))
 # Charlie   18    CA     70
 # Ellen     24    CA     88
 
-df_org = df.copy()
-df_org.drop(index=['Bob', 'Dave', 'Frank'], inplace=True)
-print(df_org)
+df_copy = df.copy()
+df_copy.drop(index=['Bob', 'Dave', 'Frank'], inplace=True)
+print(df_copy)
 #          age state  point
 # name                     
 # Alice     24    NY     64
@@ -114,7 +117,7 @@ print(df_noindex_sort)
 # 3     Dave   68    TX     70
 
 print(df_noindex_sort.index)
-# Int64Index([1, 2, 4, 0, 5, 3], dtype='int64')
+# Index([1, 2, 4, 0, 5, 3], dtype='int64')
 
 print(df_noindex_sort.drop([1, 3, 5]))
 #       name  age state  point
@@ -168,9 +171,9 @@ print(df.drop(columns=['state', 'point']))
 # Ellen     24
 # Frank     30
 
-df_org = df.copy()
-df_org.drop(columns=['state', 'point'], inplace=True)
-print(df_org)
+df_copy = df.copy()
+df_copy.drop(columns=['state', 'point'], inplace=True)
+print(df_copy)
 #          age
 # name        
 # Alice     24
@@ -203,26 +206,24 @@ print(df.drop(columns=df.columns[[1, 2]]))
 # Ellen     24
 # Frank     30
 
-print(df.drop(index=['Bob', 'Dave', 'Frank'],
-              columns=['state', 'point']))
+print(df.drop(index=['Bob', 'Dave', 'Frank'], columns=['state', 'point']))
 #          age
 # name        
 # Alice     24
 # Charlie   18
 # Ellen     24
 
-print(df.drop(index=df.index[[1, 3, 5]],
-              columns=df.columns[[1, 2]]))
+print(df.drop(index=df.index[[1, 3, 5]], columns=df.columns[[1, 2]]))
 #          age
 # name        
 # Alice     24
 # Charlie   18
 # Ellen     24
 
-df_org = df.copy()
-df_org.drop(index=['Bob', 'Dave', 'Frank'],
-            columns=['state', 'point'], inplace=True)
-print(df_org)
+df_copy = df.copy()
+df_copy.drop(index=['Bob', 'Dave', 'Frank'], columns=['state', 'point'],
+             inplace=True)
+print(df_copy)
 #          age
 # name        
 # Alice     24
