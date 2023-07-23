@@ -1,10 +1,10 @@
 import pandas as pd
 
-df = pd.DataFrame({'A': [11, 21, 31],
-                   'B': [12, 22, 32],
-                   'C': [13, 23, 33]},
-                  index=['ONE', 'TWO', 'THREE'])
+print(pd.__version__)
+# 2.0.3
 
+df = pd.DataFrame({'A': [11, 21, 31], 'B': [12, 22, 32], 'C': [13, 23, 33]},
+                  index=['ONE', 'TWO', 'THREE'])
 print(df)
 #         A   B   C
 # ONE    11  12  13
@@ -23,6 +23,12 @@ print(df)
 # ONE    11  12  13
 # TWO    21  22  23
 # THREE  31  32  33
+
+print(df.rename({'A': 'Col_1'}, axis='columns'))
+#        Col_1   B   C
+# ONE       11  12  13
+# TWO       21  22  23
+# THREE     31  32  33
 
 print(df.rename(columns={'A': 'Col_1', 'C': 'Col_3'}))
 #        Col_1   B  Col_3
@@ -44,7 +50,7 @@ print(df.rename(columns=str.lower, index=str.title))
 # Two    21  22  23
 # Three  31  32  33
 
-print(df.rename(columns=lambda s: s*3, index=lambda s: s + '!!'))
+print(df.rename(columns=lambda s: s * 3, index=lambda s: s + '!!'))
 #          AAA  BBB  CCC
 # ONE!!     11   12   13
 # TWO!!     21   22   23
@@ -61,6 +67,18 @@ print(df.add_suffix('_X'))
 # ONE     11   12   13
 # TWO     21   22   23
 # THREE   31   32   33
+
+print(df.add_prefix('X_', axis=0))
+#           A   B   C
+# X_ONE    11  12  13
+# X_TWO    21  22  23
+# X_THREE  31  32  33
+
+print(df.add_suffix('_X', axis='index'))
+#           A   B   C
+# ONE_X    11  12  13
+# TWO_X    21  22  23
+# THREE_X  31  32  33
 
 print(df.set_axis(['Row_1', 'Row_2', 'Row_3'], axis=0))
 #         A   B   C
@@ -96,7 +114,7 @@ print(df.set_axis(['Row_1', 'Row_2', 'Row_3']))
 # ValueError: Length mismatch: Expected axis has 3 elements, new values have 4 elements
 
 df_copy = df.copy()
-df_copy.set_axis(['Row_1', 'Row_2', 'Row_3'], inplace=True)
+df_copy = df_copy.set_axis(['Row_1', 'Row_2', 'Row_3'], copy=False)
 print(df_copy)
 #         A   B   C
 # Row_1  11  12  13

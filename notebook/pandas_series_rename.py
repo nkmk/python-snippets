@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 s = pd.Series([1, 2, 3], index=['ONE', 'TWO', 'THREE'])
 print(s)
 # ONE      1
@@ -37,9 +40,9 @@ print(s.set_axis(['a', 'b', 'c']))
 # c    3
 # dtype: int64
 
-s.index = ['a', 'b', 'c']
+s.index = ['A', 'B', 'C']
 print(s)
-# a    1
-# b    2
-# c    3
+# A    1
+# B    2
+# C    3
 # dtype: int64
