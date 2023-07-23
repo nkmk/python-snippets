@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.DataFrame({'A': ['A1', 'A2', 'A3'],
                    'B': ['B1', 'B2', 'B3'],
                    'C': ['C1', 'C2', 'C3']},
@@ -112,35 +115,35 @@ df = pd.DataFrame({'A': ['A1', 'A2', 'A3'],
                   index=['ONE', 'TWO', 'THREE'])
 s = pd.Series(['X2', 'X3', 'X4'], index=['TWO', 'THREE', 'FOUR'], name='X')
 
-df.insert(0, 'D', 0)
+df.insert(2, 'X', 0)
 print(df)
-#        D   A   B   C
-# ONE    0  A1  B1  C1
-# TWO    0  A2  B2  C2
-# THREE  0  A3  B3  C3
+#         A   B  X   C
+# ONE    A1  B1  0  C1
+# TWO    A2  B2  0  C2
+# THREE  A3  B3  0  C3
 
-df.insert(len(df.columns), 'E', s)
+df.insert(0, 'Y', s)
 print(df)
-#        D   A   B   C    E
-# ONE    0  A1  B1  C1  NaN
-# TWO    0  A2  B2  C2   X2
-# THREE  0  A3  B3  C3   X3
+#          Y   A   B  X   C
+# ONE    NaN  A1  B1  0  C1
+# TWO     X2  A2  B2  0  C2
+# THREE   X3  A3  B3  0  C3
 
-# df.insert(10, 'F', 10)
-# ValueError: cannot insert F, already exists
+# df.insert(10, 'Z', 10)
+# IndexError: index 10 is out of bounds for axis 0 with size 5
 
-# df.insert(-1, 'F', 10)
+# df.insert(-1, 'Z', 10)
 # ValueError: unbounded slice
 
-# df.insert(0, 'D', 10)
-# ValueError: cannot insert D, already exists
+# df.insert(0, 'Y', 10)
+# ValueError: cannot insert Y, already exists
 
-df.insert(0, 'D', 10, allow_duplicates=True)
+df.insert(0, 'Y', 10, allow_duplicates=True)
 print(df)
-#         D  D   A   B   C    E
-# ONE    10  0  A1  B1  C1  NaN
-# TWO    10  0  A2  B2  C2   X2
-# THREE  10  0  A3  B3  C3   X3
+#         Y    Y   A   B  X   C
+# ONE    10  NaN  A1  B1  0  C1
+# TWO    10   X2  A2  B2  0  C2
+# THREE  10   X3  A3  B3  0  C3
 
 df = pd.DataFrame({'A': ['A1', 'A2', 'A3'],
                    'B': ['B1', 'B2', 'B3'],
@@ -163,21 +166,10 @@ print(pd.concat([df, s], axis=1, join='inner'))
 s1 = pd.Series(['X1', 'X2', 'X3'], index=df.index, name='X')
 s2 = pd.Series(['Y1', 'Y2', 'Y3'], index=df.index, name='Y')
 
-print(pd.concat([df, s1, s2], axis=1))
-#         A   B   C   X   Y
-# ONE    A1  B1  C1  X1  Y1
-# TWO    A2  B2  C2  X2  Y2
-# THREE  A3  B3  C3  X3  Y3
-
 df2 = pd.DataFrame({'df_col1': 0, 'df_col2': range(3)}, index=df.index)
-print(df2)
-#        df_col1  df_col2
-# ONE          0        0
-# TWO          0        1
-# THREE        0        2
 
-print(pd.concat([df, df2], axis=1))
-#         A   B   C  df_col1  df_col2
-# ONE    A1  B1  C1        0        0
-# TWO    A2  B2  C2        0        1
-# THREE  A3  B3  C3        0        2
+print(pd.concat([df, s1, s2, df2], axis=1))
+#         A   B   C   X   Y  df_col1  df_col2
+# ONE    A1  B1  C1  X1  Y1        0        0
+# TWO    A2  B2  C2  X2  Y2        0        1
+# THREE  A3  B3  C3  X3  Y3        0        2
