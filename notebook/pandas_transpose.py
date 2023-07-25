@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.DataFrame({'X': [0, 1, 2], 'Y': [3, 4, 5]}, index=['A', 'B', 'C'])
 print(df)
 #    X  Y
