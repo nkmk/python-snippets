@@ -1,7 +1,7 @@
 import pandas as pd
 
 print(pd.__version__)
-# 1.5.3
+# 2.0.3
 
 df = pd.DataFrame({'a': [0, 1, 2], 'b': [3, 4, 5]}, index=['x', 'y', 'z'])
 print(df)
@@ -16,7 +16,7 @@ print(df.loc['x':'y']['a'])
 # Name: a, dtype: int64
 
 df.loc['x':'y']['a'] = 100
-# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_21852/3771299631.py:1: SettingWithCopyWarning: 
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_40458/3771299631.py:1: SettingWithCopyWarning: 
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
 # 
@@ -68,7 +68,7 @@ print(df.iloc[[0, 1]]['a'])
 # Name: a, dtype: int64
 
 # df.loc[[0, 1], 'a']
-# KeyError: "None of [Int64Index([0, 1], dtype='int64')] are in the [index]"
+# KeyError: "None of [Index([0, 1], dtype='int64')] are in the [index]"
 
 # df.iloc[[0, 1], 'a']
 # ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
@@ -125,7 +125,7 @@ print(df_slice['a'])
 # Name: a, dtype: int64
 
 df_slice['a'] = 100
-# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_21852/3718525832.py:1: SettingWithCopyWarning: 
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_40458/3718525832.py:1: SettingWithCopyWarning: 
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
 # 
