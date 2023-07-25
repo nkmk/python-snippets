@@ -1,187 +1,140 @@
 import pandas as pd
 
 print(pd.__version__)
-# 1.4.1
+# 2.0.3
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
+df = pd.DataFrame({'col_0': ['00', '10', '20', '30', '40'],
+                   'col_1': ['01', '11', '21', '31', '41'],
+                   'col_2': ['02', '12', '22', '32', '42'],
+                   'col_3': ['03', '13', '23', '33', '43']},
+                  index=['row_0', 'row_1', 'row_2', 'row_3', 'row_4'])
 print(df)
-#          age state  point
-# name                     
-# Alice     24    NY     64
-# Bob       42    CA     92
-# Charlie   18    CA     70
-# Dave      68    TX     70
-# Ellen     24    CA     88
-# Frank     30    NY     57
+#       col_0 col_1 col_2 col_3
+# row_0    00    01    02    03
+# row_1    10    11    12    13
+# row_2    20    21    22    23
+# row_3    30    31    32    33
+# row_4    40    41    42    43
 
-print(df['age'])
-print(type(df['age']))
-# name
-# Alice      24
-# Bob        42
-# Charlie    18
-# Dave       68
-# Ellen      24
-# Frank      30
-# Name: age, dtype: int64
+print(df['col_2'])
+print(type(df['col_2']))
+# row_0    02
+# row_1    12
+# row_2    22
+# row_3    32
+# row_4    42
+# Name: col_2, dtype: object
 # <class 'pandas.core.series.Series'>
 
-print(df.age)
-print(type(df.age))
-# name
-# Alice      24
-# Bob        42
-# Charlie    18
-# Dave       68
-# Ellen      24
-# Frank      30
-# Name: age, dtype: int64
-# <class 'pandas.core.series.Series'>
+print(df.col_2)
+# row_0    02
+# row_1    12
+# row_2    22
+# row_3    32
+# row_4    42
+# Name: col_2, dtype: object
 
-print(df[['point', 'age']])
-print(type(df[['point', 'age']]))
-#          point  age
-# name               
-# Alice       64   24
-# Bob         92   42
-# Charlie     70   18
-# Dave        70   68
-# Ellen       88   24
-# Frank       57   30
+print(df[['col_2', 'col_0']])
+print(type(df[['col_2', 'col_0']]))
+#       col_2 col_0
+# row_0    02    00
+# row_1    12    10
+# row_2    22    20
+# row_3    32    30
+# row_4    42    40
 # <class 'pandas.core.frame.DataFrame'>
 
-print(df[['age']])
-print(type(df[['age']]))
-#          age
-# name        
-# Alice     24
-# Bob       42
-# Charlie   18
-# Dave      68
-# Ellen     24
-# Frank     30
+print(df[['col_2']])
+print(type(df[['col_2']]))
+#       col_2
+# row_0    02
+# row_1    12
+# row_2    22
+# row_3    32
+# row_4    42
 # <class 'pandas.core.frame.DataFrame'>
 
-print(df.loc[:, 'age':'state'])
-print(type(df.loc[:, 'age':'state']))
-#          age state
-# name              
-# Alice     24    NY
-# Bob       42    CA
-# Charlie   18    CA
-# Dave      68    TX
-# Ellen     24    CA
-# Frank     30    NY
-# <class 'pandas.core.frame.DataFrame'>
+print(df.loc[:, 'col_1':'col_3'])
+#       col_1 col_2 col_3
+# row_0    01    02    03
+# row_1    11    12    13
+# row_2    21    22    23
+# row_3    31    32    33
+# row_4    41    42    43
 
-print(df.iloc[:, [2, 0]])
-print(type(df.iloc[:, [2, 0]]))
-#          point  age
-# name               
-# Alice       64   24
-# Bob         92   42
-# Charlie     70   18
-# Dave        70   68
-# Ellen       88   24
-# Frank       57   30
-# <class 'pandas.core.frame.DataFrame'>
+print(df.iloc[:, 2])
+# row_0    02
+# row_1    12
+# row_2    22
+# row_3    32
+# row_4    42
+# Name: col_2, dtype: object
 
 print(df[1:4])
 print(type(df[1:4]))
-#          age state  point
-# name                     
-# Bob       42    CA     92
-# Charlie   18    CA     70
-# Dave      68    TX     70
+#       col_0 col_1 col_2 col_3
+# row_1    10    11    12    13
+# row_2    20    21    22    23
+# row_3    30    31    32    33
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df[:-3])
-print(type(df[:-3]))
-#          age state  point
-# name                     
-# Alice     24    NY     64
-# Bob       42    CA     92
-# Charlie   18    CA     70
-# <class 'pandas.core.frame.DataFrame'>
+#       col_0 col_1 col_2 col_3
+# row_0    00    01    02    03
+# row_1    10    11    12    13
 
 print(df[::2])
-print(type(df[::2]))
-#          age state  point
-# name                     
-# Alice     24    NY     64
-# Charlie   18    CA     70
-# Ellen     24    CA     88
-# <class 'pandas.core.frame.DataFrame'>
+#       col_0 col_1 col_2 col_3
+# row_0    00    01    02    03
+# row_2    20    21    22    23
+# row_4    40    41    42    43
 
 print(df[1::2])
-print(type(df[1::2]))
-#        age state  point
-# name                   
-# Bob     42    CA     92
-# Dave    68    TX     70
-# Frank   30    NY     57
-# <class 'pandas.core.frame.DataFrame'>
+#       col_0 col_1 col_2 col_3
+# row_1    10    11    12    13
+# row_3    30    31    32    33
 
 # print(df[1])
 # KeyError: 1
 
 print(df[1:2])
 print(type(df[1:2]))
-#       age state  point
-# name                  
-# Bob    42    CA     92
+#       col_0 col_1 col_2 col_3
+# row_1    10    11    12    13
 # <class 'pandas.core.frame.DataFrame'>
 
-print(df['Bob':'Ellen'])
-print(type(df['Bob':'Ellen']))
-#          age state  point
-# name                     
-# Bob       42    CA     92
-# Charlie   18    CA     70
-# Dave      68    TX     70
-# Ellen     24    CA     88
-# <class 'pandas.core.frame.DataFrame'>
+print(df['row_1':'row_3'])
+#       col_0 col_1 col_2 col_3
+# row_1    10    11    12    13
+# row_2    20    21    22    23
+# row_3    30    31    32    33
 
-print(df.loc['Bob'])
-print(type(df.loc['Bob']))
-# age      42
-# state    CA
-# point    92
-# Name: Bob, dtype: object
-# <class 'pandas.core.series.Series'>
+print(df.loc[['row_1', 'row_3']])
+#       col_0 col_1 col_2 col_3
+# row_1    10    11    12    13
+# row_3    30    31    32    33
 
-print(df.loc[['Bob', 'Ellen']])
-print(type(df.loc[['Bob', 'Ellen']]))
-#        age state  point
-# name                   
-# Bob     42    CA     92
-# Ellen   24    CA     88
-# <class 'pandas.core.frame.DataFrame'>
+print(df.iloc[1])
+# col_0    10
+# col_1    11
+# col_2    12
+# col_3    13
+# Name: row_1, dtype: object
 
-print(df.iloc[[1, 4]])
-print(type(df.iloc[[1, 4]]))
-#        age state  point
-# name                   
-# Bob     42    CA     92
-# Ellen   24    CA     88
-# <class 'pandas.core.frame.DataFrame'>
+print(df['col_1']['row_2'])
+# 21
 
-print(df['age']['Alice'])
-# 24
+print(df['row_1':'row_3'][['col_1', 'col_3']])
+#       col_1 col_3
+# row_1    11    13
+# row_2    21    23
+# row_3    31    33
 
-print(df['Bob':'Dave'][['age', 'point']])
-#          age  point
-# name               
-# Bob       42     92
-# Charlie   18     70
-# Dave      68     70
+print(df.at['row_2', 'col_1'])
+# 21
 
-print(df.at['Alice', 'age'])
-# 24
-
-print(df.loc['Bob':'Dave', ['age', 'point']])
-#          age  point
-# name               
-# Bob       42     92
-# Charlie   18     70
-# Dave      68     70
+print(df.loc['row_1':'row_3', ['col_1', 'col_3']])
+#       col_1 col_3
+# row_1    11    13
+# row_2    21    23
+# row_3    31    33
