@@ -1,7 +1,7 @@
 import pandas as pd
 
 print(pd.__version__)
-# 1.4.1
+# 2.0.3
 
 df_mix = pd.DataFrame({'col_int': [0, 1, 2], 'col_float': [0.0, 0.1, 0.2]}, index=['A', 'B', 'C'])
 print(df_mix)
