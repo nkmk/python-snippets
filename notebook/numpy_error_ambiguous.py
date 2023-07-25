@@ -1,7 +1,7 @@
 import numpy as np
 
 print(np.__version__)
-# 1.17.3
+# 1.25.1
 
 a_bool = np.array([True, True, True])
 b_bool = np.array([True, False, False])
@@ -193,5 +193,5 @@ print(a_empty)
 print(bool(a_empty))
 # False
 # 
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: The truth value of an empty array is ambiguous. Returning False, but in future this will result in an error. Use `array.size > 0` to check that an array is not empty.
-#   """Entry point for launching an IPython kernel.
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_40648/256863747.py:1: DeprecationWarning: The truth value of an empty array is ambiguous. Returning False, but in future this will result in an error. Use `array.size > 0` to check that an array is not empty.
+#   print(bool(a_empty))
