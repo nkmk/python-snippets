@@ -194,7 +194,9 @@ print(df.resample('D').interpolate('spline', order=2).asfreq('5D'))
 # 2018-01-26   73.433036
 # 2018-01-31   31.000000
 
-df_nan = pd.DataFrame({'value': [1, pd.np.nan, pd.np.nan, pd.np.nan, 31]},
+import numpy as np
+
+df_nan = pd.DataFrame({'value': [1, np.nan, np.nan, np.nan, 31]},
                       index=pd.to_datetime(['2018-01-01', '2018-01-02', '2018-01-15', '2018-01-20', '2018-01-31']))
 
 print(df_nan)
