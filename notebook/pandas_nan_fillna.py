@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.read_csv('data/src/sample_pandas_normal_nan.csv')
 print(df)
 #       name   age state  point  other
@@ -44,13 +47,13 @@ print(df.fillna(s_for_fill))
 # 4    Ellen  20.0    CA   88.0    NaN
 # 5    Frank  30.0   NaN    NaN    NaN
 
-print(df.mean())
+print(df.mean(numeric_only=True))
 # age      40.666667
 # point    79.000000
 # other          NaN
 # dtype: float64
 
-print(df.fillna(df.mean()))
+print(df.fillna(df.mean(numeric_only=True)))
 #       name        age state  point  other
 # 0    Alice  24.000000    NY   79.0    NaN
 # 1      NaN  40.666667   NaN   79.0    NaN
@@ -59,7 +62,7 @@ print(df.fillna(df.mean()))
 # 4    Ellen  40.666667    CA   88.0    NaN
 # 5    Frank  30.000000   NaN   79.0    NaN
 
-print(df.fillna(df.median()))
+print(df.fillna(df.median(numeric_only=True)))
 #       name   age state  point  other
 # 0    Alice  24.0    NY   79.0    NaN
 # 1      NaN  30.0   NaN   79.0    NaN

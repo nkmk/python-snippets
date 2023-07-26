@@ -3,6 +3,9 @@ import math
 import numpy as np
 import pandas as pd
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.read_csv('data/src/sample_pandas_normal_nan.csv')[:3]
 print(df)
 #       name   age state  point  other

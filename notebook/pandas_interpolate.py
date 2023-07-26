@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 
+print(pd.__version__)
+# 2.0.3
+
 df = pd.DataFrame({'col1': [0, np.nan, np.nan, 3, 4],
                    'col2': [np.nan, 1, 2, np.nan, np.nan],
                    'col3': [4, np.nan, np.nan, 7, 10]})
