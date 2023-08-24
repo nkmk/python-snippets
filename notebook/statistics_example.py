@@ -52,12 +52,22 @@ l = [10, 1, 3, 7, 1]
 print(statistics.pvariance(l))
 # 12.64
 
+mu = statistics.mean(l)
+
+print(statistics.pvariance(l, mu))
+# 12.64
+
 print(sum((x - sum(l) / len(l)) ** 2 for x in l) / len(l))
 # 12.64
 
 l = [10, 1, 3, 7, 1]
 
 print(statistics.variance(l))
+# 15.8
+
+xbar = statistics.mean(l)
+
+print(statistics.variance(l, xbar))
 # 15.8
 
 print(sum((x - sum(l) / len(l)) ** 2 for x in l) / (len(l) - 1))
