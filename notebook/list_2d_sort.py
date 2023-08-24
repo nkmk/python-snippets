@@ -141,3 +141,9 @@ print(df.sort_values([0, 2]))
 # 2  1    3    2
 # 1  1  200   30
 # 0  1    3  100
+
+print(df.sort_values([0, 2]).values.tolist())
+# [[1, 3, 2], [1, 200, 30], [1, 3, 100]]
+
+print(type(df.sort_values([0, 2]).values.tolist()))
+# <class 'list'>
