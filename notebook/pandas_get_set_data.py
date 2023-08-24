@@ -210,7 +210,7 @@ print(df.loc[s_bool, ['col_0', 'col_2']])
 # row_1    10    12
 # row_4    40    42
 
-# print(df.iloc[s_bool, ['col_0', 'col_2']])
+# print(df.iloc[s_bool, [0, 2]])
 # ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
 
 s_bool_wrong = pd.Series([True, False, False], index=['row_0', 'row_1', 'row_2'])
