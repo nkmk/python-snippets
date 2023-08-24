@@ -6,22 +6,28 @@ for k in d:
 # key2
 # key3
 
+print(list(d))
+# ['key1', 'key2', 'key3']
+
+print(type(list(d)))
+# <class 'list'>
+
 for k in d.keys():
     print(k)
 # key1
 # key2
 # key3
 
-keys = d.keys()
-print(keys)
-print(type(keys))
+print(d.keys())
 # dict_keys(['key1', 'key2', 'key3'])
+
+print(type(d.keys()))
 # <class 'dict_keys'>
 
-k_list = list(d.keys())
-print(k_list)
-print(type(k_list))
+print(list(d.keys()))
 # ['key1', 'key2', 'key3']
+
+print(type(list(d.keys())))
 # <class 'list'>
 
 for v in d.values():
@@ -30,16 +36,16 @@ for v in d.values():
 # 2
 # 3
 
-values = d.values()
-print(values)
-print(type(values))
+print(d.values())
 # dict_values([1, 2, 3])
+
+print(type(d.values()))
 # <class 'dict_values'>
 
-v_list = list(d.values())
-print(v_list)
-print(type(v_list))
+print(list(d.values()))
 # [1, 2, 3]
+
+print(type(list(d.values())))
 # <class 'list'>
 
 for k, v in d.items():
@@ -70,19 +76,17 @@ for t in d.items():
 # 3
 # ---
 
-items = d.items()
-print(items)
-print(type(items))
+print(d.items())
 # dict_items([('key1', 1), ('key2', 2), ('key3', 3)])
+
+print(type(d.items()))
 # <class 'dict_items'>
 
-i_list = list(d.items())
-print(i_list)
-print(type(i_list))
+print(list(d.items()))
 # [('key1', 1), ('key2', 2), ('key3', 3)]
+
+print(type(list(d.items())))
 # <class 'list'>
 
-print(i_list[0])
-print(type(i_list[0]))
-# ('key1', 1)
+print(type(list(d.items())[0]))
 # <class 'tuple'>
