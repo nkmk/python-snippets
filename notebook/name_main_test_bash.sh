@@ -24,14 +24,14 @@ python3 hello_if_name.py
 # Hello!
 # __name__ is __main__
 
-python3 add_module.py 1.2 3.4
-# 4.6
+python3 add_module.py 100 200
+# 300
 
-python3 add_module_command.py 1.2 3.4
-# 4.6
+python3 add_module_command.py 100 200
+# 300
 
-python3 add_module_argparse.py 1.2 3.4
-# 4.6
+python3 add_module_argparse.py 100 200
+# 300
 
 python3 hello_main.py
 # Hello!

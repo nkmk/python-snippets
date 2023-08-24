@@ -6,4 +6,4 @@ def add(a, b):
 
 
 if __name__ == '__main__':
-    print(add(float(sys.argv[1]), float(sys.argv[2])))
+    print(add(int(sys.argv[1]), int(sys.argv[2])))

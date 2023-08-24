@@ -1,4 +1,4 @@
 import sys
 import add_module
 
-print(add_module.add(float(sys.argv[1]), float(sys.argv[2])))
+print(add_module.add(int(sys.argv[1]), int(sys.argv[2])))
