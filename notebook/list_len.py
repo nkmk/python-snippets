@@ -42,15 +42,9 @@ l_multi = [[0, 1, 2, [10, 20, 30]], [3, 4, 5], 100]
 print(len(l_multi))
 # 3
 
-arr_multi = np.array(l_multi)
-print(arr_multi)
-# [list([0, 1, 2, [10, 20, 30]]) list([3, 4, 5]) 100]
-
-print(arr_multi.size)
-# 3
-
-print(arr_multi.shape)
-# (3,)
+# arr_multi = np.array(l_multi)
+# ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions.
+# The detected shape was (3,) + inhomogeneous part.
 
 def my_len(l):
     count = 0
@@ -72,3 +66,24 @@ print(my_len(l_2d))
 l = [0, 1, 2, 3]
 print(my_len(l))
 # 4
+
+print(my_len(100))
+# 1
+
+def my_len_wrapper(l):
+    if isinstance(l, list):
+        return my_len(l)
+    else:
+        return None
+
+print(my_len_wrapper(l_multi))
+# 10
+
+print(my_len_wrapper(l_2d))
+# 6
+
+print(my_len_wrapper(l))
+# 4
+
+print(my_len_wrapper(100))
+# None
