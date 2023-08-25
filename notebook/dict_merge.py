@@ -1,4 +1,25 @@
 d1 = {'k1': 1, 'k2': 2}
+d2 = {'k3': 3, 'k4': 4}
+
+d = dict(**d1, **d2)
+print(d)
+# {'k1': 1, 'k2': 2, 'k3': 3, 'k4': 4}
+
+d = {**d1, **d2}
+print(d)
+# {'k1': 1, 'k2': 2, 'k3': 3, 'k4': 4}
+
+d1 = {'k1': 1, 'k2': 2}
+d2 = {'k1': 100, 'k3': 3, 'k4': 4}
+
+# d = dict(**d1, **d2)
+# TypeError: dict() got multiple values for keyword argument 'k1'
+
+d = {**d1, **d2}
+print(d)
+# {'k1': 100, 'k2': 2, 'k3': 3, 'k4': 4}
+
+d1 = {'k1': 1, 'k2': 2}
 d2 = {'k1': 100, 'k3': 3, 'k4': 4}
 
 d = d1 | d2
