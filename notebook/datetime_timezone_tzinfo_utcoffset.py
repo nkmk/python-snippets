@@ -1,8 +1,7 @@
 import datetime
 
-dt_utc = datetime.datetime(2018, 12, 31, 5, 0, 30, 1000,
+dt_utc = datetime.datetime(2022, 12, 31, 5, 0, 30, 1000,
                            tzinfo=datetime.timezone.utc)
-
 print(dt_utc.tzinfo)
 # UTC
 
@@ -15,9 +14,8 @@ print(dt_utc.utcoffset())
 print(type(dt_utc.utcoffset()))
 # <class 'datetime.timedelta'>
 
-dt_jst = datetime.datetime(2018, 12, 31, 5, 0, 30, 1000,
+dt_jst = datetime.datetime(2022, 12, 31, 5, 0, 30, 1000,
                            tzinfo=datetime.timezone(datetime.timedelta(hours=9)))
-
 print(dt_jst.tzinfo)
 # UTC+09:00
 
