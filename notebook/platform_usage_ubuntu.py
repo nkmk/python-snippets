@@ -1,16 +1,32 @@
 import platform
+import os
+import sys
 
 print(platform.system())
 # Linux
 
+print(os.name)
+# posix
+
+print(sys.platform)
+# linux
+
 print(platform.release())
-# 4.15.0-42-generic
+# 5.15.0-86-generic
 
 print(platform.version())
-# #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
+# #96-Ubuntu SMP Wed Sep 20 08:23:49 UTC 2023
 
 print(platform.platform())
-# Linux-4.15.0-44-generic-x86_64-with-Ubuntu-18.04-bionic
+# Linux-5.15.0-86-generic-x86_64-with-glibc2.35
 
-print(platform.linux_distribution())
-# ('Ubuntu', '18.04', 'bionic')
+import distro
+
+print(distro.name())
+# Ubuntu
+
+print(distro.id())
+# ubuntu
+
+print(distro.version())
+# 22.04
