@@ -1,5 +1,10 @@
-f = 987.6543
+print(0.1 + 0.1 + 0.1)
+# 0.30000000000000004
 
+print(1 / 3)
+# 0.3333333333333333
+
+f = 987.6543
 print(f)
 # 987.6543
 
@@ -7,12 +12,14 @@ print(type(f))
 # <class 'float'>
 
 s = str(f)
-
 print(s)
 # 987.6543
 
 print(type(s))
 # <class 'str'>
+
+f = 987.6543
+s = str(f)
 
 print(s.split('.'))
 # ['987', '6543']
@@ -31,6 +38,10 @@ print(s_i)
 print(s_d)
 # 6543
 
+f = 987.6543
+s = str(f)
+s_i, s_d = s.split('.')
+
 print(len(s_i))
 # 3
 
@@ -43,17 +54,23 @@ print(len(str(f).split('.')[0]))
 print(len(str(f).split('.')[1]))
 # 4
 
-print(str(0.123).split('.'))
+f = 0.123
+
+print(str(f).split('.'))
 # ['0', '123']
 
-print(len(str(0.123).split('.')[0]))
+print(len(str(f).split('.')[0]))
 # 1
 
-print(str(0.123).strip('0').split('.'))
+print(str(f).strip('0').split('.'))
 # ['', '123']
 
-print(len(str(0.123).strip('0').split('.')[0]))
+print(len(str(f).strip('0').split('.')[0]))
 # 0
+
+f = 987.6543
+s = str(f)
+s_i, s_d = s.split('.')
 
 print(s_i[-1])
 # 7
@@ -95,7 +112,6 @@ print(str(0.00001))
 # 1e-05
 
 s_format = format(0.00001, '.8f')
-
 print(s_format)
 # 0.00001000
 
@@ -109,7 +125,6 @@ print(f'{0.00001:.8f}')
 # 0.00001000
 
 s_rstrip = s_format.rstrip('0')
-
 print(s_rstrip)
 # 0.00001
 
