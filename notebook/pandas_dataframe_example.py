@@ -12,7 +12,7 @@ print(df)
 # Ellen     24    CA     88  Female
 # Frank     30    NY     57    Male
 
-print(df.mean())
+print(df.mean(numeric_only=True))
 # age      34.333333
 # point    73.500000
 # dtype: float64
