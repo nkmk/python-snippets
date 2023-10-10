@@ -1,5 +1,5 @@
-python3 -m calendar 2019 1
-#     January 2019
+python3 -m calendar 2023 8
+#     August 2023
 # Mo Tu We Th Fr Sa Su
 #     1  2  3  4  5  6
 #  7  8  9 10 11 12 13
@@ -16,7 +16,7 @@ python3 -m calendar -h
 #   year                  year number (1-9999)
 #   month                 month number (1-12, text only)
 # 
-# optional arguments:
+# options:
 #   -h, --help            show this help message and exit
 #   -L LOCALE, --locale LOCALE
 #                         locale to be used from month and weekday names
