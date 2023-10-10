@@ -9,8 +9,8 @@ def get_day_of_last_week(year, month, dow):
     w_l = [i % 7 for i in range(w, w + 7)]
     return l[w_l.index(dow)]
 
-print(calendar.month(2019, 1))
-#     January 2019
+print(calendar.month(2023, 8))
+#     August 2023
 # Mo Tu We Th Fr Sa Su
 #     1  2  3  4  5  6
 #  7  8  9 10 11 12 13
@@ -19,17 +19,17 @@ print(calendar.month(2019, 1))
 # 28 29 30 31
 # 
 
-print(get_day_of_last_week(2019, 1, 0))
+print(get_day_of_last_week(2023, 8, 0))
 # 28
 
-print(get_day_of_last_week(2019, 1, 3))
+print(get_day_of_last_week(2023, 8, 3))
 # 31
 
-print(get_day_of_last_week(2019, 1, 4))
+print(get_day_of_last_week(2023, 8, 4))
 # 25
 
-year = 2019
-month = 1
+year = 2023
+month = 8
 dow = 0
 
 n = calendar.monthrange(year, month)[1]
@@ -55,29 +55,29 @@ def get_date_of_last_week(dt, dow):
     '''dow: Monday(0) - Sunday(6)'''
     return dt.replace(day=get_day_of_last_week(dt.year, dt.month, dow))
 
-dt = datetime.datetime(2019, 1, 10, 10, 10, 10)
+dt = datetime.datetime(2023, 8, 10, 10, 10, 10)
 print(dt)
-# 2019-01-10 10:10:10
+# 2023-08-10 10:10:10
 
 print(get_date_of_last_week(dt, 0))
-# 2019-01-28 10:10:10
+# 2023-08-28 10:10:10
 
 print(get_date_of_last_week(dt, 3))
-# 2019-01-31 10:10:10
+# 2023-08-31 10:10:10
 
-d = datetime.date(2019, 1, 10)
+d = datetime.date(2023, 8, 10)
 print(d)
-# 2019-01-10
+# 2023-08-10
 
 print(get_date_of_last_week(d, 0))
-# 2019-01-28
+# 2023-08-28
 
 print(get_date_of_last_week(d, 3))
-# 2019-01-31
+# 2023-08-31
 
 def get_date_of_last_week2(year, month, dow):
     '''dow: Monday(0) - Sunday(6)'''
     return datetime.date(year, month, get_day_of_last_week(year, month, dow))
 
-print(get_date_of_last_week2(2019, 1, 0))
-# 2019-01-28
+print(get_date_of_last_week2(2023, 8, 0))
+# 2023-08-28
