@@ -1,7 +1,13 @@
-from typing import Union, List
+from typing import Union, Any
 
-def func_u(x: List[Union[int, float]]) -> float:
-    return sum(x) ** 0.5
+def func_union(x: Union[int, float]) -> float:
+    return x * 0.5
 
-print(func_u([0.5, 9.5, 90]))
-# 10.0
+var: Any = 100
+
+def func(x: int | float) -> float:
+    return x * 0.5
+
+i: int = 100
+l: list[float] = [0.1, 0.2, 0.3]
+d: dict[str, int] = {'a': 100, 'b': 200}
