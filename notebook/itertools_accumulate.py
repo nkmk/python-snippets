@@ -4,7 +4,7 @@ import operator
 l = [1, 2, 3, 4, 5, 6]
 
 print(itertools.accumulate(l))
-# <itertools.accumulate object at 0x10d648140>
+# <itertools.accumulate object at 0x1080e1a80>
 
 print(type(itertools.accumulate(l)))
 # <class 'itertools.accumulate'>
@@ -30,6 +30,8 @@ print(list(itertools.accumulate(reversed(l))))
 print(operator.mul(2, 3))
 # 6
 
+l = [1, 2, 3, 4, 5, 6]
+
 print(list(itertools.accumulate(l, func=operator.mul)))
 # [1, 2, 6, 24, 120, 720]
 
@@ -47,6 +49,8 @@ print(list(itertools.accumulate(l, func=lambda x, y: x * y)))
 
 print(list(itertools.accumulate(l, func=lambda x, y: int(str(x) + str(y)))))
 # [1, 12, 123, 1234, 12345, 123456]
+
+l = [1, 2, 3, 4, 5, 6]
 
 print(list(itertools.accumulate(l)))
 # [1, 3, 6, 10, 15, 21]
