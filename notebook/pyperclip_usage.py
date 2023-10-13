@@ -15,6 +15,11 @@ pyperclip.copy('')
 print(pyperclip.waitForPaste())
 # some text
 
+pyperclip.copy('original text')
+print(pyperclip.waitForPaste())
+# original text
+
+pyperclip.copy('original text')
 print(pyperclip.waitForNewPaste())
 # new text
 
