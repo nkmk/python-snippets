@@ -66,9 +66,9 @@ print(df_mc_break)
 # ).head(
 #     3
 # )
-# SyntaxError: EOL while scanning string literal
+# SyntaxError: unterminated string literal (detected at line 2)
 
-dfdf_mc_break_mc = pd.read_csv(
+df_mc_break = pd.read_csv(
     'data/src/sample_pandas_normal.csv', index_col=0
 ).assign(
     point_ratio=df['point'] / 100
@@ -81,20 +81,20 @@ print(df_mc_break)
 # Alice     24     64         0.64
 # Ellen     24     88         0.88
 
-df_mc_break_backslash = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0) \
-                          .assign(point_ratio=df['point'] / 100) \
-                          .drop(columns='state') \
-                          .sort_values('age') \
-                          .head(3)
+df_mc_backslash = pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0) \
+                    .assign(point_ratio=df['point'] / 100) \
+                    .drop(columns='state') \
+                    .sort_values('age') \
+                    .head(3)
 
-print(df_mc_break_backslash)
+print(df_mc_backslash)
 #          age  point  point_ratio
 # name                            
 # Charlie   18     70         0.70
 # Alice     24     64         0.64
 # Ellen     24     88         0.88
 
-df_mc_break_parens = (
+df_mc_parens = (
     pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
     .assign(point_ratio=df['point'] / 100)
     .drop(columns='state')
@@ -102,27 +102,27 @@ df_mc_break_parens = (
     .head(3)
 )
 
-print(df_mc_break_parens)
+print(df_mc_parens)
 #          age  point  point_ratio
 # name                            
 # Charlie   18     70         0.70
 # Alice     24     64         0.64
 # Ellen     24     88         0.88
 
-df_mc_break_parens = (pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
-                      .assign(point_ratio=df['point'] / 100)
-                      .drop(columns='state')
-                      .sort_values('age')
-                      .head(3))
+df_mc_parens = (pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0)
+                .assign(point_ratio=df['point'] / 100)
+                .drop(columns='state')
+                .sort_values('age')
+                .head(3))
 
-print(df_mc_break_parens)
+print(df_mc_parens)
 #          age  point  point_ratio
 # name                            
 # Charlie   18     70         0.70
 # Alice     24     64         0.64
 # Ellen     24     88         0.88
 
-df_mc_break_parens = (
+df_mc_parens = (
     pd.read_csv('data/src/sample_pandas_normal.csv', index_col=0).
     assign(point_ratio=df['point'] / 100).
     drop(columns='state').
@@ -130,7 +130,7 @@ df_mc_break_parens = (
     head(3)
 )
 
-print(df_mc_break_parens)
+print(df_mc_parens)
 #          age  point  point_ratio
 # name                            
 # Charlie   18     70         0.70

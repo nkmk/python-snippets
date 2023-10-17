@@ -15,3 +15,7 @@ Image.open('data/src/lena_square.png').convert('L').rotate(90).filter(ImageFilte
     .filter(ImageFilter.GaussianBlur())
     .save('data/temp/lena_square_pillow.jpg', quality=95)
 )
+
+Image.open('data/src/lena_square.png').convert('L').rotate(90).filter(
+    ImageFilter.GaussianBlur()
+).save('data/temp/lena_square_pillow.jpg', quality=95)
