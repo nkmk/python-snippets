@@ -55,14 +55,22 @@ s_short = s[:12] + '...'
 print(s_short)
 # Pythonについて。P...
 
-wrapper = textwrap.TextWrapper(width=30, max_lines=3, placeholder=' ~', initial_indent='  ')
+tw = textwrap.TextWrapper(width=30, max_lines=3, placeholder=' ~', initial_indent='  ')
 
 s = "Python can be easy to pick up whether you're a first time programmer or you're experienced with other languages"
 
-print(wrapper.wrap(s))
+print(tw.wrap(s))
 # ['  Python can be easy to pick', "up whether you're a first time", "programmer or you're ~"]
 
-print(wrapper.fill(s))
+print(tw.fill(s))
 #   Python can be easy to pick
 # up whether you're a first time
 # programmer or you're ~
+
+tw.placeholder = ' ...'
+tw.initial_indent = ''
+
+print(tw.fill(s))
+# Python can be easy to pick up
+# whether you're a first time
+# programmer or you're ...
