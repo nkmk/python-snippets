@@ -25,16 +25,16 @@ print(mimetypes.guess_type('test.JPG'))
 # ('image/jpeg', None)
 
 print(mimetypes.guess_all_extensions('image/jpeg'))
-# ['.jpe', '.jpeg', '.jpg']
+# ['.jpg', '.jpe', '.jpeg']
 
 print(mimetypes.guess_extension('image/jpeg'))
-# .jpe
+# .jpg
 
 print(mimetypes.guess_all_extensions('text/plain'))
-# ['.bat', '.c', '.h', '.ksh', '.pl', '.txt', '.text', '.conf', '.def', '.list', '.log', '.in']
+# ['.txt', '.bat', '.c', '.h', '.ksh', '.pl', '.srt', '.text', '.conf', '.def', '.list', '.log', '.in']
 
 print(mimetypes.guess_extension('text/plain'))
-# .bat
+# .txt
 
 print(mimetypes.guess_all_extensions('image/jpg'))
 # []
@@ -49,7 +49,7 @@ print(type(mimetypes.types_map))
 # <class 'dict'>
 
 print(len(mimetypes.types_map))
-# 1013
+# 1029
 
 print(mimetypes.types_map['.jpg'])
 # image/jpeg
@@ -62,6 +62,8 @@ pprint.pprint(mimetypes.types_map)
 #  '.3ds': 'image/x-3ds',
 #  '.3g2': 'video/3gpp2',
 #  '.3gp': 'video/3gpp',
+#  '.3gpp': 'audio/3gpp',
+#  '.3gpp2': 'audio/3gpp2',
 #  '.7z': 'application/x-7z-compressed',
 #  '.a': 'application/octet-stream',
 #  '.aab': 'application/x-authorware-bin',
@@ -75,6 +77,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.acu': 'application/vnd.acucobol',
 #  '.acutc': 'application/vnd.acucorp',
 #  '.adp': 'audio/adpcm',
+#  '.adts': 'audio/aac',
 #  '.aep': 'application/vnd.audiograph',
 #  '.afm': 'application/x-font-type1',
 #  '.afp': 'application/vnd.ibm.modcap',
@@ -95,6 +98,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.asf': 'video/x-ms-asf',
 #  '.asm': 'text/x-asm',
 #  '.aso': 'application/vnd.accpac.simply.aso',
+#  '.ass': 'audio/aac',
 #  '.asx': 'video/x-ms-asf',
 #  '.atc': 'application/vnd.acucorp',
 #  '.atom': 'application/atom+xml',
@@ -103,6 +107,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.atx': 'application/vnd.antix.game-component',
 #  '.au': 'audio/basic',
 #  '.avi': 'video/x-msvideo',
+#  '.avif': 'image/avif',
 #  '.aw': 'application/applixware',
 #  '.azf': 'application/vnd.airzip.filesecure.azf',
 #  '.azs': 'application/vnd.airzip.filesecure.azs',
@@ -358,9 +363,12 @@ pprint.pprint(mimetypes.types_map)
 #  '.h261': 'video/h261',
 #  '.h263': 'video/h263',
 #  '.h264': 'video/h264',
+#  '.h5': 'application/x-hdf5',
 #  '.hal': 'application/vnd.hal+xml',
 #  '.hbci': 'application/vnd.hbci',
 #  '.hdf': 'application/x-hdf',
+#  '.heic': 'image/heic',
+#  '.heif': 'image/heif',
 #  '.hh': 'text/x-c',
 #  '.hlp': 'application/winhlp',
 #  '.hpgl': 'application/vnd.hp-hpgl',
@@ -451,6 +459,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.list3820': 'application/vnd.ibm.modcap',
 #  '.listafp': 'application/vnd.ibm.modcap',
 #  '.lnk': 'application/x-ms-shortcut',
+#  '.loas': 'audio/aac',
 #  '.log': 'text/plain',
 #  '.lostxml': 'application/lost+xml',
 #  '.lrf': 'application/octet-stream',
@@ -581,8 +590,10 @@ pprint.pprint(mimetypes.types_map)
 #  '.nns': 'application/vnd.noblenet-sealer',
 #  '.nnw': 'application/vnd.noblenet-web',
 #  '.npx': 'image/vnd.net-fpx',
+#  '.nq': 'application/n-quads',
 #  '.nsc': 'application/x-conference',
 #  '.nsf': 'application/vnd.lotus-notes',
+#  '.nt': 'application/n-triples',
 #  '.ntf': 'application/vnd.nitf',
 #  '.nws': 'message/rfc822',
 #  '.nzb': 'application/x-nzb',
@@ -615,6 +626,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.opf': 'application/oebps-package+xml',
 #  '.opml': 'text/x-opml',
 #  '.oprc': 'application/vnd.palm',
+#  '.opus': 'audio/opus',
 #  '.org': 'application/vnd.lotus-organizer',
 #  '.osf': 'application/vnd.yamaha.openscoreformat',
 #  '.osfpvg': 'application/vnd.yamaha.openscoreformat.osfpvg+xml',
@@ -880,6 +892,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.tpt': 'application/vnd.trid.tpt',
 #  '.tr': 'text/troff',
 #  '.tra': 'application/vnd.trueapp',
+#  '.trig': 'application/trig',
 #  '.trm': 'application/x-msterminal',
 #  '.ts': 'video/mp2t',
 #  '.tsd': 'application/timestamped-data',
@@ -951,10 +964,12 @@ pprint.pprint(mimetypes.types_map)
 #  '.vss': 'application/vnd.visio',
 #  '.vst': 'application/vnd.visio',
 #  '.vsw': 'application/vnd.visio',
+#  '.vtt': 'text/vtt',
 #  '.vtu': 'model/vnd.vtu',
 #  '.vxml': 'application/voicexml+xml',
 #  '.w3d': 'application/x-director',
 #  '.wad': 'application/x-doom',
+#  '.wasm': 'application/wasm',
 #  '.wav': 'audio/x-wav',
 #  '.wax': 'audio/x-ms-wax',
 #  '.wbmp': 'image/vnd.wap.wbmp',
@@ -965,6 +980,7 @@ pprint.pprint(mimetypes.types_map)
 #  '.wdp': 'image/vnd.ms-photo',
 #  '.weba': 'audio/webm',
 #  '.webm': 'video/webm',
+#  '.webmanifest': 'application/manifest+json',
 #  '.webp': 'image/webp',
 #  '.wg': 'application/vnd.pmi.widget',
 #  '.wgt': 'application/widget',
