@@ -1,10 +1,8 @@
-import pathlib
-import os
+from pathlib import Path
 
-os.makedirs('temp', exist_ok=True)
+Path('temp').mkdir()
 
-p_empty = pathlib.Path('temp/empty_file.txt')
-
+p_empty = Path('temp/empty_file.txt')
 print(p_empty)
 # temp/empty_file.txt
 
@@ -24,16 +22,17 @@ p_empty.touch()
 # p_empty.touch(exist_ok=False)
 # FileExistsError: [Errno 17] File exists: 'temp/empty_file.txt'
 
-# pathlib.Path('temp/new_dir/empty_file.txt').touch()
+p_empty_new_dir = Path('temp/new_dir/empty_file.txt')
+
+# p_empty_new_dir.touch()
 # FileNotFoundError: [Errno 2] No such file or directory: 'temp/new_dir/empty_file.txt'
 
-p_empty_new = pathlib.Path('temp/new_dir/empty_file.txt')
-p_empty_new.parent.mkdir(parents=True, exist_ok=True)
-p_empty_new.touch()
+p_empty_new_dir.parent.mkdir(parents=True, exist_ok=True)
+p_empty_new_dir.touch()
 
-pathlib.Path('temp/empty_file2.txt').touch()
+Path('temp/empty_file2.txt').touch()
 
-p_new = pathlib.Path('temp/new_file.txt')
+p_new = Path('temp/new_file.txt')
 
 print(p_new.exists())
 # False
@@ -48,7 +47,6 @@ with p_new.open() as f:
 # line 3
 
 s = p_new.read_text()
-
 print(s)
 # line 1
 # line 2
@@ -58,14 +56,13 @@ print(type(s))
 # <class 'str'>
 
 i = p_new.write_text('new text')
-
 print(i)
 # 8
 
 print(p_new.read_text())
 # new text
 
-p_new2 = pathlib.Path('temp/new_file2.txt')
+p_new2 = Path('temp/new_file2.txt')
 
 print(p_new2.exists())
 # False
@@ -79,24 +76,33 @@ print(p_new2.write_text('new text2'))
 print(p_new2.read_text())
 # new text2
 
-# print(pathlib.Path('temp/new_dir2/new_file.txt').write_text('new_text'))
+p_text_new_dir = Path('temp/new_dir2/new_file.txt')
+
+# print(p_text_new_dir.write_text('new_text'))
 # FileNotFoundError: [Errno 2] No such file or directory: 'temp/new_dir2/new_file.txt'
 
-p_text_new = pathlib.Path('temp/new_dir2/new_file.txt')
-p_text_new.parent.mkdir(parents=True, exist_ok=True)
-print(p_text_new.write_text('new_text'))
+p_text_new_dir.parent.mkdir(parents=True, exist_ok=True)
+print(p_text_new_dir.write_text('new_text'))
 # 8
 
-print(p_text_new.read_text())
+print(p_text_new_dir.read_text())
 # new_text
 
-print(pathlib.Path('temp/new_file3.txt').write_text('new_text3'))
+print(Path('temp/new_file3.txt').write_text('new_text3'))
 # 9
 
-print(pathlib.Path('temp/new_file3.txt').read_text())
+print(Path('temp/new_file3.txt').read_text())
 # new_text3
 
-p_empty = pathlib.Path('temp/empty_file.txt')
+p_bin = Path('temp/new_file.bin')
+
+print(p_bin.write_bytes(b'binary'))
+# 6
+
+print(p_bin.read_bytes())
+# b'binary'
+
+p_empty = Path('temp/empty_file.txt')
 
 print(p_empty.exists())
 # True
@@ -109,7 +115,9 @@ print(p_empty.exists())
 # p_empty.unlink()
 # FileNotFoundError: [Errno 2] No such file or directory: 'temp/empty_file.txt'
 
-p_dir = pathlib.Path('temp/')
+p_empty.unlink(missing_ok=True)
+
+p_dir = Path('temp/')
 
 # p_dir.unlink()
 # PermissionError: [Errno 1] Operation not permitted: 'temp'

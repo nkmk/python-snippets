@@ -1,22 +1,11 @@
-import util_make_files
+from pathlib import Path
 
-util_make_files.pathlib_basic()
-
-import pathlib
-
-p_file = pathlib.Path('temp/file.txt')
-
+p_file = Path('dir/sub_dir/file.txt')
 print(p_file)
-# temp/file.txt
+# dir/sub_dir/file.txt
 
 print(type(p_file))
 # <class 'pathlib.PosixPath'>
-
-print(str(p_file))
-# temp/file.txt
-
-print(type(str(p_file)))
-# <class 'str'>
 
 print(p_file.name)
 # file.txt
@@ -30,19 +19,15 @@ print(p_file.stem)
 print(type(p_file.stem))
 # <class 'str'>
 
-p_dir = pathlib.Path('temp/dir/')
-
+p_dir = Path('dir/sub_dir/')
 print(p_dir)
-# temp/dir
-
-print(type(p_dir))
-# <class 'pathlib.PosixPath'>
+# dir/sub_dir
 
 print(p_dir.name)
-# dir
+# sub_dir
 
 print(p_dir.stem)
-# dir
+# sub_dir
 
 print(p_file.suffix)
 # .txt
@@ -65,99 +50,127 @@ print(p_dir.suffix.lstrip('.'))
 print(p_dir.suffix[1:])
 # 
 
-p_sub = pathlib.Path('temp/dir/sub_dir/file2.txt')
+p_tar_gz = Path('dir/sub_dir/file.tar.gz')
+print(p_tar_gz)
+# dir/sub_dir/file.tar.gz
 
-print(p_sub)
-# temp/dir/sub_dir/file2.txt
+print(p_tar_gz.suffix)
+# .gz
 
-print(p_sub.parent)
-# temp/dir/sub_dir
+print(p_tar_gz.suffixes)
+# ['.tar', '.gz']
 
-print(type(p_sub.parent))
+print(p_file.suffixes)
+# ['.txt']
+
+print(p_dir.suffixes)
+# []
+
+print(p_file.parent)
+# dir/sub_dir
+
+print(type(p_file.parent))
 # <class 'pathlib.PosixPath'>
 
-print(p_sub.parents[0])
-# temp/dir/sub_dir
+print(p_file.parent.name)
+# sub_dir
 
-print(p_sub.parents[1])
-# temp/dir
-
-print(p_sub.parents[2])
-# temp
-
-print(p_sub.parents[3])
-# .
-
-# print(p_sub.parents[4])
-# IndexError: 4
-
-p_abs = p_sub.resolve()
-
-print(p_abs)
-# /Users/mbp/Documents/my-project/python-snippets/notebook/temp/dir/sub_dir/file2.txt
-
-print(p_abs.parents[4])
-# /Users/mbp/Documents/my-project/python-snippets
-
-# print(p_abs.parents[10])
-# IndexError: 10
-
-p_file = pathlib.Path('temp/file.txt')
-
-print(p_file)
-# temp/file.txt
-
-p_file_rel = pathlib.Path('temp/dir/sub_dir/../../file.txt')
-
-print(p_file_rel)
-# temp/dir/sub_dir/../../file.txt
-
-print(p_file.samefile(p_file_rel))
-# True
+print(type(p_file.parent.name))
+# <class 'str'>
 
 print(p_file.parents[0])
-# temp
+# dir/sub_dir
 
 print(p_file.parents[1])
+# dir
+
+print(p_file.parents[2])
 # .
 
+# print(p_file.parents[3])
+# IndexError: 3
+
+p_abs = p_file.resolve()
+print(p_abs)
+# /Users/mbp/Documents/my-project/python-snippets/notebook/dir/sub_dir/file.txt
+
+print(p_abs.parents[3])
+# /Users/mbp/Documents/my-project/python-snippets
+
+# print(p_abs.parents[9])
+# IndexError: 9
+
+print(p_file.parents[-1])
+# .
+
+print(p_file.parents[-2])
+# dir
+
+print(p_file.parents[-3])
+# dir/sub_dir
+
+print(p_abs.parents[-1])
+# /
+
+print(p_abs.parents[-2])
+# /Users
+
+print(p_abs.parents[-3])
+# /Users/mbp
+
+p_file_rel = Path('dir/sub_dir/../sub_dir/file.txt')
+print(p_file_rel)
+# dir/sub_dir/../sub_dir/file.txt
+
 print(p_file_rel.parents[0])
-# temp/dir/sub_dir/../..
+# dir/sub_dir/../sub_dir
 
 print(p_file_rel.parents[1])
-# temp/dir/sub_dir/..
+# dir/sub_dir/..
 
 print(p_file_rel.parents[2])
-# temp/dir/sub_dir
+# dir/sub_dir
 
-print(p_file_rel.parents[3])
-# temp/dir
+print(p_file.resolve())
+# /Users/mbp/Documents/my-project/python-snippets/notebook/dir/sub_dir/file.txt
 
 print(p_file_rel.resolve())
-# /Users/mbp/Documents/my-project/python-snippets/notebook/temp/file.txt
+# /Users/mbp/Documents/my-project/python-snippets/notebook/dir/sub_dir/file.txt
 
-print(p_file_rel.resolve().relative_to(p_file_rel.cwd()))
-# temp/file.txt
-
-print(p_file.with_name('file_new.txt'))
-# temp/file_new.txt
-
-print(type(p_file.with_name('file_new.txt')))
-# <class 'pathlib.PosixPath'>
-
-print(p_dir.with_name('dir_new'))
-# temp/dir_new
-
-print(p_dir.with_name('file_new.txt'))
-# temp/file_new.txt
-
-p_file.with_name('file_new.txt').touch()
-
-print(p_file.with_name('file_new.txt').exists())
+print(p_file.resolve() == p_file_rel.resolve())
 # True
 
+print(p_file_rel.resolve().relative_to(Path.cwd()))
+# dir/sub_dir/file.txt
+
+print(p_file.with_name('new_file.txt'))
+# dir/sub_dir/new_file.txt
+
+print(type(p_file.with_name('new_file.txt')))
+# <class 'pathlib.PosixPath'>
+
+print(p_dir.with_name('new_dir'))
+# dir/new_dir
+
+print(p_dir.with_name('new_file.txt'))
+# dir/new_file.txt
+
+print(p_dir.joinpath('new_dir'))
+# dir/sub_dir/new_dir
+
+print(p_dir / 'new_file.txt')
+# dir/sub_dir/new_file.txt
+
+p_file.with_name('new_dir').mkdir(parents=True)
+p_file.with_name('new_file.txt').touch()
+
+p_file.with_name('new_file.txt').unlink()
+p_file.with_name('new_dir').rmdir()
+p_file.parent.rmdir()
+p_file.parent.parent.rmdir()
+
 print(p_file.with_suffix('.text'))
-# temp/file.text
+# dir/sub_dir/file.text
 
 print(type(p_file.with_suffix('.text')))
 # <class 'pathlib.PosixPath'>
@@ -165,6 +178,14 @@ print(type(p_file.with_suffix('.text')))
 # print(p_file.with_suffix('text'))
 # ValueError: Invalid suffix 'text'
 
-import shutil
+print(p_dir.with_suffix('.text'))
+# dir/sub_dir.text
 
-shutil.rmtree('temp')
+print(p_file.with_stem('new_file'))
+# dir/sub_dir/new_file.txt
+
+print(type(p_file.with_stem('new_file')))
+# <class 'pathlib.PosixPath'>
+
+print(p_dir.with_stem('new_dir'))
+# dir/new_dir
