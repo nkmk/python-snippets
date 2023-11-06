@@ -1,8 +1,8 @@
 import os
 
-file_path = './data/temp/dir/file.txt'
-dir_path = './data/temp/dir'
-non_existent_path = './non_exist'
+file_path = 'data/temp/dir/file.txt'
+dir_path = 'data/temp/dir'
+non_existent_path = 'non_exist'
 
 os.makedirs(dir_path, exist_ok=True)
 with open(file_path, mode='w') as f:
@@ -35,7 +35,7 @@ print(os.path.exists(dir_path))
 print(os.path.exists(non_existent_path))
 # False
 
-dir_path_with_sep = './data/temp/dir/'
+dir_path_with_sep = 'data/temp/dir/'
 
 print(os.path.exists(dir_path_with_sep))
 # True
