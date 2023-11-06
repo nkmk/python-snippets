@@ -8,7 +8,12 @@ print(path)
 print(type(path))
 # <class 'str'>
 
-os.chdir('../')
+os.chdir('..')
 
 print(os.getcwd())
 # /Users/mbp/Documents/my-project/python-snippets
+
+os.chdir('notebook/data')
+
+print(os.getcwd())
+# /Users/mbp/Documents/my-project/python-snippets/notebook/data
