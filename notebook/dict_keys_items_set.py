@@ -1,14 +1,14 @@
 d1 = {'a': 1, 'b': 2, 'c': 3}
 d2 = {'b': 2, 'c': 4, 'd': 5}
 
-print(list(d1.keys()))
-# ['a', 'b', 'c']
+print(d1.keys())
+# dict_keys(['a', 'b', 'c'])
 
 print(type(d1.keys()))
 # <class 'dict_keys'>
 
-print(list(d1.items()))
-# [('a', 1), ('b', 2), ('c', 3)]
+print(d1.items())
+# dict_items([('a', 1), ('b', 2), ('c', 3)])
 
 print(type(d1.items()))
 # <class 'dict_items'>
@@ -33,15 +33,21 @@ print(type(intersection_dict))
 
 union_keys = d1.keys() | d2.keys()
 print(union_keys)
-# {'d', 'a', 'b', 'c'}
+# {'d', 'c', 'a', 'b'}
 
 union_items = d1.items() | d2.items()
 print(union_items)
-# {('d', 5), ('c', 4), ('a', 1), ('b', 2), ('c', 3)}
+# {('b', 2), ('a', 1), ('c', 4), ('d', 5), ('c', 3)}
 
 union_dict = dict(d1.items() | d2.items())
 print(union_dict)
-# {'d': 5, 'c': 3, 'a': 1, 'b': 2}
+# {'b': 2, 'a': 1, 'c': 3, 'd': 5}
+
+print(d1 | d2)
+# {'a': 1, 'b': 2, 'c': 4, 'd': 5}
+
+print(d2 | d1)
+# {'b': 2, 'c': 3, 'd': 5, 'a': 1}
 
 symmetric_difference_keys = d1.keys() ^ d2.keys()
 print(symmetric_difference_keys)
@@ -49,11 +55,11 @@ print(symmetric_difference_keys)
 
 symmetric_difference_items = d1.items() ^ d2.items()
 print(symmetric_difference_items)
-# {('d', 5), ('c', 4), ('a', 1), ('c', 3)}
+# {('d', 5), ('a', 1), ('c', 3), ('c', 4)}
 
 symmetric_difference_dict = dict(d1.items() ^ d2.items())
 print(symmetric_difference_dict)
-# {'d': 5, 'c': 3, 'a': 1}
+# {'d': 5, 'a': 1, 'c': 4}
 
 difference_keys = d1.keys() - d2.keys()
 print(difference_keys)
@@ -61,8 +67,8 @@ print(difference_keys)
 
 difference_items = d1.items() - d2.items()
 print(difference_items)
-# {('c', 3), ('a', 1)}
+# {('a', 1), ('c', 3)}
 
 difference_dict = dict(d1.items() - d2.items())
 print(difference_dict)
-# {'c': 3, 'a': 1}
+# {'a': 1, 'c': 3}
