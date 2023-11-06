@@ -20,6 +20,12 @@ print(p_file)
 print(type(p_file))
 # <class 'pathlib.PosixPath'>
 
+print(pathlib.Path())
+# .
+
+print(pathlib.Path() == pathlib.Path('.'))
+# True
+
 print(issubclass(pathlib.PosixPath, pathlib.Path))
 # True
 
