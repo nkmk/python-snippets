@@ -1,7 +1,9 @@
 import numpy as np
 
-a = np.arange(24)
+print(np.__version__)
+# 1.26.1
 
+a = np.arange(24)
 print(a)
 # [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23]
 
@@ -12,7 +14,6 @@ print(a.ndim)
 # 1
 
 a_4_6 = a.reshape([4, 6])
-
 print(a_4_6)
 # [[ 0  1  2  3  4  5]
 #  [ 6  7  8  9 10 11]
@@ -25,8 +26,7 @@ print(a_4_6.shape)
 print(a_4_6.ndim)
 # 2
 
-a_2_3_4 = a.reshape([2, 3, 4])
-
+a_2_3_4 = a.reshape((2, 3, 4))
 print(a_2_3_4)
 # [[[ 0  1  2  3]
 #   [ 4  5  6  7]
@@ -66,7 +66,7 @@ print(np.reshape(a, [4, 6]))
 #  [12 13 14 15 16 17]
 #  [18 19 20 21 22 23]]
 
-print(np.reshape(a, [2, 3, 4]))
+print(np.reshape(a, (2, 3, 4)))
 # [[[ 0  1  2  3]
 #   [ 4  5  6  7]
 #   [ 8  9 10 11]]
@@ -78,14 +78,11 @@ print(np.reshape(a, [2, 3, 4]))
 # print(np.reshape(a, [5, 6]))
 # ValueError: cannot reshape array of size 24 into shape (5,6)
 
-print(a.reshape(4, 6))
-# [[ 0  1  2  3  4  5]
-#  [ 6  7  8  9 10 11]
-#  [12 13 14 15 16 17]
-#  [18 19 20 21 22 23]]
-
 # print(np.reshape(a, 4, 6))
-# ValueError: cannot reshape array of size 24 into shape (4,)
+# TypeError: order must be str, not int
+
+# print(np.reshape(a, 2, 3, 4))
+# TypeError: reshape() takes from 2 to 3 positional arguments but 4 were given
 
 print(a.reshape([4, 6], order='C'))
 # [[ 0  1  2  3  4  5]
@@ -153,6 +150,12 @@ print(a.reshape([2, -1, 4]))
 # print(a.reshape([2, -1, 5]))
 # ValueError: cannot reshape array of size 24 into shape (2,newaxis,5)
 
+print(a.reshape([4, -100]))
+# [[ 0  1  2  3  4  5]
+#  [ 6  7  8  9 10 11]
+#  [12 13 14 15 16 17]
+#  [18 19 20 21 22 23]]
+
 a = np.arange(8)
 print(a)
 # [0 1 2 3 4 5 6 7]
@@ -205,112 +208,31 @@ print(a_2_4_copy)
 print(a)
 # [100   1   2   3   4   5   6   7]
 
-a = np.arange(6).reshape(2, 3)
-print(a)
-# [[0 1 2]
-#  [3 4 5]]
-
-a_step = a[:, ::2]
-print(a_step)
-# [[0 2]
-#  [3 5]]
-
-print(a_step.reshape(-1))
-# [0 2 3 5]
-
-print(np.shares_memory(a_step, a_step.reshape(-1)))
-# False
-
-np.info(a)
-# class:  ndarray
-# shape:  (2, 3)
-# strides:  (24, 8)
-# itemsize:  8
-# aligned:  True
-# contiguous:  True
-# fortran:  False
-# data pointer: 0x7fb49bf71950
-# byteorder:  little
-# byteswap:  False
-# type: int64
-
-np.info(a_step)
-# class:  ndarray
-# shape:  (2, 2)
-# strides:  (24, 16)
-# itemsize:  8
-# aligned:  True
-# contiguous:  False
-# fortran:  False
-# data pointer: 0x7fb49bf71950
-# byteorder:  little
-# byteswap:  False
-# type: int64
-
-np.info(a_step.reshape(-1))
-# class:  ndarray
-# shape:  (4,)
-# strides:  (8,)
-# itemsize:  8
-# aligned:  True
-# contiguous:  True
-# fortran:  True
-# data pointer: 0x7fb49e162210
-# byteorder:  little
-# byteswap:  False
-# type: int64
-
 a = np.arange(8).reshape(2, 4)
 print(a)
 # [[0 1 2 3]
 #  [4 5 6 7]]
 
-a_step = a[:, ::2]
-print(a_step)
+a_step3 = a[:, ::3]
+print(a_step3)
+# [[0 3]
+#  [4 7]]
+
+a_step3_reshape = a_step3.reshape(-1)
+print(a_step3_reshape)
+# [0 3 4 7]
+
+print(np.shares_memory(a_step3, a_step3_reshape))
+# False
+
+a_step2 = a[:, ::2]
+print(a_step2)
 # [[0 2]
 #  [4 6]]
 
-print(a_step.reshape(-1))
+a_step2_reshape = a_step2.reshape(-1)
+print(a_step2_reshape)
 # [0 2 4 6]
 
-print(np.shares_memory(a_step, a_step.reshape(-1)))
+print(np.shares_memory(a_step2, a_step2_reshape))
 # True
-
-np.info(a)
-# class:  ndarray
-# shape:  (2, 4)
-# strides:  (32, 8)
-# itemsize:  8
-# aligned:  True
-# contiguous:  True
-# fortran:  False
-# data pointer: 0x7fb49e0e1c40
-# byteorder:  little
-# byteswap:  False
-# type: int64
-
-np.info(a_step)
-# class:  ndarray
-# shape:  (2, 2)
-# strides:  (32, 16)
-# itemsize:  8
-# aligned:  True
-# contiguous:  False
-# fortran:  False
-# data pointer: 0x7fb49e0e1c40
-# byteorder:  little
-# byteswap:  False
-# type: int64
-
-np.info(a_step.reshape(-1))
-# class:  ndarray
-# shape:  (4,)
-# strides:  (16,)
-# itemsize:  8
-# aligned:  True
-# contiguous:  False
-# fortran:  False
-# data pointer: 0x7fb49e0e1c40
-# byteorder:  little
-# byteswap:  False
-# type: int64
