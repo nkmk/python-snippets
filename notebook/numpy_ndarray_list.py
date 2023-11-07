@@ -1,75 +1,85 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 l_1d = [0, 1, 2]
 
-arr_1d = np.array(l_1d)
-
-print(arr_1d)
-print(arr_1d.dtype)
+a_1d = np.array(l_1d)
+print(a_1d)
 # [0 1 2]
+
+print(type(a_1d))
+# <class 'numpy.ndarray'>
+
+print(a_1d.dtype)
 # int64
 
-arr_1d_f = np.array(l_1d, dtype=float)
-
-print(arr_1d_f)
-print(arr_1d_f.dtype)
+a_1d_f = np.array(l_1d, dtype=float)
+print(a_1d_f)
 # [0. 1. 2.]
+
+print(a_1d_f.dtype)
 # float64
 
 l_2d = [[0, 1, 2], [3, 4, 5]]
 
-arr_2d = np.array(l_2d)
-
-print(arr_2d)
+a_2d = np.array(l_2d)
+print(a_2d)
 # [[0 1 2]
 #  [3 4 5]]
 
-l_2d_error = [[0, 1, 2], [3, 4]]
+l_2d_jagged = [[0, 1, 2], [3, 4]]
 
-arr_2d_error = np.array(l_2d_error)
+# a_2d_jagged = np.array(l_2d_jagged)
+# ValueError: setting an array element with a sequence.
+# The requested array has an inhomogeneous shape after 1 dimensions.
+# The detected shape was (2,) + inhomogeneous part.
 
-print(arr_2d_error)
+a_2d_jagged = np.array(l_2d_jagged, dtype=object)
+print(a_2d_jagged)
 # [list([0, 1, 2]) list([3, 4])]
 
-print(arr_2d_error.dtype)
-# object
-
-print(arr_2d_error.shape)
+print(a_2d_jagged.shape)
 # (2,)
 
-arr_1d = np.arange(3)
+print(a_2d_jagged.dtype)
+# object
 
-print(arr_1d)
+print(a_2d_jagged[0])
+# [0, 1, 2]
+
+print(type(a_2d_jagged[0]))
+# <class 'list'>
+
+a_1d = np.arange(3)
+print(a_1d)
 # [0 1 2]
 
-l_1d = arr_1d.tolist()
-
+l_1d = a_1d.tolist()
 print(l_1d)
 # [0, 1, 2]
 
-arr_2d = np.arange(6).reshape((2, 3))
-
-print(arr_2d)
+a_2d = np.arange(6).reshape((2, 3))
+print(a_2d)
 # [[0 1 2]
 #  [3 4 5]]
 
-l_2d = arr_2d.tolist()
-
+l_2d = a_2d.tolist()
 print(l_2d)
 # [[0, 1, 2], [3, 4, 5]]
 
-arr_3d = np.arange(24).reshape((2, 3, 4))
-
-print(arr_3d)
+a_3d = np.arange(24).reshape((2, 3, 4))
+print(a_3d)
 # [[[ 0  1  2  3]
 #   [ 4  5  6  7]
 #   [ 8  9 10 11]]
+# 
 #  [[12 13 14 15]
 #   [16 17 18 19]
 #   [20 21 22 23]]]
 
-l_3d = arr_3d.tolist()
-
+l_3d = a_3d.tolist()
 print(l_3d)
 # [[[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]], [[12, 13, 14, 15], [16, 17, 18, 19], [20, 21, 22, 23]]]
 
@@ -81,3 +91,17 @@ print(l_3d[0][0])
 
 print(l_3d[0][0][0])
 # 0
+
+a_0d = np.array(100)
+print(a_0d)
+# 100
+
+print(type(a_0d))
+# <class 'numpy.ndarray'>
+
+i = a_0d.tolist()
+print(i)
+# 100
+
+print(type(i))
+# <class 'int'>
