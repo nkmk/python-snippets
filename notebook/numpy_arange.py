@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 print(np.arange(3))
 # [0 1 2]
 
@@ -21,14 +24,19 @@ print(np.arange(10, 3))
 print(np.arange(10, 3, -2))
 # [10  8  6  4]
 
-print(np.arange(3, dtype=float))
-# [0. 1. 2.]
+a = np.arange(3, 10)
+print(a)
+# [3 4 5 6 7 8 9]
 
-print(np.arange(3, 10, dtype=float))
+print(a.dtype)
+# int64
+
+a_float = np.arange(3, 10, dtype=float)
+print(a_float)
 # [3. 4. 5. 6. 7. 8. 9.]
 
-print(np.arange(3, 10, 2, dtype=float))
-# [3. 5. 7. 9.]
+print(a_float.dtype)
+# float64
 
 print(np.arange(3, 10, 2))
 # [3 5 7 9]
