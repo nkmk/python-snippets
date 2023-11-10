@@ -1,68 +1,68 @@
 import numpy as np
 
-a = np.array([1, 2, 3])
-print(a)
-print(a.dtype)
-# [1 2 3]
+print(np.__version__)
+# 1.26.1
+
+a_int = np.array([1, 2, 3])
+a_float = np.array([1.0, 2.0, 3.0])
+
+print((a_int / a_int).dtype)
+# float64
+
+print((a_int / a_float).dtype)
+# float64
+
+print((a_int + a_int).dtype)
 # int64
 
-print((a / 1).dtype)
+print((a_int + a_float).dtype)
 # float64
 
-print((a / 1.0).dtype)
-# float64
-
-print((a + 1).dtype)
+print((a_int - a_int).dtype)
 # int64
 
-print((a + 1.0).dtype)
+print((a_int - a_float).dtype)
 # float64
 
-print((a - 1).dtype)
+print((a_int * a_int).dtype)
 # int64
 
-print((a - 1.0).dtype)
+print((a_int * a_float).dtype)
 # float64
 
-print((a * 1).dtype)
+print((a_int // a_int).dtype)
 # int64
 
-print((a * 1.0).dtype)
+print((a_int // a_float).dtype)
 # float64
 
-print((a // 1).dtype)
+print((a_int**a_int).dtype)
 # int64
 
-print((a // 1.0).dtype)
+print((a_int**a_float).dtype)
 # float64
 
-print((a ** 1).dtype)
-# int64
+a_int16 = np.array([1, 2, 3], np.int16)
+a_int32 = np.array([1, 2, 3], np.int32)
 
-print((a ** 1.0).dtype)
-# float64
-
-ones_int16 = np.ones(3, np.int16)
-print(ones_int16)
-# [1 1 1]
-
-ones_int32 = np.ones(3, np.int32)
-print(ones_int32)
-# [1 1 1]
-
-print((ones_int16 + ones_int32).dtype)
+print((a_int16 + a_int32).dtype)
 # int32
 
-ones_float16 = np.ones(3, np.float16)
-print(ones_float16)
-# [1. 1. 1.]
+a_float16 = np.array([1, 2, 3], np.float16)
+a_float32 = np.array([1, 2, 3], np.float32)
 
-print((ones_int16 + ones_float16).dtype)
+print((a_float16 + a_float32).dtype)
 # float32
 
-ones_int16[0] = 10.9
-print(ones_int16)
-# [10  1  1]
+print((a_int16 + a_float16).dtype)
+# float32
 
-print(ones_int16.dtype)
+print((a_int32 + a_float32).dtype)
+# float64
+
+a_int16[0] = 1.9
+print(a_int16)
+# [1 2 3]
+
+print(a_int16.dtype)
 # int16

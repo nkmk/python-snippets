@@ -1,10 +1,13 @@
 import numpy as np
 
-ii64 = np.iinfo(np.int64)
-print(type(ii64))
+print(np.__version__)
+# 1.26.1
+
+ii = np.iinfo(np.int64)
+print(type(ii))
 # <class 'numpy.iinfo'>
 
-print(ii64)
+print(ii)
 # Machine parameters for int64
 # ---------------------------------------------------------------
 # min = -9223372036854775808
@@ -12,49 +15,17 @@ print(ii64)
 # ---------------------------------------------------------------
 # 
 
-print(ii64.max)
+print(ii.max)
 # 9223372036854775807
 
-print(type(ii64.max))
+print(type(ii.max))
 # <class 'int'>
 
-print(ii64.min)
+print(ii.min)
 # -9223372036854775808
 
-print(ii64.bits)
+print(ii.bits)
 # 64
-
-print(np.iinfo('int16'))
-# Machine parameters for int16
-# ---------------------------------------------------------------
-# min = -32768
-# max = 32767
-# ---------------------------------------------------------------
-# 
-
-print(np.iinfo('i4'))
-# Machine parameters for int32
-# ---------------------------------------------------------------
-# min = -2147483648
-# max = 2147483647
-# ---------------------------------------------------------------
-# 
-
-print(np.iinfo(int))
-# Machine parameters for int64
-# ---------------------------------------------------------------
-# min = -9223372036854775808
-# max = 9223372036854775807
-# ---------------------------------------------------------------
-# 
-
-print(np.iinfo('uint64'))
-# Machine parameters for uint64
-# ---------------------------------------------------------------
-# min = 0
-# max = 18446744073709551615
-# ---------------------------------------------------------------
-# 
 
 i = 100
 print(type(i))
@@ -103,14 +74,11 @@ print(np.iinfo(a[0]))
 # ---------------------------------------------------------------
 # 
 
-# print(np.iinfo(np.float64))
-# ValueError: Invalid integer data type 'f'.
-
-fi64 = np.finfo(np.float64)
-print(type(fi64))
+fi = np.finfo(np.float64)
+print(type(fi))
 # <class 'numpy.finfo'>
 
-print(fi64)
+print(fi)
 # Machine parameters for float64
 # ---------------------------------------------------------------
 # precision =  15   resolution = 1.0000000000000001e-15
@@ -119,26 +87,27 @@ print(fi64)
 # minexp =  -1022   tiny =       2.2250738585072014e-308
 # maxexp =   1024   max =        1.7976931348623157e+308
 # nexp =       11   min =        -max
+# smallest_normal = 2.2250738585072014e-308   smallest_subnormal = 4.9406564584124654e-324
 # ---------------------------------------------------------------
 # 
 
-print(fi64.max)
+print(fi.max)
 # 1.7976931348623157e+308
 
-print(type(fi64.max))
+print(type(fi.max))
 # <class 'numpy.float64'>
 
-print(fi64.min)
+print(fi.min)
 # -1.7976931348623157e+308
 
-print(fi64.eps)
+print(fi.eps)
 # 2.220446049250313e-16
 
-print(fi64.bits)
+print(fi.bits)
 # 64
 
-print(fi64.iexp)
+print(fi.iexp)
 # 11
 
-print(fi64.nmant)
+print(fi.nmant)
 # 52
