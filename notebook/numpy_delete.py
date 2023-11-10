@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(12).reshape(3, 4)
 print(a)
 # [[ 0  1  2  3]
@@ -45,15 +48,24 @@ print(np.delete(a, 1, None))
 print(np.delete(a, 1))
 # [ 0  2  3  4  5  6  7  8  9 10 11]
 
+print(np.delete(a, [0, 2], 0))
+# [[4 5 6 7]]
+
 print(np.delete(a, [0, 3], 1))
 # [[ 1  2]
 #  [ 5  6]
 #  [ 9 10]]
 
-print(np.delete(a, [0, 1, 3], 1))
-# [[ 2]
-#  [ 6]
-#  [10]]
+print(np.delete(a, [True, False, True], 0))
+# [[4 5 6 7]]
+
+print(np.delete(a, [True, False, False, True], 1))
+# [[ 1  2]
+#  [ 5  6]
+#  [ 9 10]]
+
+# print(np.delete(a, [True, False, True], 1))
+# ValueError: boolean array argument obj to delete must be one dimensional and match the axis length of 4
 
 print(np.delete(a, slice(2), 1))
 # [[ 2  3]
