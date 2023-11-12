@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(15).reshape(3, 5)
 print(a)
 # [[ 0  1  2  3  4]

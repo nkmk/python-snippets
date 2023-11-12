@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a_3d = np.arange(24).reshape(2, 3, 4)
 print(a_3d)
 # [[[ 0  1  2  3]
