@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a1 = np.ones((2, 3), int)
 print(a1)
 # [[1 1 1]
@@ -49,4 +52,4 @@ print(np.block([[a1, a2], [a3]]))
 # ValueError: List depths are mismatched. First element was at depth 2, but there is an element at depth 1 (arrays[1])
 
 # print(np.block([[a1, a2, a3]]))
-# ValueError: all the input array dimensions except for the concatenation axis must match exactly
+# ValueError: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 2 and the array at index 2 has size 1
