@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(3)
 print(a)
 # [0 1 2]
@@ -60,10 +63,10 @@ print(a_2d_ex2)
 # [[ 0 10]]
 
 # print(np.append(a_2d, a_2d_ex2, axis=0))
-# ValueError: all the input array dimensions except for the concatenation axis must match exactly
+# ValueError: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 1, the array at index 0 has size 3 and the array at index 1 has size 2
 
 # print(np.append(a_2d, a_2d_ex2, axis=1))
-# ValueError: all the input array dimensions except for the concatenation axis must match exactly
+# ValueError: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 2 and the array at index 1 has size 1
 
 print(np.append(a_2d_ex, a_2d, axis=0))
 # [[ 0 10 20]
@@ -86,16 +89,10 @@ print(a_row_1d)
 # [ 0 10 20]
 
 # print(np.append(a_2d, a_row_1d, axis=0))
-# ValueError: all the input arrays must have same number of dimensions
+# ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 2 dimension(s) and the array at index 1 has 1 dimension(s)
 
-a_row_2d = np.arange(3).reshape(1, 3) * 100
-print(a_row_2d)
-# [[  0 100 200]]
-
-print(np.append(a_2d, a_row_2d, axis=0))
-# [[  0   1   2]
-#  [  3   4   5]
-#  [  0 100 200]]
+print(a_row_1d.reshape(1, 3))
+# [[ 0 10 20]]
 
 print(np.append(a_2d, a_row_1d.reshape(1, 3), axis=0))
 # [[ 0  1  2]
@@ -107,16 +104,11 @@ print(a_col_1d)
 # [ 0 10]
 
 # print(np.append(a_2d, a_col_1d, axis=1))
-# ValueError: all the input arrays must have same number of dimensions
+# ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 2 dimension(s) and the array at index 1 has 1 dimension(s)
 
-a_col_2d = np.arange(2).reshape(2, 1) * 100
-print(a_col_2d)
-# [[  0]
-#  [100]]
-
-print(np.append(a_2d, a_col_2d, axis=1))
-# [[  0   1   2   0]
-#  [  3   4   5 100]]
+print(a_col_1d.reshape(2, 1))
+# [[ 0]
+#  [10]]
 
 print(np.append(a_2d, a_col_1d.reshape(2, 1), axis=1))
 # [[ 0  1  2  0]
@@ -127,20 +119,19 @@ print(np.vstack([a_2d, a_row_1d]))
 #  [ 3  4  5]
 #  [ 0 10 20]]
 
-print(np.vstack([a_row_2d, a_2d, a_row_1d, [[0, -1, -2], [-3, -4, -5]]]))
-# [[  0 100 200]
-#  [  0   1   2]
-#  [  3   4   5]
-#  [  0  10  20]
-#  [  0  -1  -2]
-#  [ -3  -4  -5]]
+print(np.vstack([a_2d, a_row_1d, [[0, -1, -2], [-3, -4, -5]]]))
+# [[ 0  1  2]
+#  [ 3  4  5]
+#  [ 0 10 20]
+#  [ 0 -1 -2]
+#  [-3 -4 -5]]
 
 # print(np.hstack([a_2d, a_col_1d]))
-# ValueError: all the input arrays must have same number of dimensions
+# ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 2 dimension(s) and the array at index 1 has 1 dimension(s)
 
-print(np.hstack([a_col_2d, a_2d, a_col_1d.reshape(2, 1), [[0, -1], [-2, -3]]]))
-# [[  0   0   1   2   0   0  -1]
-#  [100   3   4   5  10  -2  -3]]
+print(np.hstack([a_2d, a_col_1d.reshape(2, 1), [[0, -1], [-2, -3]]]))
+# [[ 0  1  2  0  0 -1]
+#  [ 3  4  5 10 -2 -3]]
 
 a_3d = np.arange(12).reshape(2, 3, 2)
 print(a_3d)
