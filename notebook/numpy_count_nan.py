@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a_nan = np.genfromtxt('data/src/sample_nan.csv', delimiter=',')
 print(a_nan)
 # [[11. 12. nan 14.]
