@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(6).reshape(2, 3)
 print(a)
 # [[0 1 2]
@@ -24,13 +27,16 @@ print(a)
 # [[1 1 1]
 #  [1 1 1]]
 
-a[:] = 0.1
+print(a.dtype)
+# int64
+
+a[:] = 0.123
 print(a)
 # [[0 0 0]
 #  [0 0 0]]
 
-a = a.astype(np.float)
-a[:] = 0.1
+a = a.astype(np.float64)
+a[:] = 0.123
 print(a)
-# [[0.1 0.1 0.1]
-#  [0.1 0.1 0.1]]
+# [[0.123 0.123 0.123]
+#  [0.123 0.123 0.123]]
