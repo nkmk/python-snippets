@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 print(np.newaxis is None)
 # True
 
@@ -83,7 +86,7 @@ a_newaxis = a[:, :, np.newaxis]
 print(np.shares_memory(a, a_newaxis))
 # True
 
-a = np.zeros(27, dtype=np.int).reshape(3, 3, 3)
+a = np.zeros(27, dtype=np.int64).reshape(3, 3, 3)
 print(a)
 # [[[0 0 0]
 #   [0 0 0]
@@ -197,11 +200,4 @@ print(a.reshape(1, 2, 3))
 #   [3 4 5]]]
 
 print(a.reshape(1, 2, 3).shape)
-# (1, 2, 3)
-
-print(a.reshape(1, *a.shape))
-# [[[0 1 2]
-#   [3 4 5]]]
-
-print(a.reshape(1, *a.shape).shape)
 # (1, 2, 3)
