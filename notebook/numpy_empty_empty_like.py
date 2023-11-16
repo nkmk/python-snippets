@@ -1,39 +1,73 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 print(np.empty(3))
-# [ -3.10503618e+231  -3.10503618e+231  -3.10503618e+231]
+# [4.65836473e-310 0.00000000e+000 2.37151510e-322]
 
 print(np.empty((2, 3)))
-# [[ -3.10503618e+231   2.68677888e+154   6.92663118e-310]
-#  [  1.06099790e-313   6.92663119e-310   4.17211958e-309]]
+# [[1.13754784e-313 0.00000000e+000 1.39067149e-309]
+#  [4.65939618e-310 5.56268846e-309 4.65939619e-310]]
 
 print(np.empty(3).dtype)
 # float64
 
-print(np.empty(3, dtype=np.int))
-# [-1152921504606846976 -1152921504606846976 -1152921504606846974]
+print(np.empty(3, dtype=np.int64))
+# [94286351876007              0             48]
 
-print(np.empty(3, dtype=np.int).dtype)
+print(np.empty(3, dtype=np.int64).dtype)
 # int64
 
-a_int = np.arange(6).reshape((2,3))
-print(a_int)
-# [[0 1 2]
-#  [3 4 5]]
+a_int64 = np.arange(3)
+print(a_int64)
+# [0 1 2]
 
-print(np.empty_like(a_int))
-# [[8070450532247928832 6917537789928580555     140196575903747]
-#  [        21474836480     140196576086528     844446404968448]]
+print(a_int64.dtype)
+# int64
 
-a_float = np.arange(6).reshape((2,3)) / 10
-print(a_float)
-# [[ 0.   0.1  0.2]
-#  [ 0.3  0.4  0.5]]
+print(np.empty_like(a_int64))
+# [94286351876007              0             48]
 
-print(np.empty_like(a_float))
-# [[  0.00000000e+000   4.94065646e-324   9.88131292e-324]
-#  [  1.48219694e-323   1.97626258e-323   2.47032823e-323]]
+print(np.empty_like(a_int64).dtype)
+# int64
 
-print(np.empty_like(a_float, dtype=np.int))
-# [[0 1 2]
-#  [3 4 5]]
+a_float64 = np.arange(6).reshape(2, 3) / 10
+print(a_float64)
+# [[0.  0.1 0.2]
+#  [0.3 0.4 0.5]]
+
+print(a_float64.dtype)
+# float64
+
+print(np.empty_like(a_float64))
+# [[1.13754784e-313 0.00000000e+000 1.39067149e-309]
+#  [4.65939618e-310 5.56268846e-309 4.65939619e-310]]
+
+print(np.empty_like(a_float64).dtype)
+# float64
+
+print(np.empty_like(a_float64, dtype=np.int64))
+# [[     23024224555                0  281475043902528]
+#  [  94307228646232 1125900678677248   94307228749368]]
+
+print(np.empty_like(a_float64, dtype=np.int64).dtype)
+# int64
+
+print(np.empty(0))
+# []
+
+print(type(np.empty(0)))
+# <class 'numpy.ndarray'>
+
+print(np.empty(0).size)
+# 0
+
+print(np.zeros(0))
+# []
+
+print(np.ones(0))
+# []
+
+print(np.array([]))
+# []
