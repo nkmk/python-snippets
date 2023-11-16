@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(12).reshape(3, 4)
 print(a)
 # [[ 0  1  2  3]
@@ -18,11 +21,8 @@ print(np.ravel([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]]))
 print(type(np.ravel([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]])))
 # <class 'numpy.ndarray'>
 
-print(np.ravel([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]]))
-# [list([0, 1, 2, 3]) list([4, 5, 6, 7]) list([8, 9])]
-
-print(type(np.ravel([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]])))
-# <class 'numpy.ndarray'>
+# print(np.ravel([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]]))
+# ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (3,) + inhomogeneous part.
 
 print(a.ravel())
 # [ 0  1  2  3  4  5  6  7  8  9 10 11]
@@ -38,9 +38,6 @@ print(np.reshape(a, -1))
 
 print(np.reshape([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]], -1))
 # [ 0  1  2  3  4  5  6  7  8  9 10 11]
-
-print(np.reshape([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9]], -1))
-# [list([0, 1, 2, 3]) list([4, 5, 6, 7]) list([8, 9])]
 
 print(np.shares_memory(a, a.ravel()))
 # True

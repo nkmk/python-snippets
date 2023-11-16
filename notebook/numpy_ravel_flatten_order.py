@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(12).reshape(3, 4)
 print(a)
 # [[ 0  1  2  3]
@@ -32,7 +35,7 @@ np.info(a)
 # aligned:  True
 # contiguous:  True
 # fortran:  False
-# data pointer: 0x7fe081640f90
+# data pointer: 0x6000004bc000
 # byteorder:  little
 # byteswap:  False
 # type: int64
@@ -63,7 +66,7 @@ np.info(a.T)
 # aligned:  True
 # contiguous:  False
 # fortran:  True
-# data pointer: 0x7fe081640f90
+# data pointer: 0x6000004bc000
 # byteorder:  little
 # byteswap:  False
 # type: int64
@@ -94,7 +97,7 @@ np.info(a.T[::-1])
 # aligned:  True
 # contiguous:  False
 # fortran:  False
-# data pointer: 0x7fe081640fa8
+# data pointer: 0x6000004bc018
 # byteorder:  little
 # byteswap:  False
 # type: int64

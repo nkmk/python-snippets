@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(12).reshape(3, 4)
 print(a)
 # [[ 0  1  2  3]
@@ -8,26 +11,26 @@ print(a)
 
 %%timeit
 a.ravel()
-# 242 ns ± 2.78 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 43.6 ns ± 0.298 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
 %%timeit
 a.flatten()
-# 725 ns ± 45.2 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 249 ns ± 0.971 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 
 %%timeit
 a.reshape(-1)
-# 851 ns ± 13.5 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 80.2 ns ± 0.145 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
 a_large = np.arange(1000000).reshape(100, 100, 100)
 
 %%timeit
 a_large.ravel()
-# 242 ns ± 3.6 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 43.6 ns ± 0.118 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
 %%timeit
 a_large.flatten()
-# 2.03 ms ± 8.63 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+# 423 µs ± 25.9 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 a_large.reshape(-1)
-# 899 ns ± 52 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 80 ns ± 0.0587 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
