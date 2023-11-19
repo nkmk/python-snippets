@@ -1,7 +1,7 @@
 import numpy as np
 
 print(np.__version__)
-# 1.24.2
+# 1.26.1
 
 a = np.arange(6, dtype=np.int8).reshape(1, 2, 3)
 print(a)
