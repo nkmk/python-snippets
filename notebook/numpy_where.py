@@ -78,10 +78,40 @@ print(a_org)
 #  [-1  4  5]
 #  [ 6  7  8]]
 
-print(np.where(a < 4, a * 10, a + 10))
-# [[ 0 10 20]
-#  [30 14 15]
-#  [16 17 18]]
+print(np.where(a < 4, a * 10, a + 100))
+# [[  0  10  20]
+#  [ 30 104 105]
+#  [106 107 108]]
+
+a = np.arange(12).reshape(3, 4)
+print(a)
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+
+print(a.sum(axis=0, keepdims=True))
+# [[12 15 18 21]]
+
+print(np.where(a < 6, a.sum(axis=0, keepdims=True), 0))
+# [[12 15 18 21]
+#  [12 15  0  0]
+#  [ 0  0  0  0]]
+
+print(a.sum(axis=1, keepdims=True))
+# [[ 6]
+#  [22]
+#  [38]]
+
+print(np.where(a < 6, a.sum(axis=1, keepdims=True), 0))
+# [[ 6  6  6  6]
+#  [22 22  0  0]
+#  [ 0  0  0  0]]
+
+a = np.arange(9).reshape(3, 3)
+print(a)
+# [[0 1 2]
+#  [3 4 5]
+#  [6 7 8]]
 
 print(np.where(a < 4))
 # (array([0, 0, 0, 1]), array([0, 1, 2, 0]))
