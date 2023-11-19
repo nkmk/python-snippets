@@ -1,37 +1,40 @@
 import numpy as np
 
-arr = np.genfromtxt('data/src/sample_nan.csv', delimiter=',')
-print(arr)
-# [[ 11.  12.  nan  14.]
-#  [ 21.  nan  nan  24.]
-#  [ 31.  32.  33.  34.]]
+print(np.__version__)
+# 1.26.1
 
-print(arr.sum())
+a = np.genfromtxt('data/src/sample_nan.csv', delimiter=',')
+print(a)
+# [[11. 12. nan 14.]
+#  [21. nan nan 24.]
+#  [31. 32. 33. 34.]]
+
+print(np.sum(a))
 # nan
 
-print(np.sum(arr))
+print(a.sum())
 # nan
 
-print(np.nansum(arr))
+print(np.nansum(a))
 # 212.0
 
-print(np.nansum(arr, axis=0))
-# [ 63.  44.  33.  72.]
+print(np.nansum(a, axis=0))
+# [63. 44. 33. 72.]
 
-print(np.nansum(arr, axis=1))
-# [  37.   45.  130.]
+print(np.nansum(a, axis=1))
+# [ 37.  45. 130.]
 
-print(np.nanmean(arr))
-# 23.5555555556
+print(np.nanmean(a))
+# 23.555555555555557
 
-print(np.nanmax(arr))
+print(np.nanmax(a))
 # 34.0
 
-print(np.nanmin(arr))
+print(np.nanmin(a))
 # 11.0
 
-print(np.nanstd(arr))
-# 8.90831211237
+print(np.nanstd(a))
+# 8.908312112367753
 
-print(np.nanvar(arr))
-# 79.3580246914
+print(np.nanvar(a))
+# 79.35802469135803
