@@ -1,9 +1,10 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(12).reshape(3, 4)
-print(a.shape)
 print(a)
-# (3, 4)
 # [[ 0  1  2  3]
 #  [ 4  5  6  7]
 #  [ 8  9 10 11]]
@@ -12,86 +13,82 @@ print(np.sum(a))
 # 66
 
 print(np.sum(a, axis=0))
-print(np.sum(a, axis=1))
 # [12 15 18 21]
+
+print(np.sum(a, axis=1))
 # [ 6 22 38]
+
+print(np.sum(a, axis=-1))
+# [ 6 22 38]
+
+print(np.sum(a, axis=-2))
+# [12 15 18 21]
+
+# print(np.sum(a, axis=2))
+# AxisError: axis 2 is out of bounds for array of dimension 2
+
+# print(np.sum(a, axis=-3))
+# AxisError: axis -3 is out of bounds for array of dimension 2
 
 print(a.sum())
 # 66
 
 print(a.sum(axis=0))
-print(a.sum(axis=1))
 # [12 15 18 21]
+
+print(a.sum(axis=1))
 # [ 6 22 38]
 
 print(np.mean(a))
 # 5.5
 
 print(np.mean(a, axis=0))
+# [4. 5. 6. 7.]
+
 print(np.mean(a, axis=1))
-# [ 4.  5.  6.  7.]
-# [ 1.5  5.5  9.5]
+# [1.5 5.5 9.5]
 
 print(a.mean())
 # 5.5
 
 print(a.mean(axis=0))
+# [4. 5. 6. 7.]
+
 print(a.mean(axis=1))
-# [ 4.  5.  6.  7.]
-# [ 1.5  5.5  9.5]
+# [1.5 5.5 9.5]
 
-print(np.min(a))
-print(np.min(a, axis=0))
-# 0
-# [0 1 2 3]
-
-print(a.max())
-print(a.max(axis=1))
+print(np.max(a))
 # 11
+
+print(np.max(a, axis=0))
+# [ 8  9 10 11]
+
+print(np.max(a, axis=1))
 # [ 3  7 11]
 
-b = np.arange(24).reshape(2, 3, 4)
-print(b.shape)
-print(b)
-# (2, 3, 4)
-# [[[ 0  1  2  3]
-#   [ 4  5  6  7]
-#   [ 8  9 10 11]]
-#  [[12 13 14 15]
-#   [16 17 18 19]
-#   [20 21 22 23]]]
+print(np.min(a))
+# 0
 
-print(b.sum(axis=0))
-# [[12 14 16 18]
-#  [20 22 24 26]
-#  [28 30 32 34]]
+print(np.min(a, axis=0))
+# [0 1 2 3]
 
-print(b[0, :, :] + b[1, :, :])
-# [[12 14 16 18]
-#  [20 22 24 26]
-#  [28 30 32 34]]
+print(np.min(a, axis=1))
+# [0 4 8]
 
-print(b.sum(axis=1))
-# [[12 15 18 21]
-#  [48 51 54 57]]
+print(a.max())
+# 11
 
-print(b[:, 0, :] + b[:, 1, :] + b[:, 2, :])
-# [[12 15 18 21]
-#  [48 51 54 57]]
+print(a.max(axis=0))
+# [ 8  9 10 11]
 
-print(b.sum(axis=2))
-# [[ 6 22 38]
-#  [54 70 86]]
+print(a.max(axis=1))
+# [ 3  7 11]
 
-print(b[:, :, 0] + b[:, :, 1] + b[:, :, 2] + b[:, :, 3])
-# [[ 6 22 38]
-#  [54 70 86]]
+print(a.min())
+# 0
 
-print(b.sum(axis=(0, 1)))
-# [60 66 72 78]
+print(a.min(axis=0))
+# [0 1 2 3]
 
-print(b.sum(axis=(0, 2)))
-# [ 60  92 124]
-
-print(b.sum(axis=(1, 2)))
-# [ 66 210]
+print(a.min(axis=1))
+# [0 4 8]
