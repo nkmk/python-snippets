@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(120).reshape(2, 3, 4, 5)
 
 print(a.shape)
