@@ -1,6 +1,12 @@
 import numpy as np
 import pandas as pd
 
+print(np.__version__)
+# 1.26.1
+
+print(pd.__version__)
+# 2.1.2
+
 with open('data/src/sample_header_index.csv') as f:
     print(f.read())
 # ,a,b,c,d
@@ -16,7 +22,6 @@ print(df)
 # THREE  31  32  33  34
 
 a = df.values
-
 print(a)
 # [[11 12 13 14]
 #  [21 22 23 24]
@@ -95,7 +100,6 @@ print(df.select_dtypes('int'))
 # 5   30     57
 
 a = pd.read_csv('data/src/sample_pandas_normal.csv').select_dtypes('int').values
-
 print(a)
 # [[24 64]
 #  [42 92]
