@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a_1d = np.arange(10)
 print(a_1d)
 # [0 1 2 3 4 5 6 7 8 9]
@@ -28,20 +31,14 @@ print(a_2d)
 #  [ 4  5  6  7]
 #  [ 8  9 10 11]]
 
-print(a_2d[0, -1])
-# 3
+print(a_2d[1, -1])
+# 7
 
-print(a_2d[0])
-# [0 1 2 3]
+print(a_2d[1])
+# [4 5 6 7]
 
-print(a_2d[0, :])
-# [0 1 2 3]
+print(a_2d[1, :])
+# [4 5 6 7]
 
-print(a_2d[:, 0])
-# [0 4 8]
-
-print(type(a_2d[0, -1]))
-# <class 'numpy.int64'>
-
-print(type(a_2d[0]))
-# <class 'numpy.ndarray'>
+print(a_2d[:, 1])
+# [1 5 9]
