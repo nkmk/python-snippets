@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 print(0.1 + 0.1 + 0.1)
 # 0.30000000000000004
 
@@ -40,19 +43,11 @@ print(np.isclose(np.nan, np.nan))
 print(np.isclose(np.nan, np.nan, equal_nan=True))
 # True
 
-print(np.isclose(np.nan, 100, equal_nan=True))
-# False
-
 a_nan = np.array([np.nan, 1, 2])
-print(a_nan)
-# [nan  1.  2.]
-
-b_nan = np.array([np.nan, np.nan, 2])
-print(b_nan)
-# [nan nan  2.]
+b_nan = np.array([np.nan, 1, np.nan])
 
 print(np.isclose(a_nan, b_nan))
-# [False False  True]
+# [False  True False]
 
 print(np.isclose(a_nan, b_nan, equal_nan=True))
-# [ True False  True]
+# [ True  True False]

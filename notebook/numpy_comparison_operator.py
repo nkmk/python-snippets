@@ -1,5 +1,8 @@
 import numpy as np
 
+print(np.__version__)
+# 1.26.1
+
 a = np.arange(12).reshape(3, 4)
 print(a)
 # [[ 0  1  2  3]
@@ -23,31 +26,6 @@ print(type(a_compare))
 
 print(a_compare.dtype)
 # bool
-
-print(a > b)
-# [[False False False False]
-#  [ True  True False False]
-#  [ True  True  True False]]
-
-print(a <= b)
-# [[ True  True  True  True]
-#  [False False  True  True]
-#  [False False False  True]]
-
-print(a >= b)
-# [[ True False False False]
-#  [ True  True False False]
-#  [ True  True  True  True]]
-
-print(a == b)
-# [[ True False False False]
-#  [False False False False]
-#  [False False False  True]]
-
-print(a != b)
-# [[False  True  True  True]
-#  [ True  True  True  True]
-#  [ True  True  True False]]
 
 b_float = b.astype(float)
 print(b_float)
@@ -87,6 +65,11 @@ print(a % 2 == 0)
 #  [ True False  True False]
 #  [ True False  True False]]
 
+print(a < 6)
+# [[ True  True  True  True]
+#  [ True  True False False]
+#  [False False False False]]
+
 print(np.count_nonzero(a < 6))
 # 6
 
@@ -114,19 +97,6 @@ print(np.isnan(a_nan))
 
 print(a_nan > 0)
 # [False  True False]
-# 
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in greater
-#   """Entry point for launching an IPython kernel.
-
-a_nan_only = np.array([np.nan])
-print(a_nan_only)
-# [nan]
-
-print(a_nan_only > 0)
-# [False]
-
-print(np.nan > 0)
-# False
 
 x = 6
 
