@@ -1,7 +1,7 @@
 import numpy as np
 
 print(np.__version__)
-# 1.19.0
+# 1.26.1
 
 print(np.pi)
 # 3.141592653589793
