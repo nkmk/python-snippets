@@ -1,7 +1,7 @@
 import numpy as np
 
 print(np.__version__)
-# 1.19.4
+# 1.26.1
 
 a = np.array([[10.0, 10.1, 10.9], [-10.0, -10.1, -10.9]])
 print(a)
