@@ -60,9 +60,10 @@ print((a_int16 + a_float16).dtype)
 print((a_int32 + a_float32).dtype)
 # float64
 
-a_int16[0] = 1.9
-print(a_int16)
-# [1 2 3]
+a_int[0] = 10.9
+a_int[1] = -20.9
+print(a_int)
+# [ 10 -20   3]
 
-print(a_int16.dtype)
-# int16
+print(a_int.dtype)
+# int64
