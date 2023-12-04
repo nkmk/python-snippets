@@ -1,148 +1,341 @@
 import pandas as pd
-import seaborn as sns
-import numpy as np
 
-df = sns.load_dataset('iris')
-print(df.shape)
-# (150, 5)
+print(pd.__version__)
+# 2.1.2
 
-print(df.head(5))
-#    sepal_length  sepal_width  petal_length  petal_width species
-# 0           5.1          3.5           1.4          0.2  setosa
-# 1           4.9          3.0           1.4          0.2  setosa
-# 2           4.7          3.2           1.3          0.2  setosa
-# 3           4.6          3.1           1.5          0.2  setosa
-# 4           5.0          3.6           1.4          0.2  setosa
+df = pd.DataFrame(
+    {'c_0': ['A', 'A', 'B', 'B', 'B', 'B'],
+     'c_1': ['X', 'Y', 'X', 'Y', 'X', 'Y'],
+     'c_2': [0, 1, 4, 9, 16, 25],
+     'c_3': [125, 64, 27, 16, 1, 0]},
+    index=['r_0', 'r_1', 'r_2', 'r_3', 'r_4', 'r_5']
+)
+print(df)
+#     c_0 c_1  c_2  c_3
+# r_0   A   X    0  125
+# r_1   A   Y    1   64
+# r_2   B   X    4   27
+# r_3   B   Y    9   16
+# r_4   B   X   16    1
+# r_5   B   Y   25    0
 
-df.columns = ['sl', 'sw', 'pl', 'pw', 'species']
-print(df.head(5))
-#     sl   sw   pl   pw species
-# 0  5.1  3.5  1.4  0.2  setosa
-# 1  4.9  3.0  1.4  0.2  setosa
-# 2  4.7  3.2  1.3  0.2  setosa
-# 3  4.6  3.1  1.5  0.2  setosa
-# 4  5.0  3.6  1.4  0.2  setosa
-
-grouped = df.groupby('species')
+grouped = df.groupby('c_0')
 print(grouped)
-# <pandas.core.groupby.generic.DataFrameGroupBy object at 0x115de1650>
+# <pandas.core.groupby.generic.DataFrameGroupBy object at 0x1272139d0>
 
 print(type(grouped))
 # <class 'pandas.core.groupby.generic.DataFrameGroupBy'>
 
-print(grouped.size())
-# species
-# setosa        50
-# versicolor    50
-# virginica     50
+df_mean = grouped.mean(numeric_only=True)
+print(df_mean)
+#       c_2   c_3
+# c_0            
+# A     0.5  94.5
+# B    13.5  11.0
+
+print(type(df_mean))
+# <class 'pandas.core.frame.DataFrame'>
+
+print(df.groupby('c_0').mean(numeric_only=True))
+#       c_2   c_3
+# c_0            
+# A     0.5  94.5
+# B    13.5  11.0
+
+print(df.groupby('c_1').mean(numeric_only=True))
+#            c_2        c_3
+# c_1                      
+# X     6.666667  51.000000
+# Y    11.666667  26.666667
+
+print(df.groupby('c_0')['c_2'].mean())
+# c_0
+# A     0.5
+# B    13.5
+# Name: c_2, dtype: float64
+
+print(df.groupby('c_0')[['c_2', 'c_3']].mean())
+#       c_2   c_3
+# c_0            
+# A     0.5  94.5
+# B    13.5  11.0
+
+print(df.groupby('c_0').sum(numeric_only=True))
+#      c_2  c_3
+# c_0          
+# A      1  189
+# B     54   44
+
+print(df.groupby('c_0').count())
+#      c_1  c_2  c_3
+# c_0               
+# A      2    2    2
+# B      4    4    4
+
+print(df.groupby(['c_0', 'c_1']).mean())
+#           c_2    c_3
+# c_0 c_1             
+# A   X     0.0  125.0
+#     Y     1.0   64.0
+# B   X    10.0   14.0
+#     Y    17.0    8.0
+
+print(df.groupby('c_0', as_index=False).mean(numeric_only=True))
+#   c_0   c_2   c_3
+# 0   A   0.5  94.5
+# 1   B  13.5  11.0
+
+print(df.groupby(['c_0', 'c_1'], as_index=False).mean())
+#   c_0 c_1   c_2    c_3
+# 0   A   X   0.0  125.0
+# 1   A   Y   1.0   64.0
+# 2   B   X  10.0   14.0
+# 3   B   Y  17.0    8.0
+
+df_nan = df.copy()
+df_nan.iloc[0, 1] = float('nan')
+df_nan.iloc[5, 1] = float('nan')
+print(df_nan)
+#     c_0  c_1  c_2  c_3
+# r_0   A  NaN    0  125
+# r_1   A    Y    1   64
+# r_2   B    X    4   27
+# r_3   B    Y    9   16
+# r_4   B    X   16    1
+# r_5   B  NaN   25    0
+
+print(df_nan.groupby(['c_0', 'c_1']).mean())
+#           c_2   c_3
+# c_0 c_1            
+# A   Y     1.0  64.0
+# B   X    10.0  14.0
+#     Y     9.0  16.0
+
+print(df_nan.groupby(['c_0', 'c_1'], dropna=False).mean())
+#           c_2    c_3
+# c_0 c_1             
+# A   Y     1.0   64.0
+#     NaN   0.0  125.0
+# B   X    10.0   14.0
+#     Y     9.0   16.0
+#     NaN  25.0    0.0
+
+print(df.groupby('c_0').get_group('B'))
+#     c_0 c_1  c_2  c_3
+# r_2   B   X    4   27
+# r_3   B   Y    9   16
+# r_4   B   X   16    1
+# r_5   B   Y   25    0
+
+print(df.groupby(['c_0', 'c_1']).get_group(('B', 'X')))
+#     c_0 c_1  c_2  c_3
+# r_2   B   X    4   27
+# r_4   B   X   16    1
+
+print(df.groupby('c_0').size())
+# c_0
+# A    2
+# B    4
 # dtype: int64
 
-print(grouped.mean())
-#                sl     sw     pl     pw
-# species                               
-# setosa      5.006  3.428  1.462  0.246
-# versicolor  5.936  2.770  4.260  1.326
-# virginica   6.588  2.974  5.552  2.026
+print(df.groupby(['c_0', 'c_1']).size())
+# c_0  c_1
+# A    X      1
+#      Y      1
+# B    X      2
+#      Y      2
+# dtype: int64
 
-print(grouped.min())
-#              sl   sw   pl   pw
-# species                       
-# setosa      4.3  2.3  1.0  0.1
-# versicolor  4.9  2.0  3.0  1.0
-# virginica   4.9  2.2  4.5  1.4
+print(df.groupby(['c_0', 'c_1']).agg('mean'))
+#           c_2    c_3
+# c_0 c_1             
+# A   X     0.0  125.0
+#     Y     1.0   64.0
+# B   X    10.0   14.0
+#     Y    17.0    8.0
 
-print(grouped.max())
-#              sl   sw   pl   pw
-# species                       
-# setosa      5.8  4.4  1.9  0.6
-# versicolor  7.0  3.4  5.1  1.8
-# virginica   7.9  3.8  6.9  2.5
+print(df.groupby(['c_0', 'c_1']).agg(['mean', 'min', 'max']))
+#           c_2            c_3          
+#          mean min max   mean  min  max
+# c_0 c_1                               
+# A   X     0.0   0   0  125.0  125  125
+#     Y     1.0   1   1   64.0   64   64
+# B   X    10.0   4  16   14.0    1   27
+#     Y    17.0   9  25    8.0    0   16
 
-print(grouped.sum())
-#                sl     sw     pl     pw
-# species                               
-# setosa      250.3  171.4   73.1   12.3
-# versicolor  296.8  138.5  213.0   66.3
-# virginica   329.4  148.7  277.6  101.3
+print(df.groupby(['c_0', 'c_1']).agg({'c_2': 'sum', 'c_3': ['min', 'max']}))
+#         c_2  c_3     
+#         sum  min  max
+# c_0 c_1              
+# A   X     0  125  125
+#     Y     1   64   64
+# B   X    20    1   27
+#     Y    34    0   16
 
-print(type(grouped.mean()))
-# <class 'pandas.core.frame.DataFrame'>
+# print(df.groupby(['row_0', 'row_1']).agg('xxx'))
+# AttributeError: 'xxx' is not a valid function for 'DataFrameGroupBy' object
 
-print(grouped.agg('mean'))
-#                sl     sw     pl     pw
-# species                               
-# setosa      5.006  3.428  1.462  0.246
-# versicolor  5.936  2.770  4.260  1.326
-# virginica   6.588  2.974  5.552  2.026
-
-print(grouped.agg(max))
-#              sl   sw   pl   pw
-# species                       
-# setosa      5.8  4.4  1.9  0.6
-# versicolor  7.0  3.4  5.1  1.8
-# virginica   7.9  3.8  6.9  2.5
-
-print(grouped.agg(np.min))
-#              sl   sw   pl   pw
-# species                       
-# setosa      4.3  2.3  1.0  0.1
-# versicolor  4.9  2.0  3.0  1.0
-# virginica   4.9  2.2  4.5  1.4
-
-print(grouped.agg(lambda x: max(x) - min(x)))
-#              sl   sw   pl   pw
-# species                       
-# setosa      1.5  2.1  0.9  0.5
-# versicolor  2.1  1.4  2.1  0.8
-# virginica   3.0  1.6  2.4  1.1
-
-print(grouped.agg(lambda x: type(x))['sl'])
-# species
-# setosa        <class 'pandas.core.series.Series'>
-# versicolor    <class 'pandas.core.series.Series'>
-# virginica     <class 'pandas.core.series.Series'>
-# Name: sl, dtype: object
-
-# print(grouped.agg(lambda x: x + 1))
-# Exception: Must produce aggregated value
+# print(df.groupby(['row_0', 'row_1']).agg(['xxx']))
+# AttributeError: 'SeriesGroupBy' object has no attribute 'xxx'
 
 def my_func(x):
-    return max(x) - min(x)
+    return x.max() + x.min()
 
-print(grouped.agg(my_func))
-#              sl   sw   pl   pw
-# species                       
-# setosa      1.5  2.1  0.9  0.5
-# versicolor  2.1  1.4  2.1  0.8
-# virginica   3.0  1.6  2.4  1.1
+print(df.groupby(['c_0', 'c_1']).agg([my_func, lambda x: x.sum() - x.mean()]))
+#             c_2                c_3           
+#         my_func <lambda_0> my_func <lambda_0>
+# c_0 c_1                                      
+# A   X         0        0.0     250        0.0
+#     Y         2        0.0     128        0.0
+# B   X        20       10.0      28       14.0
+#     Y        34       17.0      16        8.0
 
-print(grouped.agg(['mean', max, np.min]))
-#                sl               sw               pl               pw          
-#              mean  max amin   mean  max amin   mean  max amin   mean  max amin
-# species                                                                       
-# setosa      5.006  5.8  4.3  3.428  4.4  2.3  1.462  1.9  1.0  0.246  0.6  0.1
-# versicolor  5.936  7.0  4.9  2.770  3.4  2.0  4.260  5.1  3.0  1.326  1.8  1.0
-# virginica   6.588  7.9  4.9  2.974  3.8  2.2  5.552  6.9  4.5  2.026  2.5  1.4
+print(df.groupby(['c_0', 'c_1']).agg(lambda x: str(type(x))).iloc[0, 0])
+# <class 'pandas.core.series.Series'>
 
-print(grouped.agg({'sl': 'mean', 'sw': max, 'pl': np.min, 'pw': my_func}))
-#                sl   sw   pl   pw
-# species                         
-# setosa      5.006  4.4  1.0  0.5
-# versicolor  5.936  3.4  3.0  0.8
-# virginica   6.588  3.8  4.5  1.1
+print(df.groupby(['c_0', 'c_1']).agg([lambda x: str(type(x))]).iloc[0, 0])
+# <class 'pandas.core.series.Series'>
 
-print(grouped.describe()['sl'])
-#             count   mean       std  min    25%  50%  75%  max
-# species                                                      
-# setosa       50.0  5.006  0.352490  4.3  4.800  5.0  5.2  5.8
-# versicolor   50.0  5.936  0.516171  4.9  5.600  5.9  6.3  7.0
-# virginica    50.0  6.588  0.635880  4.9  6.225  6.5  6.9  7.9
+print(df.groupby(['c_0', 'c_1']).agg(lambda x: str(x.values)))
+#              c_2      c_3
+# c_0 c_1                  
+# A   X        [0]    [125]
+#     Y        [1]     [64]
+# B   X    [ 4 16]  [27  1]
+#     Y    [ 9 25]  [16  0]
 
-print(type(grouped.max()))
-# <class 'pandas.core.frame.DataFrame'>
+print(df.groupby(['c_0', 'c_1']).describe()['c_2'])
+#          count  mean        std  min   25%   50%   75%   max
+# c_0 c_1                                                     
+# A   X      1.0   0.0        NaN  0.0   0.0   0.0   0.0   0.0
+#     Y      1.0   1.0        NaN  1.0   1.0   1.0   1.0   1.0
+# B   X      2.0  10.0   8.485281  4.0   7.0  10.0  13.0  16.0
+#     Y      2.0  17.0  11.313708  9.0  13.0  17.0  21.0  25.0
 
-# %matplotlib agg
+print(df.groupby(['c_0', 'c_1']).apply(lambda x: type(x)))
+# c_0  c_1
+# A    X      <class 'pandas.core.frame.DataFrame'>
+#      Y      <class 'pandas.core.frame.DataFrame'>
+# B    X      <class 'pandas.core.frame.DataFrame'>
+#      Y      <class 'pandas.core.frame.DataFrame'>
+# dtype: object
 
-ax = grouped.max().plot.bar(rot=0)
-fig = ax.get_figure()
-fig.savefig('data/dst/iris_pandas_groupby_max.jpg')
+dfs = []
+df.groupby(['c_0', 'c_1']).apply(lambda x: dfs.append(x))
+print(dfs[0])
+#     c_0 c_1  c_2  c_3
+# r_0   A   X    0  125
+
+print(dfs[1])
+#     c_0 c_1  c_2  c_3
+# r_1   A   Y    1   64
+
+print(dfs[2])
+#     c_0 c_1  c_2  c_3
+# r_2   B   X    4   27
+# r_4   B   X   16    1
+
+print(dfs[3])
+#     c_0 c_1  c_2  c_3
+# r_3   B   Y    9   16
+# r_5   B   Y   25    0
+
+print(df.groupby(['c_0', 'c_1']).apply(lambda x: x['c_2'].max()))
+# c_0  c_1
+# A    X       0
+#      Y       1
+# B    X      16
+#      Y      25
+# dtype: int64
+
+print(df.groupby(['c_0', 'c_1'], as_index=False).apply(lambda x: x['c_2'].max()))
+#   c_0 c_1  None
+# 0   A   X     0
+# 1   A   Y     1
+# 2   B   X    16
+# 3   B   Y    25
+
+print(dfs[0][['c_2', 'c_3']].max())
+# c_2      0
+# c_3    125
+# dtype: int64
+
+print(dfs[0][['c_2', 'c_3']].max(axis=1))
+# r_0    125
+# dtype: int64
+
+print(df.groupby(['c_0', 'c_1']).apply(lambda x: x[['c_2', 'c_3']].max()))
+#          c_2  c_3
+# c_0 c_1          
+# A   X      0  125
+#     Y      1   64
+# B   X     16   27
+#     Y     25   16
+
+print(df.groupby(['c_0', 'c_1']).apply(lambda x: x[['c_2', 'c_3']].max(axis=1)))
+# c_0  c_1     
+# A    X    r_0    125
+#      Y    r_1     64
+# B    X    r_2     27
+#           r_4     16
+#      Y    r_3     16
+#           r_5     25
+# dtype: int64
+
+print(
+    df.groupby(['c_0', 'c_1'], as_index=False).apply(
+        lambda x: x[['c_2', 'c_3']].max(axis=1)
+    )
+)
+# 0  r_0    125
+# 1  r_1     64
+# 2  r_2     27
+#    r_4     16
+# 3  r_3     16
+#    r_5     25
+# dtype: int64
+
+print(
+    df.groupby(['c_0', 'c_1'], group_keys=False).apply(
+        lambda x: x[['c_2', 'c_3']].max(axis=1)
+    )
+)
+# r_0    125
+# r_1     64
+# r_2     27
+# r_4     16
+# r_3     16
+# r_5     25
+# dtype: int64
+
+print(df.groupby(['c_0', 'c_1']).apply(lambda x: x[['c_2', 'c_3']] * 10))
+#              c_2   c_3
+# c_0 c_1               
+# A   X   r_0    0  1250
+#     Y   r_1   10   640
+# B   X   r_2   40   270
+#         r_4  160    10
+#     Y   r_3   90   160
+#         r_5  250     0
+
+print(
+    df.groupby(['c_0', 'c_1'], as_index=False).apply(lambda x: x[['c_2', 'c_3']] * 10)
+)
+#        c_2   c_3
+# 0 r_0    0  1250
+# 1 r_1   10   640
+# 2 r_2   40   270
+#   r_4  160    10
+# 3 r_3   90   160
+#   r_5  250     0
+
+print(
+    df.groupby(['c_0', 'c_1'], group_keys=False).apply(lambda x: x[['c_2', 'c_3']] * 10)
+)
+#      c_2   c_3
+# r_0    0  1250
+# r_1   10   640
+# r_2   40   270
+# r_3   90   160
+# r_4  160    10
+# r_5  250     0
