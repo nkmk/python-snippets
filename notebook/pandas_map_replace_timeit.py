@@ -1,41 +1,36 @@
 import pandas as pd
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv')
-s = df['state']
+print(pd.__version__)
+# 2.1.2
 
-%timeit s.map({'NY': 'NewYork', 'CA': 'California', 'TX': 'Texas'})
-# 345 µs ± 14 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+s = pd.Series(range(100))
 
-%timeit s.replace({'NY': 'NewYork', 'CA': 'California', 'TX': 'Texas'})
-# 519 µs ± 15.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+d_100 = {i: i * 10 for i in range(100)}
 
-s_copy = s.copy()
-%timeit s_copy.update(s_copy.map({'NY': 'NewYork'}))
-# 643 µs ± 21.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+%%timeit
+s.map(d_100)
+# 70.7 µs ± 2.08 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 
-s_copy = s.copy()
-%timeit s_copy.replace({'NY': 'NewYork'}, inplace=True)
-# 230 µs ± 10 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+%%timeit
+s.replace(d_100)
+# 1.31 ms ± 26.7 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
-s_copy = s.copy()
-%timeit s_copy.update(s_copy.map({'NY': 'NewYork', 'CA': 'California', 'TX': 'Texas'}))
-# 627 µs ± 10.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+d_50 = {i: i * 10 for i in range(50)}
 
-s_copy = s.copy()
-%timeit s_copy.replace({'NY': 'NewYork', 'CA': 'California', 'TX': 'Texas'}, inplace=True)
-# 441 µs ± 22.1 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+%%timeit
+s.map(d_50).fillna(s)
+# 108 µs ± 3.1 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 
-%timeit s.map({'NY': 'NewYork'})
-# 335 µs ± 7.55 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+%%timeit
+s.replace(d_50)
+# 653 µs ± 3.73 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
-%timeit s.replace({'NY': 'NewYork'})
-# 261 µs ± 6.57 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+d_5 = {i: i * 10 for i in range(5)}
 
-df = pd.read_csv('data/src/titanic_train.csv')
-s = df['Sex']
+%%timeit
+s.map(d_5).fillna(s)
+# 104 µs ± 3.85 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 
-%timeit s.map({'male': 0, 'female': 1})
-# 422 µs ± 30.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-
-%timeit s.replace({'male': 0, 'female': 1})
-# 634 µs ± 13.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+%%timeit
+s.replace(d_5)
+# 78.5 µs ± 860 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
