@@ -1,7 +1,7 @@
 import pandas as pd
 
 print(pd.__version__)
-# 1.0.5
+# 2.1.2
 
 df = pd.read_csv('data/src/sample_pandas_normal.csv')
 df.iloc[1, 3] = 24
@@ -51,7 +51,7 @@ print(df.replace(['CA', 24], ['California', 100]))
 # 5    Frank   30          NY     57
 
 # print(df.replace(['CA', 24, 'NY'], ['California', 100]))
-# ValueError: Replacement lists must match in length. Expecting 3 got 2 
+# ValueError: Replacement lists must match in length. Expecting 3 got 2
 
 print(df.replace(['CA', 24], 'XXX'))
 #       name  age state point
@@ -61,60 +61,6 @@ print(df.replace(['CA', 24], 'XXX'))
 # 3     Dave   68    TX    70
 # 4    Ellen  XXX   XXX    88
 # 5    Frank   30    NY    57
-
-print(df.replace({'CA': 'NY', 'NY': 'XXX'}))
-#       name  age state  point
-# 0    Alice   24   XXX     64
-# 1      Bob   42    NY     24
-# 2  Charlie   18    NY     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    NY     88
-# 5    Frank   30   XXX     57
-
-print(df.replace({'NY': 'XXX', 'CA': 'NY'}))
-#       name  age state  point
-# 0    Alice   24   XXX     64
-# 1      Bob   42    NY     24
-# 2  Charlie   18    NY     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    NY     88
-# 5    Frank   30   XXX     57
-
-print(df.replace(['CA', 'NY'], ['NY', 'XXX']))
-#       name  age state  point
-# 0    Alice   24   XXX     64
-# 1      Bob   42    NY     24
-# 2  Charlie   18    NY     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    NY     88
-# 5    Frank   30   XXX     57
-
-print(df.replace(['NY', 'CA'], ['XXX', 'NY']))
-#       name  age state  point
-# 0    Alice   24   XXX     64
-# 1      Bob   42    NY     24
-# 2  Charlie   18    NY     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    NY     88
-# 5    Frank   30   XXX     57
-
-print(df.replace('CA', 'NY').replace('NY', 'XXX'))
-#       name  age state  point
-# 0    Alice   24   XXX     64
-# 1      Bob   42   XXX     24
-# 2  Charlie   18   XXX     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24   XXX     88
-# 5    Frank   30   XXX     57
-
-print(df.replace('NY', 'XXX').replace('CA', 'NY'))
-#       name  age state  point
-# 0    Alice   24   XXX     64
-# 1      Bob   42    NY     24
-# 2  Charlie   18    NY     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    NY     88
-# 5    Frank   30   XXX     57
 
 print(df.replace({'age': {24: 100}}))
 #       name  age state  point
@@ -155,7 +101,7 @@ print(df.replace({'age': [24, 18], 'point': 70}, 100))
 # 4    Ellen  100    CA     88
 # 5    Frank   30    NY     57
 
-print(df.replace('li', 'LI'))
+print(df.replace('li', 'XX'))
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 1      Bob   42    CA     24
@@ -164,21 +110,39 @@ print(df.replace('li', 'LI'))
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-print(df.replace('(.*)li(.*)', r'\1LI\2', regex=True))
+print(df.replace('.*e$', 'NEW_NAME', regex=True))
+#        name  age state  point
+# 0  NEW_NAME   24    NY     64
+# 1       Bob   42    CA     24
+# 2  NEW_NAME   18    CA     70
+# 3  NEW_NAME   68    TX     70
+# 4     Ellen   24    CA     88
+# 5     Frank   30    NY     57
+
+print(df.replace('li', 'XX', regex=True))
 #       name  age state  point
-# 0    ALIce   24    NY     64
+# 0    AXXce   24    NY     64
 # 1      Bob   42    CA     24
-# 2  CharLIe   18    CA     70
+# 2  CharXXe   18    CA     70
 # 3     Dave   68    TX     70
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-df['name'] = df['name'].str.replace('li', 'LI')
+print(df.replace('(.*)li(.*)', r'\2-\1', regex=True))
+#      name  age state  point
+# 0    ce-A   24    NY     64
+# 1     Bob   42    CA     24
+# 2  e-Char   18    CA     70
+# 3    Dave   68    TX     70
+# 4   Ellen   24    CA     88
+# 5   Frank   30    NY     57
+
+df['name'] = df['name'].str.replace('li', 'XX')
 print(df)
 #       name  age state  point
-# 0    ALIce   24    NY     64
+# 0    AXXce   24    NY     64
 # 1      Bob   42    CA     24
-# 2  CharLIe   18    CA     70
+# 2  CharXXe   18    CA     70
 # 3     Dave   68    TX     70
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
