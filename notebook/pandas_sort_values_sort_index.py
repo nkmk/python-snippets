@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.1.4
+
 df = pd.read_csv('data/src/sample_pandas_normal.csv')
 print(df)
 #       name  age state  point
@@ -10,8 +13,16 @@ print(df)
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-df_s = df.sort_values('state')
-print(df_s)
+print(df.sort_values('age'))
+#       name  age state  point
+# 2  Charlie   18    CA     70
+# 0    Alice   24    NY     64
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+# 1      Bob   42    CA     92
+# 3     Dave   68    TX     70
+
+print(df.sort_values('state'))
 #       name  age state  point
 # 1      Bob   42    CA     92
 # 2  Charlie   18    CA     70
@@ -20,28 +31,7 @@ print(df_s)
 # 5    Frank   30    NY     57
 # 3     Dave   68    TX     70
 
-df_s = df.sort_values('state', ascending=False)
-print(df_s)
-#       name  age state  point
-# 3     Dave   68    TX     70
-# 0    Alice   24    NY     64
-# 5    Frank   30    NY     57
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 4    Ellen   24    CA     88
-
-df_s = df.sort_values(['state', 'age'])
-print(df_s)
-#       name  age state  point
-# 2  Charlie   18    CA     70
-# 4    Ellen   24    CA     88
-# 1      Bob   42    CA     92
-# 0    Alice   24    NY     64
-# 5    Frank   30    NY     57
-# 3     Dave   68    TX     70
-
-df_s = df.sort_values(['age', 'state'])
-print(df_s)
+print(df.sort_values(['age', 'state']))
 #       name  age state  point
 # 2  Charlie   18    CA     70
 # 4    Ellen   24    CA     88
@@ -50,8 +40,34 @@ print(df_s)
 # 1      Bob   42    CA     92
 # 3     Dave   68    TX     70
 
-df_s = df.sort_values(['age', 'state'], ascending=[True, False])
-print(df_s)
+print(df.sort_values(['state', 'age']))
+#       name  age state  point
+# 2  Charlie   18    CA     70
+# 4    Ellen   24    CA     88
+# 1      Bob   42    CA     92
+# 0    Alice   24    NY     64
+# 5    Frank   30    NY     57
+# 3     Dave   68    TX     70
+
+print(df.sort_values('age', ascending=False))
+#       name  age state  point
+# 3     Dave   68    TX     70
+# 1      Bob   42    CA     92
+# 5    Frank   30    NY     57
+# 0    Alice   24    NY     64
+# 4    Ellen   24    CA     88
+# 2  Charlie   18    CA     70
+
+print(df.sort_values(['age', 'state'], ascending=False))
+#       name  age state  point
+# 3     Dave   68    TX     70
+# 1      Bob   42    CA     92
+# 5    Frank   30    NY     57
+# 0    Alice   24    NY     64
+# 4    Ellen   24    CA     88
+# 2  Charlie   18    CA     70
+
+print(df.sort_values(['age', 'state'], ascending=[True, False]))
 #       name  age state  point
 # 2  Charlie   18    CA     70
 # 0    Alice   24    NY     64
@@ -59,99 +75,108 @@ print(df_s)
 # 5    Frank   30    NY     57
 # 1      Bob   42    CA     92
 # 3     Dave   68    TX     70
+
+print(df.sort_values('age', ignore_index=True))
+#       name  age state  point
+# 0  Charlie   18    CA     70
+# 1    Alice   24    NY     64
+# 2    Ellen   24    CA     88
+# 3    Frank   30    NY     57
+# 4      Bob   42    CA     92
+# 5     Dave   68    TX     70
 
 df_nan = df.copy()
-df_nan.iloc[:2, 1] = pd.np.nan
+df_nan.iloc[0, 1] = float('nan')
+df_nan.iloc[4, 1] = float('nan')
 print(df_nan)
 #       name   age state  point
 # 0    Alice   NaN    NY     64
-# 1      Bob   NaN    CA     92
+# 1      Bob  42.0    CA     92
 # 2  Charlie  18.0    CA     70
 # 3     Dave  68.0    TX     70
-# 4    Ellen  24.0    CA     88
+# 4    Ellen   NaN    CA     88
 # 5    Frank  30.0    NY     57
 
-df_nan_s = df_nan.sort_values('age')
-print(df_nan_s)
+print(df_nan.sort_values('age'))
 #       name   age state  point
 # 2  Charlie  18.0    CA     70
-# 4    Ellen  24.0    CA     88
 # 5    Frank  30.0    NY     57
+# 1      Bob  42.0    CA     92
 # 3     Dave  68.0    TX     70
 # 0    Alice   NaN    NY     64
-# 1      Bob   NaN    CA     92
+# 4    Ellen   NaN    CA     88
 
-df_nan_s = df_nan.sort_values('age', na_position='first')
-print(df_nan_s)
+print(df_nan.sort_values('age', na_position='first'))
 #       name   age state  point
 # 0    Alice   NaN    NY     64
-# 1      Bob   NaN    CA     92
+# 4    Ellen   NaN    CA     88
 # 2  Charlie  18.0    CA     70
-# 4    Ellen  24.0    CA     88
 # 5    Frank  30.0    NY     57
+# 1      Bob  42.0    CA     92
 # 3     Dave  68.0    TX     70
 
-df.sort_values('state', inplace=True)
-print(df)
+print(df.sort_values('name', key=lambda s: s.str.len()))
 #       name  age state  point
 # 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 4    Ellen   24    CA     88
-# 0    Alice   24    NY     64
-# 5    Frank   30    NY     57
 # 3     Dave   68    TX     70
+# 0    Alice   24    NY     64
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+# 2  Charlie   18    CA     70
 
-df_d = df.drop(['name', 'state'], axis=1)
-print(df_d)
+# print(df.sort_values('name', key=len))
+# TypeError: object of type 'int' has no len()
+
+print(df.sort_values('name', key=lambda s: s.map(len)))
+#       name  age state  point
+# 1      Bob   42    CA     92
+# 3     Dave   68    TX     70
+# 0    Alice   24    NY     64
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+# 2  Charlie   18    CA     70
+
+df_num = df.select_dtypes('number')
+print(df_num)
 #    age  point
+# 0   24     64
 # 1   42     92
 # 2   18     70
-# 4   24     88
-# 0   24     64
-# 5   30     57
 # 3   68     70
+# 4   24     88
+# 5   30     57
 
-df_d .sort_values(by=1, axis=1, ascending=False, inplace=True)
-print(df_d)
+print(df_num.sort_values(1, axis=1, ascending=False))
 #    point  age
+# 0     64   24
 # 1     92   42
 # 2     70   18
-# 4     88   24
-# 0     64   24
-# 5     57   30
 # 3     70   68
+# 4     88   24
+# 5     57   30
 
-print(df)
+df_copy = df.copy()
+df_copy.sort_values('age', inplace=True)
+print(df_copy)
 #       name  age state  point
-# 1      Bob   42    CA     92
 # 2  Charlie   18    CA     70
-# 4    Ellen   24    CA     88
 # 0    Alice   24    NY     64
-# 5    Frank   30    NY     57
-# 3     Dave   68    TX     70
-
-df_s = df.sort_index()
-print(df_s)
-#       name  age state  point
-# 0    Alice   24    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 3     Dave   68    TX     70
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
-
-df_s = df.sort_index(ascending=False)
-print(df_s)
-#       name  age state  point
-# 5    Frank   30    NY     57
-# 4    Ellen   24    CA     88
-# 3     Dave   68    TX     70
-# 2  Charlie   18    CA     70
 # 1      Bob   42    CA     92
-# 0    Alice   24    NY     64
+# 3     Dave   68    TX     70
 
-df.sort_index(inplace=True)
-print(df)
+df_sorted = df.sort_values('age')
+print(df_sorted)
+#       name  age state  point
+# 2  Charlie   18    CA     70
+# 0    Alice   24    NY     64
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+# 1      Bob   42    CA     92
+# 3     Dave   68    TX     70
+
+print(df_sorted.sort_index())
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 1      Bob   42    CA     92
@@ -160,8 +185,7 @@ print(df)
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-df_s = df.sort_index(axis=1)
-print(df_s)
+print(df.sort_index(axis=1))
 #    age     name  point state
 # 0   24    Alice     64    NY
 # 1   42      Bob     92    CA
@@ -170,8 +194,7 @@ print(df_s)
 # 4   24    Ellen     88    CA
 # 5   30    Frank     57    NY
 
-df.sort_index(axis=1, ascending=False, inplace=True)
-print(df)
+print(df.sort_index(axis=1, ascending=False, key=lambda s: s.str.len()))
 #   state  point     name  age
 # 0    NY     64    Alice   24
 # 1    CA     92      Bob   42
