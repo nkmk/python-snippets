@@ -1,9 +1,10 @@
 import pandas as pd
-import numpy as np
+
+print(pd.__version__)
+# 2.1.4
 
 df = pd.DataFrame({'age': [24, 42], 'state': ['NY', 'CA'], 'point': [64, 92]},
                   index=['Alice', 'Bob'])
-
 print(df)
 #        age state  point
 # Alice   24    NY     64
@@ -15,129 +16,85 @@ for column_name in df:
 # state
 # point
 
-for column_name, item in df.iteritems():
+for column_name, item in df.items():
     print(column_name)
-    print('------')
     print(type(item))
-    print(item)
-    print('------')
-    print(item[0], item['Alice'], item.Alice)
-    print(item[1], item['Bob'], item.Bob)
-    print('======\n')
+    print(item['Alice'], item['Bob'])
+    print('======')
 # age
-# ------
 # <class 'pandas.core.series.Series'>
-# Alice    24
-# Bob      42
-# Name: age, dtype: int64
-# ------
-# 24 24 24
-# 42 42 42
+# 24 42
 # ======
-# 
 # state
-# ------
 # <class 'pandas.core.series.Series'>
-# Alice    NY
-# Bob      CA
-# Name: state, dtype: object
-# ------
-# NY NY NY
-# CA CA CA
+# NY CA
 # ======
-# 
 # point
-# ------
 # <class 'pandas.core.series.Series'>
-# Alice    64
-# Bob      92
-# Name: point, dtype: int64
-# ------
-# 64 64 64
-# 92 92 92
+# 64 92
 # ======
-# 
 
 for index, row in df.iterrows():
     print(index)
-    print('------')
     print(type(row))
-    print(row)
-    print('------')
-    print(row[0], row['age'], row.age)
-    print(row[1], row['state'], row.state)
-    print(row[2], row['point'], row.point)
-    print('======\n')
+    print(row['age'], row['state'], row['point'])
+    print('======')
 # Alice
-# ------
 # <class 'pandas.core.series.Series'>
-# age      24
-# state    NY
-# point    64
-# Name: Alice, dtype: object
-# ------
-# 24 24 24
-# NY NY NY
-# 64 64 64
+# 24 NY 64
 # ======
-# 
 # Bob
-# ------
 # <class 'pandas.core.series.Series'>
-# age      42
-# state    CA
-# point    92
-# Name: Bob, dtype: object
-# ------
-# 42 42 42
-# CA CA CA
-# 92 92 92
+# 42 CA 92
 # ======
-# 
 
 for row in df.itertuples():
     print(type(row))
     print(row)
-    print('------')
-    print(row[0], row.Index)
-    print(row[1], row.age)
-    print(row[2], row.state)
-    print(row[3], row.point)
-    print('======\n')
+    print(row[0], row[1], row[2], row[3])
+    print(row.Index, row.age, row.state, row.point)
+    print('======')
 # <class 'pandas.core.frame.Pandas'>
 # Pandas(Index='Alice', age=24, state='NY', point=64)
-# ------
-# Alice Alice
-# 24 24
-# NY NY
-# 64 64
+# Alice 24 NY 64
+# Alice 24 NY 64
 # ======
-# 
 # <class 'pandas.core.frame.Pandas'>
 # Pandas(Index='Bob', age=42, state='CA', point=92)
-# ------
-# Bob Bob
-# 42 42
-# CA CA
-# 92 92
+# Bob 42 CA 92
+# Bob 42 CA 92
 # ======
-# 
+
+for row in df.itertuples(index=False, name='Person'):
+    print(type(row))
+    print(row)
+    print(row[0], row[1], row[2])
+    print(row.age, row.state, row.point)
+    print('======')
+# <class 'pandas.core.frame.Person'>
+# Person(age=24, state='NY', point=64)
+# 24 NY 64
+# 24 NY 64
+# ======
+# <class 'pandas.core.frame.Person'>
+# Person(age=42, state='CA', point=92)
+# 42 CA 92
+# 42 CA 92
+# ======
 
 for row in df.itertuples(name=None):
     print(type(row))
     print(row)
     print(row[0], row[1], row[2], row[3])
-    print('======\n')
+    print('======')
 # <class 'tuple'>
 # ('Alice', 24, 'NY', 64)
 # Alice 24 NY 64
 # ======
-# 
 # <class 'tuple'>
 # ('Bob', 42, 'CA', 92)
 # Bob 42 CA 92
 # ======
-# 
 
 print(df['age'])
 # Alice    24
@@ -191,26 +148,39 @@ print(df)
 
 df = pd.DataFrame({'age': [24, 42], 'state': ['NY', 'CA'], 'point': [64, 92]},
                   index=['Alice', 'Bob'])
+print(df)
+#        age state  point
+# Alice   24    NY     64
+# Bob     42    CA     92
+
 df['point'] += df['age']
 print(df)
 #        age state  point
 # Alice   24    NY     88
 # Bob     42    CA    134
 
-df['new'] = df['point'] + df['age'] * 2
+df['new'] = df['point'] + df['age'] * 2 + 1000
 print(df)
-#        age state  point  new
-# Alice   24    NY     88  136
-# Bob     42    CA    134  218
+#        age state  point   new
+# Alice   24    NY     88  1136
+# Bob     42    CA    134  1218
+
+import numpy as np
 
 df['age_sqrt'] = np.sqrt(df['age'])
 print(df)
-#        age state  point  new  age_sqrt
-# Alice   24    NY     88  136  4.898979
-# Bob     42    CA    134  218  6.480741
+#        age state  point   new  age_sqrt
+# Alice   24    NY     88  1136  4.898979
+# Bob     42    CA    134  1218  6.480741
 
 df['state_0'] = df['state'].str.lower().str[0]
 print(df)
-#        age state  point  new  age_sqrt state_0
-# Alice   24    NY     88  136  4.898979       n
-# Bob     42    CA    134  218  6.480741       c
+#        age state  point   new  age_sqrt state_0
+# Alice   24    NY     88  1136  4.898979       n
+# Bob     42    CA    134  1218  6.480741       c
+
+df['point_hex'] = df['point'].map(hex)
+print(df)
+#        age state  point   new  age_sqrt state_0 point_hex
+# Alice   24    NY     88  1136  4.898979       n      0x58
+# Bob     42    CA    134  1218  6.480741       c      0x86
