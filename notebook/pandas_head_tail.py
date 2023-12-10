@@ -1,99 +1,121 @@
 import pandas as pd
-import seaborn as sns
 
-df = sns.load_dataset("iris")
-print(df.shape)
-# (150, 5)
+print(pd.__version__)
+# 2.1.4
+
+df = pd.DataFrame({'col_0': list('ABCDEFGHIJ'), 'col_1': range(9, -1, -1)},
+                  index=[f'row_{i}' for i in range(10)])
+print(df)
+#       col_0  col_1
+# row_0     A      9
+# row_1     B      8
+# row_2     C      7
+# row_3     D      6
+# row_4     E      5
+# row_5     F      4
+# row_6     G      3
+# row_7     H      2
+# row_8     I      1
+# row_9     J      0
 
 print(df.head())
-#    sepal_length  sepal_width  petal_length  petal_width species
-# 0           5.1          3.5           1.4          0.2  setosa
-# 1           4.9          3.0           1.4          0.2  setosa
-# 2           4.7          3.2           1.3          0.2  setosa
-# 3           4.6          3.1           1.5          0.2  setosa
-# 4           5.0          3.6           1.4          0.2  setosa
+#       col_0  col_1
+# row_0     A      9
+# row_1     B      8
+# row_2     C      7
+# row_3     D      6
+# row_4     E      5
 
 print(df.head(3))
-#    sepal_length  sepal_width  petal_length  petal_width species
-# 0           5.1          3.5           1.4          0.2  setosa
-# 1           4.9          3.0           1.4          0.2  setosa
-# 2           4.7          3.2           1.3          0.2  setosa
+#       col_0  col_1
+# row_0     A      9
+# row_1     B      8
+# row_2     C      7
 
 print(df.tail())
-#      sepal_length  sepal_width  petal_length  petal_width    species
-# 145           6.7          3.0           5.2          2.3  virginica
-# 146           6.3          2.5           5.0          1.9  virginica
-# 147           6.5          3.0           5.2          2.0  virginica
-# 148           6.2          3.4           5.4          2.3  virginica
-# 149           5.9          3.0           5.1          1.8  virginica
+#       col_0  col_1
+# row_5     F      4
+# row_6     G      3
+# row_7     H      2
+# row_8     I      1
+# row_9     J      0
 
 print(df.tail(3))
-#      sepal_length  sepal_width  petal_length  petal_width    species
-# 147           6.5          3.0           5.2          2.0  virginica
-# 148           6.2          3.4           5.4          2.3  virginica
-# 149           5.9          3.0           5.1          1.8  virginica
+#       col_0  col_1
+# row_7     H      2
+# row_8     I      1
+# row_9     J      0
 
-print(df[50:55])
-#     sepal_length  sepal_width  petal_length  petal_width     species
-# 50           7.0          3.2           4.7          1.4  versicolor
-# 51           6.4          3.2           4.5          1.5  versicolor
-# 52           6.9          3.1           4.9          1.5  versicolor
-# 53           5.5          2.3           4.0          1.3  versicolor
-# 54           6.5          2.8           4.6          1.5  versicolor
+print(df[3:6])
+#       col_0  col_1
+# row_3     D      6
+# row_4     E      5
+# row_5     F      4
 
 print(df[:5])
-#    sepal_length  sepal_width  petal_length  petal_width species
-# 0           5.1          3.5           1.4          0.2  setosa
-# 1           4.9          3.0           1.4          0.2  setosa
-# 2           4.7          3.2           1.3          0.2  setosa
-# 3           4.6          3.1           1.5          0.2  setosa
-# 4           5.0          3.6           1.4          0.2  setosa
+#       col_0  col_1
+# row_0     A      9
+# row_1     B      8
+# row_2     C      7
+# row_3     D      6
+# row_4     E      5
 
 print(df[-5:])
-#      sepal_length  sepal_width  petal_length  petal_width    species
-# 145           6.7          3.0           5.2          2.3  virginica
-# 146           6.3          2.5           5.0          1.9  virginica
-# 147           6.5          3.0           5.2          2.0  virginica
-# 148           6.2          3.4           5.4          2.3  virginica
-# 149           5.9          3.0           5.1          1.8  virginica
+#       col_0  col_1
+# row_5     F      4
+# row_6     G      3
+# row_7     H      2
+# row_8     I      1
+# row_9     J      0
 
 print(df.head(1))
-#    sepal_length  sepal_width  petal_length  petal_width species
-# 0           5.1          3.5           1.4          0.2  setosa
+#       col_0  col_1
+# row_0     A      9
 
 print(type(df.head(1)))
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df.iloc[0])
-# sepal_length       5.1
-# sepal_width        3.5
-# petal_length       1.4
-# petal_width        0.2
-# species         setosa
-# Name: 0, dtype: object
+# col_0    A
+# col_1    9
+# Name: row_0, dtype: object
 
 print(type(df.iloc[0]))
 # <class 'pandas.core.series.Series'>
 
-print(df.iloc[0]['sepal_length'])
-# 5.1
+print(df.iloc[0]['col_0'])
+# A
 
 print(df.iloc[-1])
-# sepal_length          5.9
-# sepal_width             3
-# petal_length          5.1
-# petal_width           1.8
-# species         virginica
-# Name: 149, dtype: object
+# col_0    J
+# col_1    0
+# Name: row_9, dtype: object
 
 print(type(df.iloc[-1]))
 # <class 'pandas.core.series.Series'>
 
-print(df.iloc[-1]['sepal_length'])
-# 5.9
+print(df.iloc[-1]['col_0'])
+# J
 
-# print(df[0])
-# KeyError: 0
+df.iloc[0]['col_0'] = 'AAA'
+# /var/folders/rf/b7l8_vgj5mdgvghn_326rn_c0000gn/T/ipykernel_48384/183824280.py:1: SettingWithCopyWarning: 
+# A value is trying to be set on a copy of a slice from a DataFrame
+# 
+# See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+#   df.iloc[0]['col_0'] = 'AAA'
 
-# print(df[-1])
-# KeyError: -1
+df.at[df.index[0], 'col_0'] = 'AAA'
+df.at[df.index[-1], 'col_0'] = 'JJJ'
+
+print(df)
+#       col_0  col_1
+# row_0   AAA      9
+# row_1     B      8
+# row_2     C      7
+# row_3     D      6
+# row_4     E      5
+# row_5     F      4
+# row_6     G      3
+# row_7     H      2
+# row_8     I      1
+# row_9   JJJ      0
