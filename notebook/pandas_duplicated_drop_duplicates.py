@@ -1,16 +1,10 @@
 import pandas as pd
 
-df = pd.read_csv('data/src/sample_pandas_normal.csv')
-print(df)
-#       name  age state  point
-# 0    Alice   24    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    CA     88
-# 5    Frank   30    NY     57
+print(pd.__version__)
+# 2.1.4
 
-df = df.append({'name': 'Dave', 'age': 68, 'state': 'TX', 'point': 70}, ignore_index=True)
+df = pd.read_csv('data/src/sample_pandas_normal.csv')
+df.loc[6] = ['Dave', 68, 'TX', 70]
 print(df)
 #       name  age state  point
 # 0    Alice   24    NY     64
@@ -94,21 +88,12 @@ print((~df.duplicated()).sum())
 print(df.duplicated().value_counts())
 # False    6
 # True     1
-# dtype: int64
+# Name: count, dtype: int64
 
 print(df.duplicated(keep=False).value_counts())
 # False    5
 # True     2
-# dtype: int64
-
-print(df[~df.duplicated()])
-#       name  age state  point
-# 0    Alice   24    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    CA     88
-# 5    Frank   30    NY     57
+# Name: count, dtype: int64
 
 print(df.drop_duplicates())
 #       name  age state  point
@@ -118,6 +103,15 @@ print(df.drop_duplicates())
 # 3     Dave   68    TX     70
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
+
+print(df.drop_duplicates(keep='last'))
+#       name  age state  point
+# 0    Alice   24    NY     64
+# 1      Bob   42    CA     92
+# 2  Charlie   18    CA     70
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+# 6     Dave   68    TX     70
 
 print(df.drop_duplicates(keep=False))
 #       name  age state  point
@@ -132,6 +126,27 @@ print(df.drop_duplicates(subset='state'))
 # 0  Alice   24    NY     64
 # 1    Bob   42    CA     92
 # 3   Dave   68    TX     70
+
+print(df.drop_duplicates(subset=['state', 'point']))
+#       name  age state  point
+# 0    Alice   24    NY     64
+# 1      Bob   42    CA     92
+# 2  Charlie   18    CA     70
+# 3     Dave   68    TX     70
+# 4    Ellen   24    CA     88
+# 5    Frank   30    NY     57
+
+print(df.drop_duplicates(subset='state', keep='last'))
+#     name  age state  point
+# 4  Ellen   24    CA     88
+# 5  Frank   30    NY     57
+# 6   Dave   68    TX     70
+
+print(df.drop_duplicates(subset='state', keep='last', ignore_index=True))
+#     name  age state  point
+# 0  Ellen   24    CA     88
+# 1  Frank   30    NY     57
+# 2   Dave   68    TX     70
 
 df.drop_duplicates(subset='state', keep='last', inplace=True)
 print(df)
@@ -150,29 +165,27 @@ print(df)
 # 4    Ellen   24    CA     88
 # 5    Frank   30    NY     57
 
-print(df.groupby('state').mean())
+print(df.groupby('state').mean(numeric_only=True))
 #         age      point
 # state                 
 # CA     28.0  83.333333
 # NY     27.0  60.500000
 # TX     68.0  70.000000
 
-print(df.groupby('state').agg(
-    {'name': lambda x: ','.join(x),
-     'age': 'mean',
-     'point': 'mean'}))
-#                     name  age      point
-# state                                   
-# CA     Bob,Charlie,Ellen   28  83.333333
-# NY           Alice,Frank   27  60.500000
-# TX                  Dave   68  70.000000
+print(
+    df.groupby('state').agg(
+        {'name': lambda x: ','.join(x), 'age': 'mean', 'point': 'sum'}
+    )
+)
+#                     name   age  point
+# state                                
+# CA     Bob,Charlie,Ellen  28.0    250
+# NY           Alice,Frank  27.0    121
+# TX                  Dave  68.0     70
 
-print(df.groupby('state').agg(
-    {'name': list,
-     'age': 'mean',
-     'point': 'mean'}))
-#                         name  age      point
-# state                                       
-# CA     [Bob, Charlie, Ellen]   28  83.333333
-# NY            [Alice, Frank]   27  60.500000
-# TX                    [Dave]   68  70.000000
+print(df.groupby('state').agg({'name': list, 'age': 'mean', 'point': 'sum'}))
+#                         name   age  point
+# state                                    
+# CA     [Bob, Charlie, Ellen]  28.0    250
+# NY            [Alice, Frank]  27.0    121
+# TX                    [Dave]  68.0     70
