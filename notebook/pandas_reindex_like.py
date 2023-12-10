@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.1.4
+
 df1 = pd.DataFrame({'A': [1, 2, 3], 'B': [10, 20, 30], 'C': [100, 200, 300]},
                    index=[10, 20, 30])
 print(df1)
@@ -35,7 +38,7 @@ print(df1.reindex_like(df2, method='bfill'))
 # 20  2  200
 
 # print(df1.reindex_like(df2, fill_value=0))
-# TypeError: reindex_like() got an unexpected keyword argument 'fill_value'
+# TypeError: NDFrame.reindex_like() got an unexpected keyword argument 'fill_value'
 
 print(df1.reindex_like(df2).fillna(0))
 #       A      C

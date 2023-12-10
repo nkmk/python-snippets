@@ -1,5 +1,8 @@
 import pandas as pd
 
+print(pd.__version__)
+# 2.1.4
+
 df = pd.DataFrame({'A': [1, 2, 3], 'B': [10, 20, 30], 'C': [100, 200, 300]},
                   index=['One', 'Two', 'Three'])
 print(df)
@@ -119,19 +122,23 @@ print(df.reindex(index=[10, 12, 14, 16, 18, 20], method='bfill', limit=2))
 # 18  2.0  20.0  200.0
 # 20  2.0  20.0  200.0
 
-print(df.reindex(index=[25, 5, 15], method='bfill'))
-#       A     B      C
-# 25  NaN   NaN    NaN
-# 5   1.0  10.0  100.0
-# 15  2.0  20.0  200.0
-
-print(df.reindex(index=[5, 15, 25], method='bfill'))
+print(df.reindex(index=[5, 10, 15, 20, 25], method='bfill'))
 #       A     B      C
 # 5   1.0  10.0  100.0
+# 10  1.0  10.0  100.0
 # 15  2.0  20.0  200.0
+# 20  2.0  20.0  200.0
 # 25  NaN   NaN    NaN
 
-print(df.reindex(index=[5, 10, 15, 20, 25]).fillna(method='bfill'))
+print(df.reindex(index=[25, 20, 15, 10, 5], method='bfill'))
+#       A     B      C
+# 25  NaN   NaN    NaN
+# 20  2.0  20.0  200.0
+# 15  2.0  20.0  200.0
+# 10  1.0  10.0  100.0
+# 5   1.0  10.0  100.0
+
+print(df.reindex(index=[5, 10, 15, 20, 25]).bfill())
 #       A     B      C
 # 5   1.0  10.0  100.0
 # 10  1.0  10.0  100.0
@@ -152,7 +159,7 @@ print(df.reindex(columns=['A', 'X', 'C'], method='bfill'))
 # 10  1 NaN  100
 # 20  2 NaN  200
 
-print(df.reindex(columns=['A', 'X', 'C']).fillna(method='bfill', axis=1))
+print(df.reindex(columns=['A', 'X', 'C']).bfill(axis=1))
 #       A      X      C
 # 10  1.0  100.0  100.0
 # 20  2.0  200.0  200.0
@@ -170,7 +177,7 @@ print(df)
 # 10  2  20  200
 # 30  3  30  300
 
-# print(df.reindex(index=[10, 15, 20], method='ffill'))
+# print(df.reindex(index=[10, 15, 20], method='bfill'))
 # ValueError: index must be monotonic increasing or decreasing
 
 print(df.reindex(index=[10, 15, 20]))
@@ -179,8 +186,14 @@ print(df.reindex(index=[10, 15, 20]))
 # 15  NaN   NaN    NaN
 # 20  1.0  10.0  100.0
 
-print(df.reindex(index=[10, 15, 20]).fillna(method='bfill'))
+print(df.reindex(index=[10, 15, 20]).bfill())
 #       A     B      C
 # 10  2.0  20.0  200.0
 # 15  1.0  10.0  100.0
+# 20  1.0  10.0  100.0
+
+print(df.reindex(index=[10, 15, 20]).interpolate())
+#       A     B      C
+# 10  2.0  20.0  200.0
+# 15  1.5  15.0  150.0
 # 20  1.0  10.0  100.0
