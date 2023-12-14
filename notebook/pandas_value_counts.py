@@ -1,8 +1,10 @@
 import pandas as pd
-import numpy as np
+
+print(pd.__version__)
+# 2.1.4
 
 df = pd.read_csv('data/src/sample_pandas_normal.csv')
-df.iloc[1] = np.nan
+df.iloc[1] = float('nan')
 print(df)
 #       name   age state  point
 # 0    Alice  24.0    NY   64.0
@@ -12,64 +14,78 @@ print(df)
 # 4    Ellen  24.0    CA   88.0
 # 5    Frank  30.0    NY   57.0
 
-u = df['state'].unique()
-print(u)
-print(type(u))
+print(df['state'].unique())
 # ['NY' nan 'CA' 'TX']
+
+print(type(df['state'].unique()))
 # <class 'numpy.ndarray'>
 
-vc = df['state'].value_counts()
-print(vc)
-print(type(vc))
+print(df['state'].value_counts())
+# state
 # NY    2
 # CA    2
 # TX    1
-# Name: state, dtype: int64
+# Name: count, dtype: int64
+
+print(type(df['state'].value_counts()))
 # <class 'pandas.core.series.Series'>
 
-print(df['state'].value_counts(ascending=True))
-# TX    1
-# CA    2
-# NY    2
-# Name: state, dtype: int64
-
-print(df['state'].value_counts(sort=False))
-# CA    2
-# NY    2
-# TX    1
-# Name: state, dtype: int64
-
 print(df['state'].value_counts(dropna=False))
+# state
 # NY     2
 # CA     2
-# TX     1
 # NaN    1
-# Name: state, dtype: int64
+# TX     1
+# Name: count, dtype: int64
+
+print(df['state'].value_counts(dropna=False, ascending=True))
+# state
+# NaN    1
+# TX     1
+# NY     2
+# CA     2
+# Name: count, dtype: int64
+
+print(df['state'].value_counts(dropna=False, sort=False))
+# state
+# NY     2
+# NaN    1
+# CA     2
+# TX     1
+# Name: count, dtype: int64
+
+print(df['state'].value_counts(normalize=True))
+# state
+# NY    0.4
+# CA    0.4
+# TX    0.2
+# Name: proportion, dtype: float64
 
 print(df['state'].value_counts(dropna=False, normalize=True))
+# state
 # NY     0.333333
 # CA     0.333333
-# TX     0.166667
 # NaN    0.166667
-# Name: state, dtype: float64
+# TX     0.166667
+# Name: proportion, dtype: float64
 
-nu = df['state'].nunique()
-print(nu)
-print(type(nu))
+print(df['state'].nunique())
 # 3
+
+print(type(df['state'].nunique()))
 # <class 'int'>
 
 print(df['state'].nunique(dropna=False))
 # 4
 
-nu_col = df.nunique()
-print(nu_col)
-print(type(nu_col))
+print(df.nunique())
 # name     5
 # age      4
 # state    3
 # point    4
 # dtype: int64
+
+print(type(df.nunique()))
 # <class 'pandas.core.series.Series'>
 
 print(df.nunique(dropna=False))
@@ -99,52 +115,71 @@ print(df.nunique())
 # dtype: int64
 
 print(df['state'].unique().tolist())
-print(type(df['state'].unique().tolist()))
 # ['NY', nan, 'CA', 'TX']
+
+print(type(df['state'].unique().tolist()))
 # <class 'list'>
 
 print(df['state'].value_counts().index.tolist())
-print(type(df['state'].value_counts().index.tolist()))
 # ['NY', 'CA', 'TX']
+
+print(type(df['state'].value_counts().index.tolist()))
 # <class 'list'>
 
-print(df['state'].value_counts(dropna=False).index.values)
+print(df['state'].value_counts().index.values)
+# ['NY' 'CA' 'TX']
+
 print(type(df['state'].value_counts().index.values))
-# ['NY' 'CA' 'TX' nan]
 # <class 'numpy.ndarray'>
 
-print(df['state'].value_counts()['NY'])
+print(df['state'].value_counts(dropna=False).index.tolist())
+# ['NY', 'CA', nan, 'TX']
+
+vc = df['state'].value_counts()
+print(vc)
+# state
+# NY    2
+# CA    2
+# TX    1
+# Name: count, dtype: int64
+
+print(vc['NY'])
 # 2
 
-print(df['state'].value_counts().NY)
-# 2
+print(vc['TX'])
+# 1
 
-for index, value in df['state'].value_counts().iteritems():
-    print(index, ': ', value)
-# NY :  2
-# CA :  2
-# TX :  1
+for index, value in df['state'].value_counts().items():
+    print(index, value)
+# NY 2
+# CA 2
+# TX 1
 
 d = df['state'].value_counts().to_dict()
 print(d)
-print(type(d))
 # {'NY': 2, 'CA': 2, 'TX': 1}
+
+print(type(d))
 # <class 'dict'>
 
 print(d['NY'])
 # 2
 
+print(d['TX'])
+# 1
+
 for key, value in d.items():
-    print(key, ': ', value)
-# NY :  2
-# CA :  2
-# TX :  1
+    print(key, value)
+# NY 2
+# CA 2
+# TX 1
 
 print(df['state'].value_counts())
+# state
 # NY    2
 # CA    2
 # TX    1
-# Name: state, dtype: int64
+# Name: count, dtype: int64
 
 print(df['state'].value_counts().index[0])
 # NY
@@ -152,11 +187,17 @@ print(df['state'].value_counts().index[0])
 print(df['state'].value_counts().iat[0])
 # 2
 
+# print(df['age'].value_counts()[0])
+# KeyError: 0
+
+print(df['age'].value_counts().iat[0])
+# 2
+
 print(df.apply(lambda x: x.value_counts().index[0]))
-# name     Frank
-# age         24
+# name     Alice
+# age       24.0
 # state       NY
-# point       70
+# point     70.0
 # dtype: object
 
 print(df.apply(lambda x: x.value_counts().iat[0]))
@@ -169,7 +210,7 @@ print(df.apply(lambda x: x.value_counts().iat[0]))
 print(df['state'].mode())
 # 0    CA
 # 1    NY
-# dtype: object
+# Name: state, dtype: object
 
 print(df['state'].mode().tolist())
 # ['CA', 'NY']
@@ -177,21 +218,21 @@ print(df['state'].mode().tolist())
 print(df['age'].mode().tolist())
 # [24.0]
 
-s_mode = df.apply(lambda x: x.mode().tolist())
-print(s_mode)
+s_list = df.apply(lambda x: x.mode().tolist())
+print(s_list)
 # name     [Alice, Charlie, Dave, Ellen, Frank]
 # age                                    [24.0]
 # state                                [CA, NY]
 # point                                  [70.0]
 # dtype: object
 
-print(type(s_mode))
+print(type(s_list))
 # <class 'pandas.core.series.Series'>
 
-print(s_mode['name'])
+print(s_list['name'])
 # ['Alice', 'Charlie', 'Dave', 'Ellen', 'Frank']
 
-print(type(s_mode['name']))
+print(type(s_list['name']))
 # <class 'list'>
 
 print(df.mode())
@@ -202,23 +243,16 @@ print(df.mode())
 # 3    Ellen   NaN   NaN    NaN
 # 4    Frank   NaN   NaN    NaN
 
-print(df.mode().count())
-# name     5
-# age      1
-# state    2
-# point    1
-# dtype: int64
+print(df.astype('object').describe())
+#          name   age state  point
+# count       5   5.0     5    5.0
+# unique      5   4.0     3    4.0
+# top     Alice  24.0    NY   70.0
+# freq        1   2.0     2    2.0
 
-print(df.astype('str').describe())
-#          name   age state point
-# count       6     6     6     6
-# unique      6     5     4     5
-# top     Frank  24.0    CA  70.0
-# freq        1     2     2     2
-
-print(df.astype('str').describe().loc['top'])
-# name     Frank
+print(df.astype('object').describe().loc['top'])
+# name     Alice
 # age       24.0
-# state       CA
+# state       NY
 # point     70.0
 # Name: top, dtype: object
