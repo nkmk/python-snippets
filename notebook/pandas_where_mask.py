@@ -1,347 +1,380 @@
 import pandas as pd
 import numpy as np
 
-df = pd.DataFrame({'A': [-20, -10, 0, 10, 20],
-                   'B': [1, 2, 3, 4, 5],
-                   'C': ['a', 'b', 'b', 'b', 'a']})
+print(pd.__version__)
+# 2.1.4
 
-print(df)
-#     A  B  C
-# 0 -20  1  a
-# 1 -10  2  b
-# 2   0  3  b
-# 3  10  4  b
-# 4  20  5  a
+print(np.__version__)
+# 1.26.2
 
-df.loc[df['A'] < 0, 'A'] = -100
-df.loc[~(df['A'] < 0), 'A'] = 100
-print(df)
-#      A  B  C
-# 0 -100  1  a
-# 1 -100  2  b
-# 2  100  3  b
-# 3  100  4  b
-# 4  100  5  a
+s = pd.Series([-2, -1, 0, 1, 2])
+print(s)
+# 0   -2
+# 1   -1
+# 2    0
+# 3    1
+# 4    2
+# dtype: int64
 
-print(df['A'] < 0)
+print(s < 0)
 # 0     True
 # 1     True
 # 2    False
 # 3    False
 # 4    False
-# Name: A, dtype: bool
+# dtype: bool
 
-print(~(df['A'] < 0))
-# 0    False
-# 1    False
-# 2     True
-# 3     True
-# 4     True
-# Name: A, dtype: bool
+print(s.where(s < 0))
+# 0   -2.0
+# 1   -1.0
+# 2    NaN
+# 3    NaN
+# 4    NaN
+# dtype: float64
 
-print(df.loc[df['A'] < 0, 'A'])
+print(s.where([False, True, False, True, False]))
+# 0    NaN
+# 1   -1.0
+# 2    NaN
+# 3    1.0
+# 4    NaN
+# dtype: float64
+
+print(s.where(s < 0, 10))
+# 0    -2
+# 1    -1
+# 2    10
+# 3    10
+# 4    10
+# dtype: int64
+
+print(s.where(s < 0, [0, 10, 20, 30, 40]))
+# 0    -2
+# 1    -1
+# 2    20
+# 3    30
+# 4    40
+# dtype: int64
+
+s2 = pd.Series([0, 10, 20, 30, 40], index=[4, 3, 2, 1, 0])
+print(s2)
+# 4     0
+# 3    10
+# 2    20
+# 1    30
+# 0    40
+# dtype: int64
+
+print(s.where(s < 0, s2))
+# 0    -2
+# 1    -1
+# 2    20
+# 3    10
+# 4     0
+# dtype: int64
+
+print(s * 100 + 10)
+# 0   -190
+# 1    -90
+# 2     10
+# 3    110
+# 4    210
+# dtype: int64
+
+print(s.where(s < 0, s * 100 + 10))
+# 0     -2
+# 1     -1
+# 2     10
+# 3    110
+# 4    210
+# dtype: int64
+
+s.where(s < 0, 10, inplace=True)
+print(s)
+# 0    -2
+# 1    -1
+# 2    10
+# 3    10
+# 4    10
+# dtype: int64
+
+df = pd.DataFrame({'A': [-2, -1, 0, 1, 2], 'B': [0, 10, 20, 30, 40]})
+print(df)
+#    A   B
+# 0 -2   0
+# 1 -1  10
+# 2  0  20
+# 3  1  30
+# 4  2  40
+
+print((df < 0) | (df > 20))
+#        A      B
+# 0   True  False
+# 1   True  False
+# 2  False  False
+# 3  False   True
+# 4  False   True
+
+print(df.where((df < 0) | (df > 20)))
+#      A     B
+# 0 -2.0   NaN
+# 1 -1.0   NaN
+# 2  NaN   NaN
+# 3  NaN  30.0
+# 4  NaN  40.0
+
+print(df.where((df < 0) | (df > 20), 100))
+#      A    B
+# 0   -2  100
+# 1   -1  100
+# 2  100  100
+# 3  100   30
+# 4  100   40
+
+print(df * 100 + 10)
+#      A     B
+# 0 -190    10
+# 1  -90  1010
+# 2   10  2010
+# 3  110  3010
+# 4  210  4010
+
+print(df.where((df < 0) | (df > 20), df * 100 + 10))
+#      A     B
+# 0   -2    10
+# 1   -1  1010
+# 2   10  2010
+# 3  110    30
+# 4  210    40
+
+df['C'] = ['A', 'B', 'C', 'D', 'E']
+print(df)
+#    A   B  C
+# 0 -2   0  A
+# 1 -1  10  B
+# 2  0  20  C
+# 3  1  30  D
+# 4  2  40  E
+
+# print(df < 0)
+# TypeError: '<' not supported between instances of 'str' and 'int'
+
+print(df['C'].where(df['A'] < 0, 'X'))
+# 0    A
+# 1    B
+# 2    X
+# 3    X
+# 4    X
+# Name: C, dtype: object
+
+df['D'] = df['C'].where(df['A'] < 0, 'X')
+print(df)
+#    A   B  C  D
+# 0 -2   0  A  A
+# 1 -1  10  B  B
+# 2  0  20  C  X
+# 3  1  30  D  X
+# 4  2  40  E  X
+
+df_num = df.select_dtypes('number')
+print(df_num.where(df_num > 0, -10))
+#     A   B
+# 0 -10 -10
+# 1 -10  10
+# 2 -10  20
+# 3   1  30
+# 4   2  40
+
+print(df.select_dtypes(exclude='number'))
+#    C  D
+# 0  A  A
+# 1  B  B
+# 2  C  X
+# 3  D  X
+# 4  E  X
+
+print(pd.concat([df_num.where(df_num > 0, -10), df.select_dtypes(exclude='number')],
+                axis=1))
+#     A   B  C  D
+# 0 -10 -10  A  A
+# 1 -10  10  B  B
+# 2 -10  20  C  X
+# 3   1  30  D  X
+# 4   2  40  E  X
+
+s = pd.Series(['Alice', 'Bob', 'Charlie', 'Dave', 'Ellen'])
+print(s)
+# 0      Alice
+# 1        Bob
+# 2    Charlie
+# 3       Dave
+# 4      Ellen
+# dtype: object
+
+print(s.mask(s.str.endswith('e')))
+# 0      NaN
+# 1      Bob
+# 2      NaN
+# 3      NaN
+# 4    Ellen
+# dtype: object
+
+print(s.mask(s.str.endswith('e'), 'X'))
+# 0        X
+# 1      Bob
+# 2        X
+# 3        X
+# 4    Ellen
+# dtype: object
+
+print(s.mask(s.str.endswith('e'), s.str.upper()))
+# 0      ALICE
+# 1        Bob
+# 2    CHARLIE
+# 3       DAVE
+# 4      Ellen
+# dtype: object
+
+df = pd.DataFrame({'A': [-2, -1, 0, 1, 2], 'B': [0, 10, 20, 30, 40]})
+print(df)
+#    A   B
+# 0 -2   0
+# 1 -1  10
+# 2  0  20
+# 3  1  30
+# 4  2  40
+
+print(df.mask((df < 0) | (df > 20)))
+#      A     B
+# 0  NaN   0.0
+# 1  NaN  10.0
+# 2  0.0  20.0
+# 3  1.0   NaN
+# 4  2.0   NaN
+
+print(df.mask((df < 0) | (df > 20), 100))
+#      A    B
+# 0  100    0
+# 1  100   10
+# 2    0   20
+# 3    1  100
+# 4    2  100
+
+print(df.mask((df < 0) | (df > 20), df * 100 + 10))
+#      A     B
+# 0 -190     0
+# 1  -90    10
+# 2    0    20
+# 3    1  3010
+# 4    2  4010
+
+s = pd.Series([-2, -1, 0, 1, 2])
+print(s)
+# 0   -2
+# 1   -1
+# 2    0
+# 3    1
+# 4    2
+# dtype: int64
+
+print(np.where(s < 0, -100, 1))
+# [-100 -100    1    1    1]
+
+print(np.where(s < 0, s * 10, s * 100 + 10))
+# [-20 -10  10 110 210]
+
+print(type(np.where(s < 0, -100, 1)))
+# <class 'numpy.ndarray'>
+
+df = pd.DataFrame({'A': [-2, -1, 0, 1, 2], 'B': [0, 10, 20, 30, 40]})
+print(df)
+#    A   B
+# 0 -2   0
+# 1 -1  10
+# 2  0  20
+# 3  1  30
+# 4  2  40
+
+print(np.where((df < 0) | (df > 20), -100, 1))
+# [[-100    1]
+#  [-100    1]
+#  [   1    1]
+#  [   1 -100]
+#  [   1 -100]]
+
+print(np.where((df < 0) | (df > 20), df * 10, df * 100 + 10))
+# [[ -20   10]
+#  [ -10 1010]
+#  [  10 2010]
+#  [ 110  300]
+#  [ 210  400]]
+
+print(type(np.where((df < 0) | (df > 20), -100, 1)))
+# <class 'numpy.ndarray'>
+
+print(pd.Series(np.where(s < 0, -100, 1), index=s.index))
 # 0   -100
 # 1   -100
+# 2      1
+# 3      1
+# 4      1
+# dtype: int64
+
+print(pd.DataFrame(np.where((df < 0) | (df > 20), -100, 1),
+                   index=df.index, columns=df.columns))
+#      A    B
+# 0 -100    1
+# 1 -100    1
+# 2    1    1
+# 3    1 -100
+# 4    1 -100
+
+df['C'] = np.where(df['A'] < 0, -100, 1)
+print(df)
+#    A   B    C
+# 0 -2   0 -100
+# 1 -1  10 -100
+# 2  0  20    1
+# 3  1  30    1
+# 4  2  40    1
+
+df = pd.DataFrame({'A': [-2, -1, 0, 1, 2], 'B': [0, 10, 20, 30, 40]})
+print(df)
+#    A   B
+# 0 -2   0
+# 1 -1  10
+# 2  0  20
+# 3  1  30
+# 4  2  40
+
+print(df.loc[df['A'] < 0, 'A'])
+# 0   -2
+# 1   -1
 # Name: A, dtype: int64
 
 df.loc[df['A'] < 0, 'A'] = -10
 print(df)
-#      A  B  C
-# 0  -10  1  a
-# 1  -10  2  b
-# 2  100  3  b
-# 3  100  4  b
-# 4  100  5  a
+#     A   B
+# 0 -10   0
+# 1 -10  10
+# 2   0  20
+# 3   1  30
+# 4   2  40
 
-df.loc[~(df['A'] < 0), 'A'] = df['B']
+df.loc[df['A'] >= 0, 'A'] = df['B'] * 10
 print(df)
-#     A  B  C
-# 0 -10  1  a
-# 1 -10  2  b
-# 2   3  3  b
-# 3   4  4  b
-# 4   5  5  a
+#      A   B
+# 0  -10   0
+# 1  -10  10
+# 2  200  20
+# 3  300  30
+# 4  400  40
 
-df.loc[df['B'] % 2 == 0, 'D'] = 'even'
-df.loc[df['B'] % 2 != 0, 'D'] = 'odd'
+df.loc[df['A'] < 0, 'C'] = -100
 print(df)
-#     A  B  C     D
-# 0 -10  1  a   odd
-# 1 -10  2  b  even
-# 2   3  3  b   odd
-# 3   4  4  b  even
-# 4   5  5  a   odd
-
-df.loc[~(df['A'] < 0) & (df['C'] == 'b'), 'E'] = df['B'] * 2
-print(df)
-#     A  B  C     D    E
-# 0 -10  1  a   odd  NaN
-# 1 -10  2  b  even  NaN
-# 2   3  3  b   odd  6.0
-# 3   4  4  b  even  8.0
-# 4   5  5  a   odd  NaN
-
-df.loc[~(df['A'] < 0), 'A'] = 10
-print(df)
-#     A  B  C     D    E
-# 0 -10  1  a   odd  NaN
-# 1 -10  2  b  even  NaN
-# 2  10  3  b   odd  6.0
-# 3  10  4  b  even  8.0
-# 4  10  5  a   odd  NaN
-
-df.loc[df['C'] == 'a', 'F'] = df['A']
-df.loc[df['C'] == 'b', 'F'] = df['B']
-print(df)
-#     A  B  C     D    E     F
-# 0 -10  1  a   odd  NaN -10.0
-# 1 -10  2  b  even  NaN   2.0
-# 2  10  3  b   odd  6.0   3.0
-# 3  10  4  b  even  8.0   4.0
-# 4  10  5  a   odd  NaN  10.0
-
-df['F'] = df['F'].astype(int)
-print(df)
-#     A  B  C     D    E   F
-# 0 -10  1  a   odd  NaN -10
-# 1 -10  2  b  even  NaN   2
-# 2  10  3  b   odd  6.0   3
-# 3  10  4  b  even  8.0   4
-# 4  10  5  a   odd  NaN  10
-
-df.loc[df['C'] == 'a', ['E', 'F']] = 100
-print(df)
-#     A  B  C     D      E    F
-# 0 -10  1  a   odd  100.0  100
-# 1 -10  2  b  even    NaN    2
-# 2  10  3  b   odd    6.0    3
-# 3  10  4  b  even    8.0    4
-# 4  10  5  a   odd  100.0  100
-
-print(df < 0)
-#        A      B     C     D      E      F
-# 0   True  False  True  True  False  False
-# 1   True  False  True  True  False  False
-# 2  False  False  True  True  False  False
-# 3  False  False  True  True  False  False
-# 4  False  False  True  True  False  False
-
-print(df[df < 0])
-#       A   B  C     D   E   F
-# 0 -10.0 NaN  a   odd NaN NaN
-# 1 -10.0 NaN  b  even NaN NaN
-# 2   NaN NaN  b   odd NaN NaN
-# 3   NaN NaN  b  even NaN NaN
-# 4   NaN NaN  a   odd NaN NaN
-
-# df[df < 0] = 0
-# TypeError: Cannot do inplace boolean setting on mixed-types with a non np.nan value
-
-df = pd.DataFrame({'A': [-20, -10, 0, 10, 20],
-                   'B': [1, 2, 3, 4, 5],
-                   'C': ['a', 'b', 'b', 'b', 'a']})
-print(df)
-#     A  B  C
-# 0 -20  1  a
-# 1 -10  2  b
-# 2   0  3  b
-# 3  10  4  b
-# 4  20  5  a
-
-print(df['A'].where(df['C'] == 'a'))
-# 0   -20.0
-# 1     NaN
-# 2     NaN
-# 3     NaN
-# 4    20.0
-# Name: A, dtype: float64
-
-print(df['A'].where(df['C'] == 'a', 100))
-# 0    -20
-# 1    100
-# 2    100
-# 3    100
-# 4     20
-# Name: A, dtype: int64
-
-print(df['A'].where(df['C'] == 'a', df['B']))
-# 0   -20
-# 1     2
-# 2     3
-# 3     4
-# 4    20
-# Name: A, dtype: int64
-
-df['D'] = df['A'].where(df['C'] == 'a', df['B'])
-print(df)
-#     A  B  C   D
-# 0 -20  1  a -20
-# 1 -10  2  b   2
-# 2   0  3  b   3
-# 3  10  4  b   4
-# 4  20  5  a  20
-
-df['D'].where((df['D'] % 2 == 0) & (df['A'] < 0), df['D'] * 100, inplace=True)
-print(df)
-#     A  B  C     D
-# 0 -20  1  a   -20
-# 1 -10  2  b     2
-# 2   0  3  b   300
-# 3  10  4  b   400
-# 4  20  5  a  2000
-
-print(df < 0)
-#        A      B     C      D
-# 0   True  False  True   True
-# 1   True  False  True  False
-# 2  False  False  True  False
-# 3  False  False  True  False
-# 4  False  False  True  False
-
-print(df.where(df < 0))
-#       A   B  C     D
-# 0 -20.0 NaN  a -20.0
-# 1 -10.0 NaN  b   NaN
-# 2   NaN NaN  b   NaN
-# 3   NaN NaN  b   NaN
-# 4   NaN NaN  a   NaN
-
-print(df.where(df < 0, df * 2))
-#     A   B  C     D
-# 0 -20   2  a   -20
-# 1 -10   4  b     4
-# 2   0   6  b   600
-# 3  20   8  b   800
-# 4  40  10  a  4000
-
-print(df.where(df < 0, 100))
-#      A    B  C    D
-# 0  -20  100  a  -20
-# 1  -10  100  b  100
-# 2  100  100  b  100
-# 3  100  100  b  100
-# 4  100  100  a  100
-
-df = pd.DataFrame({'A': [-20, -10, 0, 10, 20],
-                   'B': [1, 2, 3, 4, 5],
-                   'C': ['a', 'b', 'b', 'b', 'a']})
-print(df)
-#     A  B  C
-# 0 -20  1  a
-# 1 -10  2  b
-# 2   0  3  b
-# 3  10  4  b
-# 4  20  5  a
-
-print(df['C'].mask(df['C'] == 'a'))
-# 0    NaN
-# 1      b
-# 2      b
-# 3      b
-# 4    NaN
-# Name: C, dtype: object
-
-print(df['C'].mask(df['C'] == 'a', 100))
-# 0    100
-# 1      b
-# 2      b
-# 3      b
-# 4    100
-# Name: C, dtype: object
-
-df['D'] = df['A'].mask(df['C'] == 'a', df['B'])
-print(df)
-#     A  B  C   D
-# 0 -20  1  a   1
-# 1 -10  2  b -10
-# 2   0  3  b   0
-# 3  10  4  b  10
-# 4  20  5  a   5
-
-df['D'].mask(df['D'] % 2 != 0, df['D'] * 10, inplace=True)
-print(df)
-#     A  B  C   D
-# 0 -20  1  a  10
-# 1 -10  2  b -10
-# 2   0  3  b   0
-# 3  10  4  b  10
-# 4  20  5  a  50
-
-print(df.mask(df < 0, -100))
-#      A  B     C    D
-# 0 -100  1  -100   10
-# 1 -100  2  -100 -100
-# 2    0  3  -100    0
-# 3   10  4  -100   10
-# 4   20  5  -100   50
-
-print(df.select_dtypes(include='number').mask(df < 0, -100))
-#      A  B    D
-# 0 -100  1   10
-# 1 -100  2 -100
-# 2    0  3    0
-# 3   10  4   10
-# 4   20  5   50
-
-df_mask = df.select_dtypes(include='number').mask(df < 0, -100)
-df_mask = pd.concat([df_mask, df.select_dtypes(exclude='number')], axis=1)
-print(df_mask.sort_index(axis=1))
-#      A  B  C    D
-# 0 -100  1  a   10
-# 1 -100  2  b -100
-# 2    0  3  b    0
-# 3   10  4  b   10
-# 4   20  5  a   50
-
-df = pd.DataFrame({'A': [-20, -10, 0, 10, 20],
-                   'B': [1, 2, 3, 4, 5],
-                   'C': ['a', 'b', 'b', 'b', 'a']})
-print(df)
-#     A  B  C
-# 0 -20  1  a
-# 1 -10  2  b
-# 2   0  3  b
-# 3  10  4  b
-# 4  20  5  a
-
-print(np.where(df['B'] % 2 == 0, 'even', 'odd'))
-# ['odd' 'even' 'odd' 'even' 'odd']
-
-print(np.where(df['C'] == 'a', df['A'], df['B']))
-# [-20   2   3   4  20]
-
-df['D'] = np.where(df['B'] % 2 == 0, 'even', 'odd')
-print(df)
-#     A  B  C     D
-# 0 -20  1  a   odd
-# 1 -10  2  b  even
-# 2   0  3  b   odd
-# 3  10  4  b  even
-# 4  20  5  a   odd
-
-df['E'] = np.where(df['C'] == 'a', df['A'], df['B'])
-print(df)
-#     A  B  C     D   E
-# 0 -20  1  a   odd -20
-# 1 -10  2  b  even   2
-# 2   0  3  b   odd   3
-# 3  10  4  b  even   4
-# 4  20  5  a   odd  20
-
-print(np.where(df < 0, df, 100))
-# [[-20 100 'a' 'odd' -20]
-#  [-10 100 'b' 'even' 100]
-#  [100 100 'b' 'odd' 100]
-#  [100 100 'b' 'even' 100]
-#  [100 100 'a' 'odd' 100]]
-
-df_np_where = pd.DataFrame(np.where(df < 0, df, 100),
-                           index=df.index, columns=df.columns)
-
-print(df_np_where)
-#      A    B  C     D    E
-# 0  -20  100  a   odd  -20
-# 1  -10  100  b  even  100
-# 2  100  100  b   odd  100
-# 3  100  100  b  even  100
-# 4  100  100  a   odd  100
+#      A   B      C
+# 0  -10   0 -100.0
+# 1  -10  10 -100.0
+# 2  200  20    NaN
+# 3  300  30    NaN
+# 4  400  40    NaN
