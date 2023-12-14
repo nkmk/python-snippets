@@ -1,7 +1,7 @@
 import pandas as pd
 
 print(pd.__version__)
-# 1.4.1
+# 2.1.4
 
 df = pd.read_csv('data/src/sample_pandas_normal.csv')
 print(df)
@@ -104,8 +104,7 @@ print(s_bool.sum())
 print((s < 25).sum())
 # 3
 
-df_bool_or = ((df == 'CA') | (df == 70))
-print(df_bool_or)
+print((df == 'CA') | (df == 70))
 #     name    age  state  point
 # 0  False  False  False  False
 # 1  False  False   True  False
@@ -114,27 +113,7 @@ print(df_bool_or)
 # 4  False  False   True  False
 # 5  False  False  False  False
 
-print(df_bool_or.sum())
-# name     0
-# age      0
-# state    3
-# point    2
-# dtype: int64
-
-print(df_bool_or.sum(axis=1))
-# 0    0
-# 1    1
-# 2    2
-# 3    1
-# 4    1
-# 5    0
-# dtype: int64
-
-print(df_bool_or.values.sum())
-# 5
-
-df_bool_not = ~(df == 'CA')
-print(df_bool_not)
+print(~(df == 'CA'))
 #    name   age  state  point
 # 0  True  True   True   True
 # 1  True  True  False   True
@@ -143,27 +122,7 @@ print(df_bool_not)
 # 4  True  True  False   True
 # 5  True  True   True   True
 
-print(df_bool_not.sum())
-# name     6
-# age      6
-# state    3
-# point    6
-# dtype: int64
-
-print(df_bool_not.sum(axis=1))
-# 0    4
-# 1    3
-# 2    3
-# 3    4
-# 4    3
-# 5    4
-# dtype: int64
-
-print(df_bool_not.values.sum())
-# 21
-
-s_bool_and = ((df['state'] == 'CA') & (df['age'] < 30))
-print(s_bool_and)
+print((df['state'] == 'CA') & (df['age'] < 30))
 # 0    False
 # 1    False
 # 2     True
@@ -172,10 +131,10 @@ print(s_bool_and)
 # 5    False
 # dtype: bool
 
-print(s_bool_and.sum())
-# 2
+# print(df < 65)
+# TypeError: '<' not supported between instances of 'str' and 'int'
 
-df_num = df[['age', 'point']]
+df_num = df.select_dtypes('number')
 print(df_num)
 #    age  point
 # 0   24     64
@@ -185,17 +144,14 @@ print(df_num)
 # 4   24     88
 # 5   30     57
 
-print((df_num <= 70).sum())
-# age      6
-# point    4
+print((df_num < 65).sum())
+# age      5
+# point    2
 # dtype: int64
 
-print(((df['age'] > 20) & (df['age'] < 40)).sum())
-# 3
-
-print((df_num % 2 == 1).sum())
-# age      0
-# point    1
+print(((df_num > 35) & (df_num < 65)).sum())
+# age      1
+# point    2
 # dtype: int64
 
 df_str = df[['name', 'state']]
@@ -225,8 +181,8 @@ print(df_str['name'].str.endswith('e'))
 print(df_str['name'].str.endswith('e').sum())
 # 3
 
-df = pd.read_csv('data/src/titanic_train.csv')
-print(df.head())
+df_titanic = pd.read_csv('data/src/titanic_train.csv')
+print(df_titanic.head())
 #    PassengerId  Survived  Pclass  \
 # 0            1         0       3   
 # 1            2         1       1   
@@ -248,7 +204,7 @@ print(df.head())
 # 3      0            113803  53.1000  C123        S  
 # 4      0            373450   8.0500   NaN        S  
 
-print(df.isnull().head())
+print(df_titanic.isnull().head())
 #    PassengerId  Survived  Pclass   Name    Sex    Age  SibSp  Parch  Ticket  \
 # 0        False     False   False  False  False  False  False  False   False   
 # 1        False     False   False  False  False  False  False  False   False   
@@ -263,7 +219,7 @@ print(df.isnull().head())
 # 3  False  False     False  
 # 4  False   True     False  
 
-print(df.isnull().sum())
+print(df_titanic.isnull().sum())
 # PassengerId      0
 # Survived         0
 # Pclass           0
@@ -278,7 +234,7 @@ print(df.isnull().sum())
 # Embarked         2
 # dtype: int64
 
-print(df.isnull().sum(axis=1).head())
+print(df_titanic.isnull().sum(axis=1).head())
 # 0    1
 # 1    0
 # 2    1
@@ -286,10 +242,10 @@ print(df.isnull().sum(axis=1).head())
 # 4    1
 # dtype: int64
 
-print(df.isnull().values.sum())
+print(df_titanic.isnull().values.sum())
 # 866
 
-print(df.count())
+print(df_titanic.count())
 # PassengerId    891
 # Survived       891
 # Pclass         891
@@ -304,7 +260,7 @@ print(df.count())
 # Embarked       889
 # dtype: int64
 
-print(df.count(axis=1).head())
+print(df_titanic.count(axis=1).head())
 # 0    11
 # 1    12
 # 2    11
@@ -312,10 +268,13 @@ print(df.count(axis=1).head())
 # 4    11
 # dtype: int64
 
-print(df.count().sum())
+print(df_titanic.count().sum())
 # 9826
 
-df.info()
+print(df_titanic['Age'].count())
+# 714
+
+df_titanic.info()
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 891 entries, 0 to 890
 # Data columns (total 12 columns):
