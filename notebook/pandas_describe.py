@@ -1,92 +1,109 @@
 import pandas as pd
 
-df = pd.DataFrame({'a': [1, 2, 1, 3],
-                   'b': [0.4, 1.1, 0.1, 0.8],
-                   'c': ['X', 'Y', 'X', 'Z'],
-                   'd': ['3', '5', '2', '1'],
-                   'e': [True, True, False, True]})
+print(pd.__version__)
+# 2.1.4
+
+df = pd.DataFrame({'int': [1, 2, 3, 1],
+                   'float': [0.1, 0.2, 0.3, float('nan')],
+                   'str': ['X', 'Y', 'X', 'Z'],
+                   'str_num': ['1', '2', '3', '1'],
+                   'bool': [True, True, False, True]})
 
 print(df)
-#    a    b  c  d      e
-# 0  1  0.4  X  3   True
-# 1  2  1.1  Y  5   True
-# 2  1  0.1  X  2  False
-# 3  3  0.8  Z  1   True
+#    int  float str str_num   bool
+# 0    1    0.1   X       1   True
+# 1    2    0.2   Y       2   True
+# 2    3    0.3   X       3  False
+# 3    1    NaN   Z       1   True
 
 print(df.dtypes)
-# a      int64
-# b    float64
-# c     object
-# d     object
-# e       bool
+# int          int64
+# float      float64
+# str         object
+# str_num     object
+# bool          bool
 # dtype: object
 
+print(df['float'].describe())
+# count    3.00
+# mean     0.20
+# std      0.10
+# min      0.10
+# 25%      0.15
+# 50%      0.20
+# 75%      0.25
+# max      0.30
+# Name: float, dtype: float64
+
+print(df['str'].describe())
+# count     4
+# unique    3
+# top       X
+# freq      2
+# Name: str, dtype: object
+
+print(type(df['float'].describe()))
+# <class 'pandas.core.series.Series'>
+
 print(df.describe())
-#               a         b
-# count  4.000000  4.000000
-# mean   1.750000  0.600000
-# std    0.957427  0.439697
-# min    1.000000  0.100000
-# 25%    1.000000  0.325000
-# 50%    1.500000  0.600000
-# 75%    2.250000  0.875000
-# max    3.000000  1.100000
+#             int  float
+# count  4.000000   3.00
+# mean   1.750000   0.20
+# std    0.957427   0.10
+# min    1.000000   0.10
+# 25%    1.000000   0.15
+# 50%    1.500000   0.20
+# 75%    2.250000   0.25
+# max    3.000000   0.30
 
 print(type(df.describe()))
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df.describe().loc['std'])
-# a    0.957427
-# b    0.439697
+# int      0.957427
+# float    0.100000
 # Name: std, dtype: float64
 
-print(df.describe().at['std', 'b'])
-# 0.439696865275764
+print(df.describe().at['std', 'int'])
+# 0.9574271077563381
 
 print(df.describe(exclude='number'))
-#         c  d     e
-# count   4  4     4
-# unique  3  4     2
-# top     X  3  True
-# freq    2  1     3
+#        str str_num  bool
+# count    4       4     4
+# unique   3       3     2
+# top      X       1  True
+# freq     2       2     3
 
-df_notnum = df[['c', 'd', 'e']]
-print(df_notnum)
-#    c  d      e
-# 0  X  3   True
-# 1  Y  5   True
-# 2  X  2  False
-# 3  Z  1   True
+print(df[['str', 'str_num', 'bool']])
+#   str str_num   bool
+# 0   X       1   True
+# 1   Y       2   True
+# 2   X       3  False
+# 3   Z       1   True
 
-print(df_notnum.dtypes)
-# c    object
-# d    object
-# e      bool
-# dtype: object
-
-print(df_notnum.describe())
-#         c  d     e
-# count   4  4     4
-# unique  3  4     2
-# top     X  3  True
-# freq    2  1     3
+print(df[['str', 'str_num', 'bool']].describe())
+#        str str_num  bool
+# count    4       4     4
+# unique   3       3     2
+# top      X       1  True
+# freq     2       2     3
 
 print(df.describe(include='all'))
-#                a         b    c    d     e
-# count   4.000000  4.000000    4    4     4
-# unique       NaN       NaN    3    4     2
-# top          NaN       NaN    X    3  True
-# freq         NaN       NaN    2    1     3
-# mean    1.750000  0.600000  NaN  NaN   NaN
-# std     0.957427  0.439697  NaN  NaN   NaN
-# min     1.000000  0.100000  NaN  NaN   NaN
-# 25%     1.000000  0.325000  NaN  NaN   NaN
-# 50%     1.500000  0.600000  NaN  NaN   NaN
-# 75%     2.250000  0.875000  NaN  NaN   NaN
-# max     3.000000  1.100000  NaN  NaN   NaN
+#              int  float  str str_num  bool
+# count   4.000000   3.00    4       4     4
+# unique       NaN    NaN    3       3     2
+# top          NaN    NaN    X       1  True
+# freq         NaN    NaN    2       2     3
+# mean    1.750000   0.20  NaN     NaN   NaN
+# std     0.957427   0.10  NaN     NaN   NaN
+# min     1.000000   0.10  NaN     NaN   NaN
+# 25%     1.000000   0.15  NaN     NaN   NaN
+# 50%     1.500000   0.20  NaN     NaN   NaN
+# 75%     2.250000   0.25  NaN     NaN   NaN
+# max     3.000000   0.30  NaN     NaN   NaN
 
 print(df.describe(include=int))
-#               a
+#             int
 # count  4.000000
 # mean   1.750000
 # std    0.957427
@@ -100,14 +117,14 @@ print(type(df.describe(include=int)))
 # <class 'pandas.core.frame.DataFrame'>
 
 print(df.describe(include=[object, bool]))
-#         c  d     e
-# count   4  4     4
-# unique  3  4     2
-# top     X  3  True
-# freq    2  1     3
+#        str str_num  bool
+# count    4       4     4
+# unique   3       3     2
+# top      X       1  True
+# freq     2       2     3
 
-print(df.describe(exclude=[float, object]))
-#                a     e
+print(df.describe(exclude=['f8', 'object']))
+#              int  bool
 # count   4.000000     4
 # unique       NaN     2
 # top          NaN  True
@@ -120,207 +137,163 @@ print(df.describe(exclude=[float, object]))
 # 75%     2.250000   NaN
 # max     3.000000   NaN
 
+print(df.astype(object).describe())
+#         int  float str str_num  bool
+# count     4    3.0   4       4     4
+# unique    3    3.0   3       3     2
+# top       1    0.1   X       1  True
+# freq      2    1.0   2       2     3
+
+print(df.astype({'int': object}).describe(exclude='number'))
+#         int str str_num  bool
+# count     4   4       4     4
+# unique    3   3       3     2
+# top       1   X       1  True
+# freq      2   2       2     3
+
+print(df.astype({'str_num': int, 'bool': int}).describe())
+#             int  float   str_num  bool
+# count  4.000000   3.00  4.000000  4.00
+# mean   1.750000   0.20  1.750000  0.75
+# std    0.957427   0.10  0.957427  0.50
+# min    1.000000   0.10  1.000000  0.00
+# 25%    1.000000   0.15  1.000000  0.75
+# 50%    1.500000   0.20  1.500000  1.00
+# 75%    2.250000   0.25  2.250000  1.00
+# max    3.000000   0.30  3.000000  1.00
+
 print(df.count())
-# a    4
-# b    4
-# c    4
-# d    4
-# e    4
+# int        4
+# float      3
+# str        4
+# str_num    4
+# bool       4
 # dtype: int64
 
 print(df.nunique())
-# a    3
-# b    4
-# c    3
-# d    4
-# e    2
+# int        3
+# float      3
+# str        3
+# str_num    3
+# bool       2
 # dtype: int64
 
 print(df.mode())
-#      a    b    c  d     e
-# 0  1.0  0.1    X  1  True
-# 1  NaN  0.4  NaN  2   NaN
-# 2  NaN  0.8  NaN  3   NaN
-# 3  NaN  1.1  NaN  5   NaN
-
-print(df.mode().count())
-# a    1
-# b    4
-# c    1
-# d    4
-# e    1
-# dtype: int64
+#    int  float  str str_num  bool
+# 0  1.0    0.1    X       1  True
+# 1  NaN    0.2  NaN     NaN   NaN
+# 2  NaN    0.3  NaN     NaN   NaN
 
 print(df.mode().iloc[0])
-# a       1
-# b     0.1
-# c       X
-# d       1
-# e    True
+# int         1.0
+# float       0.1
+# str           X
+# str_num       1
+# bool       True
 # Name: 0, dtype: object
 
-print(df['c'].value_counts().iat[0])
+print(df['str'].value_counts())
+# str
+# X    2
+# Y    1
+# Z    1
+# Name: count, dtype: int64
+
+print(df['str'].value_counts().iat[0])
 # 2
 
-print(df.apply(lambda x: x.value_counts().iat[0]))
-# a    2
-# b    1
-# c    2
-# d    1
-# e    3
-# dtype: int64
-
 print(df.mean(numeric_only=True))
-# a    1.75
-# b    0.60
-# e    0.75
+# int      1.75
+# float    0.20
+# bool     0.75
 # dtype: float64
 
 print(df.std(numeric_only=True))
-# a    0.957427
-# b    0.439697
-# e    0.500000
+# int      0.957427
+# float    0.100000
+# bool     0.500000
 # dtype: float64
 
 print(df.min(numeric_only=True))
-# a    1.0
-# b    0.1
-# e    0.0
-# dtype: float64
-
-print(df.max(numeric_only=True))
-# a    3.0
-# b    1.1
-# e    1.0
-# dtype: float64
-
-print(df.median(numeric_only=True))
-# a    1.5
-# b    0.6
-# e    1.0
-# dtype: float64
-
-print(df.quantile(q=[0.25, 0.75], numeric_only=True))
-#          a      b     e
-# 0.25  1.00  0.325  0.75
-# 0.75  2.25  0.875  1.00
-
-print(df.quantile(q=[0, 0.25, 0.5, 0.75, 1], numeric_only=True))
-#          a      b     e
-# 0.00  1.00  0.100  0.00
-# 0.25  1.00  0.325  0.75
-# 0.50  1.50  0.600  1.00
-# 0.75  2.25  0.875  1.00
-# 1.00  3.00  1.100  1.00
-
-print(df.describe(percentiles=[0.2, 0.4, 0.6, 0.8]))
-#               a         b
-# count  4.000000  4.000000
-# mean   1.750000  0.600000
-# std    0.957427  0.439697
-# min    1.000000  0.100000
-# 20%    1.000000  0.280000
-# 40%    1.200000  0.480000
-# 50%    1.500000  0.600000
-# 60%    1.800000  0.720000
-# 80%    2.400000  0.920000
-# max    3.000000  1.100000
-
-print(df.astype('str').describe())
-#         a    b  c  d     e
-# count   4    4  4  4     4
-# unique  3    4  3  4     2
-# top     1  1.1  X  3  True
-# freq    2    1  2  1     3
-
-print(df.astype({'a': str}).describe(exclude='number'))
-#         a  c  d     e
-# count   4  4  4     4
-# unique  3  3  4     2
-# top     1  X  3  True
-# freq    2  2  1     3
-
-print(df.astype({'d': int, 'e': int}).describe())
-#               a         b         d     e
-# count  4.000000  4.000000  4.000000  4.00
-# mean   1.750000  0.600000  2.750000  0.75
-# std    0.957427  0.439697  1.707825  0.50
-# min    1.000000  0.100000  1.000000  0.00
-# 25%    1.000000  0.325000  1.750000  0.75
-# 50%    1.500000  0.600000  2.500000  1.00
-# 75%    2.250000  0.875000  3.500000  1.00
-# max    3.000000  1.100000  5.000000  1.00
-
-s_int = df['a']
-print(s_int)
-# 0    1
-# 1    2
-# 2    1
-# 3    3
-# Name: a, dtype: int64
-
-print(s_int.describe())
-# count    4.000000
-# mean     1.750000
-# std      0.957427
-# min      1.000000
-# 25%      1.000000
-# 50%      1.500000
-# 75%      2.250000
-# max      3.000000
-# Name: a, dtype: float64
-
-print(type(s_int.describe()))
-# <class 'pandas.core.series.Series'>
-
-s_str = df['d']
-print(s_str.describe())
-# count     4
-# unique    4
-# top       3
-# freq      1
-# Name: d, dtype: object
-
-print(s_str.astype('int').describe())
-# count    4.000000
-# mean     2.750000
-# std      1.707825
-# min      1.000000
-# 25%      1.750000
-# 50%      2.500000
-# 75%      3.500000
-# max      5.000000
-# Name: d, dtype: float64
-
-df['dt'] = pd.to_datetime(['2018-01-01', '2018-03-15', '2018-02-20', '2018-03-15'])
-
-print(df.dtypes)
-# a              int64
-# b            float64
-# c             object
-# d             object
-# e               bool
-# dt    datetime64[ns]
+# int          1
+# float      0.1
+# bool     False
 # dtype: object
 
-print(df.describe(include='datetime'))
-#                          dt
-# count                     4
-# unique                    3
-# top     2018-03-15 00:00:00
-# freq                      2
-# first   2018-01-01 00:00:00
-# last    2018-03-15 00:00:00
+print(df.max(numeric_only=True))
+# int         3
+# float     0.3
+# bool     True
+# dtype: object
 
-print(df['dt'].min())
-# 2018-01-01 00:00:00
+print(df.median(numeric_only=True))
+# int      1.5
+# float    0.2
+# bool     1.0
+# dtype: float64
 
-print(df['dt'].max())
-# 2018-03-15 00:00:00
+# print(df.quantile(q=[0.25, 0.75], numeric_only=True))
+# TypeError: numpy boolean subtract, the `-` operator, is not supported, use the bitwise_xor, the `^` operator, or the logical_xor function instead.
 
-print(df.T.describe())
-#         0                    1                    2                    3
-# count   6                    6                    6                    6
-# unique  5                    6                    6                    6
-# top     1  2018-03-15 00:00:00  2018-02-20 00:00:00  2018-03-15 00:00:00
-# freq    2                    1                    1                    1
+print(df.iloc[:, :-1])
+#    int  float str str_num
+# 0    1    0.1   X       1
+# 1    2    0.2   Y       2
+# 2    3    0.3   X       3
+# 3    1    NaN   Z       1
+
+print(df.iloc[:, :-1].quantile(q=[0, 0.25, 0.5, 0.75, 1], numeric_only=True))
+#        int  float
+# 0.00  1.00   0.10
+# 0.25  1.00   0.15
+# 0.50  1.50   0.20
+# 0.75  2.25   0.25
+# 1.00  3.00   0.30
+
+print(df.describe(percentiles=[0.2, 0.4, 0.6, 0.8]))
+#             int  float
+# count  4.000000   3.00
+# mean   1.750000   0.20
+# std    0.957427   0.10
+# min    1.000000   0.10
+# 20%    1.000000   0.14
+# 40%    1.200000   0.18
+# 50%    1.500000   0.20
+# 60%    1.800000   0.22
+# 80%    2.400000   0.26
+# max    3.000000   0.30
+
+df['dt'] = pd.to_datetime(['2023-12-01', '2023-12-08', '2023-12-15', '2023-12-22'])
+print(df)
+#    int  float str str_num   bool         dt
+# 0    1    0.1   X       1   True 2023-12-01
+# 1    2    0.2   Y       2   True 2023-12-08
+# 2    3    0.3   X       3  False 2023-12-15
+# 3    1    NaN   Z       1   True 2023-12-22
+
+print(df.dtypes)
+# int                 int64
+# float             float64
+# str                object
+# str_num            object
+# bool                 bool
+# dt         datetime64[ns]
+# dtype: object
+
+print(df.describe())
+#             int  float                   dt
+# count  4.000000   3.00                    4
+# mean   1.750000   0.20  2023-12-11 12:00:00
+# min    1.000000   0.10  2023-12-01 00:00:00
+# 25%    1.000000   0.15  2023-12-06 06:00:00
+# 50%    1.500000   0.20  2023-12-11 12:00:00
+# 75%    2.250000   0.25  2023-12-16 18:00:00
+# max    3.000000   0.30  2023-12-22 00:00:00
+# std    0.957427   0.10                  NaN
+
+print(df.astype(object).describe())
+#         int  float str str_num  bool                   dt
+# count     4    3.0   4       4     4                    4
+# unique    3    3.0   3       3     2                    4
+# top       1    0.1   X       1  True  2023-12-01 00:00:00
+# freq      2    1.0   2       2     3                    1
