@@ -1,22 +1,22 @@
 import pandas as pd
 
-df = pd.DataFrame({'col_1': range(11),
-                   'col_2': [i ** 2 for i in range(11)],
-                   'col_3': list('abcdefghijk')})
+print(pd.__version__)
+# 2.1.4
 
+df = pd.DataFrame({'col_1': range(11), 'col_2': [i**2 for i in range(11)]})
 print(df)
-#     col_1  col_2 col_3
-# 0       0      0     a
-# 1       1      1     b
-# 2       2      4     c
-# 3       3      9     d
-# 4       4     16     e
-# 5       5     25     f
-# 6       6     36     g
-# 7       7     49     h
-# 8       8     64     i
-# 9       9     81     j
-# 10     10    100     k
+#     col_1  col_2
+# 0       0      0
+# 1       1      1
+# 2       2      4
+# 3       3      9
+# 4       4     16
+# 5       5     25
+# 6       6     36
+# 7       7     49
+# 8       8     64
+# 9       9     81
+# 10     10    100
 
 print(df.quantile())
 # col_1     5.0
@@ -30,7 +30,7 @@ print(df['col_1'].quantile())
 # 5.0
 
 print(type(df['col_1'].quantile()))
-# <class 'float'>
+# <class 'numpy.float64'>
 
 print(df.quantile(0.2))
 # col_1    2.0
@@ -113,68 +113,177 @@ print(df.quantile(axis=1))
 # 10    55.0
 # Name: 0.5, dtype: float64
 
-# print(df.quantile(numeric_only=False))
-# TypeError: can't multiply sequence by non-int of type 'float'
+df_str = df.copy()
+df_str['col_3'] = list('abcdefghijk')
+print(df_str)
+#     col_1  col_2 col_3
+# 0       0      0     a
+# 1       1      1     b
+# 2       2      4     c
+# 3       3      9     d
+# 4       4     16     e
+# 5       5     25     f
+# 6       6     36     g
+# 7       7     49     h
+# 8       8     64     i
+# 9       9     81     j
+# 10     10    100     k
 
-print(df.quantile(numeric_only=False, interpolation='lower'))
-# col_1     5
-# col_2    25
-# col_3     f
-# Name: 0.5, dtype: object
+print(df_str.dtypes)
+# col_1     int64
+# col_2     int64
+# col_3    object
+# dtype: object
 
-print(df.quantile(0.25, numeric_only=False, interpolation='lower'))
-# col_1    2
-# col_2    4
-# col_3    c
-# Name: 0.25, dtype: object
+print(df_str.quantile(numeric_only=True))
+# col_1     5.0
+# col_2    25.0
+# Name: 0.5, dtype: float64
 
-print(df.quantile(0.25, numeric_only=False, interpolation='higher'))
-# col_1    3
-# col_2    9
-# col_3    d
-# Name: 0.25, dtype: object
+# print(df_str.quantile())
+# TypeError: unsupported operand type(s) for -: 'str' and 'str'
 
-df['col_3'] = pd.date_range('2019-01-01', '2019-01-11')
+# print(df_str.quantile(interpolation='midpoint'))
+# TypeError: unsupported operand type(s) for -: 'str' and 'str'
 
-print(df)
+print(df_str.quantile([0.2, 0.21, 0.3], interpolation='lower'))
+#       col_1  col_2 col_3
+# 0.20      2      4     c
+# 0.21      2      4     c
+# 0.30      3      9     d
+
+print(df_str.quantile([0.2, 0.21, 0.3], interpolation='higher'))
+#       col_1  col_2 col_3
+# 0.20      2      4     c
+# 0.21      3      9     d
+# 0.30      3      9     d
+
+print(df_str.quantile([0.2, 0.21, 0.3], interpolation='nearest'))
+#       col_1  col_2 col_3
+# 0.20      2      4     c
+# 0.21      2      4     c
+# 0.30      3      9     d
+
+df_dt = df.copy()
+df_dt['col_3'] = pd.date_range('2023-01-01', '2023-01-11')
+print(df_dt)
 #     col_1  col_2      col_3
-# 0       0      0 2019-01-01
-# 1       1      1 2019-01-02
-# 2       2      4 2019-01-03
-# 3       3      9 2019-01-04
-# 4       4     16 2019-01-05
-# 5       5     25 2019-01-06
-# 6       6     36 2019-01-07
-# 7       7     49 2019-01-08
-# 8       8     64 2019-01-09
-# 9       9     81 2019-01-10
-# 10     10    100 2019-01-11
+# 0       0      0 2023-01-01
+# 1       1      1 2023-01-02
+# 2       2      4 2023-01-03
+# 3       3      9 2023-01-04
+# 4       4     16 2023-01-05
+# 5       5     25 2023-01-06
+# 6       6     36 2023-01-07
+# 7       7     49 2023-01-08
+# 8       8     64 2023-01-09
+# 9       9     81 2023-01-10
+# 10     10    100 2023-01-11
 
-print(df.dtypes)
+print(df_dt.dtypes)
 # col_1             int64
 # col_2             int64
 # col_3    datetime64[ns]
 # dtype: object
 
-print(df.quantile())
+print(df_dt.quantile(numeric_only=True))
 # col_1     5.0
 # col_2    25.0
 # Name: 0.5, dtype: float64
 
-print(df.quantile(numeric_only=False))
-# col_1                      5
-# col_2                     25
-# col_3    2019-01-06 00:00:00
-# Name: 0.5, dtype: object
+print(df_dt.quantile([0.2, 0.21, 0.3]))
+#       col_1  col_2               col_3
+# 0.20    2.0    4.0 2023-01-03 00:00:00
+# 0.21    2.1    4.5 2023-01-03 02:24:00
+# 0.30    3.0    9.0 2023-01-04 00:00:00
 
-print(df.quantile(0.25, numeric_only=False))
-# col_1                    2.5
-# col_2                    6.5
-# col_3    2019-01-03 12:00:00
-# Name: 0.25, dtype: object
+print(df_dt.quantile([0.2, 0.21, 0.3], interpolation='midpoint'))
+#       col_1  col_2               col_3
+# 0.20    2.0    4.0 2023-01-03 00:00:00
+# 0.21    2.5    6.5 2023-01-03 12:00:00
+# 0.30    3.0    9.0 2023-01-04 00:00:00
 
-print(df.quantile(0.25, numeric_only=False, interpolation='lower'))
-# col_1                      2
-# col_2                      4
-# col_3    2019-01-03 00:00:00
-# Name: 0.25, dtype: object
+print(df_dt.quantile([0.2, 0.21, 0.3], interpolation='lower'))
+#       col_1  col_2      col_3
+# 0.20      2      4 2023-01-03
+# 0.21      2      4 2023-01-03
+# 0.30      3      9 2023-01-04
+
+print(df_dt.quantile([0.2, 0.21, 0.3], interpolation='higher'))
+#       col_1  col_2      col_3
+# 0.20      2      4 2023-01-03
+# 0.21      3      9 2023-01-04
+# 0.30      3      9 2023-01-04
+
+print(df_dt.quantile([0.2, 0.21, 0.3], interpolation='nearest'))
+#       col_1  col_2      col_3
+# 0.20      2      4 2023-01-03
+# 0.21      2      4 2023-01-03
+# 0.30      3      9 2023-01-04
+
+df_bool = df.copy()
+df_bool['col_3'] = [True, False, True, False, True, False, True, False, True, False, True]
+print(df_bool)
+#     col_1  col_2  col_3
+# 0       0      0   True
+# 1       1      1  False
+# 2       2      4   True
+# 3       3      9  False
+# 4       4     16   True
+# 5       5     25  False
+# 6       6     36   True
+# 7       7     49  False
+# 8       8     64   True
+# 9       9     81  False
+# 10     10    100   True
+
+print(df_bool.dtypes)
+# col_1    int64
+# col_2    int64
+# col_3     bool
+# dtype: object
+
+# print(df_bool.quantile())
+# TypeError: numpy boolean subtract, the `-` operator, is not supported, use the bitwise_xor, the `^` operator, or the logical_xor function instead.
+
+# print(df_bool.quantile(numeric_only=True))
+# TypeError: numpy boolean subtract, the `-` operator, is not supported, use the bitwise_xor, the `^` operator, or the logical_xor function instead.
+
+print(df_bool.select_dtypes(exclude=bool))
+#     col_1  col_2
+# 0       0      0
+# 1       1      1
+# 2       2      4
+# 3       3      9
+# 4       4     16
+# 5       5     25
+# 6       6     36
+# 7       7     49
+# 8       8     64
+# 9       9     81
+# 10     10    100
+
+print(df_bool.select_dtypes(exclude=bool).quantile())
+# col_1     5.0
+# col_2    25.0
+# Name: 0.5, dtype: float64
+
+print(df_bool.astype({'col_3': int}))
+#     col_1  col_2  col_3
+# 0       0      0      1
+# 1       1      1      0
+# 2       2      4      1
+# 3       3      9      0
+# 4       4     16      1
+# 5       5     25      0
+# 6       6     36      1
+# 7       7     49      0
+# 8       8     64      1
+# 9       9     81      0
+# 10     10    100      1
+
+print(df_bool.astype({'col_3': int}).quantile())
+# col_1     5.0
+# col_2    25.0
+# col_3     1.0
+# Name: 0.5, dtype: float64
