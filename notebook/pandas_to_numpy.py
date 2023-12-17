@@ -1,111 +1,210 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 
-df = pd.DataFrame(data=[[1, 2, 3], [4, 5, 6]], columns=['a', 'b', 'c'])
+print(pd.__version__)
+# 2.1.4
+
+print(np.__version__)
+# 1.26.2
+
+df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['X', 'Y'])
 print(df)
-#    a  b  c
-# 0  1  2  3
-# 1  4  5  6
+#    A  B
+# X  1  3
+# Y  2  4
 
-a_df = df.values
-print(a_df)
-# [[1 2 3]
-#  [4 5 6]]
+print(df.to_numpy())
+# [[1 3]
+#  [2 4]]
 
-print(type(a_df))
+print(type(df.to_numpy()))
 # <class 'numpy.ndarray'>
 
-print(a_df.dtype)
-# int64
-
-s = df['a']
+s = df['A']
 print(s)
-# 0    1
-# 1    4
-# Name: a, dtype: int64
+# X    1
+# Y    2
+# Name: A, dtype: int64
 
-a_s = s.values
-print(a_s)
-# [1 4]
+print(s.to_numpy())
+# [1 2]
 
-print(type(a_s))
+print(type(s.to_numpy()))
 # <class 'numpy.ndarray'>
 
-print(a_s.dtype)
+df_int = pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['X', 'Y'])
+print(df_int)
+#    A  B
+# X  1  3
+# Y  2  4
+
+print(df_int.dtypes)
+# A    int64
+# B    int64
+# dtype: object
+
+print(df_int.to_numpy())
+# [[1 3]
+#  [2 4]]
+
+print(df_int.to_numpy().dtype)
 # int64
 
-df_f = pd.DataFrame([[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]])
-print(df_f)
-#      0    1    2
-# 0  0.1  0.2  0.3
-# 1  0.4  0.5  0.6
+df_int_float = pd.DataFrame({'A': [1, 2], 'B': [0.1, 0.2]}, index=['X', 'Y'])
+print(df_int_float)
+#    A    B
+# X  1  0.1
+# Y  2  0.2
 
-a_df_f = df_f.values
-print(a_df_f)
-# [[0.1 0.2 0.3]
-#  [0.4 0.5 0.6]]
+print(df_int_float.dtypes)
+# A      int64
+# B    float64
+# dtype: object
 
-print(type(a_df_f))
-# <class 'numpy.ndarray'>
+print(df_int_float.to_numpy())
+# [[1.  0.1]
+#  [2.  0.2]]
 
-print(a_df_f.dtype)
+print(df_int_float.to_numpy().dtype)
 # float64
 
-df_multi = pd.read_csv('data/src/sample_pandas_normal.csv')
-print(df_multi)
-#       name  age state  point
-# 0    Alice   24    NY     64
-# 1      Bob   42    CA     92
-# 2  Charlie   18    CA     70
-# 3     Dave   68    TX     70
-# 4    Ellen   24    CA     88
-# 5    Frank   30    NY     57
+df_int_str = pd.DataFrame({'A': [1, 2], 'B': ['abc', 'xyz']}, index=['X', 'Y'])
+print(df_int_str)
+#    A    B
+# X  1  abc
+# Y  2  xyz
 
-a_df_multi = df_multi.values
-print(a_df_multi)
-# [['Alice' 24 'NY' 64]
-#  ['Bob' 42 'CA' 92]
-#  ['Charlie' 18 'CA' 70]
-#  ['Dave' 68 'TX' 70]
-#  ['Ellen' 24 'CA' 88]
-#  ['Frank' 30 'NY' 57]]
+print(df_int_str.dtypes)
+# A     int64
+# B    object
+# dtype: object
 
-print(type(a_df_multi))
-# <class 'numpy.ndarray'>
+print(df_int_str.to_numpy())
+# [[1 'abc']
+#  [2 'xyz']]
 
-print(a_df_multi.dtype)
+print(df_int_str.to_numpy().dtype)
 # object
 
-a_df_int = df_multi[['age', 'point']].values
-print(a_df_int)
-# [[24 64]
-#  [42 92]
-#  [18 70]
-#  [68 70]
-#  [24 88]
-#  [30 57]]
+print(df_int_str.to_numpy()[0, 0])
+# 1
 
-print(type(a_df_int))
+print(type(df_int_str.to_numpy()[0, 0]))
+# <class 'int'>
+
+print(df_int_str.to_numpy()[0, 1])
+# abc
+
+print(type(df_int_str.to_numpy()[0, 1]))
+# <class 'str'>
+
+print(df_int_float.to_numpy(dtype='float32'))
+# [[1.  0.1]
+#  [2.  0.2]]
+
+print(df_int_float.to_numpy(dtype=int))
+# [[1 0]
+#  [2 0]]
+
+# print(df_int_str.to_numpy(dtype=int))
+# ValueError: invalid literal for int() with base 10: 'abc'
+
+df_int_float_str = pd.DataFrame({'A': [1, 2], 'B': [0.1, 0.2], 'C': ['abc', 'xyz']}, index=['X', 'Y'])
+print(df_int_float_str)
+#    A    B    C
+# X  1  0.1  abc
+# Y  2  0.2  xyz
+
+print(df_int_float_str.select_dtypes('number').to_numpy())
+# [[1.  0.1]
+#  [2.  0.2]]
+
+df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['X', 'Y'])
+a = df.to_numpy()
+
+print(np.shares_memory(df, a))
+# True
+
+a[0, 0] = 100
+print(a)
+# [[100   3]
+#  [  2   4]]
+
+print(df)
+#      A  B
+# X  100  3
+# Y    2  4
+
+df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['X', 'Y'])
+a_copy = df.to_numpy(copy=True)
+
+print(np.shares_memory(df, a_copy))
+# False
+
+a_copy[0, 0] = 100
+print(a_copy)
+# [[100   3]
+#  [  2   4]]
+
+print(df)
+#    A  B
+# X  1  3
+# Y  2  4
+
+df_int_float = pd.DataFrame({'A': [1, 2], 'B': [0.1, 0.2]}, index=['X', 'Y'])
+a_float = df_int_float.to_numpy()
+
+print(np.shares_memory(df_int_float, a_float))
+# False
+
+df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['X', 'Y'])
+print(df)
+#    A  B
+# X  1  3
+# Y  2  4
+
+print(df.values)
+# [[1 3]
+#  [2 4]]
+
+print(type(df.values))
 # <class 'numpy.ndarray'>
 
-print(a_df_int.dtype)
-# int64
+s = df['A']
+print(s)
+# X    1
+# Y    2
+# Name: A, dtype: int64
 
-print(a_df_int.T)
-# [[24 42 18 68 24 30]
-#  [64 92 70 70 88 57]]
+print(s.values)
+# [1 2]
 
-a_df_int = df_multi.select_dtypes(include=int).values
-print(a_df_int)
-# [[24 64]
-#  [42 92]
-#  [18 70]
-#  [68 70]
-#  [24 88]
-#  [30 57]]
-
-print(type(a_df_int))
+print(type(s.values))
 # <class 'numpy.ndarray'>
 
-print(a_df_int.dtype)
-# int64
+df_int_float = pd.DataFrame({'A': [1, 2], 'B': [0.1, 0.2]}, index=['X', 'Y'])
+print(df_int_float.values)
+# [[1.  0.1]
+#  [2.  0.2]]
+
+print(df_int_float.values.dtype)
+# float64
+
+df_int_str = pd.DataFrame({'A': [1, 2], 'B': ['abc', 'xyz']}, index=['X', 'Y'])
+print(df_int_str.values)
+# [[1 'abc']
+#  [2 'xyz']]
+
+print(df_int_str.values.dtype)
+# object
+
+df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['X', 'Y'])
+print(np.shares_memory(df, df.values))
+# True
+
+df_int_float = pd.DataFrame({'A': [1, 2], 'B': [0.1, 0.2]}, index=['X', 'Y'])
+print(np.shares_memory(df_int_float, df_int_float.values))
+# False
+
+print(np.shares_memory(df, df.values.copy()))
+# False
