@@ -1,21 +1,27 @@
 import pandas as pd
 import numpy as np
 
-df_homo = pd.DataFrame({'a': [0, 1, 2], 'b': [3, 4, 5]})
+print(pd.__version__)
+# 2.1.4
+
+print(np.__version__)
+# 1.26.2
+
+df_homo = pd.DataFrame({'A': [0, 1, 2], 'B': [3, 4, 5]})
 print(df_homo)
-#    a  b
+#    A  B
 # 0  0  3
 # 1  1  4
 # 2  2  5
 
 print(df_homo.dtypes)
-# a    int64
-# b    int64
+# A    int64
+# B    int64
 # dtype: object
 
 df_homo_slice = df_homo.iloc[:2]
 print(df_homo_slice)
-#    a  b
+#    A  B
 # 0  0  3
 # 1  1  4
 
@@ -27,7 +33,7 @@ print(df_homo_slice._is_view)
 
 df_homo_list = df_homo.iloc[[0, 1]]
 print(df_homo_list)
-#    a  b
+#    A  B
 # 0  0  3
 # 1  1  4
 
@@ -37,17 +43,11 @@ print(np.shares_memory(df_homo, df_homo_list))
 print(df_homo_list._is_view)
 # False
 
-print(df_homo['a'] < 2)
-# 0     True
-# 1     True
-# 2    False
-# Name: a, dtype: bool
-
-df_homo_bool = df_homo.loc[df_homo['a'] < 2]
+df_homo_bool = df_homo.loc[[True, False, True]]
 print(df_homo_bool)
-#    a  b
+#    A  B
 # 0  0  3
-# 1  1  4
+# 2  2  5
 
 print(np.shares_memory(df_homo, df_homo_bool))
 # False
@@ -57,8 +57,8 @@ print(df_homo_bool._is_view)
 
 s_homo_scalar = df_homo.iloc[0]
 print(s_homo_scalar)
-# a    0
-# b    3
+# A    0
+# B    3
 # Name: 0, dtype: int64
 
 print(np.shares_memory(df_homo, s_homo_scalar))
@@ -67,12 +67,12 @@ print(np.shares_memory(df_homo, s_homo_scalar))
 print(s_homo_scalar._is_view)
 # True
 
-s_homo_col = df_homo['a']
+s_homo_col = df_homo['A']
 print(s_homo_col)
 # 0    0
 # 1    1
 # 2    2
-# Name: a, dtype: int64
+# Name: A, dtype: int64
 
 print(np.shares_memory(df_homo, s_homo_col))
 # True
@@ -80,97 +80,97 @@ print(np.shares_memory(df_homo, s_homo_col))
 print(s_homo_col._is_view)
 # True
 
-df_homo_col_multi = df_homo[['a', 'b']]
-print(df_homo_col_multi)
-#    a  b
+df_homo_col_list = df_homo[['A', 'B']]
+print(df_homo_col_list)
+#    A  B
 # 0  0  3
 # 1  1  4
 # 2  2  5
 
-print(np.shares_memory(df_homo, df_homo_col_multi))
+print(np.shares_memory(df_homo, df_homo_col_list))
 # False
 
-print(df_homo_col_multi._is_view)
+print(df_homo_col_list._is_view)
 # False
 
 df_homo.iat[0, 0] = 100
 print(df_homo)
-#      a  b
+#      A  B
 # 0  100  3
 # 1    1  4
 # 2    2  5
 
 print(df_homo_slice)
-#      a  b
+#      A  B
 # 0  100  3
 # 1    1  4
 
 print(df_homo_list)
-#    a  b
+#    A  B
 # 0  0  3
 # 1  1  4
 
 print(df_homo_bool)
-#    a  b
+#    A  B
 # 0  0  3
-# 1  1  4
+# 2  2  5
 
 print(s_homo_scalar)
-# a    100
-# b      3
+# A    100
+# B      3
 # Name: 0, dtype: int64
 
 print(s_homo_col)
 # 0    100
 # 1      1
 # 2      2
-# Name: a, dtype: int64
+# Name: A, dtype: int64
 
-print(df_homo_col_multi)
-#    a  b
+print(df_homo_col_list)
+#    A  B
 # 0  0  3
 # 1  1  4
 # 2  2  5
 
-df_hetero = pd.DataFrame({'a': [0, 1, 2], 'b': ['x', 'y', 'z']})
+df_hetero = pd.DataFrame({'A': [0, 1, 2], 'B': ['x', 'y', 'z']})
 print(df_hetero)
-#    a  b
+#    A  B
 # 0  0  x
 # 1  1  y
 # 2  2  z
 
 print(df_hetero.dtypes)
-# a     int64
-# b    object
+# A     int64
+# B    object
 # dtype: object
 
-df_hetero_slice = df_hetero.iloc[:2]
-print(df_hetero_slice)
-#    a  b
+df_hetero_slice_row = df_hetero.iloc[:2]
+print(df_hetero_slice_row)
+#    A  B
 # 0  0  x
 # 1  1  y
 
-print(np.shares_memory(df_hetero, df_hetero_slice))
+print(np.shares_memory(df_hetero, df_hetero_slice_row))
 # False
 
-print(df_hetero_slice._is_view)
+print(df_hetero_slice_row._is_view)
 # False
 
-df_hetero_slice2 = df_hetero.iloc[:2, 0:]
-print(df_hetero_slice2)
-#    a  b
+df_hetero_slice_row_col = df_hetero.iloc[:2, 0:]
+print(df_hetero_slice_row_col)
+#    A  B
 # 0  0  x
 # 1  1  y
 
-print(np.shares_memory(df_hetero, df_hetero_slice2))
+print(np.shares_memory(df_hetero, df_hetero_slice_row_col))
 # False
 
-print(df_hetero_slice2._is_view)
+print(df_hetero_slice_row_col._is_view)
 # False
 
 df_hetero_list = df_hetero.iloc[[0, 1]]
 print(df_hetero_list)
-#    a  b
+#    A  B
 # 0  0  x
 # 1  1  y
 
@@ -180,11 +180,11 @@ print(np.shares_memory(df_hetero, df_hetero_list))
 print(df_hetero_list._is_view)
 # False
 
-df_hetero_bool = df_hetero.loc[df_hetero['a'] < 2]
+df_hetero_bool = df_hetero.loc[[True, False, True]]
 print(df_hetero_bool)
-#    a  b
+#    A  B
 # 0  0  x
-# 1  1  y
+# 2  2  z
 
 print(df_hetero_bool._is_view)
 # False
@@ -194,8 +194,8 @@ print(df_hetero_bool._is_view)
 
 s_hetero_scalar = df_hetero.iloc[0]
 print(s_hetero_scalar)
-# a    0
-# b    x
+# A    0
+# B    x
 # Name: 0, dtype: object
 
 print(np.shares_memory(df_hetero, s_hetero_scalar))
@@ -204,12 +204,12 @@ print(np.shares_memory(df_hetero, s_hetero_scalar))
 print(s_hetero_scalar._is_view)
 # False
 
-s_hetero_col = df_hetero['a']
+s_hetero_col = df_hetero['A']
 print(s_hetero_col)
 # 0    0
 # 1    1
 # 2    2
-# Name: a, dtype: int64
+# Name: A, dtype: int64
 
 print(np.shares_memory(df_hetero, s_hetero_col))
 # False
@@ -217,59 +217,59 @@ print(np.shares_memory(df_hetero, s_hetero_col))
 print(s_hetero_col._is_view)
 # True
 
-df_hetero_col_multi = df_hetero[['a', 'b']]
-print(df_hetero_col_multi)
-#    a  b
+df_hetero_col_list = df_hetero[['A', 'B']]
+print(df_hetero_col_list)
+#    A  B
 # 0  0  x
 # 1  1  y
 # 2  2  z
 
-print(np.shares_memory(df_hetero, df_hetero_col_multi))
+print(np.shares_memory(df_hetero, df_hetero_col_list))
 # False
 
-print(df_hetero_col_multi._is_view)
+print(df_hetero_col_list._is_view)
 # False
 
 df_hetero.iat[0, 0] = 100
 print(df_hetero)
-#      a  b
+#      A  B
 # 0  100  x
 # 1    1  y
 # 2    2  z
 
-print(df_hetero_slice)
-#      a  b
+print(df_hetero_slice_row)
+#      A  B
 # 0  100  x
 # 1    1  y
 
-print(df_hetero_slice2)
-#    a  b
+print(df_hetero_slice_row_col)
+#    A  B
 # 0  0  x
 # 1  1  y
 
 print(df_hetero_list)
-#    a  b
+#    A  B
 # 0  0  x
 # 1  1  y
 
 print(df_hetero_bool)
-#    a  b
+#    A  B
 # 0  0  x
-# 1  1  y
+# 2  2  z
 
 print(s_hetero_scalar)
-# a    0
-# b    x
+# A    0
+# B    x
 # Name: 0, dtype: object
 
 print(s_hetero_col)
 # 0    100
 # 1      1
 # 2      2
-# Name: a, dtype: int64
+# Name: A, dtype: int64
 
-print(df_hetero_col_multi)
-#    a  b
+print(df_hetero_col_list)
+#    A  B
 # 0  0  x
 # 1  1  y
 # 2  2  z
