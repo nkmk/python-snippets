@@ -1,148 +1,144 @@
 import pandas as pd
 
-s = pd.Series([0, 1, 2], index=['a', 'b', 'c'])
+print(pd.__version__)
+# 2.1.4
+
+s = pd.Series([0, 1, 2], index=['A', 'B', 'C'])
 print(s)
-# a    0
-# b    1
-# c    2
+# A    0
+# B    1
+# C    2
 # dtype: int64
 
-df = pd.DataFrame(s)
-print(df)
+print(s.to_frame())
 #    0
-# a  0
-# b  1
-# c  2
+# A  0
+# B  1
+# C  2
 
-print(type(df))
-# <class 'pandas.core.frame.DataFrame'>
+print(s.to_frame('X'))
+#    X
+# A  0
+# B  1
+# C  2
 
-df_ = pd.DataFrame([s])
-print(df_)
-#    a  b  c
-# 0  0  1  2
-
-print(type(df_))
-# <class 'pandas.core.frame.DataFrame'>
-
-s_name = pd.Series([0, 1, 2], index=['a', 'b', 'c'], name='X')
+s_name = pd.Series([0, 1, 2], index=['A', 'B', 'C'], name='X')
 print(s_name)
-# a    0
-# b    1
-# c    2
+# A    0
+# B    1
+# C    2
 # Name: X, dtype: int64
+
+print(s_name.to_frame())
+#    X
+# A  0
+# B  1
+# C  2
+
+print(s_name.to_frame('Y'))
+#    Y
+# A  0
+# B  1
+# C  2
+
+print(pd.DataFrame(s))
+#    0
+# A  0
+# B  1
+# C  2
+
+print(pd.DataFrame([s]))
+#    A  B  C
+# 0  0  1  2
 
 print(pd.DataFrame(s_name))
 #    X
-# a  0
-# b  1
-# c  2
+# A  0
+# B  1
+# C  2
 
 print(pd.DataFrame([s_name]))
-#    a  b  c
+#    A  B  C
 # X  0  1  2
 
-s1 = pd.Series([0, 1, 2], index=['a', 'b', 'c'])
-print(s1)
-# a    0
-# b    1
-# c    2
-# dtype: int64
+s1 = pd.Series([0, 1, 2], index=['A', 'B', 'C'])
+s2 = pd.Series([0.0, 0.1, 0.2], index=['A', 'B', 'C'])
 
-s2 = pd.Series([0.0, 0.1, 0.2], index=['a', 'b', 'c'])
-print(s2)
-# a    0.0
-# b    0.1
-# c    0.2
-# dtype: float64
-
-print(pd.DataFrame({'col0': s1, 'col1': s2}))
-#    col0  col1
-# a     0   0.0
-# b     1   0.1
-# c     2   0.2
+print(pd.DataFrame({'col1': s1, 'col2': s2}))
+#    col1  col2
+# A     0   0.0
+# B     1   0.1
+# C     2   0.2
 
 print(pd.DataFrame([s1, s2]))
-#      a    b    c
+#      A    B    C
 # 0  0.0  1.0  2.0
 # 1  0.0  0.1  0.2
 
 print(pd.concat([s1, s2], axis=1))
 #    0    1
-# a  0  0.0
-# b  1  0.1
-# c  2  0.2
+# A  0  0.0
+# B  1  0.1
+# C  2  0.2
 
-s1_name = pd.Series([0, 1, 2], index=['a', 'b', 'c'], name='X')
-print(s1_name)
-# a    0
-# b    1
-# c    2
-# Name: X, dtype: int64
-
-s2_name = pd.Series([0.0, 0.1, 0.2], index=['a', 'b', 'c'], name='Y')
-print(s2_name)
-# a    0.0
-# b    0.1
-# c    0.2
-# Name: Y, dtype: float64
+s1_name = pd.Series([0, 1, 2], index=['A', 'B', 'C'], name='X')
+s2_name = pd.Series([0.0, 0.1, 0.2], index=['A', 'B', 'C'], name='Y')
 
 print(pd.DataFrame({s1_name.name: s1_name, s2_name.name: s2_name}))
 #    X    Y
-# a  0  0.0
-# b  1  0.1
-# c  2  0.2
+# A  0  0.0
+# B  1  0.1
+# C  2  0.2
 
 print(pd.DataFrame([s1_name, s2_name]))
-#      a    b    c
+#      A    B    C
 # X  0.0  1.0  2.0
 # Y  0.0  0.1  0.2
 
 print(pd.concat([s1_name, s2_name], axis=1))
 #    X    Y
-# a  0  0.0
-# b  1  0.1
-# c  2  0.2
+# A  0  0.0
+# B  1  0.1
+# C  2  0.2
 
-s3 = pd.Series([0.1, 0.2, 0.3], index=['b', 'c', 'd'])
-print(s3)
-# b    0.1
-# c    0.2
-# d    0.3
-# dtype: float64
+s1 = pd.Series([0, 1, 2], index=['A', 'B', 'C'])
+s3 = pd.Series([0.1, 0.2, 0.3], index=['B', 'C', 'D'])
 
-print(pd.DataFrame({'col0': s1, 'col1': s3}))
-#    col0  col1
-# a   0.0   NaN
-# b   1.0   0.1
-# c   2.0   0.2
-# d   NaN   0.3
+print(pd.DataFrame({'col1': s1, 'col3': s3}))
+#    col1  col3
+# A   0.0   NaN
+# B   1.0   0.1
+# C   2.0   0.2
+# D   NaN   0.3
 
 print(pd.DataFrame([s1, s3]))
-#      a    b    c    d
+#      A    B    C    D
 # 0  0.0  1.0  2.0  NaN
 # 1  NaN  0.1  0.2  0.3
 
 print(pd.concat([s1, s3], axis=1))
 #      0    1
-# a  0.0  NaN
-# b  1.0  0.1
-# c  2.0  0.2
-# d  NaN  0.3
-# 
-# /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
-# of pandas will change to not sort by default.
-# 
-# To accept the future behavior, pass 'sort=False'.
-# 
-# To retain the current behavior and silence the warning, pass 'sort=True'.
-# 
-#   """Entry point for launching an IPython kernel.
+# A  0.0  NaN
+# B  1.0  0.1
+# C  2.0  0.2
+# D  NaN  0.3
 
 print(pd.concat([s1, s3], axis=1, join='inner'))
 #    0    1
-# b  1  0.1
-# c  2  0.2
+# B  1  0.1
+# C  2  0.2
+
+print(s3.set_axis(s1.index))
+# A    0.1
+# B    0.2
+# C    0.3
+# dtype: float64
+
+print(pd.DataFrame({'col1': s1, 'col3': s3.set_axis(s1.index)}))
+#    col1  col3
+# A     0   0.1
+# B     1   0.2
+# C     2   0.3
 
 print(s1.values)
 # [0 1 2]
@@ -150,8 +146,8 @@ print(s1.values)
 print(type(s1.values))
 # <class 'numpy.ndarray'>
 
-print(pd.DataFrame({'col0': s1.values, 'col1': s3.values}))
-#    col0  col1
+print(pd.DataFrame({'col1': s1.values, 'col3': s3.values}))
+#    col1  col3
 # 0     0   0.1
 # 1     1   0.2
 # 2     2   0.3
@@ -164,158 +160,103 @@ print(pd.DataFrame([s1.values, s3.values]))
 # print(pd.concat([s1.values, s3.values], axis=1))
 # TypeError: cannot concatenate object of type '<class 'numpy.ndarray'>'; only Series and DataFrame objs are valid
 
-print(pd.DataFrame({'col0': s1, 'col1': s3.values}))
-#    col0  col1
-# a     0   0.1
-# b     1   0.2
-# c     2   0.3
+print(pd.DataFrame([s1.values, s3.values], index=['X', 'Y'], columns=['A', 'B', 'C']))
+#      A    B    C
+# X  0.0  1.0  2.0
+# Y  0.1  0.2  0.3
 
-print(pd.DataFrame([s1, s3.values]))
-#      a    b    c
-# 0  0.0  1.0  2.0
-# 1  NaN  NaN  NaN
+s1 = pd.Series([0, 1, 2], index=['A', 'B', 'C'])
+s4 = pd.Series([0.1, 0.3], index=['B', 'D'])
 
-print(pd.DataFrame({'col0': s1.values, 'col1': s3.values}, index=s1.index))
-#    col0  col1
-# a     0   0.1
-# b     1   0.2
-# c     2   0.3
-
-print(pd.DataFrame([s1.values, s3.values], columns=s1.index))
-#      a    b    c
-# 0  0.0  1.0  2.0
-# 1  0.1  0.2  0.3
-
-s4 = pd.Series([0.1, 0.2], index=['b', 'd'])
-print(s4)
-# b    0.1
-# d    0.2
-# dtype: float64
-
-print(pd.DataFrame({'col0': s1, 'col1': s4}))
-#    col0  col1
-# a   0.0   NaN
-# b   1.0   0.1
-# c   2.0   NaN
-# d   NaN   0.2
+print(pd.DataFrame({'col1': s1, 'col4': s4}))
+#    col1  col4
+# A   0.0   NaN
+# B   1.0   0.1
+# C   2.0   NaN
+# D   NaN   0.3
 
 print(pd.DataFrame([s1, s4]))
-#      a    b    c    d
+#      A    B    C    D
 # 0  0.0  1.0  2.0  NaN
-# 1  NaN  0.1  NaN  0.2
+# 1  NaN  0.1  NaN  0.3
+
+print(pd.concat([s1, s4], axis=1))
+#      0    1
+# A  0.0  NaN
+# B  1.0  0.1
+# C  2.0  NaN
+# D  NaN  0.3
 
 print(pd.concat([s1, s4], axis=1, join='inner'))
 #    0    1
-# b  1  0.1
+# B  1  0.1
 
-# print(pd.DataFrame({'col0': s1.values, 'col1': s4.values}))
-# ValueError: arrays must all be same length
+print(pd.DataFrame({'col1': s1, 'col4': s4.set_axis(['A', 'B'])}))
+#    col1  col4
+# A     0   0.1
+# B     1   0.3
+# C     2   NaN
+
+# print(pd.DataFrame({'col1': s1.values, 'col4': s4.values}))
+# ValueError: All arrays must be of the same length
 
 print(pd.DataFrame([s1.values, s4.values]))
 #      0    1    2
 # 0  0.0  1.0  2.0
-# 1  0.1  0.2  NaN
+# 1  0.1  0.3  NaN
 
-s4.index = ['a', 'b']
-print(s4)
-# a    0.1
-# b    0.2
-# dtype: float64
+s = pd.Series([0, 1], index=['A', 'B'])
+df = s.to_frame()
 
-print(pd.DataFrame({'col0': s1, 'col1': s4}))
-#    col0  col1
-# a     0   0.1
-# b     1   0.2
-# c     2   NaN
-
-print(pd.DataFrame({'col0': s1, 'col1': s4}).fillna(100))
-#    col0   col1
-# a     0    0.1
-# b     1    0.2
-# c     2  100.0
-
-print(s)
-# a    0
-# b    1
-# c    2
-# dtype: int64
-
-df = pd.DataFrame(s)
+s['A'] = 100
 print(df)
+#      0
+# A  100
+# B    1
+
+s = pd.Series([0, 1], index=['A', 'B'])
+df_copy = s.copy().to_frame()
+
+s['A'] = 100
+print(df_copy)
 #    0
-# a  0
-# b  1
-# c  2
+# A  0
+# B  1
 
-s[0] = 100
-print(s)
-# a    100
-# b      1
-# c      2
-# dtype: int64
+s = pd.Series([0, 1], index=['A', 'B'])
+df = pd.DataFrame(s)
 
+s['A'] = 100
 print(df)
 #      0
-# a  100
-# b    1
-# c    2
+# A  100
+# B    1
 
+s = pd.Series([0, 1], index=['A', 'B'])
 df_copy = pd.DataFrame(s, copy=True)
+
+s['A'] = 100
 print(df_copy)
-#      0
-# a  100
-# b    1
-# c    2
+#    0
+# A  0
+# B  1
 
-s[1] = 100
-print(s)
-# a    100
-# b    100
-# c      2
-# dtype: int64
+s1 = pd.Series([0, 1], index=['A', 'B'])
+s2 = pd.Series([0.0, 0.1], index=['A', 'B'])
+df = pd.concat([s1, s2], axis=1)
 
-print(df_copy)
-#      0
-# a  100
-# b    1
-# c    2
-
-df_c = pd.concat([s1, s2], axis=1)
-print(df_c)
+s1['A'] = 100
+print(df)
 #    0    1
-# a  0  0.0
-# b  1  0.1
-# c  2  0.2
+# A  0  0.0
+# B  1  0.1
 
-s1[0] = 100
-print(s1)
-# a    100
-# b      1
-# c      2
-# dtype: int64
+s1 = pd.Series([0, 1], index=['A', 'B'])
+s2 = pd.Series([0.0, 0.1], index=['A', 'B'])
+df_copy_false = pd.concat([s1, s2], axis=1, copy=False)
 
-print(df_c)
-#    0    1
-# a  0  0.0
-# b  1  0.1
-# c  2  0.2
-
-df_c_false = pd.concat([s1, s2], axis=1, copy=False)
-print(df_c_false)
+s1['A'] = 100
+print(df_copy_false)
 #      0    1
-# a  100  0.0
-# b    1  0.1
-# c    2  0.2
-
-s1[1] = 100
-print(s1)
-# a    100
-# b    100
-# c      2
-# dtype: int64
-
-print(df_c_false)
-#      0    1
-# a  100  0.0
-# b    1  0.1
-# c    2  0.2
+# A  100  0.0
+# B    1  0.1
