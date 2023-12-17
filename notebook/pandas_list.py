@@ -1,194 +1,214 @@
 import pandas as pd
 
-l_1d = [0, 1, 2]
+print(pd.__version__)
+# 2.1.4
 
-s = pd.Series(l_1d)
-print(s)
-# 0    0
-# 1    1
-# 2    2
+l_1d = [0, 10, 20]
+
+print(pd.Series(l_1d))
+# 0     0
+# 1    10
+# 2    20
 # dtype: int64
 
-s = pd.Series(l_1d, index=['row1', 'row2', 'row3'])
-print(s)
-# row1    0
-# row2    1
-# row3    2
+l_2d = [[0, 10, 20], [30, 40, 50]]
+
+print(pd.DataFrame(l_2d))
+#     0   1   2
+# 0   0  10  20
+# 1  30  40  50
+
+print(pd.DataFrame(l_1d))
+#     0
+# 0   0
+# 1  10
+# 2  20
+
+print(pd.DataFrame([l_1d]))
+#    0   1   2
+# 0  0  10  20
+
+print(pd.DataFrame(zip(*l_2d)))
+#     0   1
+# 0   0  30
+# 1  10  40
+# 2  20  50
+
+print(pd.Series(l_1d, index=['X', 'Y', 'Z']))
+# X     0
+# Y    10
+# Z    20
 # dtype: int64
 
-l_2d = [[0, 1, 2], [3, 4, 5]]
+print(pd.DataFrame(l_2d, index=['X', 'Y'], columns=['A', 'B', 'C']))
+#     A   B   C
+# X   0  10  20
+# Y  30  40  50
 
-df = pd.DataFrame(l_2d)
-print(df)
-#    0  1  2
-# 0  0  1  2
-# 1  3  4  5
+l_2d_multi = [[0, 0.0, 'abc', 123, 'abc'], [10, 0.1, 'xyz', 1.23, 100]]
 
-df = pd.DataFrame(l_2d,
-                  index=['row1', 'row2'],
-                  columns=['col1', 'col2', 'col3'])
-print(df)
-#       col1  col2  col3
-# row1     0     1     2
-# row2     3     4     5
+print(pd.DataFrame(l_2d_multi))
+#     0    1    2       3    4
+# 0   0  0.0  abc  123.00  abc
+# 1  10  0.1  xyz    1.23  100
 
-l_1d_index = [['Alice', 0], ['Bob', 1], ['Charlie', 2]]
-
-index, value = zip(*l_1d_index)
-print(index)
-# ('Alice', 'Bob', 'Charlie')
-
-print(value)
-# (0, 1, 2)
-
-s_index = pd.Series(value, index=index)
-print(s_index)
-# Alice      0
-# Bob        1
-# Charlie    2
-# dtype: int64
-
-l_2d_index = [['Alice', 0, 0.0], ['Bob', 1, 0.1], ['Charlie', 2, 0.2]]
-
-df_index = pd.DataFrame(l_2d_index, columns=['name', 'val1', 'val2'])
-print(df_index)
-#       name  val1  val2
-# 0    Alice     0   0.0
-# 1      Bob     1   0.1
-# 2  Charlie     2   0.2
-
-df_index_set = df_index.set_index('name')
-print(df_index_set)
-#          val1  val2
-# name               
-# Alice       0   0.0
-# Bob         1   0.1
-# Charlie     2   0.2
-
-print(df_index_set.dtypes)
-# val1      int64
-# val2    float64
+print(pd.DataFrame(l_2d_multi).dtypes)
+# 0      int64
+# 1    float64
+# 2     object
+# 3    float64
+# 4     object
 # dtype: object
 
-l_2d_index_columns = [['name', 'val1', 'val2'], ['Alice', 0, 0.0], ['Bob', 1, 0.1], ['Charlie', 2, 0.2]]
+print(pd.DataFrame(l_2d, dtype=float))
+#       0     1     2
+# 0   0.0  10.0  20.0
+# 1  30.0  40.0  50.0
+
+l_1d_index = [['X', 0], ['Y', 1], ['Z', 2]]
+
+index, values = zip(*l_1d_index)
+print(index)
+# ('X', 'Y', 'Z')
+
+print(values)
+# (0, 1, 2)
+
+print(pd.Series(values, index=index))
+# X    0
+# Y    1
+# Z    2
+# dtype: int64
+
+l_2d_index = [['X', 0, 0.0], ['Y', 1, 0.1], ['Z', 2, 0.2]]
+
+df_index = pd.DataFrame(l_2d_index, columns=['idx', 'A', 'B'])
+print(df_index)
+#   idx  A    B
+# 0   X  0  0.0
+# 1   Y  1  0.1
+# 2   Z  2  0.2
+
+print(df_index.set_index('idx'))
+#      A    B
+# idx        
+# X    0  0.0
+# Y    1  0.1
+# Z    2  0.2
+
+l_2d_index_columns = [['idx', 'A', 'B'], ['X', 0, 0.0], ['Y', 1, 0.1], ['Z', 2, 0.2]]
 
 df_index_columns = pd.DataFrame(l_2d_index_columns[1:], columns=l_2d_index_columns[0])
 print(df_index_columns)
-#       name  val1  val2
-# 0    Alice     0   0.0
-# 1      Bob     1   0.1
-# 2  Charlie     2   0.2
+#   idx  A    B
+# 0   X  0  0.0
+# 1   Y  1  0.1
+# 2   Z  2  0.2
 
-df_index_columns_set = df_index_columns.set_index('name')
-print(df_index_columns_set)
-#          val1  val2
-# name               
-# Alice       0   0.0
-# Bob         1   0.1
-# Charlie     2   0.2
+print(df_index_columns.set_index('idx'))
+#      A    B
+# idx        
+# X    0  0.0
+# Y    1  0.1
+# Z    2  0.2
 
-s = pd.Series([0, 1, 2])
+s = pd.Series([0, 10, 20])
 print(s)
-# 0    0
-# 1    1
-# 2    2
+# 0     0
+# 1    10
+# 2    20
 # dtype: int64
 
-l_1d = s.values.tolist()
-print(l_1d)
-# [0, 1, 2]
+print(s.tolist())
+# [0, 10, 20]
 
-df = pd.DataFrame([[0, 1, 2], [3, 4, 5]])
+print(s.to_list())
+# [0, 10, 20]
+
+df = pd.DataFrame([[0, 10, 20], [30, 40, 50]])
 print(df)
-#    0  1  2
-# 0  0  1  2
-# 1  3  4  5
+#     0   1   2
+# 0   0  10  20
+# 1  30  40  50
 
-l_2d = df.values.tolist()
-print(l_2d)
-# [[0, 1, 2], [3, 4, 5]]
+print(df.values.tolist())
+# [[0, 10, 20], [30, 40, 50]]
 
-s_index = pd.Series([0, 1, 2], index=['row1', 'row2', 'row3'])
+s_index = pd.Series([0, 1, 2], index=['X', 'Y', 'Z'])
 print(s_index)
-# row1    0
-# row2    1
-# row3    2
+# X    0
+# Y    1
+# Z    2
 # dtype: int64
 
-l_1d = s_index.values.tolist()
-print(l_1d)
-# [0, 1, 2]
+print(s_index.reset_index())
+#   index  0
+# 0     X  0
+# 1     Y  1
+# 2     Z  2
 
-df_index = pd.DataFrame([[0, 1, 2], [3, 4, 5]],
-                        index=['row1', 'row2'],
-                        columns=['col1', 'col2', 'col3'])
+print(s_index.reset_index().values.tolist())
+# [['X', 0], ['Y', 1], ['Z', 2]]
+
+df_index = pd.DataFrame([[0, 1, 2], [3, 4, 5]], index=['A', 'B'], columns=['X', 'Y', 'Z'])
 print(df_index)
-#       col1  col2  col3
-# row1     0     1     2
-# row2     3     4     5
+#    X  Y  Z
+# A  0  1  2
+# B  3  4  5
 
-l_2d = df_index.values.tolist()
-print(l_2d)
-# [[0, 1, 2], [3, 4, 5]]
+print(df_index.reset_index())
+#   index  X  Y  Z
+# 0     A  0  1  2
+# 1     B  3  4  5
 
-l_1d_index = s_index.reset_index().values.tolist()
-print(l_1d_index)
-# [['row1', 0], ['row2', 1], ['row3', 2]]
+print(df_index.reset_index().values.tolist())
+# [['A', 0, 1, 2], ['B', 3, 4, 5]]
 
-l_2d_index = df_index.reset_index().values.tolist()
-print(l_2d_index)
-# [['row1', 0, 1, 2], ['row2', 3, 4, 5]]
+print(df_index.reset_index().T.reset_index().T.values.tolist())
+# [['index', 'X', 'Y', 'Z'], ['A', 0, 1, 2], ['B', 3, 4, 5]]
 
-l_2d_index_columns = df_index.reset_index().T.reset_index().T.values.tolist()
-print(l_2d_index_columns)
-# [['index', 'col1', 'col2', 'col3'], ['row1', 0, 1, 2], ['row2', 3, 4, 5]]
-
+s_index = pd.Series([0, 1, 2], index=['X', 'Y', 'Z'])
 print(s_index)
-# row1    0
-# row2    1
-# row3    2
+# X    0
+# Y    1
+# Z    2
 # dtype: int64
 
 print(s_index.index)
-# Index(['row1', 'row2', 'row3'], dtype='object')
-
-print(type(s_index.index))
-# <class 'pandas.core.indexes.base.Index'>
+# Index(['X', 'Y', 'Z'], dtype='object')
 
 print(s_index.index.tolist())
-# ['row1', 'row2', 'row3']
+# ['X', 'Y', 'Z']
 
-print(type(s_index.index.tolist()))
-# <class 'list'>
-
-for i in s_index.index:
-    print(i, type(i))
-# row1 <class 'str'>
-# row2 <class 'str'>
-# row3 <class 'str'>
-
-print(s_index.index[0])
-# row1
-
-print(s_index.index[:2])
-# Index(['row1', 'row2'], dtype='object')
-
-# s_index.index[0] = 'ROW1'
-# TypeError: Index does not support mutable operations
-
+df_index = pd.DataFrame([[0, 1, 2], [3, 4, 5]], index=['A', 'B'], columns=['X', 'Y', 'Z'])
 print(df_index)
-#       col1  col2  col3
-# row1     0     1     2
-# row2     3     4     5
+#    X  Y  Z
+# A  0  1  2
+# B  3  4  5
 
 print(df_index.index)
-# Index(['row1', 'row2'], dtype='object')
+# Index(['A', 'B'], dtype='object')
 
 print(df_index.index.tolist())
-# ['row1', 'row2']
+# ['A', 'B']
 
 print(df_index.columns)
-# Index(['col1', 'col2', 'col3'], dtype='object')
+# Index(['X', 'Y', 'Z'], dtype='object')
 
 print(df_index.columns.tolist())
-# ['col1', 'col2', 'col3']
+# ['X', 'Y', 'Z']
+
+for i in df_index.columns:
+    print(i, type(i))
+# X <class 'str'>
+# Y <class 'str'>
+# Z <class 'str'>
+
+print(df_index.columns[0])
+# X
+
+print(df_index.columns[:2])
+# Index(['X', 'Y'], dtype='object')
+
+# df_index.columns[0] = 'x'
+# TypeError: Index does not support mutable operations
