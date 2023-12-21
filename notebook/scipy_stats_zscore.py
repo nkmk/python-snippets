@@ -1,21 +1,20 @@
 import scipy.stats
 
-l = [0, 1, 2, 3, 4]
-print(l)
-# [0, 1, 2, 3, 4]
+print(scipy.__version__)
+# 1.11.4
 
-print(scipy.stats.zscore(l))
+l_1d = [0, 1, 2, 3, 4]
+
+print(scipy.stats.zscore(l_1d))
 # [-1.41421356 -0.70710678  0.          0.70710678  1.41421356]
 
-print(type(scipy.stats.zscore(l)))
+print(type(scipy.stats.zscore(l_1d)))
 # <class 'numpy.ndarray'>
 
-print(scipy.stats.zscore(l, ddof=1))
+print(scipy.stats.zscore(l_1d, ddof=1))
 # [-1.26491106 -0.63245553  0.          0.63245553  1.26491106]
 
 l_2d = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-print(l_2d)
-# [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 print(scipy.stats.zscore(l_2d))
 # [[-1.22474487 -1.22474487 -1.22474487]
