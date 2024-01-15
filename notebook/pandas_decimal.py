@@ -1,9 +1,9 @@
-from decimal import Decimal, ROUND_HALF_UP, ROUND_FLOOR, ROUND_HALF_EVEN
+from decimal import Decimal, ROUND_HALF_UP, ROUND_FLOOR, ROUND_CEILING
 
 import pandas as pd
 
 print(pd.__version__)
-# 2.1.2
+# 2.1.4
 
 s = pd.Series([0.123, 0.456, 0.789])
 print(s)
@@ -34,10 +34,16 @@ print(s_decimal.map(lambda x: x.quantize(Decimal('0.1'), ROUND_HALF_UP)))
 # 2    0.8
 # dtype: object
 
-print(s_decimal.map(lambda x: x.quantize(Decimal('0.01'), ROUND_FLOOR)))
-# 0    0.12
-# 1    0.45
-# 2    0.78
+print(s_decimal.map(lambda x: x.quantize(Decimal('0.1'), ROUND_FLOOR)))
+# 0    0.1
+# 1    0.4
+# 2    0.7
+# dtype: object
+
+print(s_decimal.map(lambda x: x.quantize(Decimal('0.1'), ROUND_CEILING)))
+# 0    0.2
+# 1    0.5
+# 2    0.8
 # dtype: object
 
 print(s_decimal.astype(float))
