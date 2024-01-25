@@ -104,16 +104,17 @@ print(df.query(f'state in {l}'))
 # 3   Dave   68    TX     70
 # 5  Frank   30    NY     57
 
-print(df.query('name.str.endswith("e")'))
+print(df[df['name'].str.endswith('e')])
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 2  Charlie   18    CA     70
 # 3     Dave   68    TX     70
 
-print(df.query('name.str.contains("li")'))
+print(df.query('name.str.endswith("e")'))
 #       name  age state  point
 # 0    Alice   24    NY     64
 # 2  Charlie   18    CA     70
+# 3     Dave   68    TX     70
 
 print(df.query('age.astype("str").str.endswith("8")'))
 #       name  age state  point
@@ -133,6 +134,12 @@ print(df_nan)
 
 # print(df_nan.query('name.str.endswith("e")'))
 # ValueError: unknown type object
+
+print(df_nan[df_nan['name'].str.endswith('e', na=True)])
+#       name  age state  point
+# 0      NaN   24    NY     64
+# 2  Charlie   18    CA     70
+# 3     Dave   68    TX     70
 
 print(df_nan[df_nan['name'].str.endswith('e', na=False)])
 #       name  age state  point
@@ -160,6 +167,9 @@ print(df_name)
 # Dave      68    TX     70
 # Ellen     24    CA     88
 # Frank     30    NY     57
+
+print(df_name.index.name)
+# name
 
 print(df_name.query('name.str.endswith("e")'))
 #          age state  point
