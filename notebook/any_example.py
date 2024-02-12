@@ -10,14 +10,20 @@ print(any((True, False, False)))
 print(any({True, False, False}))
 # True
 
+print(any(['aaa', 'bbb', 'ccc', '']))
+# True
+
+print(any(['', '', '', '']))
+# False
+
+print(any([0, 1, 2, 3]))
+# True
+
+print(any([0, 0, 0, 0]))
+# False
+
 print(any([]))
 # False
-
-print(any([False, None, 0, 0.0, 0 + 0j, '', [], {}, ()]))
-# False
-
-print(any([False, None, 0, 0.0, 0 + 0j, '', [], {}, (), 1]))
-# True
 
 print(not any([False, False, False]))
 # True
