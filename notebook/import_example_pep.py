@@ -1,7 +1,7 @@
-# NG
+# Wrong:
 import os, sys
 
-# OK
+# Correct:
 import os
 import sys
 

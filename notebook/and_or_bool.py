@@ -71,8 +71,8 @@ print(bool([]))
 print(bool([False]))
 # True
 
-x = 10  # True
-y = 0  # False
+x = 10  # Evaluated as true
+y = 0   # Evaluated as false
 
 print(x and y)
 # 0
@@ -83,8 +83,8 @@ print(x or y)
 print(not x)
 # False
 
-x = 10  # True
-y = 100  # True
+x = 10   # Evaluated as true
+y = 100  # Evaluated as true
 
 print(x and y)
 # 100
@@ -98,8 +98,8 @@ print(x or y)
 print(y or x)
 # 100
 
-x = 0  # False
-y = 0.0  # False
+x = 0    # Evaluated as false
+y = 0.0  # Evaluated as false
 
 print(x and y)
 # 0

@@ -71,25 +71,25 @@ def if_in(s):
     if 'a' in s:
         print(f'"a" is in "{s}"')
     else:
-        print(f'"a" is NOT in "{s}"')
+        print(f'"a" is not in "{s}"')
 
 if_in('apple')
 # "a" is in "apple"
 
 if_in('cherry')
-# "a" is NOT in "cherry"
+# "a" is not in "cherry"
 
 def if_startswith(s):
     if s.startswith('a'):
         print(f'"{s}" starts with "a"')
     else:
-        print(f'"{s}" does NOT starts with "a"')
+        print(f'"{s}" does not start with "a"')
 
 if_startswith("apple")
 # "apple" starts with "a"
 
 if_startswith("banana")
-# "banana" does NOT starts with "a"
+# "banana" does not start with "a"
 
 if 100:
     print('True')
@@ -101,12 +101,12 @@ if [0, 1, 2]:
 
 def if_is_empty(l):
     if l:
-        print(f'{l} is NOT empty')
+        print(f'{l} is not empty')
     else:
         print(f'{l} is empty')
 
 if_is_empty([0, 1, 2])
-# [0, 1, 2] is NOT empty
+# [0, 1, 2] is not empty
 
 if_is_empty([])
 # [] is empty
@@ -115,35 +115,35 @@ def if_and(n):
     if n > 0 and n % 2 == 0:
         print(f'{n} is positive-even')
     else:
-        print(f'{n} is NOT positive-even')
+        print(f'{n} is not positive-even')
 
 if_and(10)
 # 10 is positive-even
 
 if_and(5)
-# 5 is NOT positive-even
+# 5 is not positive-even
 
 if_and(-10)
-# -10 is NOT positive-even
+# -10 is not positive-even
 
 def if_and_or(n):
     if n > 0 and n % 2 == 0 or n == 0:
         print(f'{n} is positive-even or zero')
     else:
-        print(f'{n} is NOT positive-even or zero')
+        print(f'{n} is not positive-even or zero')
 
 if_and_or(10)
 # 10 is positive-even or zero
 
 if_and_or(5)
-# 5 is NOT positive-even or zero
+# 5 is not positive-even or zero
 
 if_and_or(0)
 # 0 is positive-even or zero
 
 def if_not(s):
     if not s.startswith('a'):
-        print(f'"{s}" does NOT starts with "a"')
+        print(f'"{s}" does not start with "a"')
     else:
         print(f'"{s}" starts with "a"')
 
@@ -151,7 +151,7 @@ if_not("apple")
 # "apple" starts with "a"
 
 if_not("banana")
-# "banana" does NOT starts with "a"
+# "banana" does not start with "a"
 
 def too_long_name_function_1():
     return True
