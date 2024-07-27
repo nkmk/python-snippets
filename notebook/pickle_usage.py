@@ -56,7 +56,7 @@ mc_loads = pickle.loads(b)
 mc_loads.my_func()
 # This is MyClass.
 
-print(mc.a)
+print(mc_loads.a)
 # 100
 
 del MyClass
