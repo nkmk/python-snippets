@@ -72,6 +72,9 @@ print(glob.glob('temp/[!a-z].*'))
 print(glob.glob('temp/[[]*'))
 # ['temp/[x].txt']
 
+print(glob.escape('*_?_['))
+# [*]_[?]_[[]
+
 print(glob.glob('temp/*/*.jpg'))
 # ['temp/dir/987.jpg']
 
@@ -121,11 +124,11 @@ print([os.path.basename(p.rstrip(os.sep)) + os.sep for p
 import re
 
 print([p for p in glob.glob('temp/**', recursive=True)
-       if re.search('\d+\.txt', p)])
+       if re.search(r'\d+\.txt', p)])
 # ['temp/dir/sub_dir1/98.txt', 'temp/1.txt', 'temp/123.txt']
 
 print([p for p in glob.glob('temp/**', recursive=True)
-       if re.search('\D{3}\.(txt|jpg)', p)])
+       if re.search(r'\D{3}\.(txt|jpg)', p)])
 # ['temp/[x].txt', 'temp/aaa.jpg', 'temp/dir/sub_dir1/ccc.jpg', 'temp/dir/bbb.txt', 'temp/dir/sub_dir2/ddd.jpg']
 
 print(type(glob.iglob('temp/*.txt')))
