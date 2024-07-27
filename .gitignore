@@ -104,3 +104,6 @@ ENV/
 notebook/data/src/download/
 notebook/data/temp/*
 !.gitkeep
+
+# sh log
+!notebook/*.log

@@ -1,0 +1,21 @@
+$ python sys_exit.py
+Start
+
+$ python sys_exit_if.py
+Start
+Continue
+
+$ python sys_exit_stderr.py
+Error message
+
+$ python sys_exit_stderr.py 1> data/temp/stdout.txt 2> data/temp/stderr.txt
+
+$ cat data/temp/stdout.txt
+
+$ cat data/temp/stderr.txt
+Error message
+
+$ python sys_exit_systemexit.py
+Start
+Catch all exceptions
+Finish
