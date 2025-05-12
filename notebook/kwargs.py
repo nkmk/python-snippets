@@ -26,4 +26,4 @@ func_kwargs_positional(**d)
 # def func_kwargs_error(**kwargs, arg):
 #     print(kwargs)
 
-# SyntaxError: invalid syntax
+# SyntaxError: arguments cannot follow var-keyword argument

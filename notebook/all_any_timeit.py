@@ -10,40 +10,40 @@ print(len(l))
 
 %%timeit
 all([i < 0 for i in l])
-# 4.15 ms ± 117 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 963 μs ± 22.8 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 all(i < 0 for i in l)
-# 469 ns ± 6.12 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 132 ns ± 4.21 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
 %%timeit
 all([i >= 0 for i in l])
-# 4.5 ms ± 57.3 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 1.11 ms ± 18.2 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 all(i >= 0 for i in l)
-# 5.49 ms ± 255 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 1.75 ms ± 2.53 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 all(i < 50000 for i in l)
-# 2.73 ms ± 37.4 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 882 μs ± 2.92 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 any([i >= 0 for i in l])
-# 4.2 ms ± 183 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 902 μs ± 5.31 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 any(i >= 0 for i in l)
-# 468 ns ± 4.8 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+# 123 ns ± 0.0354 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
 %%timeit
 any([i < 0 for i in l])
-# 4.56 ms ± 180 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 1.1 ms ± 2.88 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 any(i < 0 for i in l)
-# 5.33 ms ± 45.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 1.75 ms ± 6.04 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 %%timeit
 any(i > 50000 for i in l)
-# 2.78 ms ± 120 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+# 897 μs ± 6.9 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)

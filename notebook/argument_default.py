@@ -22,7 +22,7 @@ func_default('a', arg3='c')
 #     print(arg1)
 #     print(arg2)
 
-# SyntaxError: non-default argument follows default argument
+# SyntaxError: parameter without a default follows parameter with a default
 
 def func_default_list(l=[0, 1, 2], v=3):
     l.append(v)
