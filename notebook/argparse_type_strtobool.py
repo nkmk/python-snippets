@@ -1,5 +1,6 @@
 import argparse
-from distutils.util import strtobool
+
+from setuptools._distutils.util import strtobool
 
 parser = argparse.ArgumentParser()
 parser.add_argument('arg_bool', type=strtobool)

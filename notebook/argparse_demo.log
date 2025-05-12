@@ -1,0 +1,43 @@
+$ python argparse_type_int.py 100
+100
+<class 'int'>
+
+$ python argparse_type_int.py abc
+usage: argparse_type_int.py [-h] arg_int
+argparse_type_int.py: error: argument arg_int: invalid int value: 'abc'
+
+$ python argparse_type_int.py 1.23
+usage: argparse_type_int.py [-h] arg_int
+argparse_type_int.py: error: argument arg_int: invalid int value: '1.23'
+
+$ python argparse_type_bool.py True
+True
+<class 'bool'>
+
+$ python argparse_type_bool.py False
+True
+<class 'bool'>
+
+$ python argparse_type_bool.py abc
+True
+<class 'bool'>
+
+$ python argparse_option_bool.py --en
+True
+<class 'bool'>
+
+$ python argparse_option_bool.py
+False
+<class 'bool'>
+
+$ python argparse_type_strtobool.py true
+True
+<class 'bool'>
+
+$ python argparse_type_strtobool.py false
+False
+<class 'bool'>
+
+$ python argparse_type_strtobool.py abc
+usage: argparse_type_strtobool.py [-h] arg_bool
+argparse_type_strtobool.py: error: argument arg_bool: invalid strtobool value: 'abc'
