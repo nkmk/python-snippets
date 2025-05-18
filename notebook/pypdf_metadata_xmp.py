@@ -1,7 +1,7 @@
 import pypdf
 
 print(pypdf.__version__)
-# 3.7.1
+# 5.5.0
 
 pdf = pypdf.PdfReader('data/temp/Simple PDF 2.0 file.pdf')
 print(pdf.metadata)

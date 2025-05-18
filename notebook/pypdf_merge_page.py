@@ -1,25 +1,25 @@
 import pypdf
 
 print(pypdf.__version__)
-# 3.7.1
+# 5.5.0
 
-merger = pypdf.PdfMerger()
+writer = pypdf.PdfWriter()
 
-merger.append('data/src/pdf/sample1.pdf', pages=(0, 1))
-merger.append('data/src/pdf/sample2.pdf', pages=(2, 4))
-merger.merge(2, 'data/src/pdf/sample3.pdf', pages=(0, 3, 2))
+writer.append('data/src/pdf/sample1.pdf', pages=(0, 1))
+writer.append('data/src/pdf/sample2.pdf', pages=(2, 4))
+writer.merge(2, 'data/src/pdf/sample3.pdf', pages=(0, 3, 2))
 
-merger.write('data/temp/sample_merge_page.pdf')
-merger.close()
+writer.write('data/temp/sample_merge_page.pdf')
+# (True, <_io.FileIO [closed]>)
 
-merger = pypdf.PdfMerger()
+writer = pypdf.PdfWriter()
 
-merger.append('data/src/pdf/sample1.pdf', pages=pypdf.PageRange('-1'))
-merger.append('data/src/pdf/sample2.pdf', pages=pypdf.PageRange('2:'))
-merger.merge(2, 'data/src/pdf/sample3.pdf', pages=pypdf.PageRange('::-1'))
+writer.append('data/src/pdf/sample1.pdf', pages=pypdf.PageRange('-1'))
+writer.append('data/src/pdf/sample2.pdf', pages=pypdf.PageRange('2:'))
+writer.merge(2, 'data/src/pdf/sample3.pdf', pages=pypdf.PageRange('::-1'))
 
-merger.write('data/temp/sample_merge_pagerange.pdf')
-merger.close()
+writer.write('data/temp/sample_merge_pagerange.pdf')
+# (True, <_io.FileIO [closed]>)
 
 reader1 = pypdf.PdfReader('data/src/pdf/sample1.pdf')
 reader2 = pypdf.PdfReader('data/src/pdf/sample2.pdf')

@@ -1,5 +1,8 @@
 import pypdf
 
+print(pypdf.__version__)
+# 5.5.0
+
 def split_pdf_pages(src_path, dst_basepath):
     src_pdf = pypdf.PdfReader(src_path)
     for i, page in enumerate(src_pdf.pages):
