@@ -4,10 +4,10 @@ util_make_files.glob_example_detail()
 
 !tree temp -nF  # Only works in Jupyter Notebook
 # temp/
+# ├── [x].txt
 # ├── 1.txt
 # ├── 12.text
 # ├── 123.txt
-# ├── [x].txt
 # ├── aaa.text
 # └── dir/
 #     ├── 987.text
@@ -43,7 +43,7 @@ pprint.pprint(list(p_temp.iterdir()))
 # NotADirectoryError: [Errno 20] Not a directory: 'temp/1.txt'
 
 print(type(p_temp.glob('**/*.txt')))
-# <class 'generator'>
+# <class 'map'>
 
 pprint.pprint(list(p_temp.glob('**/*.txt')))
 # [PosixPath('temp/[x].txt'),
@@ -100,12 +100,7 @@ pprint.pprint(glob.glob('temp/**'))
 
 pprint.pprint(list(p_temp.glob('**')))
 # [PosixPath('temp'),
-#  PosixPath('temp/dir'),
-#  PosixPath('temp/dir/sub_dir1'),
-#  PosixPath('temp/dir/sub_dir2')]
-
-pprint.pprint(list(p_temp.glob('**/*')))
-# [PosixPath('temp/[x].txt'),
+#  PosixPath('temp/[x].txt'),
 #  PosixPath('temp/aaa.text'),
 #  PosixPath('temp/dir'),
 #  PosixPath('temp/1.txt'),
@@ -115,9 +110,9 @@ pprint.pprint(list(p_temp.glob('**/*')))
 #  PosixPath('temp/dir/987.text'),
 #  PosixPath('temp/dir/bbb.txt'),
 #  PosixPath('temp/dir/sub_dir2'),
+#  PosixPath('temp/dir/sub_dir2/ddd.text'),
 #  PosixPath('temp/dir/sub_dir1/98.txt'),
-#  PosixPath('temp/dir/sub_dir1/ccc.text'),
-#  PosixPath('temp/dir/sub_dir2/ddd.text')]
+#  PosixPath('temp/dir/sub_dir1/ccc.text')]
 
 import re
 
